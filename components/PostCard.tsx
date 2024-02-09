@@ -59,9 +59,7 @@ const PostCard = () => {
           <textarea
             placeholder="أضف تعليقاً..."
             className="w-full rounded-md outline-1 outline-gray-400 py-2 px-3 relative text-gray-400 h-28"
-          >
-            أضف تعليقاً...
-          </textarea>
+          ></textarea>
           <div className="relative -top-7 flex gap-2 ml-2 justify-end">
             <Link href="#" className="">
               <Image

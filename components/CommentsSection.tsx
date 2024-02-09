@@ -14,17 +14,17 @@ const CommentsSection = () => {
   return (
     <div className="mb-5 ml-4 mr-2">
       {/* Profile phoho and image */}
-      <div className=" flex flex-row gap-3 items-center justify-start mb-5">
-        <Image
-          src="/images/profile.png"
-          alt="Commenter profile Picture"
-          height={400}
-          width={400}
-          className="object-scale-down h-10 w-10"
-        />
-        <p className="ltr">Anas Chammam</p>
-      </div>
-      <div className="flex flex-col bg-white/50 h-fit w-fit py-2 px-3 mr-4">
+      <div className="flex flex-col bg-gray-50 h-fit w-fit py-2 px-3 mr-4">
+        <div className=" flex flex-row gap-3 items-center justify-start mb-2">
+          <Image
+            src="/images/profile.png"
+            alt="Commenter profile Picture"
+            height={400}
+            width={400}
+            className="object-scale-down h-10 w-10"
+          />
+          <p className="rtl font-bold">Anas Chammam</p>
+        </div>
         {/* The comment */}
         {showMore ? (
           <p>{commentExample}</p>
