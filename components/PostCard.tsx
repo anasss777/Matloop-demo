@@ -12,7 +12,7 @@ const PostCard = () => {
     <div className={`flex flex-col w-full h-fit py-5 rtl`}>
       {/* The post section */}
       <div className={`w-full h-fit py-5 px-4 rounded-t-md bg-[#4682b4]/50`}>
-        <div className="flex flex-row gap-2 items-center justify-start mb-5">
+        <div className="flex flex-row gap-2 items-center justify-start mb-3">
           <Image
             src="/images/profile.png"
             alt="Poster profile image"
@@ -40,10 +40,10 @@ const PostCard = () => {
             {/* <p className="text-white ltr">+90 123456789</p> */}
           </div>
         </div>
-        <p className="text-xl font-bold mr-6">
+        <p className="text-xl font-bold mr-4">
           مطلوب مبرمج محترف للعمل في إسطنبول
         </p>
-        <p className=" mr-6">
+        <p className="mr-4">
           مطلوب مبرمج محترف للعمل في إسطنبول. مطلوب مبرمج محترف للعمل في
           إسطنبول. مطلوب مبرمج محترف للعمل في إسطنبول. مطلوب مبرمج محترف للعمل
           في إسطنبول. مطلوب مبرمج محترف للعمل في إسطنبول. مطلوب مبرمج محترف

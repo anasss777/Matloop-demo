@@ -12,9 +12,9 @@ const CommentsSection = () => {
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <div className="mb-5 ml-4 mr-2">
-      {/* Profile phoho and image */}
-      <div className="flex flex-col bg-gray-50 h-fit w-fit py-2 px-3 mr-4 rounded-3xl">
+    <div className="mb-5 mx-2">
+      <div className="flex flex-col bg-gray-50 h-fit w-fit py-2 px-3 rounded-3xl">
+        {/* Profile phoho and image */}
         <div className=" flex flex-row gap-3 items-center justify-start mb-2">
           <Image
             src="/images/profile.png"
@@ -27,9 +27,9 @@ const CommentsSection = () => {
         </div>
         {/* The comment */}
         {showMore ? (
-          <p>{commentExample}</p>
+          <p className="mr-4">{commentExample}</p>
         ) : (
-          <p className="rtl">
+          <p className="rtl mr-4">
             {commentExample.substring(0, 100)}
             {!showMore && (
               <span>
@@ -47,7 +47,7 @@ const CommentsSection = () => {
 
         {/* pdf file */}
         <Link href="#" target="_blank">
-          <div className="flex flex-row gap-2 my-2 bg-gray-200 h-fit w-fit py-1 px-2 rounded-lg">
+          <div className="flex flex-row gap-2 my-2 mr-4 bg-gray-200 h-fit w-fit py-1 px-2 rounded-lg">
             <Image
               src="/images/document.png"
               alt="Resume file"
