@@ -93,29 +93,31 @@ const PostCard = () => {
 
         {/* show two or all comments */}
         {showComments ? (
-          <div className={`overflow-y-auto h-96`}>
-            <div className={`w-full flex justify-end pl-4`}>
+          <div>
+            <div className={`w-full flex justify-end pl-2 sticky`}>
               <Image
                 src="/images/cancel.png"
                 alt="Cancel button"
                 height={300}
                 width={300}
                 onClick={() => setShowComments(false)}
-                className={`cursor-pointer object-scale-down h-7 w-7`}
+                className={`cursor-pointer object-scale-down h-7 w-7 mb-2`}
               />
             </div>
-            <CommentsSection />
-            <CommentsSection />
-            <CommentsSection />
-            <CommentsSection />
-            <CommentsSection />
-            <CommentsSection />
-            <CommentsSection />
-            <CommentsSection />
-            <CommentsSection />
-            <CommentsSection />
-            <CommentsSection />
-            <CommentsSection />
+            <div className={`overflow-y-auto h-96`}>
+              <CommentsSection />
+              <CommentsSection />
+              <CommentsSection />
+              <CommentsSection />
+              <CommentsSection />
+              <CommentsSection />
+              <CommentsSection />
+              <CommentsSection />
+              <CommentsSection />
+              <CommentsSection />
+              <CommentsSection />
+              <CommentsSection />
+            </div>
           </div>
         ) : (
           <div className="mt-10">
