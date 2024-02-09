@@ -14,7 +14,7 @@ const CommentsSection = () => {
   return (
     <div className="mb-5 ml-4 mr-2">
       {/* Profile phoho and image */}
-      <div className="flex flex-col bg-gray-50 h-fit w-fit py-2 px-3 mr-4">
+      <div className="flex flex-col bg-gray-50 h-fit w-fit py-2 px-3 mr-4 rounded-3xl">
         <div className=" flex flex-row gap-3 items-center justify-start mb-2">
           <Image
             src="/images/profile.png"
@@ -60,7 +60,7 @@ const CommentsSection = () => {
         </Link>
         {/* Edit button */}
         <div className="flex justify-end w-full">
-          <button className="text-gray-50 bg-gray-400 p-1 text-sm h-fit w-fit">
+          <button className="text-gray-50 bg-gray-400 p-1 text-sm h-fit w-fit rounded-md">
             تعديل
           </button>
         </div>
