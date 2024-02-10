@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       boxShadow: {
         Card: "0px 0px 10px rgba(81, 94, 125, 0.1);",
+        Card2: "0px 0px 10px rgba(81, 94, 125, 0.25);",
       },
     },
   },

@@ -10,27 +10,23 @@ type Props = {
 
 const CategoryCard = ({ categoryName, imgSrc, pageHref }: Props) => {
   return (
-    <div className={`relative w-full h-fit py-20 px-60 bg-[#FAF9F6]`}>
-      {/* Image component */}
-      <div className="relative group">
-        <Link href={pageHref}>
+    <div className="w-fit p-5">
+      <Link href={pageHref}>
+        <button className="w-[170px] h-32 rounded-xl p-[2px] relative overflow-hidden shadow-Card2">
           <Image
+            className="rounded-xl object-cover w-full h-full"
             src={imgSrc}
-            alt="Category listing banner"
-            height={800}
-            width={800}
-            className={`flex justify-center mx-auto rounded-3xl shadow-lg grayscale-[30%] blur-[2px] w-full`}
+            layout="fill"
+            alt={categoryName}
           />
+        </button>
 
-          {/* Text on top of the image */}
-          <h1
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl font-bold text-white bg-[#4682b4]
-            h-fit w-fit py-5 px-3 rounded-3xl group-hover:scale-105 transition-all duration-300 ease-linear"
-          >
-            {categoryName}
-          </h1>
-        </Link>
-      </div>
+        {/* Name under the Image */}
+        <p className="font-montserrat text-xl text-teal-500">
+          <span>|</span>
+          {categoryName}
+        </p>
+      </Link>
     </div>
   );
 };

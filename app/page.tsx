@@ -1,3 +1,4 @@
+import Categories from "@/components/Categories";
 import Hero from "@/components/Hero";
 import TopDeals from "@/components/TopDeals";
 
@@ -6,7 +7,7 @@ export default function Home() {
     <main className="rtl">
       <Hero />
       <TopDeals />
-      {/* <Categories /> */}
+      <Categories />
     </main>
   );
 }

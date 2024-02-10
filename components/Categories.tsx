@@ -5,35 +5,38 @@ const Categories = () => {
   const categoriesInfo = [
     {
       categoryName: "وظائف",
-      imgSrc: "/images/jobs.png",
+      imgSrc: "/images/jobsImg.png",
       pageHref: "/jobs",
     },
     {
       categoryName: "سيارات",
-      imgSrc: "/images/cars.png",
+      imgSrc: "/images/carsImg.png",
       pageHref: "/cars",
     },
     {
       categoryName: "عقارات",
-      imgSrc: "/images/real-estate.png",
+      imgSrc: "/images/realEstateImg.png",
       pageHref: "/real-estate",
     },
     {
       categoryName: "إلكترونيات",
-      imgSrc: "/images/electronic-devices.png",
+      imgSrc: "/images/electronicDevicesImg.png",
       pageHref: "/electronic-devices",
     },
   ];
   return (
-    <div>
-      {categoriesInfo.map((category, index) => (
-        <CategoryCard
-          key={index}
-          categoryName={category.categoryName}
-          imgSrc={category.imgSrc}
-          pageHref={category.pageHref}
-        />
-      ))}
+    <div className="flex flex-col">
+      <p className="text-xl mt-5 mr-5 font-semibold text-[#4682b4]">الأقسام</p>
+      <div className="grid grid-rows-2 grid-cols-2 justify-center">
+        {categoriesInfo.map((category, index) => (
+          <CategoryCard
+            key={index}
+            categoryName={category.categoryName}
+            imgSrc={category.imgSrc}
+            pageHref={category.pageHref}
+          />
+        ))}
+      </div>
     </div>
   );
 };
