@@ -29,7 +29,6 @@ const PostCard = () => {
               width={300}
               className="object-scale-down h-7 w-7"
             />
-            {/* <p className="text-white">example@example.com</p> */}
             <Image
               src="/images/telephone.png"
               alt="Phone number"
@@ -37,7 +36,6 @@ const PostCard = () => {
               width={300}
               className="object-scale-down h-7 w-7"
             />
-            {/* <p className="text-white ltr">+90 123456789</p> */}
           </div>
         </div>
         <p className="text-xl font-bold mr-4">
