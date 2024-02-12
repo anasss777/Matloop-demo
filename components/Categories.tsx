@@ -27,7 +27,7 @@ const Categories = () => {
   return (
     <div className="flex flex-col">
       <p className="text-xl mt-5 mr-5 font-semibold text-[#4682b4]">الأقسام</p>
-      <div className="grid grid-rows-2 grid-cols-2 justify-center">
+      <div className="grid grid-rows-2 grid-cols-2 justify-center mx-2">
         {categoriesInfo.map((category, index) => (
           <CategoryCard
             key={index}

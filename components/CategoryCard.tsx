@@ -10,9 +10,9 @@ type Props = {
 
 const CategoryCard = ({ categoryName, imgSrc, pageHref }: Props) => {
   return (
-    <div className="w-fit p-5">
+    <div className="w-full p-3">
       <Link href={pageHref}>
-        <button className="w-[170px] h-32 rounded-xl p-[2px] relative overflow-hidden shadow-Card2">
+        <button className="w-full h-32 rounded-xl p-[2px] relative overflow-hidden shadow-Card2">
           <Image
             className="rounded-xl object-cover w-full h-full"
             src={imgSrc}
@@ -22,8 +22,7 @@ const CategoryCard = ({ categoryName, imgSrc, pageHref }: Props) => {
         </button>
 
         {/* Name under the Image */}
-        <p className="font-montserrat text-xl text-teal-500">
-          <span>|</span>
+        <p className="font-montserrat text-xl p-1 text-teal-500 border-b border-b-teal-200 border-r border-r-teal-200">
           {categoryName}
         </p>
       </Link>

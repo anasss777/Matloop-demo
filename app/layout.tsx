@@ -2,6 +2,7 @@ import { Cairo, Inter } from "next/font/google";
 import "./globals.css";
 import Head from "./Head";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const cairo = Cairo({
   subsets: ["arabic"],
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body className={cairo.className}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
