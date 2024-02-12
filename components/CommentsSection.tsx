@@ -4,11 +4,16 @@ import { Span } from "next/dist/trace";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import ImagesGallery from "./ImagesGallery";
 
 const commentExample =
   "أنا مبرمج محترف. أنا مبرمج محترف. أنا مبرمج محترف. أنا مبرمج محترف. أنا مبرمج محترف. أنا مبرمج محترف. أنا مبرمج محترف. أنا مبرمج محترف. أنا مبرمج محترف. أنا مبرمج محترف. أنا مبرمج محترف. أنا مبرمج محترف. أنا مبرمج محترف. أنا مبرمج محترف. أنا مبرمج محترف. أنا مبرمج محترف. أنا مبرمج محترف. أنا مبرمج محترف. ";
 
-const CommentsSection = () => {
+type Props = {
+  allowImg?: boolean;
+};
+
+const CommentsSection = ({ allowImg }: Props) => {
   const [showMore, setShowMore] = useState(false);
 
   return (
@@ -58,6 +63,7 @@ const CommentsSection = () => {
             <p>سيرتي الذاتية</p>
           </div>
         </Link>
+        {allowImg && <ImagesGallery />}
         {/* Edit button */}
         <div className="flex justify-end w-full">
           <button className="text-gray-50 bg-gray-400 p-1 text-sm h-fit w-fit rounded-md">

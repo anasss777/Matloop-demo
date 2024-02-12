@@ -5,7 +5,11 @@ import React, { useState } from "react";
 import CommentsSection from "./CommentsSection";
 import Link from "next/link";
 
-const PostCard = () => {
+type Props = {
+  allowImg?: boolean;
+};
+
+const PostCard = ({ allowImg }: Props) => {
   const [showComments, setShowComments] = useState(false);
 
   return (
@@ -103,23 +107,23 @@ const PostCard = () => {
               />
             </div>
             <div className={`overflow-y-auto h-96`}>
-              <CommentsSection />
-              <CommentsSection />
-              <CommentsSection />
-              <CommentsSection />
-              <CommentsSection />
-              <CommentsSection />
-              <CommentsSection />
-              <CommentsSection />
-              <CommentsSection />
-              <CommentsSection />
-              <CommentsSection />
-              <CommentsSection />
+              <CommentsSection allowImg={allowImg} />
+              <CommentsSection allowImg={allowImg} />
+              <CommentsSection allowImg={allowImg} />
+              <CommentsSection allowImg={allowImg} />
+              <CommentsSection allowImg={allowImg} />
+              <CommentsSection allowImg={allowImg} />
+              <CommentsSection allowImg={allowImg} />
+              <CommentsSection allowImg={allowImg} />
+              <CommentsSection allowImg={allowImg} />
+              <CommentsSection allowImg={allowImg} />
+              <CommentsSection allowImg={allowImg} />
+              <CommentsSection allowImg={allowImg} />
             </div>
           </div>
         ) : (
           <div className="mt-10">
-            <CommentsSection />
+            <CommentsSection allowImg={allowImg} />
             <div className={`flex h-fit w-full justify-end text-white mt-5`}>
               <button
                 onClick={() => setShowComments(!showComments)}

@@ -9,7 +9,7 @@ const LatestDeals = () => {
         أحدث الصفقات
       </h1>
       <PostCard />
-      <PostCard />
+      <PostCard allowImg />
       <PostCard />
 
       <Link

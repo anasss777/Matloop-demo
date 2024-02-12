@@ -1,7 +1,6 @@
 import Categories from "@/components/Categories";
 import Hero from "@/components/Hero";
 import LatestDeals from "@/components/LatestDeals";
-import PostCard from "@/components/PostCard";
 import SearchInput from "@/components/SearchInput";
 import TopDeals from "@/components/TopDeals";
 

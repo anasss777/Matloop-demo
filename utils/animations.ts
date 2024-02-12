@@ -9,7 +9,7 @@ const fedeInAnimationVariants1 = {
         transition: {
         ease: "linear",
         duration: 1,
-        delay: 1,
+        delay: 0,
         },
     }),
 };
@@ -24,7 +24,7 @@ const fedeInAnimationVariants2 = {
         transition: {
         ease: "linear",
         duration: 1,
-        delay: 1,
+        delay: 0,
         },
     }),
 };
@@ -38,7 +38,7 @@ const fedeInAnimationVariants3 = {
         transition: {
         ease: "linear",
         duration: 1.5,
-        delay: 1.5,
+        delay: 1,
         },
     }),
 };
@@ -52,7 +52,7 @@ const fedeInAnimationVariants4 = {
         transition: {
         ease: "linear",
         duration: 0.5,
-        delay: 1.5,
+        delay: 1,
         },
     }),
 };
