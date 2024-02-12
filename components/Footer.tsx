@@ -5,7 +5,7 @@ const Footer = () => {
   const todayYear = new Date().getFullYear();
 
   return (
-    <div className="flex flex-col gap-6 bg-teal-400 pt-4 px-3">
+    <div className="flex flex-col gap-6 bg-teal-400 pt-4 px-3 mt-10">
       <Link href="/">
         <p className={`flex justify-center items-center text-2xl text-white`}>
           مطلوب

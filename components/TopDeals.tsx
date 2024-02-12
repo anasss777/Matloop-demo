@@ -21,7 +21,7 @@ const TopDeals = () => {
           رؤية المزيد
         </Link>
       </h1>
-      <div className="flex flex-row gap-2 py-2 pr-4 h-20 w-full mt-5 overflow-x-auto">
+      <div className="flex flex-row gap-2 py-2 h-20 w-full overflow-x-auto">
         {deals.map((deal, index) => (
           <SmallCard key={index} deal={deal} />
         ))}
