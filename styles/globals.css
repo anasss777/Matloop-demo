@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .btn {
+    @apply bg-secondary h-fit w-fit px-2 py-1 text-white rounded-md hover:bg-primary transition-all duration-300 ease-linear
+  }
+  .btn2 {
+    @apply h-fit w-fit px-2 py-1 text-white rounded-md hover:bg-opacity-70 transition-all duration-300 ease-linear
+  }
+}
+
 .rtl {
     direction: rtl !important;
   }

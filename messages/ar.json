@@ -1,0 +1,29 @@
+{
+    "head": {
+        "title": "مطلوب",
+        "description": "مطلوب"
+    },
+    "searchBar": {
+        "searchPlaceholder": "بحث..."
+    },
+    "nav": {
+        "about": "عنا",
+        "contact": "تواصل معنا"
+    },
+    "accountHeader": {
+        "signIn": "تسجيل الدخول",
+        "signUp": "إنشاء حساب"
+    },
+    "signUp": {
+        "firstName": "الإسم الأول",
+        "lastName": "الإسم الاخير",
+        "username": "إسم المستخدم",
+        "email": "البريد الإلكتروني",
+        "phoneNumber": "رقم الهاتف",
+        "country": "الدولة",
+        "password": "كلمة المرور",
+        "confirmPassword": "تأكيد كلمة المرور",
+        "signUp":"إنشاء حساب",
+        "signUpWithGoogle": "إنشاء حساب بإستخدام قوقل"
+    }
+}

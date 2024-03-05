@@ -36,17 +36,15 @@ const CommentsSection = ({ allowImg }: Props) => {
         ) : (
           <p className="rtl mr-4">
             {commentExample.substring(0, 100)}
-            {!showMore && (
-              <span>
-                <span>...</span>
-                <span
-                  className="rtl text-gray-500 underline"
-                  onClick={() => setShowMore(true)}
-                >
-                  رؤية المزيد
-                </span>
+            <span>
+              <span>...</span>
+              <span
+                className="rtl text-gray-500 underline cursor-pointer h-fit"
+                onClick={() => setShowMore(true)}
+              >
+                رؤية المزيد
               </span>
-            )}
+            </span>
           </p>
         )}
 
