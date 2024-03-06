@@ -23,7 +23,10 @@
         "country": "الدولة",
         "password": "كلمة المرور",
         "confirmPassword": "تأكيد كلمة المرور",
-        "signUp":"إنشاء حساب",
-        "signUpWithGoogle": "إنشاء حساب بإستخدام قوقل"
+        "signUp": "إنشاء حساب",
+        "signIn": "تسجيل الدخول",
+        "notRegistered": "إنشاء حساب جديد",
+        "signUpWithGoogle": "إنشاء حساب بإستخدام قوقل",
+        "signInWithGoogle": "تسجيل الدخول بإستخدام قوقل"
     }
 }

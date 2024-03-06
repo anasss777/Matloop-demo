@@ -43,7 +43,7 @@ const Profile: React.FC = () => {
   if (!user) {
     return (
       <p
-        className={`flex flex-col justify-center items-center w-full h-screen`}
+        className={`flex flex-col gap-5 justify-center items-center w-full h-screen`}
       >
         No user is signed in{" "}
         <Link
@@ -52,6 +52,13 @@ const Profile: React.FC = () => {
           className={`btn2 bg-primary hover:bg-primary/50`}
         >
           Sign up
+        </Link>
+        <Link
+          href="/sign-in"
+          locale={locale}
+          className={`btn2 bg-primary hover:bg-primary/50`}
+        >
+          Sign in
         </Link>
       </p>
     );

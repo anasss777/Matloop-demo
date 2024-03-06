@@ -77,7 +77,7 @@ export const handleSignUpWithGoogle = async () => {
     const user: firebase.User | null = result.user;
 
     if (user) {
-      // Add a new document in collection "users" with ID = user.uid
+      // Add a new document in collection "profiles" with ID = user.uid
       await db
         .collection("profiles")
         .doc(user.uid)
@@ -102,6 +102,71 @@ export const handleSignUpWithGoogle = async () => {
     const errorCode: string = error.code;
     const errorMessage: string = error.message;
     console.log(errorCode, errorMessage);
+  }
+};
+
+export const handleSignIn = async (email: string, password: string) => {
+  const db: firebase.firestore.Firestore = firebase.firestore();
+
+  try {
+    const userCredential: firebase.auth.UserCredential = await firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password);
+    // The signed-in user info
+    const user: firebase.User | null = userCredential.user;
+
+    if (user) {
+      // Get user document from Firestore
+      const docRef: firebase.firestore.DocumentReference = db
+        .collection("profiles")
+        .doc(user.uid);
+      const doc: firebase.firestore.DocumentSnapshot = await docRef.get();
+      if (doc.exists) {
+        console.log("User data:", doc.data());
+        return user;
+      } else {
+        console.log("No such document!");
+      }
+    }
+  } catch (error: any) {
+    // Handle Errors here
+    const errorCode: string = error.code;
+    const errorMessage: string = error.message;
+    console.log(errorCode, errorMessage);
+    return null;
+  }
+};
+
+export const handleSignInWithGoogle = async () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  const db: firebase.firestore.Firestore = firebase.firestore();
+
+  try {
+    const result: firebase.auth.UserCredential = await firebase
+      .auth()
+      .signInWithPopup(provider);
+    // The signed-in user info
+    const user: firebase.User | null = result.user;
+
+    if (user) {
+      // Get user document from Firestore
+      const docRef: firebase.firestore.DocumentReference = db
+        .collection("profiles")
+        .doc(user.uid);
+      const doc: firebase.firestore.DocumentSnapshot = await docRef.get();
+      if (doc.exists) {
+        console.log("User data:", doc.data());
+        return user;
+      } else {
+        console.log("No such document!");
+      }
+    }
+  } catch (error: any) {
+    // Handle Errors here
+    const errorCode: string = error.code;
+    const errorMessage: string = error.message;
+    console.log(errorCode, errorMessage);
+    return null;
   }
 };
 

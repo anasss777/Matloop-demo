@@ -1,11 +1,12 @@
 "use client";
 
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import firebase from "@/firebase";
 import { useRouter } from "next/navigation";
 import { handleSignUp, handleSignUpWithGoogle } from "@/utils/auth";
 import { Profile } from "@/types/profile";
 import { useLocale, useTranslations } from "next-intl";
+import { svgGoogle } from "@/components/svgsPath";
 
 const SignUp = () => {
   const t = useTranslations("signUp");
@@ -28,6 +29,16 @@ const SignUp = () => {
   });
 
   const [user, setUser] = useState<firebase.User | null | undefined>(null);
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      setUser(user);
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, []);
+
   const router = useRouter();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +66,9 @@ const SignUp = () => {
   }
 
   return (
-    <div className={`flex flex-col justify-center items-center w-full py-20`}>
+    <div
+      className={`flex flex-col justify-center items-center w-full py-20 rtl`}
+    >
       <form
         name="signUp"
         onSubmit={handleSubmit}
@@ -152,7 +165,11 @@ const SignUp = () => {
         <button type="submit" className={`btn`}>
           {t("signUp")}
         </button>
-        <div onClick={handleSubmitWithGoogle} className={`btn2 bg-primary`}>
+        <div
+          onClick={handleSubmitWithGoogle}
+          className={`btn2 bg-primary cursor-pointer flex flex-row gap-1 items-center`}
+        >
+          <span className={`bg-white p-1 rounded-full`}>{svgGoogle}</span>
           {t("signUpWithGoogle")}
         </div>
       </form>

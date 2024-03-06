@@ -55,7 +55,8 @@ const NavbarElements = () => {
         lg:shadow-none xl:px-6`}
       >
         <ul
-          className={`block lg:flex flex-row gap-5 border rounded-lg border-teal-700 ${
+          onClick={() => setMenuOpen(false)}
+          className={`block lg:flex flex-row gap-5 border rounded-lg border-teal-700 lg:border-none ${
             locale === "ar" && "text-right"
           }`}
         >
