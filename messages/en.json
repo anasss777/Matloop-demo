@@ -2,5 +2,68 @@
     "head": {
         "title": "Matloop",
         "description": "Matloop"
+    },
+    "header": {
+        "addPost": "Add a Matloop"
+    },
+    "searchBar": {
+        "searchPlaceholder": "Search..."
+    },
+    "nav": {
+        "about": "About",
+        "contact": "Contact Us"
+    },
+    "accountHeader": {
+        "signIn": "Sign In",
+        "signUp": "Sign Up"
+    },
+    "signUp": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "username": "Username",
+        "email": "Email",
+        "phoneNumber": "Phone Number",
+        "country": "Country",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "signUp": "Sign Up",
+        "signIn": "Sign In",
+        "notRegistered": "Not Registered?",
+        "signUpWithGoogle": "Sign Up with Google",
+        "signInWithGoogle": "Sign In with Google"
+    },
+    "newPost": {
+        "carsTitle": "Specify the required car specifications",
+        "carBrand": "Choose car brand",
+        "carType": "Car type",
+        "gearType": "Transmission type",
+        "cars": "Cars",
+        "jobs": "Jobs",
+        "realEstates": "Real Estates",
+        "electronics": "Electronics",
+        "chooseCategory": "Choose category",
+        "chooseCountry": "Choose country",
+        "chooseCity": "City name",
+        "carPriceRange": "Price",
+        "carYearRange": "Manufacturing year",
+        "maxDistance": "Maximum distance in kilometers",
+        "fuelType": "Engine type",
+        "kiloMeter": "Kilometer",
+        "otherSpecs": "Additional specifications",
+        "description": "Description...",
+        "submit": "Post a Matloop"
+    },
+    "carType": {
+        "Sedan": "Sedan",
+        "SUV": "Sport Utility Vehicle (SUV)",
+        "Truck": "Truck",
+        "Coupe": "Coupe",
+        "Convertible": "Convertible",
+        "Hatchback": "Hatchback",
+        "currency": "Saudi Riyal"
+    },
+    "gearType": {
+        "automatic": "Automatic",
+        "manual": "Manual"
     }
 }

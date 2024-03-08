@@ -165,11 +165,14 @@ const SignUp = () => {
         <button type="submit" className={`btn`}>
           {t("signUp")}
         </button>
+        <div className={`border-t border-t-primary/60 w-full`}></div>
         <div
           onClick={handleSubmitWithGoogle}
           className={`btn2 bg-primary cursor-pointer flex flex-row gap-1 items-center`}
         >
-          <span className={`bg-white p-1 rounded-full`}>{svgGoogle}</span>
+          <span className={`bg-white p-1 rounded-full shadow-Card2`}>
+            {svgGoogle}
+          </span>
           {t("signUpWithGoogle")}
         </div>
       </form>

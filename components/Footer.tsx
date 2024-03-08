@@ -6,8 +6,10 @@ const Footer = () => {
 
   return (
     <div className="flex flex-col gap-6 bg-teal-400 pt-4 px-3 mt-10">
-      <Link href="/">
-        <p className={`flex justify-center items-center text-2xl text-white`}>
+      <Link href="/" className={`flex justify-center w-full`}>
+        <p
+          className={`flex justify-center items-center text-2xl text-white w-fit`}
+        >
           مطلوب
         </p>
       </Link>

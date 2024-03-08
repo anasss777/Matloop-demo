@@ -3,6 +3,9 @@
         "title": "مطلوب",
         "description": "مطلوب"
     },
+    "header": {
+        "addPost": "إضافة مطلوب"
+    },
     "searchBar": {
         "searchPlaceholder": "بحث..."
     },
@@ -28,5 +31,39 @@
         "notRegistered": "إنشاء حساب جديد",
         "signUpWithGoogle": "إنشاء حساب بإستخدام قوقل",
         "signInWithGoogle": "تسجيل الدخول بإستخدام قوقل"
+    },
+    "newPost": {
+        "carsTitle": "حدد مواصفات السيارة المطلوبة",
+        "carBrand": "اختر ماركة السيارة",
+        "carType": "نوع السيارة",
+        "gearType": "عصا القيادة",
+        "cars": "سيارات",
+        "jobs": "وظائف",
+        "realEstates": "عقارات",
+        "electronics": "أجهزة إلكترونية",
+        "chooseCategory": "اختر الفئة",
+        "chooseCountry": "اختر الدولة",
+        "chooseCity": "إسم المدينة",
+        "carPriceRange" : "السعر",
+        "carYearRange": "سنة الصنع",
+        "maxDistance": "الحد الأقصى لعدد الكيلومترات المقطوعة",
+        "fuelType": "نوع المحرك",
+        "kiloMeter": "كيلومتر",
+        "otherSpecs": "مواصفات إضافية",
+        "description": "وصف المطلوب...",
+        "submit": "نشر المطلوب"
+    },
+    "carType": {
+        "Sedan": "سيدان",
+        "SUV": "سيارة رباعية الدفع (SUV)",
+        "Truck": "شاحنة",
+        "Coupe": "كوبيه",
+        "Convertible": "سيارة مكشوفة",
+        "Hatchback": "هاتشباك",
+        "currency": "ريال سعودي"
+    },
+    "gearType": {
+        "automatic": "ألي",
+        "manual": "يدوي"
     }
 }

@@ -99,7 +99,9 @@ const SignIn = () => {
           onClick={handleSubmitWithGoogle}
           className={`btn2 bg-primary cursor-pointer flex flex-row gap-1 items-center`}
         >
-          <span className={`bg-white p-1 rounded-full`}>{svgGoogle}</span>
+          <span className={`bg-white p-1 rounded-full shadow-Card2`}>
+            {svgGoogle}
+          </span>
           {t("signInWithGoogle")}
         </div>
       </form>

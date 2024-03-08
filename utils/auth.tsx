@@ -15,6 +15,18 @@ type Props = {
   receivedMessages: string[];
 };
 
+export const delayAction = async (
+  action: () => void,
+  delayMilliseconds: number
+) => {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      action();
+      resolve();
+    }, delayMilliseconds);
+  });
+};
+
 export const handleSignUp = async ({
   firstName,
   lastName,
