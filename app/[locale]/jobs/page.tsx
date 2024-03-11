@@ -9,11 +9,11 @@ const Jobs = () => {
         يوجد 456 وظيفة
       </p>
       <SearchInput />
+      {/* <PostCard />
       <PostCard />
       <PostCard />
       <PostCard />
-      <PostCard />
-      <PostCard />
+      <PostCard /> */}
     </div>
   );
 };
