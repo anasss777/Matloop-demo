@@ -18,15 +18,29 @@ const Cars = () => {
   const t = useTranslations("newPost");
   const locale = useLocale();
   const isArabic = locale === "ar";
-  const [currentUser, setCurrentUser] = useState<firebase.User | null>(null);
-  const [poster, setPoster] = useState("");
+  const [poster, setPoster] = useState<any>();
+
   const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        setCurrentUser(user);
-        setPoster(user?.uid);
+        const docRef = firebase
+          .firestore()
+          .collection("profiles")
+          .doc(user.uid);
+        docRef
+          .get()
+          .then((doc) => {
+            if (doc.exists) {
+              setPoster(doc.data());
+            } else {
+              console.log("No such document!");
+            }
+          })
+          .catch((error) => {
+            console.log("Error getting document:", error);
+          });
       } else {
         router.push("/sign-up");
       }
@@ -58,6 +72,8 @@ const Cars = () => {
   const [fuelType, setFuelType] = useState<string[]>([]);
 
   const [description, setDescription] = useState("");
+
+  const [postTitle, setPostTitle] = useState("");
 
   const handleCategorySelected = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCategory(e.target.value);
@@ -160,19 +176,22 @@ const Cars = () => {
 
   return (
     <div
-      className={`flex flex-col justify-center items-center ${
+      className={`flex flex-col justify-center items-center px-8 ${
         isArabic && "rtl"
       }`}
     >
       {/* Choose category */}
-      <CategorySelector
-        handleCategorySelected={handleCategorySelected}
-        selectedCategory={selectedCategory}
-      />
+      <CategorySelector />
 
-      <h2 className={`text-primary text-2xl font-bold mt-20`}>
-        {t("carsTitle")}
+      <h2 className={`text-primary text-lg font-bold mb-4 mt-20`}>
+        {t("postTitle")}
       </h2>
+      <input
+        value={postTitle}
+        placeholder={t("postTitlePlaceholder")}
+        onChange={(e) => setPostTitle(e.target.value)}
+        className={`border border-secondary/70 px-2 py-1 rounded-md w-full`}
+      />
 
       {/* Choose Car Brand */}
       <BrandSelector handleBrandSelected={handleCarBrand} />
@@ -251,6 +270,7 @@ const Cars = () => {
       />
       {/* <p className={`text-black`}>{`${selectedCountry}, ${city}`}</p> */}
 
+      {/* Other Specs */}
       <h2 className={`text-primary text-lg font-bold mb-4`}>
         {t("otherSpecs")}
       </h2>
@@ -270,6 +290,7 @@ const Cars = () => {
         onClick={() =>
           addCarPost({
             poster,
+            postTitle,
             carBrand,
             carType,
             minPrice,
@@ -289,6 +310,7 @@ const Cars = () => {
       </button>
 
       <p className={`flex flex-col ltr`}>
+        <span>{`Post Title: ${postTitle}`}</span>
         <span>{`Brand: ${carBrand}`}</span>
         <span>{`Type: [${carType}]`}</span>
         <span>{`Price: [${minPrice}, ${maxPrice}] `}</span>

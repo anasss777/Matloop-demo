@@ -33,7 +33,8 @@
         "signInWithGoogle": "تسجيل الدخول بإستخدام قوقل"
     },
     "newPost": {
-        "carsTitle": "حدد مواصفات السيارة المطلوبة",
+        "postTitle": "ضع عنواناً لمطلوبك",
+        "postTitlePlaceholder": "مطلوب سيارة...",
         "carBrand": "اختر ماركة السيارة",
         "carType": "نوع السيارة",
         "gearType": "عصا القيادة",
@@ -65,5 +66,14 @@
     "gearType": {
         "automatic": "ألي",
         "manual": "يدوي"
-    }
+    },
+    "postCard": {
+        "carBrand": "الماركة: ",
+        "carType": "نوع السيارة: ",
+        "priceRange": "السعر: ",
+        "yearRange": "سنة الصنع: ",
+        "maxDistance": "عدد الكيلومترات: ",
+        "gearType": "عصا القيادة: ",
+        "region": "العنوان: "
+    } 
 }

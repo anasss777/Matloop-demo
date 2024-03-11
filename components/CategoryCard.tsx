@@ -16,8 +16,10 @@ const CategoryCard = ({ categoryName, imgSrc, pageHref }: Props) => {
           <Image
             className="rounded-xl object-cover w-full h-full"
             src={imgSrc}
-            layout="fill"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             alt={categoryName}
+            priority
           />
         </button>
 

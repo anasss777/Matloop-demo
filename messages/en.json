@@ -33,7 +33,8 @@
         "signInWithGoogle": "Sign In with Google"
     },
     "newPost": {
-        "carsTitle": "Specify the required car specifications",
+        "postTitle": "Provide a title for your request",
+        "postTitlePlaceholder": "Looking for a car...",
         "carBrand": "Choose car brand",
         "carType": "Car type",
         "gearType": "Transmission type",
@@ -65,5 +66,14 @@
     "gearType": {
         "automatic": "Automatic",
         "manual": "Manual"
+    },
+    "postCard": {
+        "carBrand": "Brand: ",
+        "carType": "Car Type: ",
+        "priceRange": "Price: ",
+        "yearRange": "Manufacturing Year: ",
+        "maxDistance": "Kilometers: ",
+        "gearType": "Transmission Type: ",
+        "region": "Location: "
     }
 }

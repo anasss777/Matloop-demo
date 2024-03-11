@@ -1,54 +1,58 @@
-import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import React from "react";
+import { usePathname } from "next/navigation";
+import { createSharedPathnamesNavigation } from "next-intl/navigation";
 
-type Props = {
-  handleCategorySelected: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  selectedCategory: string;
-};
+export const locales = ["ar", "en"];
+const { Link } = createSharedPathnamesNavigation({ locales });
 
-const CategorySelector = ({
-  handleCategorySelected,
-  selectedCategory,
-}: Props) => {
+const CategorySelector = () => {
   const t = useTranslations("newPost");
-  const router = useRouter();
-
-  if (selectedCategory === "cars") {
-    router.push("/new-matloop/car");
-  } else if (selectedCategory === "jobs") {
-    router.push("/new-matloop/job");
-  } else if (selectedCategory === "realEstates") {
-    router.push("/new-matloop/real-estate");
-  } else if (selectedCategory === "electronics") {
-    router.push("/new-matloop/electronic-device");
-  }
+  const locale = useLocale();
+  const currentPage = usePathname();
 
   return (
-    <div>
-      {/* Choose category */}
-      <select
-        onChange={handleCategorySelected}
-        name="categories"
-        id="categories"
-        className={`bg-primary rounded-md px-2 mt-10 text-white`}
+    <div className={`flex flex-wrap gap-2 my-5`}>
+      <Link
+        locale={locale}
+        href="/new-matloop/car"
+        className={`btn2 shadow-sm text-primary font-bold bg-primary/20 ${
+          currentPage.includes(`/${locale}/new-matloop/car`) &&
+          `chosen-btn text-white`
+        }`}
       >
-        <option value="" selected disabled hidden>
-          {t("chooseCategory")}
-        </option>
-        <option className={`bg-white text-black`} value="cars">
-          {t("cars")}
-        </option>
-        <option className={`bg-white text-black`} value="jobs">
-          {t("jobs")}
-        </option>
-        <option className={`bg-white text-black`} value="realEstates">
-          {t("realEstates")}
-        </option>
-        <option className={`bg-white text-black`} value="electronics">
-          {t("electronics")}
-        </option>
-      </select>
+        {t("cars")}
+      </Link>
+      <Link
+        locale={locale}
+        href="/new-matloop/job"
+        className={`btn2 shadow-sm text-primary font-bold bg-primary/20 ${
+          currentPage.includes(`/${locale}/new-matloop/job`) &&
+          `chosen-btn text-white`
+        }`}
+      >
+        {t("jobs")}
+      </Link>
+      <Link
+        locale={locale}
+        href="/new-matloop/real-estate"
+        className={`btn2 shadow-sm text-primary font-bold bg-primary/20 ${
+          currentPage.includes(`/${locale}/new-matloop/real-estate`) &&
+          `chosen-btn text-white`
+        }`}
+      >
+        {t("realEstates")}
+      </Link>
+      <Link
+        locale={locale}
+        href="/new-matloop/electronic-device"
+        className={`btn2 shadow-sm text-primary font-bold bg-primary/20 ${
+          currentPage.includes(`/${locale}/new-matloop/electronic-device`) &&
+          `chosen-btn text-white`
+        }`}
+      >
+        {t("electronics")}
+      </Link>
     </div>
   );
 };

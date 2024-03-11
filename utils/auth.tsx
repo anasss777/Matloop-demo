@@ -11,8 +11,8 @@ type Props = {
   password: string;
   confirmPassword: string;
   contactInfo: string[];
-  sentMessages: string[];
-  receivedMessages: string[];
+  posts: string[];
+  comments: string[];
 };
 
 export const delayAction = async (
@@ -38,8 +38,8 @@ export const handleSignUp = async ({
   password,
   confirmPassword,
   contactInfo,
-  sentMessages,
-  receivedMessages,
+  posts,
+  comments,
 }: Props) => {
   if (password !== confirmPassword) {
     alert("Passwords do not match.");
@@ -66,8 +66,8 @@ export const handleSignUp = async ({
         phoneNumber,
         country,
         contactInfo,
-        sentMessages,
-        receivedMessages,
+        posts,
+        comments,
       });
 
     console.log("Account created successfully.");
@@ -102,8 +102,8 @@ export const handleSignUpWithGoogle = async () => {
             phoneNumber: 0,
             country: "",
             contactInfo: [""],
-            sentMessages: [""],
-            receivedMessages: [""],
+            posts: [""],
+            comments: [""],
           },
           { merge: true }
         );
@@ -170,7 +170,26 @@ export const handleSignInWithGoogle = async () => {
         console.log("User data:", doc.data());
         return user;
       } else {
-        console.log("No such document!");
+        console.log("No such document! \n Creating one...");
+        await db
+          .collection("profiles")
+          .doc(user.uid)
+          .set(
+            {
+              name: user.displayName,
+              email: user.email,
+              profileImageSrc: user.photoURL,
+              username: "",
+              phoneNumber: 0,
+              country: "",
+              contactInfo: [""],
+              posts: [""],
+              comments: [""],
+            },
+            { merge: true }
+          );
+        console.log("User data:", doc.data());
+        location.reload();
       }
     }
   } catch (error: any) {

@@ -9,6 +9,6 @@ export type Profile = {
   confirmPassword: string;
   password: string;
   contactInfo: string[];
-  sentMessages: string[];
-  receivedMessages: string[];
+  posts: string[];
+  comments: string[];
 };

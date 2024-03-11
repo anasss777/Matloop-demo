@@ -24,8 +24,8 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
     contactInfo: [""],
-    sentMessages: [""],
-    receivedMessages: [""],
+    posts: [""],
+    comments: [""],
   });
 
   const [user, setUser] = useState<firebase.User | null | undefined>(null);

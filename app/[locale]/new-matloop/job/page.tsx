@@ -1,16 +1,16 @@
 "use client";
 
+import CategorySelector from "@/components/CategorySelector";
 import { useLocale } from "next-intl";
 import React from "react";
-import CategorySelector from "@/components/CategorySelector";
 
-const NewMatloop = () => {
+const Job = () => {
   const locale = useLocale();
   const isArabic = locale === "ar";
 
   return (
     <div
-      className={`flex flex-col justify-center items-center ${
+      className={`flex flex-col justify-center items-center px-8 ${
         isArabic && "rtl"
       }`}
     >
@@ -19,4 +19,4 @@ const NewMatloop = () => {
   );
 };
 
-export default NewMatloop;
+export default Job;
