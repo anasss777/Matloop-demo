@@ -134,7 +134,6 @@ export const handleSignIn = async (email: string, password: string) => {
         .doc(user.uid);
       const doc: firebase.firestore.DocumentSnapshot = await docRef.get();
       if (doc.exists) {
-        console.log("User data:", doc.data());
         return user;
       } else {
         console.log("No such document!");
@@ -167,7 +166,6 @@ export const handleSignInWithGoogle = async () => {
         .doc(user.uid);
       const doc: firebase.firestore.DocumentSnapshot = await docRef.get();
       if (doc.exists) {
-        console.log("User data:", doc.data());
         return user;
       } else {
         console.log("No such document! \n Creating one...");
@@ -188,7 +186,7 @@ export const handleSignInWithGoogle = async () => {
             },
             { merge: true }
           );
-        console.log("User data:", doc.data());
+
         location.reload();
       }
     }

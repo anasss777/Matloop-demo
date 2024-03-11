@@ -43,8 +43,11 @@ export const addCarPost = ({
 }: Props) => {
   const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      const docRef = firebase.firestore().collection("profiles").doc(user.uid);
-      docRef
+      const docRefProfiles = firebase
+        .firestore()
+        .collection("profiles")
+        .doc(user.uid);
+      docRefProfiles
         .get()
         .then(async (doc) => {
           if (doc.exists) {
@@ -72,14 +75,16 @@ export const addCarPost = ({
                 isPromoted: false,
                 comments: [],
               })
-              .then(async (docRef) => {
-                console.log("Document written with ID: ", docRef.id);
+              .then(async (docRefPost) => {
+                console.log("Document written with ID: ", docRefPost.id);
                 await firebase
                   .firestore()
                   .collection("profiles")
-                  .doc(user.uid)
+                  .doc(docRefProfiles.id)
                   .update({
-                    posts: firebase.firestore.FieldValue.arrayUnion(docRef.id),
+                    posts: firebase.firestore.FieldValue.arrayUnion(
+                      docRefPost.id
+                    ),
                   });
               })
               .catch((error) => {
