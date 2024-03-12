@@ -13,19 +13,15 @@ const SignUp = () => {
   const locale = useLocale();
   const isArabic = locale === "ar";
 
-  const [userInfo, setUserInfo] = useState<Profile>({
+  const [userInfo, setUserInfo] = useState({
     firstName: "",
     lastName: "",
-    profileImageSrc: "",
     username: "",
     email: "",
     phoneNumber: 0,
     country: "",
     password: "",
     confirmPassword: "",
-    contactInfo: [""],
-    posts: [""],
-    comments: [""],
   });
 
   const [user, setUser] = useState<firebase.User | null | undefined>(null);
@@ -62,7 +58,7 @@ const SignUp = () => {
   };
 
   if (user) {
-    router.push("/profile");
+    router.push(`/${locale}/profile`);
   }
 
   return (

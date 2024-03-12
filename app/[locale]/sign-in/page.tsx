@@ -2,7 +2,7 @@
 
 import { svgGoogle } from "@/components/svgsPath";
 import firebase from "@/firebase";
-import { handleSignIn, handleSignInWithGoogle } from "@/utils/auth";
+import { handleSignIn, handleSignUpWithGoogle } from "@/utils/auth";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useEffect, useState } from "react";
@@ -49,7 +49,7 @@ const SignIn = () => {
   };
 
   const handleSubmitWithGoogle = async () => {
-    const fetchUser = handleSignInWithGoogle();
+    const fetchUser = handleSignUpWithGoogle();
     if ((await fetchUser) === null) {
       alert(t("notRegistered"));
     }
@@ -57,7 +57,7 @@ const SignIn = () => {
   };
 
   if (user) {
-    router.push("/profile");
+    router.push(`/${locale}/profile`);
   }
 
   return (

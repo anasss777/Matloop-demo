@@ -1,4 +1,5 @@
 import firebase from "@/firebase";
+import { Profile } from "@/types/profile";
 
 interface comment {
   commentorsID: string;
@@ -9,7 +10,7 @@ interface comment {
 }
 
 type Props = {
-  poster: any;
+  poster: Profile;
   postTitle: string;
   carBrand: string;
   carType: string[];
@@ -54,7 +55,7 @@ export const addCarPost = ({
             console.log("User found!");
             await firebase
               .firestore()
-              .collection("carsPosts")
+              .collection("posts")
               .add({
                 poster,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -74,6 +75,7 @@ export const addCarPost = ({
                 reports: [],
                 isPromoted: false,
                 comments: [],
+                category: "cars",
               })
               .then(async (docRefPost) => {
                 console.log("Document written with ID: ", docRefPost.id);
@@ -102,4 +104,39 @@ export const addCarPost = ({
 
   // Cleanup subscription on unmount
   return () => unsubscribe();
+};
+
+export const deleteAllPosts = () => {
+  const db = firebase.firestore();
+  const collectionRef = db.collection("carsPosts");
+
+  collectionRef.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      doc.ref
+        .delete()
+        .then(() => {
+          console.log("Document successfully deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        });
+    });
+  });
+};
+export const deleteAllProfiles = () => {
+  const db = firebase.firestore();
+  const collectionRef = db.collection("profiles");
+
+  collectionRef.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      doc.ref
+        .delete()
+        .then(() => {
+          console.log("Document successfully deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        });
+    });
+  });
 };

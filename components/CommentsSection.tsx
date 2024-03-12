@@ -1,6 +1,5 @@
 "use client";
 
-import { Span } from "next/dist/trace";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";

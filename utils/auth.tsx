@@ -3,16 +3,12 @@ import firebase from "@/firebase";
 type Props = {
   firstName: string;
   lastName: string;
-  profileImageSrc: string;
   username: string;
   email: string;
   phoneNumber: number;
   country: string;
   password: string;
   confirmPassword: string;
-  contactInfo: string[];
-  posts: string[];
-  comments: string[];
 };
 
 export const delayAction = async (
@@ -30,16 +26,12 @@ export const delayAction = async (
 export const handleSignUp = async ({
   firstName,
   lastName,
-  profileImageSrc,
   username,
   email,
   phoneNumber,
   country,
   password,
   confirmPassword,
-  contactInfo,
-  posts,
-  comments,
 }: Props) => {
   if (password !== confirmPassword) {
     alert("Passwords do not match.");
@@ -59,15 +51,12 @@ export const handleSignUp = async ({
       .collection("profiles")
       .doc(user?.uid)
       .set({
+        userId: user?.uid,
         name: `${firstName} ${lastName}`,
-        profileImageSrc,
         username,
         email,
         phoneNumber,
         country,
-        contactInfo,
-        posts,
-        comments,
       });
 
     console.log("Account created successfully.");
@@ -90,23 +79,15 @@ export const handleSignUpWithGoogle = async () => {
 
     if (user) {
       // Add a new document in collection "profiles" with ID = user.uid
-      await db
-        .collection("profiles")
-        .doc(user.uid)
-        .set(
-          {
-            name: user.displayName,
-            email: user.email,
-            profileImageSrc: user.photoURL,
-            username: "",
-            phoneNumber: 0,
-            country: "",
-            contactInfo: [""],
-            posts: [""],
-            comments: [""],
-          },
-          { merge: true }
-        );
+      await db.collection("profiles").doc(user.uid).set(
+        {
+          userId: user?.uid,
+          name: user.displayName,
+          email: user.email,
+          profileImageSrc: user.photoURL,
+        },
+        { merge: true }
+      );
       return user;
     }
   } catch (error: any) {
@@ -169,23 +150,14 @@ export const handleSignInWithGoogle = async () => {
         return user;
       } else {
         console.log("No such document! \n Creating one...");
-        await db
-          .collection("profiles")
-          .doc(user.uid)
-          .set(
-            {
-              name: user.displayName,
-              email: user.email,
-              profileImageSrc: user.photoURL,
-              username: "",
-              phoneNumber: 0,
-              country: "",
-              contactInfo: [""],
-              posts: [""],
-              comments: [""],
-            },
-            { merge: true }
-          );
+        await db.collection("profiles").doc(user.uid).set(
+          {
+            name: user.displayName,
+            email: user.email,
+            profileImageSrc: user.photoURL,
+          },
+          { merge: true }
+        );
 
         location.reload();
       }

@@ -3,10 +3,12 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import CommentsSection from "./CommentsSection";
-import Link from "next/link";
-import { Profile } from "@/types/profile";
 import { CarPost } from "@/types/post";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { createSharedPathnamesNavigation } from "next-intl/navigation";
+
+const locales = ["ar", "en"];
+const { Link } = createSharedPathnamesNavigation({ locales });
 
 type Props = {
   allowImg?: boolean;
@@ -18,6 +20,8 @@ type Props = {
 const PostCard = (props: Props) => {
   const [showComments, setShowComments] = useState(false);
   const t = useTranslations("postCard");
+  const locale = useLocale();
+  const isArabic = locale === "ar";
 
   return (
     <div className={`flex flex-col w-full h-fit py-5 rtl`}>
@@ -42,23 +46,13 @@ const PostCard = (props: Props) => {
                 className="object-scale-down h-10 w-10"
               />
             )}
-            <p className="ltr">{props.posterName}</p>
-            <div className="flex flex-row gap-2 items-center">
-              <Image
-                src="/images/mail.png"
-                alt="Mail icon"
-                height={300}
-                width={300}
-                className="object-scale-down h-7 w-7"
-              />
-              <Image
-                src="/images/telephone.png"
-                alt="Phone number"
-                height={300}
-                width={300}
-                className="object-scale-down h-7 w-7"
-              />
-            </div>
+            <Link
+              href={props.post.poster.userId}
+              locale={locale}
+              className={`ltr font-bold text-secondary ${isArabic && "rtl"}`}
+            >
+              {props.posterName}
+            </Link>
           </div>
 
           <p className={`btn2 bg-white/50 text-secondary`}>
@@ -126,7 +120,7 @@ const PostCard = (props: Props) => {
             className="w-full rounded-md outline-1 outline-gray-400 py-2 px-3 relative text-gray-400 h-28"
           ></textarea>
           <div className="relative -top-7 flex gap-2 ml-2 justify-end">
-            <Link href="#" className="">
+            <button className="">
               <Image
                 src="/images/camera.png"
                 alt={""}
@@ -134,8 +128,8 @@ const PostCard = (props: Props) => {
                 width={500}
                 className="object-scale-down cursor-pointer h-5 w-5 hover:scale-105 transition-all duration-300 ease-linear"
               />
-            </Link>
-            <Link href="#" className="">
+            </button>
+            <button className="">
               <Image
                 src="/images/link.png"
                 alt={""}
@@ -143,8 +137,8 @@ const PostCard = (props: Props) => {
                 width={500}
                 className="object-scale-down cursor-pointer h-5 w-5 hover:scale-105 transition-all duration-300 ease-linear"
               />
-            </Link>
-            <Link href="#" className="">
+            </button>
+            <button className="">
               <Image
                 src="/images/send.png"
                 alt={""}
@@ -152,7 +146,7 @@ const PostCard = (props: Props) => {
                 width={500}
                 className="object-scale-down cursor-pointer h-5 w-5 hover:scale-105 transition-all duration-300 ease-linear"
               />
-            </Link>
+            </button>
           </div>
         </div>
 

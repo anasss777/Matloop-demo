@@ -13,7 +13,7 @@ const LatestDeals = () => {
     const fetchPosts = async () => {
       const querySnapshot = await firebase
         .firestore()
-        .collection("carsPosts")
+        .collection("posts")
         .get();
       const PostsData: CarPost[] = querySnapshot.docs.map(
         (doc) =>

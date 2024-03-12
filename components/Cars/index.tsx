@@ -12,7 +12,6 @@ import { addCarPost } from "@/utils/post";
 import CategorySelector from "../CategorySelector";
 import firebase from "@/firebase";
 import { useRouter } from "next/navigation";
-import { delayAction } from "@/utils/auth";
 
 const Cars = () => {
   const t = useTranslations("newPost");
@@ -50,8 +49,6 @@ const Cars = () => {
     return () => unsubscribe();
   }, [router]);
 
-  const [selectedCategory, setSelectedCategory] = useState("");
-
   const [carBrand, setCarBrand] = useState("");
 
   const [carType, setCarType] = useState<string[]>([]);
@@ -74,10 +71,6 @@ const Cars = () => {
   const [description, setDescription] = useState("");
 
   const [postTitle, setPostTitle] = useState("");
-
-  const handleCategorySelected = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCategory(e.target.value);
-  };
 
   const handleCarBrand = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCarBrand(e.target.options[e.target.selectedIndex].text);

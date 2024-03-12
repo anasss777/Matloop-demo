@@ -1,4 +1,5 @@
 import { Timestamp } from "firebase/firestore";
+import { Profile } from "./profile";
 
 export type CarPost = {
   createdAt: Timestamp;
@@ -12,7 +13,7 @@ export type CarPost = {
   fuelType: string[];
   region: string;
   description: string;
-  poster: any;
+  poster: Profile;
   comments?: string[];
   reports: string[];
   isPromoted: boolean;
