@@ -1,21 +1,15 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React, { useState } from "react";
 
-const images = [
-  "/images/jobsImg.png",
-  "/images/carsImg.png",
-  "/images/realEstateImg.png",
-  "/images/electronicDevicesImg.png",
-  "/images/jobsImg.png",
-  "/images/carsImg.png",
-  "/images/realEstateImg.png",
-  "/images/electronicDevicesImg.png",
-  // Add more image URLs here
-];
+type Props = {
+  images: string[];
+};
 
-const ImagesGallery = () => {
+const ImagesGallery = ({ images }: Props) => {
+  const t = useTranslations("commentSection");
   const [expanded, setExpanded] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
     null
@@ -80,7 +74,7 @@ const ImagesGallery = () => {
             onClick={() => setExpanded(false)}
             className="bg-white px-3 py-1 rounded-full border"
           >
-            إغلاق
+            {t("closeImage")}
           </button>
         </div>
       )}

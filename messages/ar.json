@@ -74,7 +74,20 @@
         "yearRange": "سنة الصنع: ",
         "maxDistance": "عدد الكيلومترات: ",
         "gearType": "عصا القيادة: ",
-        "region": "العنوان: "
+        "region": "العنوان: ",
+        "commentContent": "أضف تعليقاً...",
+        "uploadedImages": "عدد الصور المرفقة: ",
+        "uploadedFiles": "عدد الملفات المرفقة: ",
+        "imagesError": "لا يمكن إضافة أكثر من 10 صور!",
+        "filesError": "لا يمكن إضافة أكثر من 3 ملفات!",
+        "seeAllComments": "كل التعليقات",
+        "signUp": "أنشى حساباً لتتمكن من إضافة تعليق"
+    },
+    "commentSection": {
+        "showMore": "رؤية المزيد",
+        "resume": "سيرتي الذاتية",
+        "edit": "تعديل",
+        "closeImage": "إغلاق"
     },
     "profile": {
         "name": "الاسم: ",

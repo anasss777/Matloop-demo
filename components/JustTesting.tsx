@@ -1,38 +1,45 @@
-import React, { useState } from "react";
+"use client";
+
+import React, { ChangeEvent, FormEvent, useState } from "react";
 
 const JustTesting = () => {
-  const [minValue, setMinValue] = useState("");
-  const [maxValue, setMaxValue] = useState("");
+  const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    setSelectedFiles(files);
+  };
+
+  const validateForm = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (selectedFiles && selectedFiles.length > 5) {
+      alert("You can only upload up to 5 files.");
+      return;
+    }
+
+    // Continue with form submission logic or call an API here
+  };
 
   return (
-    <div className="flex flex-col items-center justify-start">
-      <div className={`flex flex-col gap-2 justify-start`}>
-        <span className={`flex justify-start text-secondary font-bold`}>
-          {minValue} &nbsp; <span>Currency</span>
-        </span>
-        <input
-          type="text"
-          value={minValue}
-          min={0}
-          max={maxValue}
-          onChange={(e) => setMinValue(e.target.value)}
-          className="w-full border border-secondary/70 px-2 py-1 rounded-md"
-        />
-      </div>
-
-      <div className={`flex flex-col gap-2 justify-start`}>
-        <span className={`flex justify-start text-secondary font-bold`}>
-          {maxValue} &nbsp; <span>Currency</span>
-        </span>
-        <input
-          type="text"
-          min={minValue}
-          value={maxValue}
-          onChange={(e) => setMaxValue(e.target.value)}
-          className="w-full border border-secondary/70 px-2 py-1 rounded-md"
-        />
-      </div>
-    </div>
+    <form
+      action="/api/upload"
+      method="post"
+      encType="multipart/form-data"
+      onSubmit={validateForm}
+    >
+      <label htmlFor="files">Select files (up to 5):</label>
+      <input
+        type="file"
+        id="files"
+        name="files"
+        multiple
+        onChange={handleFileChange}
+      />
+      <br />
+      <br />
+      <input type="submit" value="Upload" />
+    </form>
   );
 };
 

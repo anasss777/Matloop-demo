@@ -301,20 +301,6 @@ const Cars = () => {
       >
         {t("submit")}
       </button>
-
-      <p className={`flex flex-col ltr`}>
-        <span>{`Post Title: ${postTitle}`}</span>
-        <span>{`Brand: ${carBrand}`}</span>
-        <span>{`Type: [${carType}]`}</span>
-        <span>{`Price: [${minPrice}, ${maxPrice}] `}</span>
-        <span>{`Year: [${minYear}, ${maxYear}]`}</span>
-        <span>{`Max Distance: ${maxDistance}`}</span>
-        <span>{`Gear Type: [${gearType}]`}</span>
-        <span>{`Selected Country: ${selectedCountry}`}</span>
-        <span>{`City: ${city} `}</span>
-        <span>{`Fuel Type: ${fuelType}`}</span>
-        <span>{`description: ${description}`}</span>
-      </p>
     </div>
   );
 };

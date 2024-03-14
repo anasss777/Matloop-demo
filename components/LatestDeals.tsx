@@ -37,6 +37,7 @@ const LatestDeals = () => {
           posterName={post.poster.name}
           posterImage={post.poster.profileImageSrc}
           post={post}
+          allowImg
         />
       ))}
 

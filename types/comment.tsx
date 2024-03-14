@@ -1,7 +1,13 @@
+import { Timestamp } from "firebase/firestore";
+import { Profile } from "./profile";
+
 export type Comment = {
-  commentorID: string;
+  id: string;
+  commentId: string;
+  createdAt: Timestamp;
   content: string;
-  images: string[];
-  files: string[];
+  commentor: Profile;
+  uploadedImages: string[];
+  uploadedFiles: string[];
   reports?: string[];
 };
