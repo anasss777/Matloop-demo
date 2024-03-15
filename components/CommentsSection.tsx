@@ -3,11 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import ImagesGallery from "./ImagesGallery";
 import { Comment } from "@/types/comment";
 import { useLocale, useTranslations } from "next-intl";
 import TimeAgo from "./TimeAgo";
 import { svgClock } from "./svgsPath";
+import ImagesSlider from "./ImagesSlider";
 
 type Props = {
   comment: Comment;
@@ -41,7 +41,30 @@ const CommentsSection = ({ comment }: Props) => {
               className="object-scale-down h-10 w-10"
             />
           )}
+          {/* Commentor name */}
           <p className="rtl font-bold">{comment.commentor?.name}</p>
+
+          {/* Contact info */}
+          <div className={`flex flex-row gap-1`}>
+            <a href={`tel:${comment.commentor?.phoneNumber}`}>
+              <Image
+                src="/images/telephone.png"
+                alt="Phone number"
+                height={500}
+                width={500}
+                className={`object-scale-down h-7 w-7 shadow-md shadow-gray-300 rounded-full`}
+              />
+            </a>
+            <a href={`mailto:${comment.commentor?.email}`}>
+              <Image
+                src="/images/mail.png"
+                alt="Email address"
+                height={500}
+                width={500}
+                className={`object-scale-down h-7 w-7 shadow-md shadow-gray-300 rounded-full`}
+              />
+            </a>
+          </div>
         </div>
         {/* The comment */}
         {showMore ? (
@@ -69,10 +92,16 @@ const CommentsSection = ({ comment }: Props) => {
 
         {/* pdf file */}
         {comment.uploadedFiles && (
-          <div className={`flex flex-row`}>
+          <div
+            className={`flex flex-row gap-1 ml-[4px] mr-0  ${
+              isArabic && "mr-[4px] ml-0"
+            }`}
+          >
             {comment.uploadedFiles.map((file, index) => (
               <Link key={index} href={file} target="_blank">
-                <div className="flex flex-row gap-2 my-2 mr-4 bg-gray-200 h-fit w-fit py-1 px-2 rounded-lg">
+                <div
+                  className={`flex flex-row my-2 bg-gray-200 h-fit w-fit py-1 px-2 rounded-lg`}
+                >
                   <Image
                     src="/images/document.png"
                     alt="Resume file"
@@ -88,7 +117,7 @@ const CommentsSection = ({ comment }: Props) => {
 
         {/* Images */}
         {comment.uploadedImages && (
-          <ImagesGallery images={comment?.uploadedImages} />
+          <ImagesSlider images={comment?.uploadedImages} />
         )}
 
         {/* Edit button */}

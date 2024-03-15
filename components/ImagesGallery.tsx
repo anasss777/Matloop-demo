@@ -60,13 +60,13 @@ const ImagesGallery = ({ images }: Props) => {
             ))}
           </div>
 
-          <div className="relative max-w-screen-lg w-full h-full flex items-center">
+          <div className="relative max-w-screen-lg w-full max-h-[50%] flex items-center">
             <Image
               src={images[selectedImageIndex]}
               width={1200}
               height={800}
               alt={`Image ${selectedImageIndex + 1}`}
-              className="object-cover h-fit w-full flex items-center"
+              className="object-scale-down h-fit w-full flex items-center"
             />
           </div>
 
