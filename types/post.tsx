@@ -7,7 +7,7 @@ export type CarPost = {
   createdAt: Timestamp;
   postTitle: string;
   carBrand: string;
-  carType: string;
+  carType: string[];
   priceRange: number[];
   yearRange: number[];
   maxDistance: string;

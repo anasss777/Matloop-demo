@@ -48,13 +48,13 @@ const Profile = ({ params }: Props) => {
     if (profile) {
       const fetchPosts = async () => {
         // Use Promise.all to fetch all posts concurrently
-        const postsPromises = profile?.posts.map((id) =>
+        const postsPromises = profile?.posts?.map((id) =>
           firebase.firestore().collection("posts").doc(id).get()
         );
 
-        const postsSnapshots = await Promise.all(postsPromises);
+        const postsSnapshots = await Promise?.all(postsPromises);
 
-        const PostsData: CarPost[] = postsSnapshots.map(
+        const PostsData: CarPost[] = postsSnapshots?.map(
           (doc) =>
             ({
               ...doc.data(),

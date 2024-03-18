@@ -52,7 +52,9 @@
         "kiloMeter": "كيلومتر",
         "otherSpecs": "مواصفات إضافية",
         "description": "وصف المطلوب...",
-        "submit": "نشر المطلوب"
+        "submit": "نشر المطلوب",
+        "edit": "تعديل",
+        "cancel": "إلغاء"
     },
     "carType": {
         "Sedan": "سيدان",

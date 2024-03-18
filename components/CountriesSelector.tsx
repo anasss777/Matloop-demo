@@ -6,6 +6,7 @@ type Props = {
   handleCountrySelected: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   city: string;
   setCity: React.Dispatch<React.SetStateAction<string>>;
+  selectedCountry: string;
 };
 
 const CountriesSelector = (props: Props) => {
@@ -23,7 +24,7 @@ const CountriesSelector = (props: Props) => {
           className={`bg-primary rounded-md px-2 mt-20 text-white`}
         >
           <option value="" selected disabled hidden>
-            {t("chooseCountry")}
+            {props.selectedCountry ? props.selectedCountry : t("chooseCountry")}
           </option>
           {countries.map((country, index) => (
             <option
@@ -43,7 +44,7 @@ const CountriesSelector = (props: Props) => {
           className={`bg-primary rounded-md px-2 mt-10 text-white`}
         >
           <option value="" selected disabled hidden>
-            {t("chooseCountry")}
+            {props.selectedCountry ? props.selectedCountry : t("chooseCountry")}
           </option>
           {countries.map((country, index) => (
             <option

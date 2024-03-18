@@ -3,9 +3,10 @@ import React from "react";
 
 type Props = {
   handleCheckboxChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  gearType: string[];
 };
 
-const GearStickType = ({ handleCheckboxChange }: Props) => {
+const GearStickType = ({ handleCheckboxChange, gearType }: Props) => {
   const t = useTranslations("gearType");
   const locale = useLocale();
   const isArabic = locale === "ar";
@@ -21,6 +22,9 @@ const GearStickType = ({ handleCheckboxChange }: Props) => {
             name="gear1"
             value={isArabic ? "ألي" : "automatic"}
             onChange={handleCheckboxChange}
+            checked={
+              gearType?.includes("ألي") || gearType?.includes("automatic")
+            }
           />
           <label className={`text-secondary font-semibold`}>
             {t("automatic")}
@@ -35,6 +39,7 @@ const GearStickType = ({ handleCheckboxChange }: Props) => {
             name="gear2"
             value={isArabic ? "يدوي" : "manual"}
             onChange={handleCheckboxChange}
+            checked={gearType?.includes("يدوي") || gearType?.includes("manual")}
           />
           <label className={`text-secondary font-semibold`}>
             {t("manual")}

@@ -1,18 +1,26 @@
 import firebase from "@/firebase";
-import { Comment } from "@/types/comment";
 import { CarPost } from "@/types/post";
 import { Profile } from "@/types/profile";
 
-interface comment {
-  commentorsID: string;
-  content: string;
-  images: string[];
-  files: string[];
-  reports: string[];
-}
-
 type Props = {
   poster: Profile;
+  postTitle: string;
+  carBrand: string;
+  carType: string[];
+  minPrice: string;
+  maxPrice: string;
+  minYear: string;
+  maxYear: string;
+  maxDistance: string;
+  gearType: string[];
+  selectedCountry: string;
+  city: string;
+  fuelType: string[];
+  description: string;
+};
+
+type PropsEdit = {
+  postId: string;
   postTitle: string;
   carBrand: string;
   carType: string[];
@@ -105,6 +113,53 @@ export const addCarPost = ({
 
   // Cleanup subscription on unmount
   return () => unsubscribe();
+};
+
+export const EditCarPost = async ({
+  postId,
+  postTitle,
+  carBrand,
+  carType,
+  minPrice,
+  maxPrice,
+  minYear,
+  maxYear,
+  maxDistance,
+  gearType,
+  selectedCountry,
+  city,
+  fuelType,
+  description,
+}: PropsEdit) => {
+  const postRef = firebase.firestore().collection("posts").doc(postId);
+
+  // Fetch the current data of the post
+  const doc = await postRef.get();
+  if (!doc.exists) {
+    console.log("Post does not exist!");
+    return;
+  }
+
+  // update data
+  postRef
+    .update({
+      postTitle,
+      carBrand,
+      carType,
+      priceRange: [Number(minPrice), Number(maxPrice)],
+      yearRange: [Number(minYear) || undefined, Number(maxYear) || undefined],
+      maxDistance,
+      gearType,
+      region: `${selectedCountry}, ${city}`,
+      fuelType,
+      description,
+    })
+    .then(() => {
+      console.log("Post updated successfully.");
+    })
+    .catch((error) => {
+      console.error("Error updating post: ", error);
+    });
 };
 
 export const addComment = async (

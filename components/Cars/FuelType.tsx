@@ -4,9 +4,10 @@ import React from "react";
 
 interface Props {
   handlefuelTypeChecked: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  fuelType: string[];
 }
 
-const FuelType = ({ handlefuelTypeChecked }: Props) => {
+const FuelType = ({ handlefuelTypeChecked, fuelType }: Props) => {
   const locale = useLocale();
   const isArabic = locale === "ar";
   const fuelTypes = [
@@ -28,6 +29,7 @@ const FuelType = ({ handlefuelTypeChecked }: Props) => {
               value={typeOfFuel}
               onChange={handlefuelTypeChecked}
               className="mr-2"
+              checked={fuelType?.includes(typeOfFuel)}
             />
             <label className={`text-secondary font-bold`}>{typeOfFuel}</label>
           </div>

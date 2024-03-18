@@ -187,13 +187,11 @@ const Cars = () => {
       />
 
       {/* Choose Car Brand */}
-      <BrandSelector handleBrandSelected={handleCarBrand} />
-      <p>{carBrand}</p>
+      <BrandSelector handleBrandSelected={handleCarBrand} carBrand={carBrand} />
 
       {/* Choose Car Type */}
       <h2 className={`text-primary text-lg font-bold mt-20`}>{t("carType")}</h2>
-      <CarType handleCheckboxChange={handleCarTypeChecked} />
-      {/* <p>Checked cars: {carType.join(", ")}</p> */}
+      <CarType handleCheckboxChange={handleCarTypeChecked} carType={carType} />
 
       {/* Price Range */}
       <h2 className={`text-primary text-lg font-bold mt-20`}>
@@ -246,22 +244,26 @@ const Cars = () => {
 
       {/* Gear Type */}
       <h2 className={`text-primary text-lg font-bold`}>{t("gearType")}</h2>
-      <GearStickType handleCheckboxChange={handleGearTypeChecked} />
-      {/* <p>{gearType}</p> */}
+      <GearStickType
+        handleCheckboxChange={handleGearTypeChecked}
+        gearType={gearType}
+      />
 
       <h2 className={`text-primary text-lg font-bold mt-20`}>
         {t("fuelType")}
       </h2>
-      <FuelType handlefuelTypeChecked={handlefuelTypeChecked} />
-      {/* <p>{fuelType}</p> */}
+      <FuelType
+        handlefuelTypeChecked={handlefuelTypeChecked}
+        fuelType={fuelType}
+      />
 
       {/* Select Country */}
       <CountriesSelector
         handleCountrySelected={handleCountrySelected}
         city={city}
         setCity={setCity}
+        selectedCountry={selectedCountry}
       />
-      {/* <p className={`text-black`}>{`${selectedCountry}, ${city}`}</p> */}
 
       {/* Other Specs */}
       <h2 className={`text-primary text-lg font-bold mb-4`}>

@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Comment } from "@/types/comment";
 import { useLocale, useTranslations } from "next-intl";
 import TimeAgo from "./TimeAgo";
-import { svgClock } from "./svgsPath";
+import { svgClock, svgEdit } from "./svgsPath";
 import ImagesSlider from "./ImagesSlider";
+import firebase from "@/firebase";
 
 type Props = {
   comment: Comment;
@@ -17,7 +18,19 @@ const CommentsSection = ({ comment }: Props) => {
   const t = useTranslations("commentSection");
   const locale = useLocale();
   const isArabic = locale === "ar";
+  const [canEdit, setCanEdit] = useState(false);
   const [showMore, setShowMore] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setCanEdit(comment.commentor.userId === user.uid);
+      }
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, [comment.commentor.userId]);
 
   return (
     <div className="mb-5 mx-2">
@@ -42,7 +55,13 @@ const CommentsSection = ({ comment }: Props) => {
             />
           )}
           {/* Commentor name */}
-          <p className="rtl font-bold">{comment.commentor?.name}</p>
+          <Link
+            href={comment.commentor?.userId}
+            locale={locale}
+            className={`ltr font-bold text-secondary ${isArabic && "rtl"}`}
+          >
+            {comment.commentor?.name}
+          </Link>
 
           {/* Contact info */}
           <div className={`flex flex-row gap-1`}>
@@ -121,7 +140,7 @@ const CommentsSection = ({ comment }: Props) => {
         )}
 
         {/* Edit button */}
-        <div className="flex flex-row justify-between w-full">
+        <div className="flex flex-row justify-between items-start w-full">
           <div
             className={`btn2 bg-gray-200 text-gray-500 flex flex-row items-center gap-1 ${
               !isArabic && "ltr"
@@ -130,9 +149,12 @@ const CommentsSection = ({ comment }: Props) => {
             <span>{svgClock}</span>{" "}
             <TimeAgo postDate={comment?.createdAt.toDate()} />
           </div>
-          <button className="text-gray-50 bg-gray-400 p-1 text-sm h-fit w-fit rounded-md">
-            {t("edit")}
-          </button>
+
+          {canEdit && (
+            <button className="bg-gray-400 p-1 h-fit w-fit rounded-md mt-1">
+              {svgEdit}
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -3,16 +3,17 @@ import React from "react";
 
 type Props = {
   handleBrandSelected: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  carBrand: string;
 };
 
-const BrandSelector = (props: Props) => {
+const BrandSelector = ({ handleBrandSelected, carBrand }: Props) => {
   const t = useTranslations("newPost");
 
   return (
     <div>
       <select
         id="embedBrand"
-        onChange={props.handleBrandSelected}
+        onChange={handleBrandSelected}
         className={`bg-primary rounded-md px-2 mt-20 text-white`}
       >
         <option
@@ -22,7 +23,7 @@ const BrandSelector = (props: Props) => {
           disabled
           hidden
         >
-          {t("carBrand")}
+          {carBrand?.length > 0 ? carBrand : t("carBrand")}
         </option>
         <option className={`text-black bg-white`} value="abarth">
           أبارث / Abarth{" "}

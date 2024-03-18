@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import React, { useState } from "react";
 import Popup from "reactjs-popup";
+import { svgClose } from "./svgsPath";
 
 type Props = {
   images: string[];
@@ -34,22 +35,21 @@ const ImagesSlider = ({ images }: Props) => {
         </div>
       }
       open={open}
+      onOpen={() => setOpen(!open)}
       modal
       nested
       lockScroll
-      overlayStyle={{ background: "#000000cc" }}
-      contentStyle={{ width: "90%" }}
+      overlayStyle={{
+        background: "#000000cc",
+      }}
+      contentStyle={{
+        width: "90%",
+      }}
       closeOnEscape
     >
-      <div className={`flex flex-col gap-5`}>
-        <div className="relative w-full h-fit">
-          <Image
-            src={images[selectedImageIndex]}
-            width={1200}
-            height={800}
-            alt={`Image ${selectedImageIndex + 1}`}
-            className="object-scale-down h-[700px] w-full"
-          />
+      <div className={`flex flex-col justify-start items-center gap-1 h-fit`}>
+        <div className={`close-btn flex justify-end items-end w-full`}>
+          <button onClick={() => setOpen(!open)}>{svgClose}</button>
         </div>
 
         <div
@@ -70,12 +70,15 @@ const ImagesSlider = ({ images }: Props) => {
           ))}
         </div>
 
-        <button
-          onClick={() => setOpen(!open)}
-          className="bg-white px-3 py-1 rounded-full border"
-        >
-          {t("closeImage")}
-        </button>
+        <div className="relative w-full h-fit">
+          <Image
+            src={images[selectedImageIndex]}
+            width={1200}
+            height={800}
+            alt={`Image ${selectedImageIndex + 1}`}
+            className="object-scale-down h-[700px] w-full"
+          />
+        </div>
       </div>
     </Popup>
   );

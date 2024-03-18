@@ -6,12 +6,13 @@ import CommentsSection from "./CommentsSection";
 import { CarPost } from "@/types/post";
 import { useLocale, useTranslations } from "next-intl";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
-import { svgClockBlue, svgError } from "./svgsPath";
+import { svgClockBlue, svgEdit, svgError } from "./svgsPath";
 import { addComment } from "@/utils/post";
 import firebase from "@/firebase";
-import { useRouter } from "next/navigation";
 import { Comment } from "@/types/comment";
 import TimeAgo from "./TimeAgo";
+import Popup from "reactjs-popup";
+import EditPost from "./EditPost";
 
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
@@ -25,12 +26,13 @@ type Props = {
 
 const PostCard = (props: Props) => {
   const [showComments, setShowComments] = useState(false);
-  const [commentContent, setDescription] = useState("");
+  const [commentContent, setCommentContent] = useState("");
   const [commentsImages, setCommentsImages] = useState<FileList | null>(null);
   const [commentsFiles, setCommentsFiles] = useState<FileList | null>(null);
   const [commentor, setCommentor] = useState<any>();
   const [comments, setComments] = useState<Comment[]>();
-  const router = useRouter();
+  const [canEdit, setCanEdit] = useState(false);
+  const [openEditPost, setOpenEditPost] = useState(false);
   const t = useTranslations("postCard");
   const locale = useLocale();
   const isArabic = locale === "ar";
@@ -59,6 +61,7 @@ const PostCard = (props: Props) => {
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        setCanEdit(props.post.poster.userId === user.uid);
         const docRef = firebase
           .firestore()
           .collection("profiles")
@@ -80,7 +83,7 @@ const PostCard = (props: Props) => {
 
     // Cleanup subscription on unmount
     return () => unsubscribe();
-  }, [router]);
+  }, [props.post.poster.userId]);
 
   const validateInputs = () => {
     if (commentContent === "" && !commentsImages && !commentsFiles) {
@@ -204,6 +207,38 @@ const PostCard = (props: Props) => {
             {props.post?.region}
           </p>
         </div>
+
+        <Popup
+          trigger={
+            canEdit ? (
+              <div className={`flex justify-end w-full`}>
+                <button className="bg-gray-400 p-1 h-fit w-fit rounded-md mt-3">
+                  {svgEdit}
+                </button>
+              </div>
+            ) : (
+              <div></div>
+            )
+          }
+          open={openEditPost}
+          onOpen={() => setOpenEditPost(!openEditPost)}
+          modal
+          nested
+          lockScroll
+          overlayStyle={{
+            background: "#000000cc",
+          }}
+          contentStyle={{
+            width: "90%",
+          }}
+          closeOnEscape
+        >
+          <EditPost
+            openEditPost={openEditPost}
+            setOpenEditPost={setOpenEditPost}
+            post={props.post}
+          />
+        </Popup>
       </div>
 
       {/* Comments section */}
@@ -216,12 +251,12 @@ const PostCard = (props: Props) => {
               cols={50}
               placeholder={t("commentContent")}
               value={commentContent}
-              onChange={(e) => setDescription(e.target.value)}
-              className="w-full rounded-md outline-1 outline-gray-400 py-2 px-3 relative text-gray-400 h-28"
+              onChange={(e) => setCommentContent(e.target.value)}
+              className="w-full rounded-t-md outline-1 outline-gray-400 py-2 px-3 text-gray-400 h-28 resize-none"
             ></textarea>
 
             <div
-              className={`relative -top-6 flex gap-2 ml-2 items-start justify-end`}
+              className={`flex gap-3 items-start justify-end w-full bg-white p-2 rounded-b-md`}
             >
               {/* Add up to 10 images to a comment */}
               <button className="">
