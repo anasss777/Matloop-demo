@@ -1,14 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Comment } from "@/types/comment";
 import { useLocale, useTranslations } from "next-intl";
 import TimeAgo from "./TimeAgo";
-import { svgClock, svgEdit } from "./svgsPath";
+import { svgClock, svgEdit, svgMail, svgPhone } from "./svgsPath";
 import ImagesSlider from "./ImagesSlider";
 import firebase from "@/firebase";
+import { createSharedPathnamesNavigation } from "next-intl/navigation";
+
+const locales = ["ar", "en"];
+const { Link } = createSharedPathnamesNavigation({ locales });
 
 type Props = {
   comment: Comment;
@@ -24,13 +27,13 @@ const CommentsSection = ({ comment }: Props) => {
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        setCanEdit(comment.commentor.userId === user.uid);
+        setCanEdit(comment?.commentor?.userId === user.uid);
       }
     });
 
     // Cleanup subscription on unmount
     return () => unsubscribe();
-  }, [comment.commentor.userId]);
+  }, [comment.commentor?.userId]);
 
   return (
     <div className="mb-5 mx-2">
@@ -56,7 +59,7 @@ const CommentsSection = ({ comment }: Props) => {
           )}
           {/* Commentor name */}
           <Link
-            href={comment.commentor?.userId}
+            href={comment.commentor?.userId || "/"}
             locale={locale}
             className={`ltr font-bold text-secondary ${isArabic && "rtl"}`}
           >
@@ -66,22 +69,20 @@ const CommentsSection = ({ comment }: Props) => {
           {/* Contact info */}
           <div className={`flex flex-row gap-1`}>
             <a href={`tel:${comment.commentor?.phoneNumber}`}>
-              <Image
-                src="/images/telephone.png"
-                alt="Phone number"
-                height={500}
-                width={500}
-                className={`object-scale-down h-7 w-7 shadow-md shadow-gray-300 rounded-full`}
-              />
+              <span
+                className={`flex justify-center items-center bg-secondary/20 h-fit w-fit p-1 rounded-full border border-secondary/50
+                shadow-md`}
+              >
+                {svgPhone}
+              </span>
             </a>
             <a href={`mailto:${comment.commentor?.email}`}>
-              <Image
-                src="/images/mail.png"
-                alt="Email address"
-                height={500}
-                width={500}
-                className={`object-scale-down h-7 w-7 shadow-md shadow-gray-300 rounded-full`}
-              />
+              <span
+                className={`flex justify-center items-center bg-secondary/20 h-fit w-fit p-1 rounded-full border border-secondary/50
+                shadow-md`}
+              >
+                {svgMail}
+              </span>
             </a>
           </div>
         </div>
@@ -147,7 +148,7 @@ const CommentsSection = ({ comment }: Props) => {
             }`}
           >
             <span>{svgClock}</span>{" "}
-            <TimeAgo postDate={comment?.createdAt.toDate()} />
+            <TimeAgo postDate={comment?.createdAt?.toDate()} />
           </div>
 
           {canEdit && (

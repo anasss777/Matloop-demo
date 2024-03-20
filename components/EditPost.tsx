@@ -144,7 +144,7 @@ const EditPost = ({ openEditPost, setOpenEditPost, post }: Props) => {
 
   return (
     <div
-      className={`flex flex-col justify-start items-center gap-1 bg-gray-200 m-5 rounded-md overflow-y-auto h-screen w-full mx-auto p-2 ${
+      className={`flex flex-col justify-start items-center gap-1 bg-gray-200 m-5 rounded-lg overflow-y-auto h-[90vh] w-full mx-auto p-2 ${
         isArabic && "rtl"
       }`}
     >
@@ -272,7 +272,7 @@ const EditPost = ({ openEditPost, setOpenEditPost, post }: Props) => {
             className={`border border-secondary/70 px-2 py-1 rounded-md mb-20 w-full`}
           ></textarea>
 
-          <div className={`flex flex-row gap-2  mb-10`}>
+          <div className={`flex flex-row gap-2 mb-10 ${!isArabic && "mb20"}`}>
             <button
               className={`btn2 bg-secondary shadow-lg`}
               onClick={() =>

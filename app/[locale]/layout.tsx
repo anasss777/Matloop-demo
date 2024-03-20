@@ -29,7 +29,7 @@ export default function RootLayout({ children, params }: RootLayoutProps) {
     <html lang={locale}>
       <Head />
 
-      <body className={cairo.className}>
+      <body className={`${cairo.className} bg-gray-50`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
           {children}

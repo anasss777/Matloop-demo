@@ -6,8 +6,17 @@ import CommentsSection from "./CommentsSection";
 import { CarPost } from "@/types/post";
 import { useLocale, useTranslations } from "next-intl";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
-import { svgClockBlue, svgEdit, svgError } from "./svgsPath";
-import { addComment } from "@/utils/post";
+import {
+  svgClockBlue,
+  svgClose,
+  svgDelete,
+  svgEdit,
+  svgError,
+  svgFile,
+  svgImage,
+  svgSend,
+} from "./svgsPath";
+import { addComment, deletePost } from "@/utils/post";
 import firebase from "@/firebase";
 import { Comment } from "@/types/comment";
 import TimeAgo from "./TimeAgo";
@@ -39,24 +48,26 @@ const PostCard = (props: Props) => {
 
   useEffect(() => {
     const fetchComments = async () => {
-      const commentsIds = props.post.comments.map((comment) => comment.id);
-      const commentsRefs = commentsIds.map((commentId) =>
+      const commentsIds = props?.post?.comments?.map((comment) => comment.id);
+      const commentsRefs = commentsIds?.map((commentId) =>
         firebase.firestore().doc(`comments/${commentId}`)
       );
 
-      const commentSnaps = await Promise.all(
-        commentsRefs.map(async (ref) => await ref.get())
-      );
+      if (commentsRefs) {
+        const commentSnaps = await Promise.all(
+          commentsRefs.map(async (ref) => await ref.get())
+        );
 
-      const commentsData: Comment[] = commentSnaps.map(
-        (commentSnap) => ({ ...commentSnap.data() } as Comment)
-      );
+        const commentsData: Comment[] = commentSnaps?.map(
+          (commentSnap) => ({ ...commentSnap.data() } as Comment)
+        );
 
-      setComments(commentsData);
+        setComments(commentsData);
+      }
     };
 
     fetchComments();
-  }, [props.post.comments]);
+  }, [props?.post?.comments]);
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
@@ -208,37 +219,52 @@ const PostCard = (props: Props) => {
           </p>
         </div>
 
-        <Popup
-          trigger={
-            canEdit ? (
-              <div className={`flex justify-end w-full`}>
-                <button className="bg-gray-400 p-1 h-fit w-fit rounded-md mt-3">
-                  {svgEdit}
-                </button>
-              </div>
-            ) : (
-              <div></div>
-            )
-          }
-          open={openEditPost}
-          onOpen={() => setOpenEditPost(!openEditPost)}
-          modal
-          nested
-          lockScroll
-          overlayStyle={{
-            background: "#000000cc",
-          }}
-          contentStyle={{
-            width: "90%",
-          }}
-          closeOnEscape
-        >
-          <EditPost
-            openEditPost={openEditPost}
-            setOpenEditPost={setOpenEditPost}
-            post={props.post}
-          />
-        </Popup>
+        <div className={`flex flex-row gap-2 justify-end`}>
+          {/* Delete a post */}
+          {canEdit && (
+            <div className={`flex justify-end w-fit`}>
+              <button
+                className="bg-gray-400 p-1 h-fit w-fit rounded-md mt-3"
+                onClick={() => deletePost(props.post)}
+              >
+                {svgDelete}
+              </button>
+            </div>
+          )}
+
+          {/* Edit Pop up window */}
+          <Popup
+            trigger={
+              canEdit ? (
+                <div className={`flex justify-end w-fit`}>
+                  <button className="bg-gray-400 p-1 h-fit w-fit rounded-md mt-3">
+                    {svgEdit}
+                  </button>
+                </div>
+              ) : (
+                <div></div>
+              )
+            }
+            open={openEditPost}
+            onOpen={() => setOpenEditPost(!openEditPost)}
+            modal
+            nested
+            lockScroll
+            overlayStyle={{
+              background: "#000000cc",
+            }}
+            contentStyle={{
+              width: "90%",
+            }}
+            closeOnEscape
+          >
+            <EditPost
+              openEditPost={openEditPost}
+              setOpenEditPost={setOpenEditPost}
+              post={props.post}
+            />
+          </Popup>
+        </div>
       </div>
 
       {/* Comments section */}
@@ -256,58 +282,54 @@ const PostCard = (props: Props) => {
             ></textarea>
 
             <div
-              className={`flex gap-3 items-start justify-end w-full bg-white p-2 rounded-b-md`}
+              className={`flex gap-2 items-center justify-end w-full bg-white p-2 rounded-b-md`}
             >
               {/* Add up to 10 images to a comment */}
               <button className="">
-                <label htmlFor="imageInput">
-                  <Image
-                    src="/images/camera.png"
-                    alt={""}
-                    height={500}
-                    width={500}
-                    className="object-scale-down cursor-pointer h-5 w-5 hover:scale-105 transition-all duration-300 ease-linear"
-                  />
+                <label htmlFor={`imageInput${props.post.poster.userId}`}>
+                  <span
+                    className={`flex bg-gray-200 h-fit w-fit p-1 rounded-full border border-gray-300 shadow-md`}
+                  >
+                    {svgImage}
+                  </span>
                 </label>
                 <input
                   type="file"
-                  id="imageInput"
+                  id={`imageInput${props.post.poster.userId}`}
                   multiple
                   accept="image/*"
-                  className="hidden"
+                  className="absolute left-[-9999px]"
                   onChange={(e) => setCommentsImages(e.target.files)}
                 />
               </button>
 
               {/* Add up to 3 files to a comment */}
               <button className="">
-                <label htmlFor="fileInput">
-                  <Image
-                    src="/images/link.png"
-                    alt={""}
-                    height={500}
-                    width={500}
-                    className="object-scale-down cursor-pointer h-5 w-5 hover:scale-105 transition-all duration-300 ease-linear"
-                  />
+                <label htmlFor={`fileInput${props.post.poster.userId}`}>
+                  <span
+                    className={`flex bg-gray-200 h-fit w-fit p-1 rounded-full border border-gray-300 shadow-md`}
+                  >
+                    {svgFile}
+                  </span>
                 </label>
                 <input
                   type="file"
-                  id="fileInput"
+                  id={`fileInput${props.post.poster.userId}`}
                   multiple
-                  className="hidden"
+                  accept="application/pdf"
+                  className="absolute left-[-9999px]"
                   onChange={(e) => setCommentsFiles(e.target.files)}
                 />
               </button>
 
               {/* Add comment button */}
               <button onClick={validateInputs} className="">
-                <Image
-                  src="/images/send.png"
-                  alt={""}
-                  height={500}
-                  width={500}
-                  className="object-scale-down cursor-pointer h-5 w-5 hover:scale-105 transition-all duration-300 ease-linear"
-                />
+                <span
+                  className={`flex justify-center items-center bg-secondary/20 h-fit w-fit p-1 rounded-full border border-secondary/50
+                  shadow-md`}
+                >
+                  {svgSend}
+                </span>
               </button>
             </div>
           </div>
@@ -325,7 +347,7 @@ const PostCard = (props: Props) => {
         {commentor && (
           <div className={`flex flex-col gap-2`}>
             {/* Number of images and its error */}
-            <div className={`flex flex-col gap-1`}>
+            <div className={`flex flex-col gap-1 text-center`}>
               <p className={`text-white ${!isArabic && "ltr"}`}>
                 {t("uploadedImages")}
                 <span className={`font-bold text-gray-600`}>
@@ -344,7 +366,7 @@ const PostCard = (props: Props) => {
             </div>
 
             {/* Number of files and its error */}
-            <div className={`flex flex-col gap-1`}>
+            <div className={`flex flex-col gap-1 text-center`}>
               <p className={`text-white ${!isArabic && "ltr"}`}>
                 {t("uploadedFiles")}
                 <span className={`font-bold text-gray-600`}>
@@ -366,36 +388,38 @@ const PostCard = (props: Props) => {
 
         {/* show two or all comments */}
         {showComments ? (
-          <div>
+          <div className={`w-full`}>
             <div className={`w-full flex justify-end pl-2 sticky`}>
-              <Image
-                src="/images/cancel.png"
-                alt="Cancel button"
-                height={300}
-                width={300}
-                onClick={() => setShowComments(false)}
-                className={`cursor-pointer object-scale-down h-7 w-7 mb-2`}
-              />
+              <span className={`mb-2`} onClick={() => setShowComments(false)}>
+                {svgClose}
+              </span>
             </div>
             <div className={`overflow-y-auto h-96 w-full`}>
               {comments &&
-                comments.map((comment, index) => (
-                  <CommentsSection key={index} comment={comment} />
-                ))}
+                comments.map(
+                  (comment, index) =>
+                    comment.commentId && (
+                      <CommentsSection key={index} comment={comment} />
+                    )
+                )}
             </div>
           </div>
         ) : (
           <div className="mt-10 w-full">
-            {comments && <CommentsSection comment={comments[0]} />}
+            {comments && comments[0] && (
+              <CommentsSection comment={comments[0]} />
+            )}
 
-            <div className={`flex h-fit w-full justify-end text-white mt-5`}>
-              <button
-                onClick={() => setShowComments(!showComments)}
-                className={`bg-teal-500 py-2 px-3 cursor-pointer hover:bg-teal-600 transition-all duration-300 ease-linear`}
-              >
-                {t("seeAllComments")}
-              </button>
-            </div>
+            {comments && comments.length > 1 && (
+              <div className={`flex h-fit w-full justify-end text-white mt-5`}>
+                <button
+                  onClick={() => setShowComments(!showComments)}
+                  className={`bg-teal-500 py-2 px-3 cursor-pointer hover:bg-teal-600 transition-all duration-300 ease-linear`}
+                >
+                  {t("seeAllComments")}
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>

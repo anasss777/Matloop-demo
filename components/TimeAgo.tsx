@@ -13,7 +13,7 @@ const TimeAgo: React.FC<Props> = ({ postDate }) => {
   useEffect(() => {
     const calculateTimeAgo = () => {
       const now = new Date();
-      const timeDiff = now.getTime() - postDate.getTime();
+      const timeDiff = now.getTime() - postDate?.getTime();
 
       const seconds = Math.floor(timeDiff / 1000);
       const minutes = Math.floor(seconds / 60);

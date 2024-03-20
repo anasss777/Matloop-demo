@@ -10,22 +10,23 @@ const LatestDeals = () => {
   const [posts, setPosts] = useState<CarPost[]>();
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const querySnapshot = await firebase
-        .firestore()
-        .collection("posts")
-        .get();
-      const PostsData: CarPost[] = querySnapshot.docs.map(
-        (doc) =>
-          ({
+    const unsubscribe = firebase
+      .firestore()
+      .collection("posts")
+      .onSnapshot((snapshot) => {
+        const newPosts: CarPost[] = []; // Create a new array to hold updated posts
+        snapshot.forEach((doc) => {
+          newPosts.push({
             ...doc.data(),
-          } as CarPost)
-      );
-      setPosts(PostsData);
-    };
+          } as CarPost);
+        });
+        setPosts(newPosts); // Update posts state with the new data
+      });
 
-    fetchPosts();
+    // Unsubscribe from Firestore listener when component unmounts
+    return () => unsubscribe();
   }, []);
+
   return (
     <div className="flex flex-col w-full h-fit pb-20 pt-10 px-5">
       <h1 className="text-xl mt-5 font-semibold text-[#4682b4] flex flex-row justify-between">

@@ -148,7 +148,6 @@ const Cars = () => {
         prevGearType.filter((type) => type !== value)
       );
     }
-    console.log(gearType);
   };
 
   const handlefuelTypeChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -160,7 +159,6 @@ const Cars = () => {
         prevFuelType.filter((type) => type !== value)
       );
     }
-    console.log(gearType);
   };
 
   const handleCountrySelected = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -277,7 +275,7 @@ const Cars = () => {
         placeholder={t("description")}
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        className={`border border-secondary/70 px-2 py-1 rounded-md mb-20`}
+        className={`border border-secondary/70 px-2 py-1 rounded-md mb-20 w-full`}
       ></textarea>
 
       <button

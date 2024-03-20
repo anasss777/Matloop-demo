@@ -1,4 +1,5 @@
 import firebase from "@/firebase";
+import { Comment } from "@/types/comment";
 import { CarPost } from "@/types/post";
 import { Profile } from "@/types/profile";
 
@@ -247,6 +248,108 @@ export const addComment = async (
 
   // Cleanup subscription on unmount
   return () => unsubscribe();
+};
+
+export const deletePost = (post: CarPost) => {
+  const postRef = firebase.firestore().collection("posts").doc(post.postId);
+
+  postRef
+    .get()
+    .then(async (doc: firebase.firestore.DocumentSnapshot) => {
+      if (doc.exists) {
+        const commentsIds = doc
+          ?.data()
+          ?.comments?.map((comment: Comment) => comment.id);
+        const commentsRefs = commentsIds?.map((commentId: string) =>
+          firebase.firestore().doc(`comments/${commentId}`)
+        );
+
+        // Delete Comments' files and images from Firebase Storage
+        if (commentsRefs) {
+          const commentSnaps = await Promise.all(
+            commentsRefs.map(
+              async (
+                ref: firebase.firestore.DocumentReference<firebase.firestore.DocumentData>
+              ) => await ref.get()
+            )
+          );
+
+          const commentsData: Comment[] = commentSnaps?.map(
+            (commentSnap) => ({ ...commentSnap.data() } as Comment)
+          );
+
+          commentsData.forEach((commentData) => {
+            const singleCommentAllFiles = [
+              ...commentData.uploadedImages,
+              ...commentData.uploadedFiles,
+            ];
+
+            singleCommentAllFiles.forEach((filePath) => {
+              firebase
+                .storage()
+                .refFromURL(filePath)
+                .delete()
+                .then(() => {
+                  console.log("File deleted successfully.");
+                })
+                .catch((error: any) => {
+                  console.error("Error deleting file: ", error);
+                });
+            });
+          });
+        } else {
+          console.log("commentsRefs not found!");
+        }
+
+        // Delete each comment
+        commentsRefs.forEach(
+          (commentRef: firebase.firestore.DocumentReference) => {
+            commentRef
+              .delete()
+              .then(() => {
+                console.log("Comment deleted successfully.");
+              })
+              .catch((error: any) => {
+                console.error("Error deleting comment: ", error);
+              });
+          }
+        );
+
+        // Remove the post id from the user's document
+        const userRef = firebase
+          .firestore()
+          .collection("profiles")
+          .doc(post.poster.userId);
+
+        userRef
+          .update({
+            posts: firebase.firestore.FieldValue.arrayRemove(post.postId),
+          })
+          .then(() => {
+            console.log(
+              "Post ID removed successfully from the user's document."
+            );
+          })
+          .catch((error: any) => {
+            console.error("Error removing post ID: ", error);
+          });
+
+        // Delete post
+        postRef
+          .delete()
+          .then(() => {
+            console.log("Post deleted successfully.");
+          })
+          .catch((error: any) => {
+            console.error("Error deleting post: ", error);
+          });
+      } else {
+        console.log("No such document!");
+      }
+    })
+    .catch((error: any) => {
+      console.log("Error getting document:", error);
+    });
 };
 
 export const deleteAllPosts = () => {

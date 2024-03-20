@@ -5,46 +5,43 @@ import SearchInput from "@/components/SearchInput";
 import { CarPost } from "@/types/post";
 import React, { useEffect, useState } from "react";
 import firebase from "@/firebase";
-import { deleteAllPosts, deleteAllProfiles } from "@/utils/post";
+import JustTesting from "@/components/JustTesting";
 
 const Cars = () => {
-  const [posts, setPosts] = useState<CarPost[]>();
+  const [posts, setPosts] = useState<CarPost[]>([]); // Initialize posts as an empty array
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const querySnapshot = await firebase
-        .firestore()
-        .collection("posts")
-        .get();
-      const PostsData: CarPost[] = querySnapshot.docs.map(
-        (doc) =>
-          ({
+    const unsubscribe = firebase
+      .firestore()
+      .collection("posts")
+      .onSnapshot((snapshot) => {
+        const newPosts: CarPost[] = []; // Create a new array to hold updated posts
+        snapshot.forEach((doc) => {
+          newPosts.push({
+            postId: doc.id,
             ...doc.data(),
-          } as CarPost)
-      );
-      setPosts(PostsData);
-    };
+          } as CarPost);
+        });
+        setPosts(newPosts); // Update posts state with the new data
+      });
 
-    fetchPosts();
+    // Unsubscribe from Firestore listener when component unmounts
+    return () => unsubscribe();
   }, []);
 
   return (
     <div className={`flex flex-col w-full h-fit pb-20 pt-10 px-5`}>
       <p className="flex justify-center items-center mb-10 font-bold">
-        السيارات المطلوبة: {posts?.length}
+        السيارات المطلوبة: {posts.length}
       </p>
+
       <SearchInput />
 
-      {/* <button className={`btn2 bg-red-500 my-2`} onClick={deleteAllProfiles}>
-        delete all profiles
-      </button>
-      <button className={`btn2 bg-red-500 my-2`} onClick={deleteAllPosts}>
-        delete all posts
-      </button> */}
+      {/* <JustTesting /> */}
 
-      {posts?.map((post, index) => (
+      {posts.map((post) => (
         <PostCard
-          key={index}
+          key={post.postId} // Use post id as the key
           posterName={post.poster.name}
           posterImage={post.poster.profileImageSrc}
           post={post}
