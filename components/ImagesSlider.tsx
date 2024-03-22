@@ -47,8 +47,10 @@ const ImagesSlider = ({ images }: Props) => {
       }}
       closeOnEscape
     >
-      <div className={`flex flex-col justify-start items-center gap-1 h-fit`}>
-        <div className={`close-btn flex justify-end items-end w-full`}>
+      <div
+        className={`flex flex-col justify-start items-center gap-1 h-[95vh]`}
+      >
+        <div className={`flex justify-end items-end w-full`}>
           <button onClick={() => setOpen(!open)}>{svgClose}</button>
         </div>
 
@@ -61,10 +63,12 @@ const ImagesSlider = ({ images }: Props) => {
             <Image
               key={index}
               src={image}
-              width={500}
-              height={500}
+              width={100}
+              height={100}
               alt={`Image ${index + 1}`}
-              className={`object-cover h-16 w-16 rounded-md`}
+              className={`object-cover h-16 w-16 rounded-md ${
+                selectedImageIndex === index && "border"
+              }`}
               onClick={() => setSelectedImageIndex(index)}
             />
           ))}

@@ -5,10 +5,12 @@ import React, { useEffect, useState } from "react";
 import { Comment } from "@/types/comment";
 import { useLocale, useTranslations } from "next-intl";
 import TimeAgo from "./TimeAgo";
-import { svgClock, svgEdit, svgMail, svgPhone } from "./svgsPath";
+import { svgClock, svgEdit, svgFile2, svgMail, svgPhone } from "./svgsPath";
 import ImagesSlider from "./ImagesSlider";
 import firebase from "@/firebase";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
+import Popup from "reactjs-popup";
+import EditComment from "./EditComment";
 
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
@@ -22,6 +24,7 @@ const CommentsSection = ({ comment }: Props) => {
   const locale = useLocale();
   const isArabic = locale === "ar";
   const [canEdit, setCanEdit] = useState(false);
+  const [openEditComment, setOpenEditComment] = useState(false);
   const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
@@ -120,15 +123,9 @@ const CommentsSection = ({ comment }: Props) => {
             {comment.uploadedFiles.map((file, index) => (
               <Link key={index} href={file} target="_blank">
                 <div
-                  className={`flex flex-row my-2 bg-gray-200 h-fit w-fit py-1 px-2 rounded-lg`}
+                  className={`flex flex-row my-2 bg-gray-200 h-fit w-fit py-1 px-2 rounded-lg shadow-md border border-gray-300`}
                 >
-                  <Image
-                    src="/images/document.png"
-                    alt="Resume file"
-                    height={500}
-                    width={500}
-                    className="object-scale-down h-5 w-5"
-                  />
+                  {svgFile2}
                 </div>
               </Link>
             ))}
@@ -140,7 +137,7 @@ const CommentsSection = ({ comment }: Props) => {
           <ImagesSlider images={comment?.uploadedImages} />
         )}
 
-        {/* Edit button */}
+        {/* Edit button and time ago */}
         <div className="flex flex-row justify-between items-start w-full">
           <div
             className={`btn2 bg-gray-200 text-gray-500 flex flex-row items-center gap-1 ${
@@ -152,9 +149,31 @@ const CommentsSection = ({ comment }: Props) => {
           </div>
 
           {canEdit && (
-            <button className="bg-gray-400 p-1 h-fit w-fit rounded-md mt-1">
-              {svgEdit}
-            </button>
+            <Popup
+              trigger={
+                <button className="bg-gray-400 p-1 h-fit w-fit rounded-md mt-1">
+                  {svgEdit}
+                </button>
+              }
+              open={openEditComment}
+              onOpen={() => setOpenEditComment(!openEditComment)}
+              modal
+              nested
+              lockScroll
+              overlayStyle={{
+                background: "#000000cc",
+              }}
+              contentStyle={{
+                width: "90%",
+              }}
+              closeOnEscape
+            >
+              <EditComment
+                openEditComment={openEditComment}
+                setOpenEditComment={setOpenEditComment}
+                comment={comment}
+              />
+            </Popup>
           )}
         </div>
       </div>

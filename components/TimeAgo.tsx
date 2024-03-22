@@ -27,12 +27,12 @@ const TimeAgo: React.FC<Props> = ({ postDate }) => {
       }`;
       const minutesPhrase = `قبل ${minutes} ${
         minutes === 2
-          ? "دقيقتان"
+          ? "دقيقتين"
           : `${minutes >= 3 && minutes <= 10 ? "دقائق" : "دقيقة"}`
       }`;
       const hoursPhrase = `قبل ${hours} ${
         hours === 2
-          ? "ساعتان"
+          ? "ساعتين"
           : `${hours >= 3 && hours <= 10 ? "ساعات" : "ساعة"}`
       }`;
       const daysPhrase = `قبل ${days} ${

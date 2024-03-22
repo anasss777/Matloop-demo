@@ -148,9 +148,7 @@ const EditPost = ({ openEditPost, setOpenEditPost, post }: Props) => {
         isArabic && "rtl"
       }`}
     >
-      <div
-        className={`flex flex-col justify-center items-cenjustify-center w-full`}
-      >
+      <div className={`flex flex-col justify-center w-full`}>
         <button onClick={() => setOpenEditPost(!openEditPost)}>
           {svgCloseDark}
         </button>

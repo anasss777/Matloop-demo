@@ -83,7 +83,19 @@
         "imagesError": "لا يمكن إضافة أكثر من 10 صور!",
         "filesError": "لا يمكن إضافة أكثر من 3 ملفات!",
         "seeAllComments": "كل التعليقات",
-        "signUp": "أنشى حساباً لتتمكن من إضافة تعليق"
+        "signUp": "أنشى حساباً لتتمكن من إضافة تعليق",
+        "save": "حفظ",
+        "cancel": "إلغاء",
+        "sure": "هل أنت متأكد؟",
+        "deleteImageWarning": "سيتم حذف الصورة نهائياً",
+        "deleteFileWarning": "سيتم حذف الملف نهائياً",
+        "yesDelete": "حذف",
+        "error": "حصل خطاً!",
+        "tryLater": "حاول مجدداً لاحقاً",
+        "ok": "حسناً",
+        "imageDeleted": "تم حذف الصورة بنجاح",
+        "fileDeleted": "تم حذف الملف بنجاح",
+        "textEdited": "تم تعديل التعليق"
     },
     "commentSection": {
         "showMore": "رؤية المزيد",

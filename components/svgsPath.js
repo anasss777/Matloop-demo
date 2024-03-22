@@ -181,6 +181,34 @@ export const svgClose = (
   </svg>
 );
 
+export const svgCloseRed = (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    height={22}
+    width={22}
+  >
+    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+    <g
+      id="SVGRepo_tracerCarrier"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    ></g>
+    <g id="SVGRepo_iconCarrier">
+      {" "}
+      <path
+        d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+        fill="#dc2626"
+      ></path>{" "}
+      <path
+        d="M8.96967 8.96967C9.26256 8.67678 9.73744 8.67678 10.0303 8.96967L12 10.9394L13.9697 8.96969C14.2626 8.6768 14.7374 8.6768 15.0303 8.96969C15.3232 9.26258 15.3232 9.73746 15.0303 10.0304L13.0607 12L15.0303 13.9696C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0304 15.0303C9.73746 15.3232 9.26258 15.3232 8.96969 15.0303C8.6768 14.7374 8.6768 14.2626 8.96969 13.9697L10.9394 12L8.96967 10.0303C8.67678 9.73744 8.67678 9.26256 8.96967 8.96967Z"
+        fill="#fff"
+      ></path>{" "}
+    </g>
+  </svg>
+);
+
 export const svgCloseDark = (
   <svg
     viewBox="0 0 24 24"
@@ -315,6 +343,58 @@ export const svgFile = (
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
+      ></path>{" "}
+    </g>
+  </svg>
+);
+
+export const svgFile2 = (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    height={20}
+    width={20}
+  >
+    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+    <g
+      id="SVGRepo_tracerCarrier"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    ></g>
+    <g id="SVGRepo_iconCarrier">
+      {" "}
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M9.29289 1.29289C9.48043 1.10536 9.73478 1 10 1H18C19.6569 1 21 2.34315 21 4V20C21 21.6569 19.6569 23 18 23H6C4.34315 23 3 21.6569 3 20V8C3 7.73478 3.10536 7.48043 3.29289 7.29289L9.29289 1.29289ZM18 3H11V8C11 8.55228 10.5523 9 10 9H5V20C5 20.5523 5.44772 21 6 21H18C18.5523 21 19 20.5523 19 20V4C19 3.44772 18.5523 3 18 3ZM6.41421 7H9V4.41421L6.41421 7ZM7 13C7 12.4477 7.44772 12 8 12H16C16.5523 12 17 12.4477 17 13C17 13.5523 16.5523 14 16 14H8C7.44772 14 7 13.5523 7 13ZM7 17C7 16.4477 7.44772 16 8 16H16C16.5523 16 17 16.4477 17 17C17 17.5523 16.5523 18 16 18H8C7.44772 18 7 17.5523 7 17Z"
+        fill="#000000"
+      ></path>{" "}
+    </g>
+  </svg>
+);
+
+export const svgFileBig = (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    height={50}
+    width={50}
+  >
+    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+    <g
+      id="SVGRepo_tracerCarrier"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    ></g>
+    <g id="SVGRepo_iconCarrier">
+      {" "}
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M9.29289 1.29289C9.48043 1.10536 9.73478 1 10 1H18C19.6569 1 21 2.34315 21 4V20C21 21.6569 19.6569 23 18 23H6C4.34315 23 3 21.6569 3 20V8C3 7.73478 3.10536 7.48043 3.29289 7.29289L9.29289 1.29289ZM18 3H11V8C11 8.55228 10.5523 9 10 9H5V20C5 20.5523 5.44772 21 6 21H18C18.5523 21 19 20.5523 19 20V4C19 3.44772 18.5523 3 18 3ZM6.41421 7H9V4.41421L6.41421 7ZM7 13C7 12.4477 7.44772 12 8 12H16C16.5523 12 17 12.4477 17 13C17 13.5523 16.5523 14 16 14H8C7.44772 14 7 13.5523 7 13ZM7 17C7 16.4477 7.44772 16 8 16H16C16.5523 16 17 16.4477 17 17C17 17.5523 16.5523 18 16 18H8C7.44772 18 7 17.5523 7 17Z"
+        fill="#000000"
       ></path>{" "}
     </g>
   </svg>

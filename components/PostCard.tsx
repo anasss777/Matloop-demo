@@ -67,7 +67,21 @@ const PostCard = (props: Props) => {
     };
 
     fetchComments();
-  }, [props?.post?.comments]);
+
+    // Set up real-time listener for comments
+    const unsubscribe = firebase
+      .firestore()
+      .collection("comments")
+      .where("commentor.posts", "array-contains", props.post.postId)
+      .onSnapshot((snapshot) => {
+        const commentsData = snapshot.docs.map(
+          (doc) => ({ id: doc.id, ...doc.data() } as Comment)
+        );
+        setComments(commentsData);
+      });
+
+    return () => unsubscribe();
+  }, [props.post?.comments, props.post.postId]);
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
