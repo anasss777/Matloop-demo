@@ -34,18 +34,19 @@ const EditCommentText = ({ comment }: Props) => {
   };
 
   return (
-    <div className={`flex flex-col justify-center items-center w-full`}>
+    <div className={`flex flex-col justify-center items-center w-full px-3`}>
       <textarea
         rows={4}
         cols={50}
         placeholder={t("commentContent")}
         value={commentContent}
         onChange={(e) => setCommentContent(e.target.value)}
-        className="w-full rounded-md outline-1 outline-gray-400 py-2 px-3 text-gray-500 h-28 resize-none my-5"
+        className="w-full rounded-md focus:outline-offset-1 focus:outline-gray-400 py-2 px-3 text-gray-500 h-28 resize-none my-5 border
+        border-gray-300"
       ></textarea>
 
       <button
-        className={`btn2 bg-secondary`}
+        className={`btn2 bg-secondary shadow-md`}
         onClick={() => handleEditContent(commentContent)}
       >
         {t("save")}

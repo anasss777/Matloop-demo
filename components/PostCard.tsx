@@ -22,6 +22,7 @@ import { Comment } from "@/types/comment";
 import TimeAgo from "./TimeAgo";
 import Popup from "reactjs-popup";
 import EditPost from "./EditPost";
+import Swal from "sweetalert2";
 
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
@@ -42,9 +43,15 @@ const PostCard = (props: Props) => {
   const [comments, setComments] = useState<Comment[]>();
   const [canEdit, setCanEdit] = useState(false);
   const [openEditPost, setOpenEditPost] = useState(false);
+  const [newComment, setNewComment] = useState(false);
   const t = useTranslations("postCard");
   const locale = useLocale();
   const isArabic = locale === "ar";
+  const [commentUpdated, setCommentUpdated] = useState(false);
+
+  const handleCommentUpdated = (childValue: boolean) => {
+    setCommentUpdated(!childValue);
+  };
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -67,21 +74,7 @@ const PostCard = (props: Props) => {
     };
 
     fetchComments();
-
-    // Set up real-time listener for comments
-    const unsubscribe = firebase
-      .firestore()
-      .collection("comments")
-      .where("commentor.posts", "array-contains", props.post.postId)
-      .onSnapshot((snapshot) => {
-        const commentsData = snapshot.docs.map(
-          (doc) => ({ id: doc.id, ...doc.data() } as Comment)
-        );
-        setComments(commentsData);
-      });
-
-    return () => unsubscribe();
-  }, [props.post?.comments, props.post.postId]);
+  }, [props.post?.comments, props.post.postId, newComment, commentUpdated]);
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
@@ -125,6 +118,10 @@ const PostCard = (props: Props) => {
         commentsImages,
         commentsFiles
       );
+      setNewComment(!newComment);
+      setCommentContent("");
+      setCommentsImages(null);
+      setCommentsFiles(null);
     }
     if (
       commentsImages &&
@@ -139,7 +136,34 @@ const PostCard = (props: Props) => {
         commentsImages,
         commentsFiles
       );
+      setNewComment(!newComment);
+      setCommentContent("");
+      setCommentsImages(null);
+      setCommentsFiles(null);
     }
+  };
+
+  const handleDeletePost = () => {
+    Swal.fire({
+      title: t("sure"),
+      text: t("deletePostWarning"),
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#4682b4",
+      cancelButtonText: t("cancel"),
+      confirmButtonText: t("yesDelete"),
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deletePost(props.post);
+        Swal.fire({
+          text: t("postDeleted"),
+          icon: "success",
+          confirmButtonColor: "#4682b4",
+          confirmButtonText: t("ok"),
+        });
+      }
+    });
   };
 
   return (
@@ -239,7 +263,7 @@ const PostCard = (props: Props) => {
             <div className={`flex justify-end w-fit`}>
               <button
                 className="bg-gray-400 p-1 h-fit w-fit rounded-md mt-3"
-                onClick={() => deletePost(props.post)}
+                onClick={handleDeletePost}
               >
                 {svgDelete}
               </button>
@@ -270,7 +294,6 @@ const PostCard = (props: Props) => {
             contentStyle={{
               width: "90%",
             }}
-            closeOnEscape
           >
             <EditPost
               openEditPost={openEditPost}
@@ -413,7 +436,13 @@ const PostCard = (props: Props) => {
                 comments.map(
                   (comment, index) =>
                     comment.commentId && (
-                      <CommentsSection key={index} comment={comment} />
+                      <CommentsSection
+                        commentUpdated={commentUpdated}
+                        handleCommentUpdated={handleCommentUpdated}
+                        key={index}
+                        comment={comment}
+                        post={props.post}
+                      />
                     )
                 )}
             </div>
@@ -421,7 +450,12 @@ const PostCard = (props: Props) => {
         ) : (
           <div className="mt-10 w-full">
             {comments && comments[0] && (
-              <CommentsSection comment={comments[0]} />
+              <CommentsSection
+                commentUpdated={commentUpdated}
+                handleCommentUpdated={handleCommentUpdated}
+                comment={comments[0]}
+                post={props.post}
+              />
             )}
 
             {comments && comments.length > 1 && (

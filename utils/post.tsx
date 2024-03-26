@@ -163,93 +163,6 @@ export const EditCarPost = async ({
     });
 };
 
-export const addComment = async (
-  post: CarPost,
-  content: string,
-  commentor: Profile,
-  uploadedImages: FileList | null,
-  uploadedFiles: FileList | null
-) => {
-  const unsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
-    if (user) {
-      const docRefProfiles = firebase
-        .firestore()
-        .collection("profiles")
-        .doc(user.uid);
-      docRefProfiles
-        .get()
-        .then(async (doc) => {
-          if (doc.exists) {
-            console.log("User found!");
-
-            // Upload images and get their download URLs
-            let imageUrls = [];
-            if (uploadedImages) {
-              for (let i = 0; i < uploadedImages.length; i++) {
-                let imageRef = firebase
-                  .storage()
-                  .ref()
-                  .child(`images/${uploadedImages[i].name}`);
-                await imageRef.put(uploadedImages[i]);
-                let url = await imageRef.getDownloadURL();
-                imageUrls.push(url);
-              }
-            }
-
-            // Upload files and get their download URLs
-            let fileUrls = [];
-            if (uploadedFiles) {
-              for (let i = 0; i < uploadedFiles.length; i++) {
-                let fileRef = firebase
-                  .storage()
-                  .ref()
-                  .child(`files/${uploadedFiles[i].name}`);
-                await fileRef.put(uploadedFiles[i]);
-                let url = await fileRef.getDownloadURL();
-                fileUrls.push(url);
-              }
-            }
-
-            let docRefComment = await firebase
-              .firestore()
-              .collection("comments")
-              .add({
-                content,
-                commentor,
-                uploadedImages: imageUrls,
-                uploadedFiles: fileUrls,
-              });
-
-            await docRefComment.update({
-              createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-              commentId: docRefComment.id,
-            });
-
-            console.log("Document written with ID: ", docRefComment.id);
-
-            // Add the whole comment document to the post
-            await firebase
-              .firestore()
-              .collection("posts")
-              .doc(post.postId)
-              .update({
-                comments:
-                  firebase.firestore.FieldValue.arrayUnion(docRefComment),
-              });
-          } else {
-            console.log("No such document!");
-          }
-        })
-        .catch((error) => {
-          console.log("Error getting document:", error);
-        });
-    }
-  });
-
-  // Cleanup subscription on unmount
-  return () => unsubscribe();
-};
-
 export const deletePost = (post: CarPost) => {
   const postRef = firebase.firestore().collection("posts").doc(post.postId);
 
@@ -350,6 +263,167 @@ export const deletePost = (post: CarPost) => {
     .catch((error: any) => {
       console.log("Error getting document:", error);
     });
+};
+
+export const addComment = async (
+  post: CarPost,
+  content: string,
+  commentor: Profile,
+  uploadedImages: FileList | null,
+  uploadedFiles: FileList | null
+) => {
+  const unsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
+    if (user) {
+      const docRefProfiles = firebase
+        .firestore()
+        .collection("profiles")
+        .doc(user.uid);
+      docRefProfiles
+        .get()
+        .then(async (doc) => {
+          if (doc.exists) {
+            console.log("User found!");
+
+            // Upload images and get their download URLs
+            let imageUrls = [];
+            if (uploadedImages) {
+              for (let i = 0; i < uploadedImages.length; i++) {
+                let imageRef = firebase
+                  .storage()
+                  .ref()
+                  .child(`images/${uploadedImages[i].name}`);
+                await imageRef.put(uploadedImages[i]);
+                let url = await imageRef.getDownloadURL();
+                imageUrls.push(url);
+              }
+            }
+
+            // Upload files and get their download URLs
+            let fileUrls = [];
+            if (uploadedFiles) {
+              for (let i = 0; i < uploadedFiles.length; i++) {
+                let fileRef = firebase
+                  .storage()
+                  .ref()
+                  .child(`files/${uploadedFiles[i].name}`);
+                await fileRef.put(uploadedFiles[i]);
+                let url = await fileRef.getDownloadURL();
+                fileUrls.push(url);
+              }
+            }
+
+            let docRefComment = await firebase
+              .firestore()
+              .collection("comments")
+              .add({
+                content,
+                commentor,
+                uploadedImages: imageUrls,
+                uploadedFiles: fileUrls,
+              });
+
+            await docRefComment.update({
+              createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+              commentId: docRefComment.id,
+            });
+
+            console.log("Document written with ID: ", docRefComment.id);
+
+            // Add the whole comment document to the post
+            await firebase
+              .firestore()
+              .collection("posts")
+              .doc(post.postId)
+              .update({
+                comments:
+                  firebase.firestore.FieldValue.arrayUnion(docRefComment),
+              });
+          } else {
+            console.log("No such document!");
+          }
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+    }
+  });
+
+  // Cleanup subscription on unmount
+  return () => unsubscribe();
+};
+
+export const deleteComment = async (post: CarPost, commentId: string) => {
+  const unsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
+    if (user) {
+      const docRefProfiles = firebase
+        .firestore()
+        .collection("profiles")
+        .doc(user.uid);
+      docRefProfiles
+        .get()
+        .then(async (doc) => {
+          if (doc.exists) {
+            console.log("User found!");
+
+            // Get the comment document
+            let docRefComment = firebase
+              .firestore()
+              .collection("comments")
+              .doc(commentId);
+
+            const comment = await docRefComment.get();
+
+            if (!comment?.exists) {
+              console.log("No such comment!");
+              return;
+            }
+
+            // Delete images and files from Firebase storage
+            const { uploadedImages, uploadedFiles } = comment.data() as Comment;
+
+            const deleteFromStorage = async (url: string) => {
+              let fileRef = firebase.storage().refFromURL(url);
+              await fileRef.delete();
+            };
+
+            if (uploadedImages) {
+              for (let url of uploadedImages) {
+                await deleteFromStorage(url);
+              }
+            }
+
+            if (uploadedFiles) {
+              for (let url of uploadedFiles) {
+                await deleteFromStorage(url);
+              }
+            }
+
+            // Remove the comment reference from the post document
+            await firebase
+              .firestore()
+              .collection("posts")
+              .doc(post.postId)
+              .update({
+                comments:
+                  firebase.firestore.FieldValue.arrayRemove(docRefComment),
+              });
+
+            // Delete the comment document
+            await docRefComment.delete();
+
+            console.log("Comment deleted with ID: ", commentId);
+          } else {
+            console.log("No such document!");
+          }
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+    }
+  });
+
+  // Cleanup subscription on unmount
+  return () => unsubscribe();
 };
 
 export const deleteAllPosts = () => {

@@ -94,8 +94,12 @@
         "tryLater": "حاول مجدداً لاحقاً",
         "ok": "حسناً",
         "imageDeleted": "تم حذف الصورة بنجاح",
+        "commentDeleted": "تم حذف التعليق بنجاح",
+        "postDeleted": "تم حذف المنشور بنجاح",
         "fileDeleted": "تم حذف الملف بنجاح",
-        "textEdited": "تم تعديل التعليق"
+        "textEdited": "تم تعديل التعليق",
+        "deleteCommentWarning": "سيتم حذف التعليق نهائياً",
+        "deletePostWarning": "سيتم حذف المنشور نهائياً"
     },
     "commentSection": {
         "showMore": "رؤية المزيد",

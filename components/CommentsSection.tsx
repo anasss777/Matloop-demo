@@ -5,25 +5,45 @@ import React, { useEffect, useState } from "react";
 import { Comment } from "@/types/comment";
 import { useLocale, useTranslations } from "next-intl";
 import TimeAgo from "./TimeAgo";
-import { svgClock, svgEdit, svgFile2, svgMail, svgPhone } from "./svgsPath";
+import {
+  svgClock,
+  svgDelete,
+  svgEdit,
+  svgFile2,
+  svgMail,
+  svgPhone,
+} from "./svgsPath";
 import ImagesSlider from "./ImagesSlider";
 import firebase from "@/firebase";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import Popup from "reactjs-popup";
 import EditComment from "./EditComment";
+import { deleteComment } from "@/utils/post";
+import { CarPost } from "@/types/post";
+import Swal from "sweetalert2";
 
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
 
 type Props = {
   comment: Comment;
+  post: CarPost;
+  commentUpdated: boolean;
+  handleCommentUpdated: (commentUpdated: boolean) => void;
 };
 
-const CommentsSection = ({ comment }: Props) => {
+const CommentsSection = ({
+  comment,
+  post,
+  commentUpdated,
+  handleCommentUpdated,
+}: Props) => {
   const t = useTranslations("commentSection");
+  const p = useTranslations("postCard");
   const locale = useLocale();
   const isArabic = locale === "ar";
   const [canEdit, setCanEdit] = useState(false);
+  const [canDelete, setCanDelete] = useState(false);
   const [openEditComment, setOpenEditComment] = useState(false);
   const [showMore, setShowMore] = useState(false);
 
@@ -31,12 +51,39 @@ const CommentsSection = ({ comment }: Props) => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setCanEdit(comment?.commentor?.userId === user.uid);
+        setCanDelete(
+          comment?.commentor?.userId === user.uid ||
+            post?.poster?.userId === user.uid
+        );
       }
     });
 
     // Cleanup subscription on unmount
     return () => unsubscribe();
-  }, [comment.commentor?.userId]);
+  }, [comment?.commentor?.userId, post?.poster?.userId]);
+
+  const handleDeleteComment = () => {
+    Swal.fire({
+      title: p("sure"),
+      text: p("deleteCommentWarning"),
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#4682b4",
+      cancelButtonText: p("cancel"),
+      confirmButtonText: p("yesDelete"),
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteComment(post, comment?.commentId);
+        Swal.fire({
+          text: p("commentDeleted"),
+          icon: "success",
+          confirmButtonColor: "#4682b4",
+          confirmButtonText: p("ok"),
+        });
+      }
+    });
+  };
 
   return (
     <div className="mb-5 mx-2">
@@ -148,33 +195,45 @@ const CommentsSection = ({ comment }: Props) => {
             <TimeAgo postDate={comment?.createdAt?.toDate()} />
           </div>
 
-          {canEdit && (
-            <Popup
-              trigger={
-                <button className="bg-gray-400 p-1 h-fit w-fit rounded-md mt-1">
-                  {svgEdit}
-                </button>
-              }
-              open={openEditComment}
-              onOpen={() => setOpenEditComment(!openEditComment)}
-              modal
-              nested
-              lockScroll
-              overlayStyle={{
-                background: "#000000cc",
-              }}
-              contentStyle={{
-                width: "90%",
-              }}
-              closeOnEscape
-            >
-              <EditComment
-                openEditComment={openEditComment}
-                setOpenEditComment={setOpenEditComment}
-                comment={comment}
-              />
-            </Popup>
-          )}
+          <div className={`flex flex-row gap-2 justify-center items-center`}>
+            {canDelete && (
+              <button
+                className={`bg-gray-400 p-1 h-fit w-fit rounded-md mt-1`}
+                onClick={handleDeleteComment}
+              >
+                {" "}
+                <span>{svgDelete}</span>{" "}
+              </button>
+            )}
+
+            {canEdit && (
+              <Popup
+                trigger={
+                  <button className="bg-gray-400 p-1 h-fit w-fit rounded-md mt-1">
+                    {svgEdit}
+                  </button>
+                }
+                open={openEditComment}
+                onOpen={() => setOpenEditComment(!openEditComment)}
+                modal
+                nested
+                lockScroll
+                overlayStyle={{
+                  background: "#000000cc",
+                }}
+                contentStyle={{
+                  width: "90%",
+                }}
+                onClose={() => handleCommentUpdated(commentUpdated)}
+              >
+                <EditComment
+                  openEditComment={openEditComment}
+                  setOpenEditComment={setOpenEditComment}
+                  comment={comment}
+                />
+              </Popup>
+            )}
+          </div>
         </div>
       </div>
     </div>
