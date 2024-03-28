@@ -10,13 +10,18 @@ type Props = {
 
 const CategoryCard = ({ categoryName, imgSrc, pageHref }: Props) => {
   return (
-    <div className="w-full p-3">
+    <div className="w-full group">
       <Link href={pageHref}>
-        <button className="w-full h-32 rounded-xl p-[2px] relative overflow-hidden shadow-Card2">
+        <button
+          className="w-full h-32 rounded-xl p-[2px] relative overflow-hidden shadow-Card2 bg-gradient-to-tl from-primary via-transparent
+        to-secondary group-hover:scale-[1.02] transition-all duration-300 ease-linear"
+        >
           <Image
             className="rounded-xl object-cover w-full h-full"
             src={imgSrc}
-            fill
+            // fill
+            height={500}
+            width={500}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             alt={categoryName}
             priority

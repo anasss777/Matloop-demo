@@ -19,7 +19,7 @@ const Menu = ({ href, text }: Props) => {
       <Link
         locale={locale}
         href={href}
-        className={`ud-menu-scroll flex py-2 font-medium lg:font-bold text-base group-hover:text-primary lg:inline-flex lg:py-6
+        className={`flex py-2 font-medium group-hover:text-primary lg:inline-flex lg:py-1
         lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-10 ${
           locale === "ar" && "rtl"
         }`}

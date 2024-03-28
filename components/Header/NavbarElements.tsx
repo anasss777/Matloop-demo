@@ -61,6 +61,10 @@ const NavbarElements = () => {
           }`}
         >
           <Menu text={t("about")} href="/about-us" />
+          <Menu text={t("jobs")} href="/jobs" />
+          <Menu text={t("cars")} href="/cars" />
+          <Menu text={t("realEstates")} href="/real-estate" />
+          <Menu text={t("electronics")} href="/electronic-devices" />
           <Menu text={t("contact")} href="/contact-us" />
 
           <div className="border-t border-t-primary w-[90%] justify-center mb-1 mx-auto lg:hidden">

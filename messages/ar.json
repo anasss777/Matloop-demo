@@ -11,7 +11,17 @@
     },
     "nav": {
         "about": "عنا",
-        "contact": "تواصل معنا"
+        "contact": "تواصل معنا",
+        "jobs": "وظائف",
+        "cars": "سيارات",
+        "realEstates": "عقارات",
+        "electronics": "أجهزة إلكترونية"
+    },
+    "topDeals": {
+        "cars": "سيارات",
+        "jobs": "وظائف",
+        "realEstates": "عقارات",
+        "electronics": "أجهزة إلكترونية"
     },
     "accountHeader": {
         "signIn": "تسجيل الدخول",
@@ -54,7 +64,9 @@
         "description": "وصف المطلوب...",
         "submit": "نشر المطلوب",
         "edit": "تعديل",
-        "cancel": "إلغاء"
+        "cancel": "إلغاء",
+        "postEdited": "تم تعديل المنشور بنجاح",
+        "ok": "حسناً"
     },
     "carType": {
         "Sedan": "سيدان",
@@ -75,6 +87,8 @@
         "priceRange": "السعر: ",
         "yearRange": "سنة الصنع: ",
         "maxDistance": "عدد الكيلومترات: ",
+        "kiloMeter": "كيلومتر",
+        "sar": "ريال سعودي",
         "gearType": "عصا القيادة: ",
         "region": "العنوان: ",
         "commentContent": "أضف تعليقاً...",
@@ -84,6 +98,8 @@
         "filesError": "لا يمكن إضافة أكثر من 3 ملفات!",
         "seeAllComments": "كل التعليقات",
         "signUp": "أنشى حساباً لتتمكن من إضافة تعليق",
+        "delete": "حذف",
+        "edit": "تعديل",
         "save": "حفظ",
         "cancel": "إلغاء",
         "sure": "هل أنت متأكد؟",

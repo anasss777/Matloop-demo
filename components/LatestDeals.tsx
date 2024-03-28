@@ -28,23 +28,27 @@ const LatestDeals = () => {
   }, []);
 
   return (
-    <div className="flex flex-col w-full h-fit pb-20 pt-10 px-5">
+    <div className="flex flex-col w-full h-fit pb-20 pt-10">
       <h1 className="text-xl mt-5 font-semibold text-[#4682b4] flex flex-row justify-between">
         أحدث الصفقات
       </h1>
-      {posts?.map((post, index) => (
-        <PostCard
-          key={index}
-          posterName={post.poster.name}
-          posterImage={post.poster.profileImageSrc}
-          post={post}
-          allowImg
-        />
-      ))}
+      <div
+        className={`flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 justify-center items-start gap-10`}
+      >
+        {posts?.slice(0, 2).map((post, index) => (
+          <PostCard
+            key={index}
+            posterName={post.poster.name}
+            posterImage={post.poster.profileImageSrc}
+            post={post}
+            allowImg
+          />
+        ))}
+      </div>
 
       <Link
         href="/"
-        className="bg-[#4682b4] text-white py-2 px-3 rounded-3xl text-center"
+        className="bg-[#4682b4] text-white py-2 px-3 rounded-3xl text-center btn2 mx-auto"
       >
         رؤية الكل
       </Link>

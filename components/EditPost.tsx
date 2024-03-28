@@ -12,6 +12,7 @@ import GearStickType from "./Cars/GearStickType";
 import FuelType from "./Cars/FuelType";
 import CountriesSelector from "./CountriesSelector";
 import { EditCarPost } from "@/utils/post";
+import Swal from "sweetalert2";
 
 type Props = {
   openEditPost: boolean;
@@ -273,7 +274,7 @@ const EditPost = ({ openEditPost, setOpenEditPost, post }: Props) => {
           <div className={`flex flex-row gap-2 mb-10 ${!isArabic && "mb20"}`}>
             <button
               className={`btn2 bg-secondary shadow-lg`}
-              onClick={() =>
+              onClick={() => {
                 EditCarPost({
                   postId: post.postId,
                   postTitle,
@@ -289,8 +290,18 @@ const EditPost = ({ openEditPost, setOpenEditPost, post }: Props) => {
                   city,
                   fuelType,
                   description,
-                })
-              }
+                });
+                Swal.fire({
+                  text: t("postEdited"),
+                  icon: "success",
+                  confirmButtonColor: "#4682b4",
+                  confirmButtonText: t("ok"),
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    setOpenEditPost(!openEditPost);
+                  }
+                });
+              }}
             >
               {t("edit")}
             </button>

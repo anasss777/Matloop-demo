@@ -8,12 +8,16 @@ import {
 } from "@/utils/animations";
 import { motion } from "framer-motion";
 import React from "react";
+import SearchInput from "./SearchInput";
 
 const Hero = () => {
   return (
     <div>
-      <div className="w-full px-12 pb-5 pt-10 bg-teal-500 rounded-ee-[100px] border-t border-teal-200">
-        <h1 className="text-5xl font-bold text-teal-200">
+      <div
+        className="flex flex-col justify-center items-center w-full px-12 pb-5 pt-10 bg-teal-500 rounded-ee-[100px] rounded-es-[100px] shadow-md border border-t-0
+      border-teal-200"
+      >
+        <h1 className="text-5xl font-bold text-teal-200 mb-12 w-full sm:w-[70%] md:w-1/2 lg:w-[30%]">
           <motion.span
             variants={fedeInAnimationVariants1}
             initial="initial"
@@ -42,6 +46,9 @@ const Hero = () => {
             قدم ما لديك
           </motion.span>
         </h1>
+
+        <SearchInput />
+
         <motion.p
           variants={fedeInAnimationVariants4}
           initial="initial"

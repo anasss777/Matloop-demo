@@ -25,9 +25,8 @@ const EditComment = ({
 
   return (
     <div
-      className={`flex flex-col justify-between items-center gap-1 bg-gray-200 m-5 rounded-lg overflow-y-auto h-[90vh] w-full mx-auto p-2 ${
-        isArabic && "rtl"
-      }`}
+      className={`flex flex-col justify-between items-center gap-1 bg-gray-200 m-5 rounded-lg overflow-y-auto h-[90vh] max-w-[400px] mx-auto
+      p-2 ${isArabic && "rtl"}`}
     >
       <div className={`flex flex-col justify-center items-center w-full`}>
         <div className={`flex flex-col justify-center w-full`}>

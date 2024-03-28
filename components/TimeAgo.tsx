@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 
 interface Props {
   postDate: Date;
+  textSize?: string;
+  textcolor?: string;
 }
 
-const TimeAgo: React.FC<Props> = ({ postDate }) => {
+const TimeAgo: React.FC<Props> = ({ postDate, textSize, textcolor }) => {
   const [timeAgo, setTimeAgo] = useState<string>("");
   const locale = useLocale();
   const isArabic = locale === "ar";
@@ -105,7 +107,11 @@ const TimeAgo: React.FC<Props> = ({ postDate }) => {
     return () => clearInterval(intervalId);
   }, [isArabic, postDate]);
 
-  return <span>{timeAgo}</span>;
+  return (
+    <span style={{ fontSize: `${textSize}`, color: `${textcolor}` }}>
+      {timeAgo}
+    </span>
+  );
 };
 
 export default TimeAgo;

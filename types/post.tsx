@@ -19,4 +19,5 @@ export type CarPost = {
   comments: Comment[];
   reports: string[];
   isPromoted: boolean;
+  category: string;
 };

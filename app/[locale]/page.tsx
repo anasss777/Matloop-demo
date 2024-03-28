@@ -6,9 +6,8 @@ import TopDeals from "@/components/TopDeals";
 
 export default function Home() {
   return (
-    <main className="rtl">
+    <main className="rtl px-2 md:px-10 lg:px-20">
       <Hero />
-      <SearchInput />
       <TopDeals />
       <Categories />
       <LatestDeals />

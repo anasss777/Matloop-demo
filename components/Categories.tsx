@@ -24,10 +24,11 @@ const Categories = () => {
       pageHref: "/electronic-devices",
     },
   ];
+
   return (
     <div className="flex flex-col">
-      <p className="text-xl mt-5 mr-5 font-semibold text-[#4682b4]">الأقسام</p>
-      <div className="grid grid-rows-2 grid-cols-2 justify-center mx-2">
+      <p className="text-xl my-5 mr-5 font-semibold text-[#4682b4]">الأقسام</p>
+      <div className="grid grid-rows-2 grid-cols-2 gap-6 lg:grid-rows-1 lg:grid-cols-4 justify-center mx-2">
         {categoriesInfo.map((category, index) => (
           <CategoryCard
             key={index}
