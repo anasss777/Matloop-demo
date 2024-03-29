@@ -35,7 +35,7 @@ const LatestDeals = () => {
       <div
         className={`flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 justify-center items-start gap-10`}
       >
-        {posts?.slice(0, 2).map((post, index) => (
+        {posts?.slice(0, 3).map((post, index) => (
           <PostCard
             key={index}
             posterName={post.poster.name}

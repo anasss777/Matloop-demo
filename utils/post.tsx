@@ -12,6 +12,7 @@ type Props = {
   maxPrice: string;
   minYear: string;
   maxYear: string;
+  minDistance: string;
   maxDistance: string;
   gearType: string[];
   selectedCountry: string;
@@ -29,6 +30,7 @@ type PropsEdit = {
   maxPrice: string;
   minYear: string;
   maxYear: string;
+  minDistance: string;
   maxDistance: string;
   gearType: string[];
   selectedCountry: string;
@@ -46,6 +48,7 @@ export const addCarPost = ({
   maxPrice,
   minYear,
   maxYear,
+  minDistance,
   maxDistance,
   gearType,
   selectedCountry,
@@ -79,7 +82,7 @@ export const addCarPost = ({
                   Number(minYear) || undefined,
                   Number(maxYear) || undefined,
                 ],
-                maxDistance,
+                distanceRange: [Number(minDistance), Number(maxDistance)],
                 gearType,
                 region: `${selectedCountry}, ${city}`,
                 fuelType,
@@ -125,6 +128,7 @@ export const EditCarPost = async ({
   maxPrice,
   minYear,
   maxYear,
+  minDistance,
   maxDistance,
   gearType,
   selectedCountry,
@@ -149,7 +153,7 @@ export const EditCarPost = async ({
       carType,
       priceRange: [Number(minPrice), Number(maxPrice)],
       yearRange: [Number(minYear) || undefined, Number(maxYear) || undefined],
-      maxDistance,
+      distanceRange: [Number(minDistance), Number(maxDistance)],
       gearType,
       region: `${selectedCountry}, ${city}`,
       fuelType,

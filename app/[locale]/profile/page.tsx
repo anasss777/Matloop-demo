@@ -3,15 +3,21 @@
 import React, { useEffect, useState } from "react";
 import firebase from "@/firebase";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { handleSignOut } from "@/utils/auth";
+import Image from "next/image";
+import { CarPost } from "@/types/post";
+import PostCard from "@/components/PostCard";
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
 
 const Profile: React.FC = () => {
   const [user, setUser] = useState<firebase.User | null>(null);
   const [userData, setUserData] = useState<any>(null);
+  const [posts, setPosts] = useState<CarPost[]>();
   const locale = useLocale();
+  const t = useTranslations("profile");
+  const isArabic = locale === "ar";
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
@@ -39,6 +45,29 @@ const Profile: React.FC = () => {
         });
     }
   }, [user]);
+
+  useEffect(() => {
+    if (userData) {
+      const fetchPosts = async () => {
+        // Use Promise.all to fetch all posts concurrently
+        const postsPromises = userData?.posts?.map((id: string) =>
+          firebase.firestore().collection("posts").doc(id).get()
+        );
+
+        const postsSnapshots = await Promise?.all(postsPromises);
+
+        const PostsData: CarPost[] = postsSnapshots?.map(
+          (doc) =>
+            ({
+              ...doc.data(),
+            } as CarPost)
+        );
+
+        setPosts(PostsData);
+      };
+      fetchPosts();
+    }
+  }, [userData]);
 
   if (!user) {
     return (
@@ -69,30 +98,63 @@ const Profile: React.FC = () => {
   }
 
   return (
-    <div className={`bg-third`}>
-      <h1>Profile</h1>
-      <p>
-        <strong>Name:</strong> {userData.name}
-      </p>
-      <p>
-        <strong>Email:</strong> {user.email}
-      </p>
-      <p>
-        <strong>Username:</strong> {userData.username}
-      </p>
-      <p>
-        <strong>Phone Number:</strong> {userData.phoneNumber}
-      </p>
-      <p>
-        <strong>Country:</strong> {userData.country}
-      </p>
-
-      <button
-        onClick={handleSignOut}
-        className={`btn2 bg-red-700 hover:bg-red-700/50`}
+    <div
+      className={`flex flex-col w-full h-fit justify-center items-center pb-20 pt-10 px-2 md:px-10 lg:px-20 ${
+        isArabic && "rtl"
+      }`}
+    >
+      <div
+        className={`flex flex-col w-fit h-fit justify-center items-center shadow-lg p-5 rounded-lg bg-secondary/20`}
       >
-        Sign out
-      </button>
+        {userData.profileImageSrc ? (
+          <Image
+            src={userData.profileImageSrc}
+            alt="Poster profile image"
+            height={400}
+            width={400}
+            className="object-scale-down h-24 w-24 rounded-full shadow-lg"
+          />
+        ) : (
+          <Image
+            src="/images/profile.png"
+            alt="Poster profile image"
+            height={400}
+            width={400}
+            className="object-scale-down h-24 w-24"
+          />
+        )}
+
+        <p>
+          {" "}
+          <span className={`text-secondary font-bold`}>{t("name")}</span>{" "}
+          {`${userData.name}`}
+        </p>
+        <p>
+          {" "}
+          <span className={`text-secondary font-bold`}>
+            {t("username")}
+          </span>{" "}
+          {`${userData?.username}`}
+        </p>
+        <p>
+          {" "}
+          <span className={`text-secondary font-bold`}>{t("email")}</span>{" "}
+          {`${userData?.email}`}
+        </p>
+      </div>
+
+      <div
+        className={`flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 justify-center items-start gap-10`}
+      >
+        {posts?.map((post, index) => (
+          <PostCard
+            key={index}
+            posterName={post.poster.name}
+            posterImage={post.poster.profileImageSrc}
+            post={post}
+          />
+        ))}
+      </div>
     </div>
   );
 };

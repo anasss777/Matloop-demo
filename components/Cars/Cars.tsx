@@ -1,5 +1,4 @@
 "use client";
-
 import { useLocale, useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 import CarType from "./CarType";
@@ -12,26 +11,14 @@ import { addCarPost } from "@/utils/post";
 import CategorySelector from "../CategorySelector";
 import firebase from "@/firebase";
 import { useRouter } from "next/navigation";
-import { svgLoading } from "../svgsPath";
 
-const Cars = () => {
+export const Cars = () => {
   const t = useTranslations("newPost");
   const locale = useLocale();
   const isArabic = locale === "ar";
   const [poster, setPoster] = useState<any>();
-  const [isLoading, setIsLoading] = useState(true);
 
   const router = useRouter();
-
-  useEffect(() => {
-    // Simulate a 2-second loading delay
-    const loadingTimer = setTimeout(() => {
-      setIsLoading(false);
-    }, 100);
-
-    // Clear the timer if the component unmounts
-    return () => clearTimeout(loadingTimer);
-  }, []);
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
@@ -65,15 +52,15 @@ const Cars = () => {
 
   const [carType, setCarType] = useState<string[]>([]);
 
-  const [minPrice, setMinPrice] = useState("100000");
-  const [maxPrice, setMaxPrice] = useState("100000");
+  const [minPrice, setMinPrice] = useState("0");
+  const [maxPrice, setMaxPrice] = useState("0");
 
   const currentYear = new Date().getFullYear();
   const [minYear, setMinYear] = useState("1886");
   const [maxYear, setMaxYear] = useState(String(currentYear));
 
-  const [minDistance, setMinDistance] = useState("100000");
-  const [maxDistance, setMaxDistance] = useState("100000");
+  const [minDistance, setMinDistance] = useState("0");
+  const [maxDistance, setMaxDistance] = useState("0");
   const [gearType, setGearType] = useState<string[]>([]);
 
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -109,9 +96,9 @@ const Cars = () => {
     }
 
     if (maxp > 500000) {
-      alert("Maximum price cannot be greater than 5000000");
-      setMaxPrice("5000000");
-      maxp = 5000000;
+      alert("Maximum price cannot be greater than 500000");
+      setMaxPrice("500000");
+      maxp = 500000;
     }
 
     if (minp > maxp) {
@@ -148,33 +135,6 @@ const Cars = () => {
       if (miny < 1886) {
         setMinYear("1886");
         miny = 1886;
-      }
-    }
-  };
-
-  const handleDistanceChange = () => {
-    let mind = parseInt(minDistance);
-    let maxd = parseInt(maxDistance);
-
-    if (mind < 0) {
-      alert("Minimum distance cannot be less than 0");
-      setMinDistance("0");
-      mind = 0;
-    }
-
-    if (maxd > 1000000000) {
-      alert("Maximum distance cannot be greater than 1000000000");
-      setMaxDistance("1000000000");
-      maxd = 1000000000;
-    }
-
-    if (mind > maxd) {
-      setMinDistance(maxd.toString());
-      mind = maxd;
-
-      if (mind < 0) {
-        setMinDistance("0");
-        mind = 0;
       }
     }
   };
@@ -241,7 +201,7 @@ const Cars = () => {
         setMinValue={setMinPrice}
         setMaxValue={setMaxPrice}
         min="0"
-        max="5000000"
+        max="500000"
         handleInputChange={handlePriceChange}
         currency
       />
@@ -264,20 +224,27 @@ const Cars = () => {
       <h2 className={`text-primary text-lg font-bold mt-20`}>
         {t("maxDistance")}
       </h2>
-      <Ranger
-        minValue={minDistance}
-        maxValue={maxDistance}
-        setMinValue={setMinDistance}
-        setMaxValue={setMaxDistance}
-        min="0"
-        max="1000000000"
-        handleInputChange={handleDistanceChange}
-      />
+
+      <Ranger />
+
+      {/* <div className={`flex flex-col gap-2 justify-start mt-5 mb-20`}>
+              <span
+                className={`flex justify-start text-secondary font-bold ml-2 ${
+                  isArabic && "mr-2"
+                }`}
+              >
+                {`${maxDistance} ${t("kiloMeter")}`}
+              </span>
+              <input
+                type="number"
+                value={maxDistance}
+                onChange={(e) => setMaxDistance(e.target.value)}
+                className="w-full border border-secondary/70 px-2 py-1 rounded-md ltr"
+              />
+            </div> */}
 
       {/* Gear Type */}
-      <h2 className={`text-primary text-lg font-bold mt-20`}>
-        {t("gearType")}
-      </h2>
+      <h2 className={`text-primary text-lg font-bold`}>{t("gearType")}</h2>
       <GearStickType
         handleCheckboxChange={handleGearTypeChecked}
         gearType={gearType}
@@ -316,7 +283,7 @@ const Cars = () => {
 
       <button
         className={`btn2 bg-secondary mb-20`}
-        onClick={() => {
+        onClick={() =>
           addCarPost({
             poster,
             postTitle,
@@ -326,29 +293,17 @@ const Cars = () => {
             maxPrice,
             minYear,
             maxYear,
-            minDistance,
             maxDistance,
             gearType,
             selectedCountry,
             city,
             fuelType,
             description,
-          });
-          !isLoading && router.push("/cars");
-        }}
+          })
+        }
       >
-        {isLoading ? (
-          <span className={`flex flex-row items-center gap-1`}>
-            {t("loading")} {svgLoading}
-          </span>
-        ) : (
-          <span className={`flex flex-row items-center gap-1`}>
-            {t("submit")}
-          </span>
-        )}
+        {t("submit")}
       </button>
     </div>
   );
 };
-
-export default Cars;

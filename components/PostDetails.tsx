@@ -74,7 +74,8 @@ const PostDetails = (props: Props) => {
         >
           {svgMileage}
         </span>{" "}
-        {props.post?.maxDistance} {t("kiloMeter")}
+        {props.post?.distanceRange[0]} - {props.post?.distanceRange[1]}{" "}
+        {t("kiloMeter")}
       </p>
 
       {/* Gear type */}

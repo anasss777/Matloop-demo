@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { svgDeleteBlue, svgEditBlue, svgMenu } from "./svgsPath";
 import Popup from "reactjs-popup";
 import firebase from "@/firebase";
@@ -20,6 +20,7 @@ const PostMenu = ({ post }: Props) => {
   const t = useTranslations("postCard");
   const [canEdit, setCanEdit] = useState(false);
   const [openEditPost, setOpenEditPost] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
@@ -31,6 +32,21 @@ const PostMenu = ({ post }: Props) => {
     // Cleanup subscription on unmount
     return () => unsubscribe();
   }, [post.poster.userId]);
+
+  const menuRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setOpenMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleDeletePost = () => {
     Swal.fire({
@@ -58,15 +74,21 @@ const PostMenu = ({ post }: Props) => {
   return (
     <div className="justify-end flex">
       <div
-        className={`group relative block hover:contrast-[110%] contrast-[95%] py-1 ${
-          locale === "ar" && "rtl"
+        ref={menuRef}
+        className={`relative block hover:contrast-[110%] contrast-[95%] py-1 ${
+          isArabic && "rtl"
         }`}
       >
-        {canEdit && svgMenu}
+        {canEdit && (
+          <button onClick={() => setOpenMenu(!openMenu)}>{svgMenu}</button>
+        )}
         <div
-          className={`border border-secondary w-fit rounded-md bg-[#cfdfeb] p-1 transition-[top] duration-300 group-hover:opacity-100
-          invisible absolute top-[20%] block opacity-0 shadow-lg group-hover:visible group-hover:top-[50%] ${
+          className={`border border-secondary w-fit rounded-md bg-[#cfdfeb] p-1 transition-[top] duration-300 absolute block shadow-lg ${
             isArabic ? "left-0" : "right-0"
+          } ${
+            openMenu
+              ? "opacity-100 visible top-[60%]"
+              : "opacity-0 invisible top-[20%]"
           }`}
         >
           {/* Delete a post */}

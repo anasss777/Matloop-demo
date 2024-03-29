@@ -10,7 +10,7 @@ export type CarPost = {
   carType: string[];
   priceRange: number[];
   yearRange: number[];
-  maxDistance: string;
+  distanceRange: number[];
   gearType: string[];
   fuelType: string[];
   region: string;

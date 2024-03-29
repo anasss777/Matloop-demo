@@ -1,7 +1,6 @@
 import Categories from "@/components/Categories";
 import Hero from "@/components/Hero";
 import LatestDeals from "@/components/LatestDeals";
-import SearchInput from "@/components/SearchInput";
 import TopDeals from "@/components/TopDeals";
 
 export default function Home() {

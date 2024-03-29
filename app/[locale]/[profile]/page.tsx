@@ -73,7 +73,7 @@ const Profile = ({ params }: Props) => {
 
   return (
     <div
-      className={`flex flex-col w-full h-fit justify-center items-center pb-20 pt-10 px-5 ${
+      className={`flex flex-col w-full h-fit justify-center items-center pb-20 pt-10 px-2 md:px-10 lg:px-20 ${
         isArabic && "rtl"
       }`}
     >
@@ -117,14 +117,18 @@ const Profile = ({ params }: Props) => {
         </p>
       </div>
 
-      {posts?.map((post, index) => (
-        <PostCard
-          key={index}
-          posterName={post.poster.name}
-          posterImage={post.poster.profileImageSrc}
-          post={post}
-        />
-      ))}
+      <div
+        className={`flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 justify-center items-start gap-10`}
+      >
+        {posts?.map((post, index) => (
+          <PostCard
+            key={index}
+            posterName={post.poster.name}
+            posterImage={post.poster.profileImageSrc}
+            post={post}
+          />
+        ))}
+      </div>
     </div>
   );
 };

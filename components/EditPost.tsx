@@ -36,7 +36,9 @@ const EditPost = ({ openEditPost, setOpenEditPost, post }: Props) => {
   const [minYear, setMinYear] = useState(String(post.yearRange[0]));
   const [maxYear, setMaxYear] = useState(String(post.yearRange[1]));
 
-  const [maxDistance, setMaxDistance] = useState(post.maxDistance);
+  // const [maxDistance, setMaxDistance] = useState(post.maxDistance);
+  const [minDistance, setMinDistance] = useState(String(post.distanceRange[0]));
+  const [maxDistance, setMaxDistance] = useState(String(post.distanceRange[1]));
   const [gearType, setGearType] = useState(post.gearType);
 
   const [selectedCountry, setSelectedCountry] = useState(
@@ -74,9 +76,9 @@ const EditPost = ({ openEditPost, setOpenEditPost, post }: Props) => {
     }
 
     if (maxp > 500000) {
-      alert("Maximum price cannot be greater than 500000");
-      setMaxPrice("500000");
-      maxp = 500000;
+      alert("Maximum price cannot be greater than 5000000");
+      setMaxPrice("5000000");
+      maxp = 5000000;
     }
 
     if (minp > maxp) {
@@ -117,6 +119,33 @@ const EditPost = ({ openEditPost, setOpenEditPost, post }: Props) => {
     }
   };
 
+  const handleDistanceChange = () => {
+    let mind = parseInt(minDistance);
+    let maxd = parseInt(maxDistance);
+
+    if (mind < 0) {
+      alert("Minimum distance cannot be less than 0");
+      setMinDistance("0");
+      mind = 0;
+    }
+
+    if (maxd > 1000000000) {
+      alert("Maximum distance cannot be greater than 1000000000");
+      setMaxDistance("1000000000");
+      maxd = 1000000000;
+    }
+
+    if (mind > maxd) {
+      setMinDistance(maxd.toString());
+      mind = maxd;
+
+      if (mind < 0) {
+        setMinDistance("0");
+        mind = 0;
+      }
+    }
+  };
+
   const handleGearTypeChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (e.target.checked) {
@@ -145,9 +174,8 @@ const EditPost = ({ openEditPost, setOpenEditPost, post }: Props) => {
 
   return (
     <div
-      className={`flex flex-col justify-start items-center gap-1 bg-gray-200 m-5 rounded-lg overflow-y-auto h-[90vh] w-full mx-auto p-2 ${
-        isArabic && "rtl"
-      }`}
+      className={`flex flex-col justify-start items-center gap-1 bg-gray-200 m-5 rounded-lg overflow-y-auto max-w-[400px] h-[90vh] w-full
+      mx-auto p-2 ${isArabic && "rtl"}`}
     >
       <div className={`flex flex-col justify-center w-full`}>
         <button onClick={() => setOpenEditPost(!openEditPost)}>
@@ -195,7 +223,7 @@ const EditPost = ({ openEditPost, setOpenEditPost, post }: Props) => {
             setMinValue={setMinPrice}
             setMaxValue={setMaxPrice}
             min="0"
-            max="500000"
+            max="5000000"
             handleInputChange={handlePriceChange}
             currency
           />
@@ -218,21 +246,15 @@ const EditPost = ({ openEditPost, setOpenEditPost, post }: Props) => {
           <h2 className={`text-primary text-lg font-bold mt-20 text-center`}>
             {t("maxDistance")}
           </h2>
-          <div className={`flex flex-col gap-2 justify-start mt-5 mb-20`}>
-            <span
-              className={`flex justify-start text-secondary font-bold ml-2 ${
-                isArabic && "mr-2"
-              }`}
-            >
-              {`${maxDistance} ${t("kiloMeter")}`}
-            </span>
-            <input
-              type="number"
-              value={maxDistance}
-              onChange={(e) => setMaxDistance(e.target.value)}
-              className="w-full border border-secondary/70 px-2 py-1 rounded-md ltr"
-            />
-          </div>
+          <Ranger
+            minValue={minDistance}
+            maxValue={maxDistance}
+            setMinValue={setMinDistance}
+            setMaxValue={setMaxDistance}
+            min="0"
+            max="1000000000"
+            handleInputChange={handleDistanceChange}
+          />
 
           {/* Gear Type */}
           <h2 className={`text-primary text-lg font-bold`}>{t("gearType")}</h2>
@@ -284,6 +306,7 @@ const EditPost = ({ openEditPost, setOpenEditPost, post }: Props) => {
                   maxPrice,
                   minYear,
                   maxYear,
+                  minDistance,
                   maxDistance,
                   gearType,
                   selectedCountry,
