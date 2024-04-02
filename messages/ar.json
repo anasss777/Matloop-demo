@@ -69,6 +69,67 @@
         "postEdited": "تم تعديل المنشور بنجاح",
         "ok": "حسناً"
     },
+    "newElectonicDevicePost": {
+        "postTitle": "ضع عنواناً لمطلوبك",
+        "postTitlePlaceholder": "مطلوب...",
+        "otherDevice": "حدد نوع الجهاز",
+        "deviceType": "إختر نوع الجهاز",
+        "deviceBrand": "إختر ماركة الجهاز",
+        "otherDeviceBrand": "حدد ماركة الجهاز",
+        "priceRange":"السعر",
+        "deviceCondition": "حالة الجهاز",
+        "deviceOS": "نظام التشغيل",
+        "otherDeviceOS": "حدد نظام التشغيل",
+        "deviceStorage": "مساحة التخزين",
+        "otherDeviceStorage": "حدد مساحة التخزين",
+        "otherSpecs": "مواصفات إضافية",
+        "description": "وصف المطلوب...",
+        "loading": "جاري النشر",
+        "submit": "نشر المطلوب"
+    },
+    "deviceType": {
+        "deviceType": "إختر نوع الجهاز",
+        "smartphone": "هاتف ذكي",
+        "tablet": "تابليت",
+        "laptop": "لابتوب",
+        "desktop": "حاسوب",
+        "smartwatch": "ساعة ذكية",
+        "earphone": "سماعة",
+        "others": "أخرى"
+    },
+    "deviceBrand": {
+        "deviceBrand": "إختر ماركة الجهاز",
+        "iphone": "ايفون",
+        "samsung": "سامسنج",
+        "huawei": "هواوي",
+        "xiaomi": "شاومي",
+        "mac": "ابل ماك",
+        "hp": "اتش بي",
+        "dell": "ديل",
+        "lenovo": "لينوفو",
+        "asus": "أسوس",
+        "acer": "آيسر",
+        "others": "أخرى"
+    },
+    "deviceCondition": {
+      "new": "جديد",  
+      "refurbished": "مجدد",  
+      "used": "مستعمل"  
+    },
+    "deviceOS": {
+        "deviceOS": "نظام التشغيل",
+        "iOS": "آي أو إس (ايفون)",
+        "android": "اندرويد",
+        "windows": "ويندوز",
+        "macOS": "ماك أو إس (ابل)",
+        "others": "أخرى"
+    },
+    "deviceStorage": {
+        "deviceStorage": "مساحة التخزين",
+        "GB": "غيغابايت",
+        "TB": "تيرابايت",
+        "others": "أخرى"
+    },
     "carType": {
         "Sedan": "سيدان",
         "SUV": "سيارة رباعية الدفع (SUV)",

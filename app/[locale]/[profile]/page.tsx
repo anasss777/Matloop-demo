@@ -45,7 +45,7 @@ const Profile = ({ params }: Props) => {
   }, [id]);
 
   useEffect(() => {
-    if (profile) {
+    if (profile && profile.posts) {
       const fetchPosts = async () => {
         // Use Promise.all to fetch all posts concurrently
         const postsPromises = profile?.posts?.map((id) =>
@@ -108,7 +108,7 @@ const Profile = ({ params }: Props) => {
           <span className={`text-secondary font-bold`}>
             {t("username")}
           </span>{" "}
-          {`${profile?.username}`}
+          {`${profile?.username ? profile?.username : profile?.name}`}
         </p>
         <p>
           {" "}

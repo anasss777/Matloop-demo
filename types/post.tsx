@@ -21,3 +21,22 @@ export type CarPost = {
   isPromoted: boolean;
   category: string;
 };
+
+export type DevicePost = {
+  postId: string;
+  createdAt: Timestamp;
+  postTitle: string;
+  deviceType: string;
+  deviceBrand: string;
+  priceRange: number[];
+  condition: string[];
+  deviceOS: string;
+  deviceStorage: string;
+  region: string;
+  description: string;
+  poster: Profile;
+  comments: Comment[];
+  reports: string[];
+  isPromoted: boolean;
+  category: string;
+};

@@ -74,13 +74,13 @@ const ImagesSlider = ({ images }: Props) => {
           ))}
         </div>
 
-        <div className="relative w-full h-fit">
+        <div className="relative w-full h-fit mt-5">
           <Image
             src={images[selectedImageIndex]}
             width={1200}
             height={800}
             alt={`Image ${selectedImageIndex + 1}`}
-            className="object-scale-down h-[700px] w-full"
+            className="object-scale-down max-h-[600px] w-full"
           />
         </div>
       </div>
