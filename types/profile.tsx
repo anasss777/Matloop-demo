@@ -10,5 +10,6 @@ export type Profile = {
   password: string;
   contactInfo: string[];
   posts: string[];
+  electronicDevicesPosts: string[];
   comments: string[];
 };

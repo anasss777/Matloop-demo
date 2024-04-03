@@ -4,9 +4,10 @@ import { Profile } from "@/types/profile";
 import React, { useEffect, useState } from "react";
 import firebase from "@/firebase";
 import Image from "next/image";
-import { CarPost } from "@/types/post";
+import { CarPost, DevicePost } from "@/types/post";
 import PostCard from "@/components/PostCard";
 import { useLocale, useTranslations } from "next-intl";
+import EDPostCard from "@/components/ElectronicDevices/EDPostCard";
 
 type Props = {
   params: { profile: string };
@@ -15,7 +16,8 @@ type Props = {
 const Profile = ({ params }: Props) => {
   const id = params.profile;
   const [profile, setProfile] = useState<Profile | null>(null);
-  const [posts, setPosts] = useState<CarPost[]>();
+  const [carsPosts, setCarsPosts] = useState<CarPost[]>([]);
+  const [devicesPosts, setDevicesPosts] = useState<DevicePost[]>([]);
   const t = useTranslations("profile");
   const locale = useLocale();
   const isArabic = locale === "ar";
@@ -61,7 +63,30 @@ const Profile = ({ params }: Props) => {
             } as CarPost)
         );
 
-        setPosts(PostsData);
+        setCarsPosts(PostsData);
+      };
+      fetchPosts();
+    }
+  }, [profile]);
+
+  useEffect(() => {
+    if (profile && profile.electronicDevicesPosts) {
+      const fetchPosts = async () => {
+        // Use Promise.all to fetch all posts concurrently
+        const postsPromises = profile?.electronicDevicesPosts?.map((id) =>
+          firebase.firestore().collection("electronicDevices").doc(id).get()
+        );
+
+        const postsSnapshots = await Promise?.all(postsPromises);
+
+        const PostsData: DevicePost[] = postsSnapshots?.map(
+          (doc) =>
+            ({
+              ...doc.data(),
+            } as DevicePost)
+        );
+
+        setDevicesPosts(PostsData);
       };
       fetchPosts();
     }
@@ -118,16 +143,27 @@ const Profile = ({ params }: Props) => {
       </div>
 
       <div
-        className={`flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 justify-center items-start gap-10`}
+        className={`flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center items-start gap-10 w-full`}
       >
-        {posts?.map((post, index) => (
-          <PostCard
-            key={index}
-            posterName={post.poster.name}
-            posterImage={post.poster.profileImageSrc}
-            post={post}
-          />
-        ))}
+        {[...carsPosts, ...devicesPosts]
+          ?.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
+          .map((post, index) =>
+            post.category === "cars" ? (
+              <PostCard
+                key={index}
+                posterName={post.poster.name}
+                posterImage={post.poster.profileImageSrc}
+                post={post as CarPost}
+              />
+            ) : (
+              <EDPostCard
+                key={index}
+                posterName={post.poster.name}
+                posterImage={post.poster.profileImageSrc}
+                post={post as DevicePost}
+              />
+            )
+          )}
       </div>
     </div>
   );

@@ -198,6 +198,13 @@ const EDCommentCard = ({ post }: Props) => {
           ) : (
             // Showing one comment
             <div className="mt-[38px] w-full">
+              {(comments?.length === 0 || comments === undefined) && (
+                <p
+                  className={`text-gray-200 font-semibold flex justify-center`}
+                >
+                  {t("noCommentsYet")}
+                </p>
+              )}
               {comments && comments[0] && (
                 <EDCommentSection
                   commentUpdated={commentUpdated}

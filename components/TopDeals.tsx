@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import SmallCard from "./SmallCard";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import { useLocale } from "next-intl";
-import { CarPost } from "@/types/post";
+import { CarPost, DevicePost } from "@/types/post";
 import firebase from "@/firebase";
 
 const locales = ["ar", "en"];
@@ -12,7 +12,8 @@ const { Link } = createSharedPathnamesNavigation({ locales });
 
 const TopDeals = () => {
   const locale = useLocale();
-  const [posts, setPosts] = useState<CarPost[]>();
+  const [carsPosts, setCarsPosts] = useState<CarPost[]>([]);
+  const [devicesPosts, setDevicesPosts] = useState<DevicePost[]>([]);
 
   useEffect(() => {
     const unsubscribe = firebase
@@ -25,7 +26,25 @@ const TopDeals = () => {
             ...doc.data(),
           } as CarPost);
         });
-        setPosts(newPosts); // Update posts state with the new data
+        setCarsPosts(newPosts); // Update posts state with the new data
+      });
+
+    // Unsubscribe from Firestore listener when component unmounts
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = firebase
+      .firestore()
+      .collection("electronicDevices")
+      .onSnapshot((snapshot) => {
+        const newPosts: DevicePost[] = []; // Create a new array to hold updated posts
+        snapshot.forEach((doc) => {
+          newPosts.push({
+            ...doc.data(),
+          } as DevicePost);
+        });
+        setDevicesPosts(newPosts); // Update posts state with the new data
       });
 
     // Unsubscribe from Firestore listener when component unmounts
@@ -45,9 +64,11 @@ const TopDeals = () => {
         </Link>
       </h1>
       <div className="flex flex-row gap-2 py-2 h-20 w-full overflow-x-auto">
-        {posts?.map((post, index) => (
-          <SmallCard key={index} post={post} />
-        ))}
+        {[...carsPosts, ...devicesPosts]
+          ?.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
+          .map((post, index) => (
+            <SmallCard key={index} post={post} />
+          ))}
       </div>
     </div>
   );

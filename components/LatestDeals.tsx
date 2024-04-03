@@ -3,11 +3,13 @@
 import React, { useEffect, useState } from "react";
 import PostCard from "./PostCard";
 import Link from "next/link";
-import { CarPost } from "@/types/post";
+import { CarPost, DevicePost } from "@/types/post";
 import firebase from "@/firebase";
+import EDPostCard from "./ElectronicDevices/EDPostCard";
 
 const LatestDeals = () => {
-  const [posts, setPosts] = useState<CarPost[]>();
+  const [carsPosts, setCarsPosts] = useState<CarPost[]>([]);
+  const [devicesPosts, setDevicesPosts] = useState<DevicePost[]>([]);
 
   useEffect(() => {
     const unsubscribe = firebase
@@ -20,7 +22,25 @@ const LatestDeals = () => {
             ...doc.data(),
           } as CarPost);
         });
-        setPosts(newPosts); // Update posts state with the new data
+        setCarsPosts(newPosts); // Update posts state with the new data
+      });
+
+    // Unsubscribe from Firestore listener when component unmounts
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = firebase
+      .firestore()
+      .collection("electronicDevices")
+      .onSnapshot((snapshot) => {
+        const newPosts: DevicePost[] = []; // Create a new array to hold updated posts
+        snapshot.forEach((doc) => {
+          newPosts.push({
+            ...doc.data(),
+          } as DevicePost);
+        });
+        setDevicesPosts(newPosts); // Update posts state with the new data
       });
 
     // Unsubscribe from Firestore listener when component unmounts
@@ -33,17 +53,28 @@ const LatestDeals = () => {
         أحدث الصفقات
       </h1>
       <div
-        className={`flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 justify-center items-start gap-10`}
+        className={`flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center items-start gap-10`}
       >
-        {posts?.slice(0, 3).map((post, index) => (
-          <PostCard
-            key={index}
-            posterName={post.poster.name}
-            posterImage={post.poster.profileImageSrc}
-            post={post}
-            allowImg
-          />
-        ))}
+        {[...carsPosts, ...devicesPosts]
+          .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
+          .slice(0, 4)
+          .map((post, index) =>
+            post.category === "cars" ? (
+              <PostCard
+                key={index}
+                posterName={post.poster.name}
+                posterImage={post.poster.profileImageSrc}
+                post={post as CarPost}
+              />
+            ) : (
+              <EDPostCard
+                key={index}
+                posterName={post.poster.name}
+                posterImage={post.poster.profileImageSrc}
+                post={post as DevicePost}
+              />
+            )
+          )}
       </div>
 
       <Link

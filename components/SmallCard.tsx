@@ -10,7 +10,7 @@ const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
 
 type Props = {
-  post: CarPost;
+  post: any;
 };
 
 const SmallCard = ({ post }: Props) => {
@@ -24,7 +24,7 @@ const SmallCard = ({ post }: Props) => {
     postCategory = t("jobs");
   } else if (post.category === "realEstates") {
     postCategory = t("realEstates");
-  } else if (post.category === "electronics") {
+  } else if (post.category === "electronicDevices") {
     postCategory = t("electronics");
   }
 
