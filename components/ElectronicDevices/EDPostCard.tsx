@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import React from "react";
-import { CarPost, DevicePost } from "@/types/post";
+import { DevicePost } from "@/types/post";
 import { useLocale, useTranslations } from "next-intl";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
-import { svgClock } from "./svgsPath";
-import TimeAgo from "./TimeAgo";
-import PostDetails from "./PostDetails";
-import PostMenu from "./PostMenu";
-import CommentsCard from "./CommentsCard";
+import { svgClock } from "../svgsPath";
+import TimeAgo from "../TimeAgo";
+import EDPostMenu from "./EDPostMenu";
+import EDPostDetails from "./EDPostDetails";
+import EDCommentCard from "./EDCommentCard";
 
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
@@ -21,7 +21,7 @@ type Props = {
   post: DevicePost;
 };
 
-const DevicePostCard = (props: Props) => {
+const EDPostCard = (props: Props) => {
   const t = useTranslations("devicePostCard");
   const locale = useLocale();
   const isArabic = locale === "ar";
@@ -74,19 +74,19 @@ const DevicePostCard = (props: Props) => {
           </div>
 
           {/* Edit and delete menu */}
-          {/* <PostMenu post={props.post} /> */}
+          <EDPostMenu post={props.post} />
         </div>
         <p className="text-xl font-bold mr-4">{props.post?.postTitle}</p>
         <p className="mr-4">{props.post?.description}</p>
 
         {/* Post Details */}
-        {/* <PostDetails post={props.post} /> */}
+        <EDPostDetails post={props.post} />
 
         {/* Comments section */}
-        {/* <CommentsCard post={props.post} /> */}
+        <EDCommentCard post={props.post} />
       </div>
     </div>
   );
 };
 
-export default DevicePostCard;
+export default EDPostCard;

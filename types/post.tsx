@@ -29,7 +29,7 @@ export type DevicePost = {
   deviceType: string;
   deviceBrand: string;
   priceRange: number[];
-  condition: string[];
+  deviceCondition: string[];
   deviceOS: string;
   deviceStorage: string;
   region: string;

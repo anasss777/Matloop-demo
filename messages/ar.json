@@ -85,7 +85,11 @@
         "otherSpecs": "مواصفات إضافية",
         "description": "وصف المطلوب...",
         "loading": "جاري النشر",
-        "submit": "نشر المطلوب"
+        "submit": "نشر المطلوب",
+        "edit": "تعديل",
+        "cancel": "إلغاء",
+        "postEdited": "تم تعديل المنشور بنجاح",
+        "ok": "حسناً"
     },
     "deviceType": {
         "deviceType": "إختر نوع الجهاز",
@@ -100,7 +104,7 @@
     "deviceBrand": {
         "deviceBrand": "إختر ماركة الجهاز",
         "iphone": "ايفون",
-        "samsung": "سامسنج",
+        "samsung": "سامسونج",
         "huawei": "هواوي",
         "xiaomi": "شاومي",
         "mac": "ابل ماك",
@@ -184,6 +188,9 @@
         "resume": "سيرتي الذاتية",
         "edit": "تعديل",
         "closeImage": "إغلاق"
+    },
+    "devicePostCard": {
+        "sar":"ريال سعودي"
     },
     "profile": {
         "name": "الاسم: ",

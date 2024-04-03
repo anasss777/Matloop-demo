@@ -2,19 +2,19 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import React, { useEffect, useRef, useState } from "react";
-import { svgDeleteBlue, svgEditBlue, svgMenu } from "./svgsPath";
+import { svgDeleteBlue, svgEditBlue, svgMenu } from "../svgsPath";
 import Popup from "reactjs-popup";
 import firebase from "@/firebase";
-import { CarPost } from "@/types/post";
 import Swal from "sweetalert2";
-import { deletePost } from "@/utils/post";
-import EditPost from "./EditPost";
+import { DevicePost } from "@/types/post";
+import { deleteDevicePost } from "@/utils/devicePost";
+import EDEditPost from "./EDEditPost";
 
 type Props = {
-  post: CarPost;
+  post: DevicePost;
 };
 
-const PostMenu = ({ post }: Props) => {
+const EDPostMenu = ({ post }: Props) => {
   const locale = useLocale();
   const isArabic = locale === "ar";
   const t = useTranslations("postCard");
@@ -61,7 +61,7 @@ const PostMenu = ({ post }: Props) => {
       confirmButtonText: t("yesDelete"),
     }).then((result) => {
       if (result.isConfirmed) {
-        deletePost(post);
+        deleteDevicePost(post);
         Swal.fire({
           text: t("postDeleted"),
           icon: "success",
@@ -138,7 +138,7 @@ const PostMenu = ({ post }: Props) => {
               width: "90%",
             }}
           >
-            <EditPost
+            <EDEditPost
               openEditPost={openEditPost}
               setOpenEditPost={setOpenEditPost}
               post={post}
@@ -150,4 +150,4 @@ const PostMenu = ({ post }: Props) => {
   );
 };
 
-export default PostMenu;
+export default EDPostMenu;

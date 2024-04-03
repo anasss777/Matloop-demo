@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { svgClose, svgCloseDark } from "./svgsPath";
+import { svgCloseDark } from "./svgsPath";
 import { CarPost } from "@/types/post";
 import { useLocale, useTranslations } from "next-intl";
-import CategorySelector from "./CategorySelector";
 import BrandSelector from "./Cars/BrandSelector";
 import CarType from "./Cars/CarType";
 import Ranger from "./Cars/Ranger";
@@ -36,9 +35,9 @@ const EditPost = ({ openEditPost, setOpenEditPost, post }: Props) => {
   const [minYear, setMinYear] = useState(String(post.yearRange[0]));
   const [maxYear, setMaxYear] = useState(String(post.yearRange[1]));
 
-  // const [maxDistance, setMaxDistance] = useState(post.maxDistance);
   const [minDistance, setMinDistance] = useState(String(post.distanceRange[0]));
   const [maxDistance, setMaxDistance] = useState(String(post.distanceRange[1]));
+
   const [gearType, setGearType] = useState(post.gearType);
 
   const [selectedCountry, setSelectedCountry] = useState(

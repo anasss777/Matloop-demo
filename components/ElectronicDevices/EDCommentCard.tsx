@@ -1,6 +1,6 @@
 "use client";
 
-import { CarPost } from "@/types/post";
+import { CarPost, DevicePost } from "@/types/post";
 import { useLocale, useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 import {
@@ -11,21 +11,21 @@ import {
   svgFile,
   svgImage,
   svgSend,
-} from "./svgsPath";
+} from "../svgsPath";
 import firebase from "@/firebase";
-import { addComment } from "@/utils/post";
-import CommentsSection from "./CommentsSection";
 import { Comment } from "@/types/comment";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import Popup from "reactjs-popup";
+import EDCommentSection from "./EDCommentSection";
+import { addDeviceComment } from "@/utils/devicePost";
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
 
 type Props = {
-  post: CarPost;
+  post: DevicePost;
 };
 
-const CommentsCard = ({ post }: Props) => {
+const EDCommentCard = ({ post }: Props) => {
   const t = useTranslations("postCard");
   const locale = useLocale();
   const isArabic = locale === "ar";
@@ -100,7 +100,7 @@ const CommentsCard = ({ post }: Props) => {
       return;
     }
     if (!commentsImages || !commentsFiles) {
-      addComment(
+      addDeviceComment(
         post,
         commentContent,
         commentor,
@@ -118,7 +118,7 @@ const CommentsCard = ({ post }: Props) => {
       commentsFiles &&
       commentsFiles.length <= 3
     ) {
-      addComment(
+      addDeviceComment(
         post,
         commentContent,
         commentor,
@@ -158,13 +158,16 @@ const CommentsCard = ({ post }: Props) => {
         }`}
       >
         <div className={`flex flex-col justify-center w-full`}>
-          <button onClick={() => setOpenComments(!openComments)}>
+          <button
+            onClick={() => setOpenComments(!openComments)}
+            className={`w-fit`}
+          >
             {svgCloseDark}
           </button>
         </div>
 
         {/* show one or all comments */}
-        <div className={`h-full w-full`}>
+        <div className={`h-full w-full flex justify-start`}>
           {showComments ? (
             // Showing all comments
             <div className={`w-full`}>
@@ -181,7 +184,7 @@ const CommentsCard = ({ post }: Props) => {
                   comments.map(
                     (comment, index) =>
                       comment.commentId && (
-                        <CommentsSection
+                        <EDCommentSection
                           commentUpdated={commentUpdated}
                           handleCommentUpdated={handleCommentUpdated}
                           key={index}
@@ -196,7 +199,7 @@ const CommentsCard = ({ post }: Props) => {
             // Showing one comment
             <div className="mt-[38px] w-full">
               {comments && comments[0] && (
-                <CommentsSection
+                <EDCommentSection
                   commentUpdated={commentUpdated}
                   handleCommentUpdated={handleCommentUpdated}
                   comment={comments[0]}
@@ -342,4 +345,4 @@ const CommentsCard = ({ post }: Props) => {
   );
 };
 
-export default CommentsCard;
+export default EDCommentCard;

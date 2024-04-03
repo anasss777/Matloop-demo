@@ -5,7 +5,7 @@ import { DevicePost } from "@/types/post";
 import React, { useEffect, useState } from "react";
 import firebase from "@/firebase";
 import { useLocale } from "next-intl";
-import DevicePostCard from "@/components/DevicePostCard";
+import EDPostCard from "@/components/ElectronicDevices/EDPostCard";
 
 const ElectronicsDevices = () => {
   const [posts, setPosts] = useState<DevicePost[]>([]); // Initialize posts as an empty array
@@ -49,7 +49,7 @@ const ElectronicsDevices = () => {
         className={`flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 justify-center items-start gap-10`}
       >
         {posts.map((post) => (
-          <DevicePostCard
+          <EDPostCard
             key={post.postId} // Use post id as the key
             posterName={post.poster.name}
             posterImage={post.poster.profileImageSrc}
