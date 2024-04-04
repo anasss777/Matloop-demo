@@ -40,3 +40,22 @@ export type DevicePost = {
   isPromoted: boolean;
   category: string;
 };
+
+export type RealEstatePost = {
+  postId: string;
+  createdAt: Timestamp;
+  postTitle: string;
+  propertyType: string;
+  ownershipType: string;
+  rentType: string;
+  address: string;
+  priceRange: number[];
+  numberOfRooms: string;
+  ageRange: number[];
+  description: string;
+  poster: Profile;
+  comments: Comment[];
+  reports: string[];
+  isPromoted: boolean;
+  category: string;
+};

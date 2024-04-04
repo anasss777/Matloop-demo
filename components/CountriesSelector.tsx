@@ -58,9 +58,7 @@ const CountriesSelector = (props: Props) => {
         </select>
       )}
 
-      <div
-        className={`flex flex-row gap-2 items-center justify-start mt-5 mb-20`}
-      >
+      <div className={`flex flex-row gap-2 items-center justify-between mt-5`}>
         <p className={`flex flex-row w-fit text-secondary font-bold`}>
           {t("chooseCity")}
         </p>

@@ -2,14 +2,17 @@
 
 import Image from "next/image";
 import React from "react";
-import { CarPost } from "@/types/post";
+import { RealEstatePost } from "@/types/post";
 import { useLocale, useTranslations } from "next-intl";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
-import { svgClock } from "./svgsPath";
-import TimeAgo from "./TimeAgo";
-import PostDetails from "./PostDetails";
-import PostMenu from "./PostMenu";
-import CommentsCard from "./CommentsCard";
+import { svgClock } from "../svgsPath";
+import TimeAgo from "../TimeAgo";
+import EDPostMenu from "@/components/ElectronicDevices/EDPostMenu";
+import EDPostDetails from "@/components/ElectronicDevices/EDPostDetails";
+import EDCommentCard from "@/components/ElectronicDevices/EDCommentCard";
+import RSPostMenu from "./RSPostMenu";
+import RSPostDetails from "./RSPostDetails";
+import RSCommentCard from "./RSCommentCard";
 
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
@@ -18,11 +21,11 @@ type Props = {
   allowImg?: boolean;
   posterName: string;
   posterImage: string;
-  post: CarPost;
+  post: RealEstatePost;
 };
 
-const PostCard = (props: Props) => {
-  const t = useTranslations("postCard");
+const RSPostCard = (props: Props) => {
+  const t = useTranslations("realEstateCard");
   const locale = useLocale();
   const isArabic = locale === "ar";
 
@@ -68,7 +71,7 @@ const PostCard = (props: Props) => {
                 <div className={`flex flex-row items-center gap-1`}>
                   <span>{svgClock}</span>
                   <TimeAgo
-                    postDate={props.post?.createdAt.toDate()}
+                    postDate={props.post?.createdAt?.toDate()}
                     textSize="10px"
                     textcolor="#6b7280"
                   />
@@ -77,20 +80,20 @@ const PostCard = (props: Props) => {
             </div>
 
             {/* Edit and delete menu */}
-            <PostMenu post={props.post} />
+            <RSPostMenu post={props.post} />
           </div>
           <p className="text-xl font-bold mr-4">{props.post?.postTitle}</p>
           <p className="mr-4">{props.post?.description}</p>
         </div>
 
         {/* Post Details */}
-        <PostDetails post={props.post} />
+        <RSPostDetails post={props.post} />
 
         {/* Comments section */}
-        <CommentsCard post={props.post} />
+        <RSCommentCard post={props.post} />
       </div>
     </div>
   );
 };
 
-export default PostCard;
+export default RSPostCard;

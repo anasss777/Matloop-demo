@@ -1,29 +1,28 @@
 "use client";
 
-import PostCard from "@/components/PostCard";
 import SearchInput from "@/components/SearchInput";
-import { CarPost } from "@/types/post";
 import React, { useEffect, useState } from "react";
 import firebase from "@/firebase";
-import JustTesting from "@/components/JustTesting";
 import { useLocale } from "next-intl";
+import { RealEstatePost } from "@/types/post";
+import RSPostCard from "@/components/RealEstate/RSPostCard";
 
-const Cars = () => {
-  const [posts, setPosts] = useState<CarPost[]>([]); // Initialize posts as an empty array
+const RealEstate = () => {
+  const [posts, setPosts] = useState<RealEstatePost[]>([]); // Initialize posts as an empty array
   const locale = useLocale();
   const isArabic = locale === "ar";
 
   useEffect(() => {
     const unsubscribe = firebase
       .firestore()
-      .collection("posts")
+      .collection("realEstatePosts")
       .onSnapshot((snapshot) => {
-        const newPosts: CarPost[] = []; // Create a new array to hold updated posts
+        const newPosts: RealEstatePost[] = []; // Create a new array to hold updated posts
         snapshot.forEach((doc) => {
           newPosts.push({
             postId: doc.id,
             ...doc.data(),
-          } as CarPost);
+          } as RealEstatePost);
         });
         setPosts(newPosts); // Update posts state with the new data
       });
@@ -39,14 +38,12 @@ const Cars = () => {
       }`}
     >
       <p className="flex justify-center items-center mb-10 font-bold">
-        السيارات المطلوبة: {posts.length}
+        الأجهزة الإلكترونية المطلوبة: {posts.length}
       </p>
 
       <div className={`flex justify-center`}>
         <SearchInput />
       </div>
-
-      {/* <JustTesting /> */}
 
       <div
         className={`flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center items-start gap-10`}
@@ -54,7 +51,7 @@ const Cars = () => {
         {posts
           .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
           .map((post) => (
-            <PostCard
+            <RSPostCard
               key={post.postId} // Use post id as the key
               posterName={post.poster.name}
               posterImage={post.poster.profileImageSrc}
@@ -66,4 +63,4 @@ const Cars = () => {
   );
 };
 
-export default Cars;
+export default RealEstate;

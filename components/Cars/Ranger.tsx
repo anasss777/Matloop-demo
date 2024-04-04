@@ -10,6 +10,7 @@ type Props = {
   setMaxValue: React.Dispatch<React.SetStateAction<string>>;
   handleInputChange: (e: any) => void;
   currency?: boolean;
+  year?: boolean;
 };
 
 const Ranger = (props: Props) => {
@@ -20,7 +21,9 @@ const Ranger = (props: Props) => {
       {/* Min Input range */}
       <div className={`flex flex-col gap-2 justify-start w-full`}>
         <span className={`flex justify-start text-secondary font-bold`}>
-          {`${props.minValue} ${props.currency ? t("currency") : ""}`}
+          {`${props.minValue} ${props.currency ? t("currency") : ""} ${
+            props.year ? t("year") : ""
+          }`}
         </span>
         <input
           type="number"
@@ -36,7 +39,9 @@ const Ranger = (props: Props) => {
       {/* Max Input range */}
       <div className={`flex flex-col gap-2 justify-start w-full`}>
         <span className={`flex justify-start text-secondary font-bold`}>
-          {`${props.maxValue} ${props.currency ? t("currency") : ""}`}
+          {`${props.maxValue} ${props.currency ? t("currency") : ""} ${
+            props.year ? t("year") : ""
+          }`}
         </span>
         <input
           type="number"

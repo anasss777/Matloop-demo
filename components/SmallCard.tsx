@@ -34,7 +34,7 @@ const SmallCard = ({ post }: Props) => {
       locale={locale}
       className="w-fit h-12 shadow-Card border rounded-md flex flex-row gap-5 justify-between items-center px-2"
     >
-      <div className="flex flex-row items-center gap-1">
+      <div className="flex flex-row items-center gap-1 w-60">
         {post?.poster?.profileImageSrc ? (
           <Image
             src={post.poster.profileImageSrc}
@@ -56,7 +56,7 @@ const SmallCard = ({ post }: Props) => {
       </div>
 
       <div
-        className={`h-fit w-fit px-2 py-[2px] rounded-full shadow-md text-white text-sm bg-secondary`}
+        className={`h-fit w-[101px] px-2 py-[2px] rounded-full shadow-md text-white text-sm bg-secondary text-center`}
       >
         {postCategory}
       </div>

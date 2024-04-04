@@ -19,7 +19,7 @@ const Footer = () => {
           البريد الإلكتروني
         </p>
         <p className="flex justify-center text-teal-100 text-sm">
-          info@matloob.com
+          support@matloob.com
         </p>
         <p className="flex justify-center font-bold text-teal-700">
           رقم الهاتف
@@ -29,7 +29,7 @@ const Footer = () => {
         </p>
         <p className="flex justify-center font-bold text-teal-700">العنوان</p>
         <p className="flex justify-center text-teal-100 text-sm text-center">
-          8228 Imam Ali Road, Riyadh 12345-6789, Saudi Arabia
+          123 street, city, country
         </p>
       </div>
 

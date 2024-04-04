@@ -48,14 +48,16 @@ const ElectronicsDevices = () => {
       <div
         className={`flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center items-start gap-10`}
       >
-        {posts.map((post) => (
-          <EDPostCard
-            key={post.postId} // Use post id as the key
-            posterName={post.poster.name}
-            posterImage={post.poster.profileImageSrc}
-            post={post}
-          />
-        ))}
+        {posts
+          .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
+          .map((post) => (
+            <EDPostCard
+              key={post.postId} // Use post id as the key
+              posterName={post.poster.name}
+              posterImage={post.poster.profileImageSrc}
+              post={post}
+            />
+          ))}
       </div>
     </div>
   );

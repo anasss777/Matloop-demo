@@ -91,6 +91,54 @@
         "postEdited": "تم تعديل المنشور بنجاح",
         "ok": "حسناً"
     },
+    "newRealEstatePost": {
+        "postTitle": "ضع عنواناً لمطلوبك",
+        "postTitlePlaceholder": "مطلوب...",
+        "propertyType": "نوع العقار",
+        "otherProperty": "حدد نوع العقار",
+        "ownershipType": "نوع التمليك",
+        "rentType": "نوع الإيجار",
+        "chooseCountry": "اختر الدولة",
+        "chooseCity": "إسم المدينة",
+        "chooseRegion": "إسم المنطقة",
+        "priceRange":"السعر",
+        "numberOfRooms": "عدد الغرف",
+        "otherNumberOfRooms": "حدد عدد الغرف",
+        "ageRange": "عمر العقار",
+        "otherSpecs": "مواصفات إضافية",
+        "description": "وصف المطلوب...",
+        "submit":"نشر المطلوب",
+        "loading":"جاري النشر",
+        "edit": "تعديل",
+        "cancel": "إلغاء",
+        "postEdited":"تم تعديل المنشور بنجاح",
+        "ok": "حسناً"
+    },
+    "propertyType": {
+        "propertyType":"نوع العقار",
+        "apartment": "شقة",
+        "villa": "فيلا",
+        "Chalet": "شاليه",
+        "commercialProperty": "اصل تجاري",
+        "office": "مكتب",
+        "farm": "مزرعة",
+        "other": "أخرى"
+    },
+    "ownershipType": {
+        "ownershipType": "نوع التمليك",
+        "rent": "إيجار",
+        "buy": "بيع"
+    },
+    "rentType": {
+        "rentType": "نوع الإيجار",
+        "yearly": "سنوي",
+        "monthly": "شهري",
+        "daily": "يومي"
+    },
+    "numberOfRooms": {
+        "numberOfRooms": "عدد الغرف",
+        "other": "أخرى"
+    },
     "deviceType": {
         "deviceType": "إختر نوع الجهاز",
         "smartphone": "هاتف ذكي",
@@ -141,7 +189,8 @@
         "Coupe": "كوبيه",
         "Convertible": "سيارة مكشوفة",
         "Hatchback": "هاتشباك",
-        "currency": "ريال سعودي"
+        "currency": "ريال سعودي",
+        "year": "سنة"
     },
     "gearType": {
         "automatic": "ألي",
@@ -192,6 +241,12 @@
     },
     "devicePostCard": {
         "sar":"ريال سعودي"
+    },
+    "realEstatePostCard": {
+        "sar":"ريال سعودي",
+        "propertyAge": "عمر العقار",
+        "rooms": "عدد الغرف",
+        "years": "سنوات"
     },
     "profile": {
         "name": "الاسم: ",

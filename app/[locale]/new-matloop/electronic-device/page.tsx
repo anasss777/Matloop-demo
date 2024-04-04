@@ -278,7 +278,7 @@ const ElectronicDevice = () => {
       />
 
       {/* Other Specs */}
-      <h2 className={`text-primary text-lg font-bold mb-4`}>
+      <h2 className={`text-primary text-lg font-bold mb-4 mt-20`}>
         {t("otherSpecs")}
       </h2>
       <textarea

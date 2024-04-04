@@ -256,6 +256,7 @@ const EDEditPost = ({ openEditPost, setOpenEditPost, post }: Props) => {
             onChange={(e) => setDescription(e.target.value)}
             className={`border border-secondary/70 px-2 py-1 rounded-md mb-20 w-full`}
           ></textarea>
+
           <div className={`flex flex-row gap-2 mb-10 ${!isArabic && "mb20"}`}>
             <button
               className={`btn2 bg-secondary shadow-lg`}
