@@ -173,6 +173,8 @@ const RealEstate = () => {
     >
       {/* Choose category */}
       <CategorySelector />
+
+      {/* Post title */}
       <h2 className={`text-primary text-lg font-bold mb-4 mt-20`}>
         {t("postTitle")}
       </h2>

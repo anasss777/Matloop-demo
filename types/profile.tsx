@@ -12,5 +12,6 @@ export type Profile = {
   posts: string[];
   electronicDevicesPosts: string[];
   realEstatePosts: string[];
+  jobsPosts: string[];
   comments: string[];
 };

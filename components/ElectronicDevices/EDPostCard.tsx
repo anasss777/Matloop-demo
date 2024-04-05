@@ -11,7 +11,7 @@ import EDPostMenu from "./EDPostMenu";
 import EDPostDetails from "./EDPostDetails";
 import EDCommentCard from "./EDCommentCard";
 
-const locales = ["ar", "en"];
+export const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
 
 type Props = {
@@ -57,7 +57,7 @@ const EDPostCard = (props: Props) => {
               {/* Poster name and posting time */}
               <div className={`flex flex-col justify-start`}>
                 <Link
-                  href={props.post.poster.userId}
+                  href={props.post.poster?.userId}
                   locale={locale}
                   className={`ltr font-bold text-secondary ${
                     isArabic && "rtl"

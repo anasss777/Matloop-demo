@@ -11,7 +11,7 @@ import PostDetails from "./PostDetails";
 import PostMenu from "./PostMenu";
 import CommentsCard from "./CommentsCard";
 
-const locales = ["ar", "en"];
+export const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
 
 type Props = {

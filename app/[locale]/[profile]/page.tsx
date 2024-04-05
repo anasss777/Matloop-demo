@@ -4,11 +4,12 @@ import { Profile } from "@/types/profile";
 import React, { useEffect, useState } from "react";
 import firebase from "@/firebase";
 import Image from "next/image";
-import { CarPost, DevicePost, RealEstatePost } from "@/types/post";
+import { CarPost, DevicePost, JobPost, RealEstatePost } from "@/types/post";
 import PostCard from "@/components/PostCard";
 import { useLocale, useTranslations } from "next-intl";
 import EDPostCard from "@/components/ElectronicDevices/EDPostCard";
 import RSPostCard from "@/components/RealEstate/RSPostCard";
+import JobPostCard from "@/components/Job/JobPostCard";
 
 type Props = {
   params: { profile: string };
@@ -20,6 +21,7 @@ const Profile = ({ params }: Props) => {
   const [carsPosts, setCarsPosts] = useState<CarPost[]>([]);
   const [devicesPosts, setDevicesPosts] = useState<DevicePost[]>([]);
   const [realEstatePosts, setRealEstatePosts] = useState<RealEstatePost[]>([]);
+  const [jobPosts, setJobPosts] = useState<JobPost[]>([]);
   const t = useTranslations("profile");
   const locale = useLocale();
   const isArabic = locale === "ar";
@@ -117,6 +119,29 @@ const Profile = ({ params }: Props) => {
     }
   }, [profile]);
 
+  useEffect(() => {
+    if (profile && profile.jobsPosts) {
+      const fetchPosts = async () => {
+        // Use Promise.all to fetch all posts concurrently
+        const postsPromises = profile?.jobsPosts?.map((id) =>
+          firebase.firestore().collection("jobsPosts").doc(id).get()
+        );
+
+        const postsSnapshots = await Promise?.all(postsPromises);
+
+        const PostsData: JobPost[] = postsSnapshots?.map(
+          (doc) =>
+            ({
+              ...doc.data(),
+            } as JobPost)
+        );
+
+        setJobPosts(PostsData);
+      };
+      fetchPosts();
+    }
+  }, [profile]);
+
   if (!profile) {
     return <div>Loading...</div>;
   }
@@ -170,32 +195,39 @@ const Profile = ({ params }: Props) => {
       <div
         className={`flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center items-start gap-10 w-full`}
       >
-        {[...carsPosts, ...devicesPosts, ...realEstatePosts]
-          ?.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
-          .map((post, index) =>
-            post.category === "cars" ? (
-              <PostCard
-                key={index}
-                posterName={post.poster.name}
-                posterImage={post.poster.profileImageSrc}
-                post={post as CarPost}
-              />
-            ) : post.category === "electronicDevices" ? (
-              <EDPostCard
-                key={index}
-                posterName={post.poster.name}
-                posterImage={post.poster.profileImageSrc}
-                post={post as DevicePost}
-              />
-            ) : (
-              <RSPostCard
-                key={index}
-                posterName={post.poster.name}
-                posterImage={post.poster.profileImageSrc}
-                post={post as RealEstatePost}
-              />
-            )
-          )}
+        {[...carsPosts, ...devicesPosts, ...realEstatePosts, ...jobPosts]
+          ?.sort((a, b) => b.createdAt?.seconds - a.createdAt?.seconds)
+          .map((post, index) => (
+            <div key={index}>
+              {post.category === "cars" ? (
+                <PostCard
+                  posterName={post.poster?.name}
+                  posterImage={post.poster?.profileImageSrc}
+                  post={post as CarPost}
+                />
+              ) : post.category === "electronicDevices" ? (
+                <EDPostCard
+                  posterName={post.poster?.name}
+                  posterImage={post.poster?.profileImageSrc}
+                  post={post as DevicePost}
+                />
+              ) : post.category === "realEstates" ? (
+                <RSPostCard
+                  posterName={post.poster?.name}
+                  posterImage={post.poster?.profileImageSrc}
+                  post={post as RealEstatePost}
+                />
+              ) : post.category === "jobs" ? (
+                <JobPostCard
+                  posterName={post.poster?.name}
+                  posterImage={post.poster?.profileImageSrc}
+                  post={post as JobPost}
+                />
+              ) : (
+                <div></div>
+              )}
+            </div>
+          ))}
       </div>
     </div>
   );

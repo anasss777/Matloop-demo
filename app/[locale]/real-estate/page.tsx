@@ -38,7 +38,7 @@ const RealEstate = () => {
       }`}
     >
       <p className="flex justify-center items-center mb-10 font-bold">
-        الأجهزة الإلكترونية المطلوبة: {posts.length}
+        العقارات المطلوبة: {posts.length}
       </p>
 
       <div className={`flex justify-center`}>

@@ -114,6 +114,41 @@
         "postEdited":"تم تعديل المنشور بنجاح",
         "ok": "حسناً"
     },
+    "newJobPost": {
+        "postTitle": "ضع عنواناً لمطلوبك",
+        "postTitlePlaceholder":"مطلوب...",
+        "jobType": "نوع العمل",
+        "location": "مكان العمل",
+        "educationLevel": "المستوى التعليمي",
+        "salaryRange": "الراتب الشهري",
+        "description": "وصف الوظيفة...",
+        "jobDetails": "تفاصيل عن الوظيفة",
+        "loading": "جاري النشر",
+        "submit": "نشر المطلوب",
+        "edit": "تعديل",
+        "cancel": "إلغاء",
+        "postEdited": "تم تعديل المنشور بنجاح",
+        "ok": "حسناً"
+    },
+    "jobLocation": {
+        "onSite": "حضوري",
+        "remote": "عن بعد",
+        "hybrid": "حضوري و عن بعد"
+    },
+    "jobType": {
+        "fullTime": "دوام كامل",
+        "partTime": "دوام جزئي",
+        "contract": "عقد",
+        "temporary": "دوام مؤقت",
+        "freelance": "مستقل"
+    },
+    "educationLevel": {
+        "highSchool": "ثانوي",
+        "AssociateDegree": "دبلوم",
+        "BachelorDegree": "بكالريوس",
+        "MasterDegree": "ماجيستير",
+        "PhD": "دكتوراه"
+    },
     "propertyType": {
         "propertyType":"نوع العقار",
         "apartment": "شقة",
@@ -240,6 +275,9 @@
         "closeImage": "إغلاق"
     },
     "devicePostCard": {
+        "sar":"ريال سعودي"
+    },
+    "jobPostCard": {
         "sar":"ريال سعودي"
     },
     "realEstatePostCard": {

@@ -6,10 +6,11 @@ import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { handleSignOut } from "@/utils/auth";
 import Image from "next/image";
-import { CarPost, DevicePost, RealEstatePost } from "@/types/post";
+import { CarPost, DevicePost, JobPost, RealEstatePost } from "@/types/post";
 import PostCard from "@/components/PostCard";
 import EDPostCard from "@/components/ElectronicDevices/EDPostCard";
 import RSPostCard from "@/components/RealEstate/RSPostCard";
+import JobPostCard from "@/components/Job/JobPostCard";
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
 
@@ -19,6 +20,7 @@ const Profile: React.FC = () => {
   const [carsPosts, setCarsPosts] = useState<CarPost[]>([]);
   const [devicesPosts, setDevicesPosts] = useState<DevicePost[]>([]);
   const [realEstatePosts, setRealEstatePosts] = useState<RealEstatePost[]>([]);
+  const [jobPosts, setJobPosts] = useState<JobPost[]>([]);
   const locale = useLocale();
   const t = useTranslations("profile");
   const isArabic = locale === "ar";
@@ -120,6 +122,29 @@ const Profile: React.FC = () => {
     }
   }, [userData]);
 
+  useEffect(() => {
+    if (userData) {
+      const fetchPosts = async () => {
+        // Use Promise.all to fetch all posts concurrently
+        const postsPromises = userData?.jobsPosts?.map((id: string) =>
+          firebase.firestore().collection("jobsPosts").doc(id).get()
+        );
+
+        const postsSnapshots = await Promise?.all(postsPromises);
+
+        const PostsData: JobPost[] = postsSnapshots?.map(
+          (doc) =>
+            ({
+              ...doc.data(),
+            } as JobPost)
+        );
+
+        setJobPosts(PostsData);
+      };
+      fetchPosts();
+    }
+  }, [userData]);
+
   if (!user) {
     return (
       <p
@@ -197,32 +222,39 @@ const Profile: React.FC = () => {
       <div
         className={`flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center items-start gap-10`}
       >
-        {[...carsPosts, ...devicesPosts, ...realEstatePosts]
-          ?.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
-          .map((post, index) =>
-            post.category === "cars" ? (
-              <PostCard
-                key={index}
-                posterName={post.poster.name}
-                posterImage={post.poster.profileImageSrc}
-                post={post as CarPost}
-              />
-            ) : post.category === "electronicDevices" ? (
-              <EDPostCard
-                key={index}
-                posterName={post.poster.name}
-                posterImage={post.poster.profileImageSrc}
-                post={post as DevicePost}
-              />
-            ) : (
-              <RSPostCard
-                key={index}
-                posterName={post.poster.name}
-                posterImage={post.poster.profileImageSrc}
-                post={post as RealEstatePost}
-              />
-            )
-          )}
+        {[...carsPosts, ...devicesPosts, ...realEstatePosts, ...jobPosts]
+          ?.sort((a, b) => b.createdAt?.seconds - a.createdAt?.seconds)
+          .map((post, index) => (
+            <div key={index}>
+              {post.category === "cars" ? (
+                <PostCard
+                  posterName={post.poster?.name}
+                  posterImage={post.poster?.profileImageSrc}
+                  post={post as CarPost}
+                />
+              ) : post.category === "electronicDevices" ? (
+                <EDPostCard
+                  posterName={post.poster?.name}
+                  posterImage={post.poster?.profileImageSrc}
+                  post={post as DevicePost}
+                />
+              ) : post.category === "realEstates" ? (
+                <RSPostCard
+                  posterName={post.poster?.name}
+                  posterImage={post.poster?.profileImageSrc}
+                  post={post as RealEstatePost}
+                />
+              ) : post.category === "jobs" ? (
+                <JobPostCard
+                  posterName={post.poster?.name}
+                  posterImage={post.poster?.profileImageSrc}
+                  post={post as JobPost}
+                />
+              ) : (
+                <div></div>
+              )}
+            </div>
+          ))}
       </div>
     </div>
   );

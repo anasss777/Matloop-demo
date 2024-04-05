@@ -59,3 +59,20 @@ export type RealEstatePost = {
   isPromoted: boolean;
   category: string;
 };
+
+export type JobPost = {
+  postId: string;
+  createdAt: Timestamp;
+  postTitle: string;
+  jobType: string[];
+  jobLocation: string[];
+  educationLevel: string[];
+  salaryRange: number[];
+  address: string;
+  description: string;
+  poster: Profile;
+  comments: Comment[];
+  reports: string[];
+  isPromoted: boolean;
+  category: string;
+};

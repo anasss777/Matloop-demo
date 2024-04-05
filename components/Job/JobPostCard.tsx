@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import React from "react";
-import { RealEstatePost } from "@/types/post";
 import { useLocale, useTranslations } from "next-intl";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
+import { JobPost } from "@/types/post";
 import { svgClock } from "../svgsPath";
 import TimeAgo from "../TimeAgo";
-import RSPostMenu from "./RSPostMenu";
-import RSPostDetails from "./RSPostDetails";
-import RSCommentCard from "./RSCommentCard";
+import JobPostMenu from "./JobPostMenu";
+import JobPostDetails from "./JobPostDetails";
+import JobCommentCard from "./JobCommentCard";
 
 export const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
@@ -18,11 +18,11 @@ type Props = {
   allowImg?: boolean;
   posterName: string;
   posterImage: string;
-  post: RealEstatePost;
+  post: JobPost;
 };
 
-const RSPostCard = (props: Props) => {
-  const t = useTranslations("realEstateCard");
+const JobPostCard = (props: Props) => {
+  const t = useTranslations("postCard");
   const locale = useLocale();
   const isArabic = locale === "ar";
 
@@ -77,20 +77,20 @@ const RSPostCard = (props: Props) => {
             </div>
 
             {/* Edit and delete menu */}
-            <RSPostMenu post={props.post} />
+            <JobPostMenu post={props.post} />
           </div>
           <p className="text-xl font-bold mr-4">{props.post?.postTitle}</p>
           <p className="mr-4">{props.post?.description}</p>
         </div>
 
         {/* Post Details */}
-        <RSPostDetails post={props.post} />
+        <JobPostDetails post={props.post} />
 
         {/* Comments section */}
-        <RSCommentCard post={props.post} />
+        <JobCommentCard post={props.post} />
       </div>
     </div>
   );
 };
 
-export default RSPostCard;
+export default JobPostCard;
