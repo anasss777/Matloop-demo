@@ -1,11 +1,15 @@
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
   const todayYear = new Date().getFullYear();
+  const t = useTranslations("footer");
+  const locale = useLocale();
+  const isArabic = locale === "ar";
 
   return (
-    <div className="flex flex-col gap-6 bg-teal-400 pt-4 px-3 mt-10">
+    <div className="flex flex-col gap-6 bg-teal-400 pt-4 px-3 mt-10 relative bottom-0">
       <Link href="/" className={`flex justify-center w-full`}>
         <p
           className={`flex justify-center items-center text-2xl text-white w-fit`}
@@ -16,29 +20,37 @@ const Footer = () => {
 
       <div>
         <p className="flex justify-center font-bold text-teal-700">
-          البريد الإلكتروني
+          {t("email")}
         </p>
         <p className="flex justify-center text-teal-100 text-sm">
           support@matloob.com
         </p>
         <p className="flex justify-center font-bold text-teal-700">
-          رقم الهاتف
+          {t("phoneNumber")}
         </p>
         <p className="flex justify-center text-teal-100 text-sm">
           +901234567890
         </p>
-        <p className="flex justify-center font-bold text-teal-700">العنوان</p>
+        <p className="flex justify-center font-bold text-teal-700">
+          {t("address")}
+        </p>
         <p className="flex justify-center text-teal-100 text-sm text-center">
-          123 street, city, country
+          {t("theAddress")}
         </p>
       </div>
 
       <p
-        className={`flex justify-center text-white mx-auto rtl bg-primary/80 pb-1 w-full text-sm font-light`}
+        className={`flex justify-center text-white mx-auto rtl bg-primary/80 pb-1 w-full text-sm font-light ${
+          isArabic ? "rtl" : "ltr"
+        }`}
       >
-        تصميم و تطوير
-        <Link href="/" className={`text-teal-700 font-normal`}>
-          &nbsp;Applai Technology&nbsp;
+        {t("developedBy")}
+        <Link
+          href="https://portfolio-anasss777.vercel.app/"
+          target="_blank"
+          className={`text-teal-700 font-normal`}
+        >
+          &nbsp;Anas Chammam&nbsp;
         </Link>
         {todayYear}©
       </p>

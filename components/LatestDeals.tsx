@@ -2,14 +2,16 @@
 
 import React, { useEffect, useState } from "react";
 import PostCard from "./PostCard";
-import Link from "next/link";
 import { CarPost, DevicePost, JobPost, RealEstatePost } from "@/types/post";
 import firebase from "@/firebase";
 import EDPostCard from "./ElectronicDevices/EDPostCard";
 import RSPostCard from "./RealEstate/RSPostCard";
 import JobPostCard from "./Job/JobPostCard";
+import { useTranslations } from "next-intl";
+import LoadingPosts from "./LoadingPosts";
 
 const LatestDeals = () => {
+  const t = useTranslations("latestDeals");
   const [carsPosts, setCarsPosts] = useState<CarPost[]>([]);
   const [devicesPosts, setDevicesPosts] = useState<DevicePost[]>([]);
   const [realEstatePosts, setRealEstatePosts] = useState<RealEstatePost[]>([]);
@@ -87,10 +89,27 @@ const LatestDeals = () => {
     return () => unsubscribe();
   }, []);
 
+  if (
+    [...carsPosts, ...devicesPosts, ...realEstatePosts, ...jobPosts].length ===
+    0
+  ) {
+    return (
+      <div
+        className={`flex flex-col w-full h-[700px] pt-10 px-2 md:px-10 lg:px-20`}
+      >
+        <h1 className="text-3xl mt-5 font-semibold text-[#4682b4] flex flex-row justify-center mb-10">
+          {t("latestDeals")}
+        </h1>
+
+        <LoadingPosts />
+      </div>
+    );
+  }
+
   return (
-    <div className="flex flex-col w-full h-fit pb-20 pt-10">
-      <h1 className="text-xl mt-5 font-semibold text-[#4682b4] flex flex-row justify-between">
-        أحدث الصفقات
+    <div className="flex flex-col w-full h-fit pb-20 pt-10 px-2">
+      <h1 className="text-3xl mt-5 font-semibold text-[#4682b4] flex flex-row justify-center mb-10">
+        {t("latestDeals")}
       </h1>
       <div
         className={`flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center items-start gap-10`}
@@ -98,7 +117,7 @@ const LatestDeals = () => {
         {[...carsPosts, ...devicesPosts, ...realEstatePosts, ...jobPosts]
           ?.sort((a, b) => b.createdAt?.seconds - a.createdAt?.seconds)
           .map((post, index) => (
-            <div key={index}>
+            <div key={index} className={`w-full`}>
               {post.category === "cars" ? (
                 <PostCard
                   posterName={post.poster?.name}
@@ -129,13 +148,6 @@ const LatestDeals = () => {
             </div>
           ))}
       </div>
-
-      <Link
-        href="/"
-        className="bg-[#4682b4] text-white py-2 px-3 rounded-3xl text-center btn2 mx-auto"
-      >
-        رؤية الكل
-      </Link>
     </div>
   );
 };

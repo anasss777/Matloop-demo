@@ -214,7 +214,7 @@ const CarPost = () => {
       {/* Choose category */}
       <CategorySelector />
 
-      <h2 className={`text-primary text-lg font-bold mb-4 mt-20`}>
+      <h2 className={`text-primary text-lg font-bold mb-4 mt-20 text-center`}>
         {t("postTitle")}
       </h2>
       <input

@@ -7,15 +7,21 @@ import {
   fedeInAnimationVariants4,
 } from "@/utils/animations";
 import { motion } from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
 import React from "react";
-import SearchInput from "./SearchInput";
 
 const Hero = () => {
+  const t = useTranslations("hero");
+  const locale = useLocale();
+  const isArabic = locale === "ar";
+
   return (
     <div>
       <div
-        className="flex flex-col justify-center items-center w-full px-12 pb-5 pt-10 bg-teal-500 rounded-ee-[100px] rounded-es-[100px] shadow-md border border-t-0
-      border-teal-200"
+        className={`flex flex-col justify-center items-center w-full px-12 pb-5 pt-10 bg-teal-500 rounded-ee-[100px] rounded-es-[100px]
+        shadow-md border border-t-0 border-teal-200 ${
+          isArabic ? "rtl" : "ltr"
+        }`}
       >
         <h1 className="text-5xl font-bold text-teal-200 mb-12 w-full sm:w-[70%] md:w-1/2 lg:w-[30%]">
           <motion.span
@@ -25,7 +31,7 @@ const Hero = () => {
             viewport={{ once: true }}
             className="flex justify-start"
           >
-            جد مطلوبك
+            {t("find")}
           </motion.span>
           <motion.span
             variants={fedeInAnimationVariants3}
@@ -34,7 +40,7 @@ const Hero = () => {
             viewport={{ once: true }}
             className="flex my-3 justify-center text-4xl"
           >
-            او
+            {t("or")}
           </motion.span>
           <motion.span
             variants={fedeInAnimationVariants2}
@@ -43,11 +49,9 @@ const Hero = () => {
             viewport={{ once: true }}
             className="flex justify-end"
           >
-            قدم ما لديك
+            {t("offer")}
           </motion.span>
         </h1>
-
-        <SearchInput />
 
         <motion.p
           variants={fedeInAnimationVariants4}
@@ -56,11 +60,16 @@ const Hero = () => {
           viewport={{ once: true }}
           className="text-lg mt-12 mb-10 text-teal-700 pl-5"
         >
-          تواصل مع المستخدمين الباحثين عن{" "}
-          <span className="text-teal-100 font-semibold">موظفين</span> او{" "}
-          <span className="text-teal-100 font-semibold">سيارات</span> او{" "}
-          <span className="text-teal-100 font-semibold">عقارات</span> او{" "}
-          <span className="text-teal-100 font-semibold">أجهزة إلكترونية</span>
+          {t("connect")}{" "}
+          <span className="text-teal-100 font-semibold">{t("employees")}</span>{" "}
+          {t("or")}{" "}
+          <span className="text-teal-100 font-semibold">{t("cars")}</span>{" "}
+          {t("or")}{" "}
+          <span className="text-teal-100 font-semibold">{t("realEstate")}</span>{" "}
+          {t("or")}{" "}
+          <span className="text-teal-100 font-semibold">
+            {t("electronics")}
+          </span>
         </motion.p>
       </div>
     </div>

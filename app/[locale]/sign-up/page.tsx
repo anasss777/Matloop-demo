@@ -63,7 +63,9 @@ const SignUp = () => {
 
   return (
     <div
-      className={`flex flex-col justify-center items-center w-full py-20 rtl`}
+      className={`flex flex-col justify-center items-center w-full py-20 ${
+        isArabic ? "rtl" : "ltr"
+      }`}
     >
       <form
         name="signUp"

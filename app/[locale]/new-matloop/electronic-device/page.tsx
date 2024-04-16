@@ -173,7 +173,7 @@ const ElectronicDevice = () => {
       <CategorySelector />
 
       {/* Post title */}
-      <h2 className={`text-primary text-lg font-bold mb-4 mt-20`}>
+      <h2 className={`text-primary text-lg font-bold mb-4 mt-20 text-center`}>
         {t("postTitle")}
       </h2>
       <input
@@ -188,7 +188,7 @@ const ElectronicDevice = () => {
         {t("deviceType")}
       </h2>
       <DeviceType handleDeviceType={handleDeviceType} deviceType={deviceType} />
-      {(deviceType === "أخرى" || deviceType === "Others") && (
+      {(deviceType === "أخرى" || deviceType === "Other") && (
         <input
           // value={deviceType}
           placeholder={t("otherDevice")}
@@ -205,7 +205,7 @@ const ElectronicDevice = () => {
         handleDeviceBrand={handleDeviceBrand}
         deviceBrand={deviceBrand}
       />
-      {(deviceBrand === "أخرى" || deviceBrand === "Others") && (
+      {(deviceBrand === "أخرى" || deviceBrand === "Other") && (
         <input
           // value={deviceBrand}
           placeholder={t("otherDeviceBrand")}
@@ -243,7 +243,7 @@ const ElectronicDevice = () => {
         {t("deviceOS")}
       </h2>
       <DeviceOS handleDeviceOS={handleDeviceOS} deviceOS={deviceOS} />
-      {(deviceOS === "أخرى" || deviceOS === "Others") && (
+      {(deviceOS === "أخرى" || deviceOS === "Other") && (
         <input
           // value={deviceOS}
           placeholder={t("otherDeviceOS")}
@@ -260,7 +260,7 @@ const ElectronicDevice = () => {
         handleDeviceStorage={handleDeviceStorage}
         deviceStorage={deviceStorage}
       />
-      {(deviceStorage === "أخرى" || deviceStorage === "Others") && (
+      {(deviceStorage === "أخرى" || deviceStorage === "Other") && (
         <input
           // value={deviceStorage}
           placeholder={t("otherDeviceStorage")}

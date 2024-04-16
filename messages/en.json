@@ -4,14 +4,42 @@
         "description": "Matloop"
     },
     "header": {
-        "addPost": "Add a Matloop"
+        "addPost": "Add a Post"
+    },
+    "footer": {
+        "email": "Email",
+        "phoneNumber": "Phone Number",
+        "address": "Address",
+        "theAddress": "123 street, city, country",
+        "developedBy": "Developed and Design By"
     },
     "searchBar": {
         "searchPlaceholder": "Search..."
     },
     "nav": {
-        "about": "About",
-        "contact": "Contact Us"
+        "about": "About Us",
+        "contact": "Contact Us",
+        "jobs": "Jobs",
+        "cars": "Cars",
+        "realEstates": "Real Estates",
+        "electronics": "Electronics"
+    },
+    "hero": {
+        "find": "Find what you're looking for",
+        "or": "or",
+        "offer": "Offer what you have",
+        "connect": "Connect with users searching for",
+        "employees": "employees",
+        "cars": "cars",
+        "realEstate": "real estates",
+        "electronics": "electronics"
+    },
+    "categories": {
+        "title": "Categories",
+        "cars": "Cars",
+        "jobs": "Jobs",
+        "realEstates": "Real Estates",
+        "electronics": "Electronics"
     },
     "accountHeader": {
         "signIn": "Sign In",
@@ -28,40 +56,194 @@
         "confirmPassword": "Confirm Password",
         "signUp": "Sign Up",
         "signIn": "Sign In",
-        "notRegistered": "Not Registered?",
+        "notRegistered": "Not registered yet?",
         "signUpWithGoogle": "Sign Up with Google",
         "signInWithGoogle": "Sign In with Google"
     },
     "newPost": {
-        "postTitle": "Provide a title for your request",
-        "postTitlePlaceholder": "Looking for a car...",
-        "carBrand": "Choose car brand",
-        "carType": "Car type",
-        "gearType": "Transmission type",
+        "postTitle": "Enter a title for your request",
+        "postTitlePlaceholder": "I need a...",
+        "carBrand": "Select car brand",
+        "carType": "Car Type",
+        "gearType": "Gear Type",
         "cars": "Cars",
         "jobs": "Jobs",
         "realEstates": "Real Estates",
         "electronics": "Electronics",
         "chooseCategory": "Choose category",
         "chooseCountry": "Choose country",
-        "chooseCity": "City name",
-        "carPriceRange": "Price",
-        "carYearRange": "Manufacturing year",
-        "maxDistance": "Maximum distance in kilometers",
-        "fuelType": "Engine type",
+        "chooseCity": "City Name",
+        "carPriceRange" : "Price",
+        "carYearRange": "Year",
+        "maxDistance": "Max Distance",
+        "fuelType": "Fuel Type",
         "kiloMeter": "Kilometer",
-        "otherSpecs": "Additional specifications",
+        "otherSpecs": "Additional Specs",
         "description": "Description...",
-        "submit": "Post a Matloop"
+        "submit": "Submit",
+        "loading": "Loading",
+        "edit": "Edit",
+        "cancel": "Cancel",
+        "postEdited": "Post edited successfully",
+        "ok": "OK"
+    },
+    "newElectonicDevicePost": {
+        "postTitle": "Enter a title for your request",
+        "postTitlePlaceholder": "I need a...",
+        "otherDevice": "Device type",
+        "deviceType": "Choose device type",
+        "deviceBrand": "Choose device brand",
+        "otherDeviceBrand": "Device brand",
+        "priceRange":"Price",
+        "deviceCondition": "Device Condition",
+        "deviceOS": "Operating System",
+        "otherDeviceOS": "Operating system",
+        "deviceStorage": "Storage Capacity",
+        "otherDeviceStorage": "Storage capacity",
+        "otherSpecs": "Additional Specifications",
+        "description": "Description...",
+        "loading": "Loading",
+        "submit": "Submit",
+        "edit": "Edit",
+        "cancel": "Cancel",
+        "postEdited": "Post edited successfully",
+        "ok": "OK"
+    },
+    "newRealEstatePost": {
+        "postTitle": "Enter a title for your request",
+        "postTitlePlaceholder": "I need a...",
+        "propertyType": "Property Type",
+        "otherProperty": "Property type",
+        "ownershipType": "Ownership Type",
+        "rentType": "Rent Type",
+        "chooseCountry": "Choose country",
+        "chooseCity": "City Name",
+        "chooseRegion": "Region Name",
+        "priceRange":"Price",
+        "numberOfRooms": "Number of Rooms",
+        "otherNumberOfRooms": "Number of rooms",
+        "ageRange": "Age of Property",
+        "otherSpecs": "Additional Specifications",
+        "description": "Description...",
+        "submit":"Submit",
+        "loading":"Loading",
+        "edit": "Edit",
+        "cancel": "Cancel",
+        "postEdited":"Post edited successfully",
+        "ok": "OK"
+    },
+    "newJobPost": {
+        "postTitle": "Enter a title for your request",
+        "postTitlePlaceholder":"I need a...",
+        "jobType": "Job Type",
+        "location": "Job Location",
+        "educationLevel": "Education Level",
+        "salaryRange": "Monthly Salary",
+        "description": "Job Description...",
+        "jobDetails": "Job Details",
+        "loading": "Loading",
+        "submit": "Submit",
+        "edit": "Edit",
+        "cancel": "Cancel",
+        "postEdited": "Post edited successfully",
+        "ok": "OK"
+    },
+    "jobLocation": {
+        "onSite": "On-site",
+        "remote": "Remote",
+        "hybrid": "Hybrid (On-site and Remote)"
+    },
+    "jobType": {
+        "fullTime": "Full-time",
+        "partTime": "Part-time",
+        "contract": "Contract",
+        "temporary": "Temporary",
+        "freelance": "Freelance"
+    },
+    "educationLevel": {
+        "highSchool": "High School",
+        "AssociateDegree": "Associate Degree",
+        "BachelorDegree": "Bachelor's Degree",
+        "MasterDegree": "Master's Degree",
+        "PhD": "PhD"
+    },
+    "propertyType": {
+        "propertyType": "Property Type",
+        "apartment": "Apartment",
+        "villa": "Villa",
+        "Chalet": "Chalet",
+        "commercialProperty": "Commercial Property",
+        "office": "Office",
+        "farm": "Farm",
+        "other": "Other"
+    },
+    "ownershipType": {
+        "ownershipType": "Ownership Type",
+        "rent": "Rent",
+        "buy": "Buy"
+    },
+    "rentType": {
+        "rentType": "Rent Type",
+        "yearly": "Yearly",
+        "monthly": "Monthly",
+        "daily": "Daily"
+    },
+    "numberOfRooms": {
+        "numberOfRooms": "Number of Rooms",
+        "other": "Other"
+    },
+    "deviceType": {
+        "deviceType": "Device Type",
+        "smartphone": "Smartphone",
+        "tablet": "Tablet",
+        "laptop": "Laptop",
+        "desktop": "Desktop",
+        "smartwatch": "Smartwatch",
+        "earphone": "Earphone",
+        "others": "Other"
+    },
+    "deviceBrand": {
+        "deviceBrand": "Choose device brand",
+        "iphone": "iPhone",
+        "samsung": "Samsung",
+        "huawei": "Huawei",
+        "xiaomi": "Xiaomi",
+        "mac": "Apple Mac",
+        "hp": "HP",
+        "dell": "Dell",
+        "lenovo": "Lenovo",
+        "asus": "Asus",
+        "acer": "Acer",
+        "others": "Other"
+    },
+    "deviceCondition": {
+        "new": "New",
+        "refurbished": "Refurbished",
+        "used": "Used"
+    },
+    "deviceOS": {
+        "deviceOS": "Operating System",
+        "iOS": "iOS (iPhone)",
+        "android": "Android",
+        "windows": "Windows",
+        "macOS": "macOS (Apple)",
+        "others": "Other"
+    },
+    "deviceStorage": {
+        "deviceStorage": "Storage Capacity",
+        "GB": "GB",
+        "TB": "TB",
+        "others": "Other"
     },
     "carType": {
         "Sedan": "Sedan",
-        "SUV": "Sport Utility Vehicle (SUV)",
+        "SUV": "SUV",
         "Truck": "Truck",
         "Coupe": "Coupe",
         "Convertible": "Convertible",
         "Hatchback": "Hatchback",
-        "currency": "Saudi Riyal"
+        "currency": "SAR",
+        "year": "Year"
     },
     "gearType": {
         "automatic": "Automatic",
@@ -71,9 +253,93 @@
         "carBrand": "Brand: ",
         "carType": "Car Type: ",
         "priceRange": "Price: ",
-        "yearRange": "Manufacturing Year: ",
-        "maxDistance": "Kilometers: ",
-        "gearType": "Transmission Type: ",
-        "region": "Location: "
+        "yearRange": "Year: ",
+        "maxDistance": "Mileage: ",
+        "kiloMeter": "km",
+        "sar": "SAR",
+        "gearType": "Gear Type: ",
+        "region": "Location: ",
+        "commentContent": "Add a comment...",
+        "uploadedImages": "Number of attached images: ",
+        "uploadedFiles": "Number of attached files: ",
+        "imagesError": "Cannot add more than 10 images!",
+        "filesError": "Cannot add more than 3 files!",
+        "seeAllComments": "See all comments",
+        "noCommentsYet": "No comments yet!",
+        "signUp": "Sign up to add a comment",
+        "delete": "Delete",
+        "edit": "Edit",
+        "save": "Save",
+        "cancel": "Cancel",
+        "sure": "Are you sure?",
+        "deleteImageWarning": "The image will be permanently deleted",
+        "deleteFileWarning": "The file will be permanently deleted",
+        "yesDelete": "Delete",
+        "error": "Error occurred!",
+        "tryLater": "Please try again later",
+        "ok": "Ok",
+        "imageDeleted": "Image deleted successfully",
+        "commentDeleted": "Comment deleted successfully",
+        "postDeleted": "Post deleted successfully",
+        "fileDeleted": "File deleted successfully",
+        "textEdited": "Comment edited",
+        "deleteCommentWarning": "The comment will be permanently deleted",
+        "deletePostWarning": "The post will be permanently deleted"
+    },
+    "commentSection": {
+        "showMore": "Show more",
+        "resume": "My resume",
+        "edit": "Edit",
+        "closeImage": "Close"
+    },
+    "devicePostCard": {
+        "sar": "SAR"
+    },
+    "jobPostCard": {
+        "sar": "SAR"
+    },
+    "realEstatePostCard": {
+        "sar": "SAR",
+        "propertyAge": "Property Age",
+        "rooms": "Number of Rooms",
+        "years": "years"
+    },
+    "profile": {
+        "name": "Name: ",
+        "email": "Email: ",
+        "username": "Username: "
+    },
+    "carsPage": {
+        "wantedCars": "Cars Posts: ",
+        "noResult": "No results for: ",
+        "result": "Search results for: "
+    },
+    "devicesPage": {
+        "wantedDevices": "Devices Posts: ",
+        "noResult": "No results for: ",
+        "result": "Search results for: "
+    },
+    "realEstatePage": {
+        "wantedRealEstate": "Real Estate Posts: ",
+        "noResult": "No results for: ",
+        "result": "Search results for: "
+    },
+    "jobsPage": {
+        "wantedJobs": "Jobs Posts: ",
+        "noResult": "No results for: ",
+        "result": "Search results for: "
+    },
+    "latestDeals": {
+        "latestDeals": "Latest Deals"
+    },
+    "newMatloop": {
+        "newMatloop": "Add a Post",
+        "title1": "Choose Category",
+        "description1": "Select the category that fits your needed item, whether it's a car, real estate, employee, or electronic device.",
+        "title2": "Fill in Details",
+        "description2": "Fill in all the required details accurately so that users can understand your needed item clearly.",
+        "title3": "Publish Post",
+        "description3": "After verifying that all details are correct and complete, publish your needed item so that users can view and interact with it.",
+        "addnewMatloop": "Add a Post"
     }
 }

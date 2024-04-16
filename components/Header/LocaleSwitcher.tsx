@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useLocale } from "next-intl";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
+import { svgKsa, svgUk } from "../svgsPath";
 
 export const locales = ["ar", "en"];
 const { Link, usePathname } = createSharedPathnamesNavigation({ locales });
@@ -17,13 +18,7 @@ function LocaleSwitcher() {
           locale="en"
           className="lg:contrast-[95%] hover:contrast-125"
         >
-          <Image
-            src="/images/locale/uk.png"
-            alt="en"
-            width={35}
-            height={35}
-            className="object-scale-down hover:scale-105 transition-all duration-300 ease-linear"
-          />
+          {svgUk}
         </Link>
       ) : (
         <Link
@@ -31,13 +26,7 @@ function LocaleSwitcher() {
           locale="ar"
           className="lg:contrast-[95%] hover:contrast-125"
         >
-          <Image
-            src="/images/locale/ksa.png"
-            alt="ar"
-            width={70}
-            height={70}
-            className="object-scale-down hover:scale-105 transition-all duration-300 ease-linear"
-          />
+          {svgKsa}
         </Link>
       )}
     </li>

@@ -175,7 +175,7 @@ const RealEstate = () => {
       <CategorySelector />
 
       {/* Post title */}
-      <h2 className={`text-primary text-lg font-bold mb-4 mt-20`}>
+      <h2 className={`text-primary text-lg font-bold mb-4 mt-20 text-center`}>
         {t("postTitle")}
       </h2>
       <input
@@ -193,7 +193,7 @@ const RealEstate = () => {
         handlePropertyType={handlePropertyType}
         propertyType={propertyType}
       />
-      {(propertyType === "أخرى" || propertyType === "Others") && (
+      {(propertyType === "أخرى" || propertyType === "Other") && (
         <input
           placeholder={t("otherProperty")}
           onChange={(e) => setTheProperty(e.target.value)}
@@ -211,7 +211,7 @@ const RealEstate = () => {
       />
 
       {/* Choose rent duartion */}
-      {(ownershipType === "إيجار" || ownershipType === "rent") && (
+      {(ownershipType === "إيجار" || ownershipType === "Rent") && (
         <RentType handleRentType={handleRentType} rentType={rentType} />
       )}
 
@@ -238,7 +238,7 @@ const RealEstate = () => {
         handleNumberOfRooms={handleNumberOfRooms}
         numberOfRooms={numberOfRooms}
       />
-      {(numberOfRooms === "أخرى" || numberOfRooms === "Others") && (
+      {(numberOfRooms === "أخرى" || numberOfRooms === "Other") && (
         <input
           placeholder={t("otherNumberOfRooms")}
           onChange={(e) => setTheRooms(e.target.value)}

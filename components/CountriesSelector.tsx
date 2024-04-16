@@ -21,7 +21,7 @@ const CountriesSelector = (props: Props) => {
           name="categories"
           id="categories"
           onChange={props.handleCountrySelected}
-          className={`bg-primary rounded-md px-2 mt-20 text-white`}
+          className={`bg-primary rounded-md px-2 mt-20 text-white w-full`}
         >
           <option value="" selected disabled hidden>
             {props.selectedCountry ? props.selectedCountry : t("chooseCountry")}
@@ -41,7 +41,7 @@ const CountriesSelector = (props: Props) => {
           name="categories"
           id="categories"
           onChange={props.handleCountrySelected}
-          className={`bg-primary rounded-md px-2 mt-10 text-white`}
+          className={`bg-primary rounded-md px-2 mt-10 text-white w-full`}
         >
           <option value="" selected disabled hidden>
             {props.selectedCountry ? props.selectedCountry : t("chooseCountry")}
