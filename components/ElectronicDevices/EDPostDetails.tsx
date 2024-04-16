@@ -22,7 +22,10 @@ const EDPostDetails = ({ post }: Props) => {
   const isArabic = locale === "ar";
 
   return (
-    <div className={`flex flex-col gap-2 mt-3 overflow-x-auto`}>
+    <div
+      className={`flex flex-col gap-2 p-3 overflow-x-auto bg-[#f9fafb] rounded-3xl`}
+    >
+      {" "}
       {/* Post title */}
       <p
         className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
@@ -35,7 +38,6 @@ const EDPostDetails = ({ post }: Props) => {
         </span>
         {`${post.deviceType}/${post.deviceBrand}`}
       </p>
-
       {/* Price range */}
       <p
         className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
@@ -47,7 +49,6 @@ const EDPostDetails = ({ post }: Props) => {
         </span>{" "}
         {post?.priceRange[0]} - {post?.priceRange[1]} {t("sar")}
       </p>
-
       {/* Device condition */}
       <p
         className={`btn2 bg-white/50 text-secondary flex flex-row items-center justify-between gap-1 w-fit`}
@@ -61,7 +62,6 @@ const EDPostDetails = ({ post }: Props) => {
         {post?.deviceCondition[1] && ` - ${post?.deviceCondition[1]}`}{" "}
         {post?.deviceCondition[2] && ` - ${post?.deviceCondition[2]}`}
       </p>
-
       {/* Device OS */}
       <p
         className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
@@ -73,7 +73,6 @@ const EDPostDetails = ({ post }: Props) => {
         </span>{" "}
         {post.deviceOS}
       </p>
-
       {/* Device strorage */}
       <p
         className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
@@ -85,7 +84,6 @@ const EDPostDetails = ({ post }: Props) => {
         </span>{" "}
         {post.deviceStorage}
       </p>
-
       {/* Address */}
       <p
         className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}

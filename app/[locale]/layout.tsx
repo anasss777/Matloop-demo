@@ -29,10 +29,12 @@ export default function RootLayout({ children, params }: RootLayoutProps) {
     <html lang={locale}>
       <Head />
 
-      <body className={`${cairo.className} bg-gray-50`}>
+      <body
+        className={`${cairo.className} bg-gray-50 flex flex-col min-h-screen`}
+      >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
-          {children}
+          <main className="flex-grow">{children}</main>
           <Footer />
         </NextIntlClientProvider>
       </body>

@@ -15,7 +15,9 @@ const RSPostDetails = ({ post }: Props) => {
   const isArabic = locale === "ar";
 
   return (
-    <div className={`flex flex-col gap-2 mt-3 overflow-x-auto`}>
+    <div
+      className={`flex flex-col gap-2 p-3 overflow-x-auto bg-[#f9fafb] rounded-3xl`}
+    >
       {/* Property and ownership Type */}
       <p
         className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}

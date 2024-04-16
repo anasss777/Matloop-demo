@@ -17,7 +17,7 @@ const CategoryCard = ({ categoryName, imgSrc, pageHref }: Props) => {
     <div className="w-full group">
       <Link href={pageHref}>
         <button
-          className={`w-full h-32 rounded-xl p-[2px] relative overflow-hidden shadow-Card2 bg-gradient-to-tl from-primary via-transparent
+          className={`w-full h-32 rounded-xl p-0.5 relative overflow-hidden shadow-Card2 bg-gradient-to-tl from-primary via-transparent
         to-secondary group-hover:scale-[1.02] transition-all duration-300 ease-linear`}
         >
           <Image

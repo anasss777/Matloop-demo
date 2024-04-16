@@ -15,16 +15,6 @@ const CategorySelector = () => {
     <div className={`flex flex-wrap justify-center gap-3 my-5`}>
       <Link
         locale={locale}
-        href="/new-matloop/car"
-        className={`btn2 shadow-sm text-primary sm:text-xl text-lg font-bold bg-primary/20 ${
-          currentPage.includes(`/${locale}/new-matloop/car`) &&
-          `chosen-btn text-white`
-        }`}
-      >
-        {t("cars")}
-      </Link>
-      <Link
-        locale={locale}
         href="/new-matloop/job"
         className={`btn2 shadow-sm text-primary sm:text-xl text-lg font-bold bg-primary/20 ${
           currentPage.includes(`/${locale}/new-matloop/job`) &&
@@ -32,6 +22,16 @@ const CategorySelector = () => {
         }`}
       >
         {t("jobs")}
+      </Link>
+      <Link
+        locale={locale}
+        href="/new-matloop/car"
+        className={`btn2 shadow-sm text-primary sm:text-xl text-lg font-bold bg-primary/20 ${
+          currentPage.includes(`/${locale}/new-matloop/car`) &&
+          `chosen-btn text-white`
+        }`}
+      >
+        {t("cars")}
       </Link>
       <Link
         locale={locale}

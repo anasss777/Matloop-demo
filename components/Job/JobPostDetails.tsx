@@ -17,7 +17,10 @@ const JobPostDetails = ({ post }: Props) => {
   const t = useTranslations("jobPostCard");
 
   return (
-    <div className={`flex flex-col gap-2 mt-3 overflow-x-auto`}>
+    <div
+      className={`flex flex-col gap-2 p-3 overflow-x-auto bg-[#f9fafb] rounded-3xl`}
+    >
+      {" "}
       {/* Job type */}
       <p
         className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
@@ -32,7 +35,6 @@ const JobPostDetails = ({ post }: Props) => {
         {post.jobType[3] && ` - ${post.jobType[3]}`}
         {post.jobType[4] && ` - ${post.jobType[4]}`}
       </p>
-
       {/* Job location */}
       <p
         className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
@@ -46,7 +48,6 @@ const JobPostDetails = ({ post }: Props) => {
         {post.jobLocation[1] && ` - ${post.jobLocation[1]}`}
         {post.jobLocation[2] && ` - ${post.jobLocation[2]}`}
       </p>
-
       {/* Education Level */}
       <p
         className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
@@ -62,7 +63,6 @@ const JobPostDetails = ({ post }: Props) => {
         {post.educationLevel[3] && ` - ${post.educationLevel[3]}`}
         {post.educationLevel[4] && ` - ${post.educationLevel[4]}`}
       </p>
-
       {/* Salary */}
       <p
         className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
@@ -74,7 +74,6 @@ const JobPostDetails = ({ post }: Props) => {
         </span>{" "}
         {post?.salaryRange[0]} - {post?.salaryRange[1]} {t("sar")}
       </p>
-
       {/* Address */}
       <p
         className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}

@@ -15,7 +15,7 @@ type Props = {
   params: { profile: string };
 };
 
-const Profile = ({ params }: Props) => {
+const ProfilePage = ({ params }: Props) => {
   const id = params.profile;
   const [profile, setProfile] = useState<Profile | null>(null);
   const [carsPosts, setCarsPosts] = useState<CarPost[]>([]);
@@ -233,4 +233,4 @@ const Profile = ({ params }: Props) => {
   );
 };
 
-export default Profile;
+export default ProfilePage;
