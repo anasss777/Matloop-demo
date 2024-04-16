@@ -11,7 +11,7 @@ import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import { DevicePost } from "@/types/post";
 import { svgDevices } from "@/components/svgsPath";
 import EDPostDetails from "@/components/ElectronicDevices/EDPostDetails";
-export const locales = ["ar", "en"];
+const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
 
 type Props = {

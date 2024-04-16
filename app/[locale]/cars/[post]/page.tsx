@@ -11,7 +11,7 @@ import LoadingPosts from "@/components/LoadingPosts";
 import Image from "next/image";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import PostDetails from "@/components/PostDetails";
-export const locales = ["ar", "en"];
+const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
 
 type Props = {

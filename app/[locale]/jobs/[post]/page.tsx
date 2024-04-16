@@ -11,7 +11,7 @@ import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import { JobPost } from "@/types/post";
 import { svgJob } from "@/components/svgsPath";
 import JobPostDetails from "@/components/Job/JobPostDetails";
-export const locales = ["ar", "en"];
+const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
 
 type Props = {

@@ -11,7 +11,7 @@ import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import { RealEstatePost } from "@/types/post";
 import { svgProperty } from "@/components/svgsPath";
 import RSPostDetails from "@/components/RealEstate/RSPostDetails";
-export const locales = ["ar", "en"];
+const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
 
 type Props = {
