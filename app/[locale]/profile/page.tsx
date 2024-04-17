@@ -189,7 +189,7 @@ const Profile: React.FC = () => {
             alt="Poster profile image"
             height={400}
             width={400}
-            className="object-scale-down h-24 w-24 rounded-full shadow-lg"
+            className="object-scale-down h-20 w-20 rounded-full shadow-lg"
           />
         ) : (
           <span>{svgBigUser}</span>

@@ -4,12 +4,16 @@ import React, { useEffect, useState } from "react";
 import { JobPost } from "@/types/post";
 import firebase from "@/firebase";
 import JobPostCard from "../Job/JobPostCard";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import LoadingPosts from "../LoadingPosts";
+import { createSharedPathnamesNavigation } from "next-intl/navigation";
+export const locales = ["ar", "en"];
+const { Link } = createSharedPathnamesNavigation({ locales });
 
 const JobsDeals = () => {
   const t = useTranslations("latestDeals");
   const [jobPosts, setJobPosts] = useState<JobPost[]>([]);
+  const locale = useLocale();
 
   useEffect(() => {
     const unsubscribe = firebase
@@ -64,11 +68,15 @@ const JobsDeals = () => {
           ))}
       </div>
 
-      <p
-        className={`btn2 bg-secondary text-lg flex justify-center items-center mx-auto`}
-      >
-        {t("showMore")}
-      </p>
+      {jobPosts.length > 4 && (
+        <Link
+          href="/cars"
+          locale={locale}
+          className={`btn2 bg-secondary text-lg flex justify-center items-center mx-auto`}
+        >
+          {t("showMore")}
+        </Link>
+      )}
     </div>
   );
 };

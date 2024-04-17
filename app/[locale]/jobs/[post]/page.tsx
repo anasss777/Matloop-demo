@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
 import { useLocale, useTranslations } from "next-intl";
 import firebase from "@/firebase";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -11,6 +10,7 @@ import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import { JobPost } from "@/types/post";
 import { svgBigUser, svgJob } from "@/components/svgsPath";
 import JobPostDetails from "@/components/Job/JobPostDetails";
+import JobPostComments from "@/components/Job/JobPostComments";
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
 
@@ -29,26 +29,29 @@ const Post = ({ params }: Props) => {
   const isArabic = locale === "ar";
 
   useEffect(() => {
-    async function fetchPost() {
-      if (id && typeof id === "string") {
-        const db = firebase.firestore();
+    const unsubscribe = firebase
+      .firestore()
+      .collection("jobsPosts")
+      .onSnapshot((snapshot) => {
+        const newPosts: JobPost[] = []; // Create a new array to hold updated posts
+        snapshot.forEach((doc) => {
+          newPosts.push({
+            postId: doc.id,
+            ...doc.data(),
+          } as JobPost);
+        });
 
-        const docRef = doc(db, "jobsPosts", id);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          setPost(docSnap.data() as JobPost);
+        // Set a post based on postId
+        const postId = id; // Replace with your postId
+        const post = newPosts.find((post) => post.postId === postId);
+        if (post) {
+          setPost(post);
           setLoading(false);
-          return; // Exit the loop once the document is found
         }
+      });
 
-        // If no document was found in any collection
-        console.error("No such document!");
-        setLoading(false);
-      }
-    }
-
-    fetchPost();
+    // Unsubscribe from Firestore listener when component unmounts
+    return () => unsubscribe();
   }, [id]);
 
   if (loading) {
@@ -97,7 +100,7 @@ const Post = ({ params }: Props) => {
               alt="Poster profile image"
               height={400}
               width={400}
-              className="object-scale-down h-12 w-12 rounded-full shadow-lg"
+              className="object-scale-down h-20 w-20 rounded-full shadow-lg"
             />
           </Link>
         ) : (
@@ -109,18 +112,34 @@ const Post = ({ params }: Props) => {
         <p className={`text-secondary font-bold`}>{post.postTitle}</p>
       </div>
 
-      {/* Post details and description */}
+      {/* Post details and (description and comment) */}
       <div
-        className={`flex md:flex-row flex-col gap-3 mt-10 justify-between w-full ${
+        className={`flex md:flex-row flex-col-reverse gap-20 mt-10 justify-between w-full ${
           isArabic ? "rtl" : "ltr"
         }`}
       >
-        <p className={`text-lg mt-6`}>{post.description}</p>
-        <div
-          className={`shadow-Card2 p-0.5 relative overflow-hidden rounded-3xl bg-gradient-to-tl from-primary via-transparent
+        {/* First half: Description and comments */}
+        <div className={`flex flex-col md:w-2/3`}>
+          <p className={`text-lg mt-6 min-h-96 ${isArabic ? "mr-4" : "ml-4"}`}>
+            {post.description}
+          </p>
+
+          <div className={`flex flex-col w-full`}>
+            <p className={`text-secondary font-bold text-2xl mb-6`}>
+              {t("comments")}
+            </p>
+            <JobPostComments post={post} />
+          </div>
+        </div>
+
+        {/* Second half: Post details */}
+        <div className={`flex flex-col md:w-1/3`}>
+          <div
+            className={`shadow-Card2 p-0.5 md:sticky md:top-14 overflow-hidden rounded-3xl bg-gradient-to-tl from-primary via-transparent
           to-secondary`}
-        >
-          <JobPostDetails post={post} />
+          >
+            <JobPostDetails post={post} />
+          </div>
         </div>
       </div>
     </div>

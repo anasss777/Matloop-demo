@@ -362,7 +362,8 @@
         "cars": "Cars",
         "devices": "Electronics",
         "jobs": "Jobs",
-        "realEstate": "Real Estate"
+        "realEstate": "Real Estate",
+        "comments": "Comments"
     },
     "changePasswordPage": {
         "currentPassword": "Current Password",

@@ -362,7 +362,8 @@
         "cars": "سيارات",
         "devices": "أجهزة إلكترونية",
         "jobs": "وظائف",
-        "realEstate": "عقارات"
+        "realEstate": "عقارات",
+        "comments": "التعليقات"
     },
     "changePasswordPage": {
         "currentPassword": "كلمةالمرور الحالية",
