@@ -5,7 +5,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { useLocale, useTranslations } from "next-intl";
 import firebase from "@/firebase";
 import { CarPost } from "@/types/post";
-import { svgCar } from "@/components/svgsPath";
+import { svgBigUser, svgCar } from "@/components/svgsPath";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import LoadingPosts from "@/components/LoadingPosts";
 import Image from "next/image";
@@ -102,13 +102,7 @@ const Post = ({ params }: Props) => {
           </Link>
         ) : (
           <Link href={`/${post.poster.userId}`} locale={locale}>
-            <Image
-              src="/images/profile.png"
-              alt="Poster profile image"
-              height={400}
-              width={400}
-              className="object-scale-down h-12 w-12"
-            />
+            <span>{svgBigUser}</span>
           </Link>
         )}
 

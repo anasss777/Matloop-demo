@@ -43,7 +43,10 @@
     },
     "accountHeader": {
         "signIn": "تسجيل الدخول",
-        "signUp": "إنشاء حساب"
+        "signUp": "إنشاء حساب",
+        "profile": "حسابي",
+        "changePassword": "تغيير كلمة المرور",
+        "signout": "تسجيل الخروج"
     },
     "signUp": {
         "firstName": "الإسم الأول",
@@ -58,7 +61,11 @@
         "signIn": "تسجيل الدخول",
         "notRegistered": "إنشاء حساب جديد",
         "signUpWithGoogle": "إنشاء حساب بإستخدام قوقل",
-        "signInWithGoogle": "تسجيل الدخول بإستخدام قوقل"
+        "signInWithGoogle": "تسجيل الدخول بإستخدام قوقل",
+        "alreadyMember": "لديك حساب؟ ",
+        "signin": "قم بتسجيل الدخول",
+        "notMember": "ليس لديك حساب؟ ",
+        "signup": "قم بإنشاء حساب"
     },
     "newPost": {
         "postTitle": "ضع عنواناً لمطلوبك",
@@ -307,7 +314,10 @@
     "profile": {
         "name": "الاسم: ",
         "email": "البريد الإلكتروني: ",
-        "username": "إسم المستخدم: "
+        "username": "إسم المستخدم: ",
+        "noUser": "لا يوجد مستخدم",
+        "SignUp": "إنشاء حساب",
+        "SignIn": "تسجيل الدخول"
     },
     "carsPage": {
         "wantedCars": "السيارات المطلوبة: ",
@@ -334,7 +344,8 @@
         "carsDeals": "السيارات",
         "jobsDeals": "الوظائف",
         "devicesDeals": "الأجهزة الإلكترونية",
-        "realEstateDeals": "العقارات"
+        "realEstateDeals": "العقارات",
+        "showMore": "رؤية المزيد"
     },
     "newMatloop": {
         "newMatloop": "إضافة مطلوب",
@@ -352,5 +363,14 @@
         "devices": "أجهزة إلكترونية",
         "jobs": "وظائف",
         "realEstate": "عقارات"
+    },
+    "changePasswordPage": {
+        "currentPassword": "كلمةالمرور الحالية",
+        "newPassword": "كلمة المرور الجديدة",
+        "changePassword": "تغيير كلمة المرور",
+        "email":"البريد الإلكتروني: ",
+        "errorMessage": "تأكد من صحة كلمة المرور الحالية",
+        "success": "تم تغيير كلمة المرور بنجاح",
+        "ok": "حسناً"
     }
 }

@@ -4,13 +4,14 @@ import React, { useEffect, useState } from "react";
 import firebase from "@/firebase";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { handleSignOut } from "@/utils/auth";
 import Image from "next/image";
 import { CarPost, DevicePost, JobPost, RealEstatePost } from "@/types/post";
 import PostCard from "@/components/PostCard";
 import EDPostCard from "@/components/ElectronicDevices/EDPostCard";
 import RSPostCard from "@/components/RealEstate/RSPostCard";
 import JobPostCard from "@/components/Job/JobPostCard";
+import LoadingPosts from "@/components/LoadingPosts";
+import { svgBigUser } from "@/components/svgsPath";
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
 
@@ -147,30 +148,30 @@ const Profile: React.FC = () => {
 
   if (!user) {
     return (
-      <p
-        className={`flex flex-col gap-5 justify-center items-center w-full h-screen`}
+      <div
+        className={`flex flex-col gap-5 justify-center items-center w-full h-[50vh]`}
       >
-        No user is signed in{" "}
+        <p className={`text-secondary font-bold text-xl`}>{t("noUser")}</p>
         <Link
           href="/sign-up"
           locale={locale}
           className={`btn2 bg-primary hover:bg-primary/50`}
         >
-          Sign up
+          {t("SignUp")}
         </Link>
         <Link
           href="/sign-in"
           locale={locale}
           className={`btn2 bg-primary hover:bg-primary/50`}
         >
-          Sign in
+          {t("SignIn")}
         </Link>
-      </p>
+      </div>
     );
   }
 
   if (!userData) {
-    return <p>Loading...</p>;
+    return <LoadingPosts />;
   }
 
   return (
@@ -180,7 +181,7 @@ const Profile: React.FC = () => {
       }`}
     >
       <div
-        className={`flex flex-col w-fit h-fit justify-center items-center shadow-lg p-5 rounded-lg bg-secondary/20`}
+        className={`flex flex-col w-fit h-fit justify-center items-center mb-20`}
       >
         {userData.profileImageSrc ? (
           <Image
@@ -191,13 +192,7 @@ const Profile: React.FC = () => {
             className="object-scale-down h-24 w-24 rounded-full shadow-lg"
           />
         ) : (
-          <Image
-            src="/images/profile.png"
-            alt="Poster profile image"
-            height={400}
-            width={400}
-            className="object-scale-down h-24 w-24"
-          />
+          <span>{svgBigUser}</span>
         )}
 
         <p>
@@ -225,7 +220,7 @@ const Profile: React.FC = () => {
         {[...carsPosts, ...devicesPosts, ...realEstatePosts, ...jobPosts]
           ?.sort((a, b) => b.createdAt?.seconds - a.createdAt?.seconds)
           .map((post, index) => (
-            <div key={index}>
+            <div key={index} className={`w-full`}>
               {post.category === "cars" ? (
                 <PostCard
                   posterName={post.poster?.name}

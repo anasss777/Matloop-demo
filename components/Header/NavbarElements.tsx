@@ -3,12 +3,8 @@
 import React, { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import MobileLocale from "../Header/MobileLocale";
-import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import MenuWithSubmenu from "./MenuWithSubmenu";
 import Menu from "./Menu";
-
-export const locales = ["ar", "en"];
-const { Link } = createSharedPathnamesNavigation({ locales });
 
 const NavbarElements = () => {
   const t = useTranslations("nav");

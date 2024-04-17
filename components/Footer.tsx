@@ -1,5 +1,7 @@
 import { useLocale, useTranslations } from "next-intl";
-import Link from "next/link";
+import { createSharedPathnamesNavigation } from "next-intl/navigation";
+const locales = ["ar", "en"];
+const { Link } = createSharedPathnamesNavigation({ locales });
 import React from "react";
 
 const Footer = () => {
@@ -48,6 +50,7 @@ const Footer = () => {
         <Link
           href="https://portfolio-anasss777.vercel.app/"
           target="_blank"
+          locale={locale}
           className={`text-teal-700 font-normal`}
         >
           &nbsp;Anas Chammam&nbsp;

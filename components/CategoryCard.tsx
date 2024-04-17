@@ -1,6 +1,8 @@
 import { useLocale } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
+import { createSharedPathnamesNavigation } from "next-intl/navigation";
+const locales = ["ar", "en"];
+const { Link } = createSharedPathnamesNavigation({ locales });
 import React from "react";
 
 type Props = {
@@ -15,7 +17,7 @@ const CategoryCard = ({ categoryName, imgSrc, pageHref }: Props) => {
 
   return (
     <div className="w-full group">
-      <Link href={pageHref}>
+      <Link locale={locale} href={pageHref}>
         <button
           className={`w-full h-32 rounded-xl p-0.5 relative overflow-hidden shadow-Card2 bg-gradient-to-tl from-primary via-transparent
         to-secondary group-hover:scale-[1.02] transition-all duration-300 ease-linear`}

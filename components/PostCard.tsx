@@ -4,7 +4,7 @@ import Image from "next/image";
 import { CarPost } from "@/types/post";
 import { useLocale, useTranslations } from "next-intl";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
-import { svgAddress, svgClock } from "./svgsPath";
+import { svgAddress, svgClock, svgUser } from "./svgsPath";
 import TimeAgo from "./TimeAgo";
 import PostDetails from "./PostDetails";
 import PostMenu from "./PostMenu";
@@ -44,13 +44,7 @@ const PostCard = (props: Props) => {
                 className="object-scale-down h-10 w-10 rounded-full shadow-lg"
               />
             ) : (
-              <Image
-                src="/images/profile.png"
-                alt="Poster profile image"
-                height={400}
-                width={400}
-                className="object-scale-down h-10 w-10"
-              />
+              <span>{svgUser}</span>
             )}
 
             {/* Poster name and posting time */}

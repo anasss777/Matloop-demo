@@ -9,7 +9,7 @@ import LoadingPosts from "@/components/LoadingPosts";
 import Image from "next/image";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import { DevicePost } from "@/types/post";
-import { svgDevices } from "@/components/svgsPath";
+import { svgBigUser, svgDevices } from "@/components/svgsPath";
 import EDPostDetails from "@/components/ElectronicDevices/EDPostDetails";
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
@@ -102,13 +102,7 @@ const Post = ({ params }: Props) => {
           </Link>
         ) : (
           <Link href={`/${post.poster.userId}`} locale={locale}>
-            <Image
-              src="/images/profile.png"
-              alt="Poster profile image"
-              height={400}
-              width={400}
-              className="object-scale-down h-12 w-12"
-            />
+            <span>{svgBigUser}</span>
           </Link>
         )}
 

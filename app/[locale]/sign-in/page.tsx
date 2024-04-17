@@ -6,6 +6,10 @@ import { handleSignIn, handleSignUpWithGoogle } from "@/utils/auth";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useEffect, useState } from "react";
+import { createSharedPathnamesNavigation } from "next-intl/navigation";
+
+const locales = ["ar", "en"];
+const { Link } = createSharedPathnamesNavigation({ locales });
 
 const SignIn = () => {
   const t = useTranslations("signUp");
@@ -93,7 +97,7 @@ const SignIn = () => {
             isArabic && "rtl"
           }`}
         />
-        <button type="submit" className={`btn`}>
+        <button type="submit" className={`btn2 bg-secondary`}>
           {t("signIn")}
         </button>
         <div className={`border-t border-t-primary/60 w-full`}></div>
@@ -106,6 +110,17 @@ const SignIn = () => {
           </span>
           {t("signInWithGoogle")}
         </div>
+
+        <p className="font-medium text-secondary">
+          {t("notMember")}
+          <Link
+            locale={locale}
+            href="/sign-up"
+            className="text-primary font-bold hover:underline"
+          >
+            {t("signup")}
+          </Link>
+        </p>
       </form>
     </div>
   );

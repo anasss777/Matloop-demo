@@ -171,14 +171,13 @@ export const handleSignInWithGoogle = async () => {
   }
 };
 
-export const handleSignOut = () => {
-  firebase
-    .auth()
-    .signOut()
-    .then(() => {
-      console.log("User signed out.");
-    })
-    .catch((error) => {
-      console.error("Error signing out: ", error);
-    });
+export const handleSignOut = async () => {
+  try {
+    await firebase.auth().signOut();
+    console.log("User signed out.");
+    return true;
+  } catch (error) {
+    console.error("Error signing out: ", error);
+    return false;
+  }
 };

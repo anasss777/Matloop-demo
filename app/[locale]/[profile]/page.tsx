@@ -10,6 +10,8 @@ import { useLocale, useTranslations } from "next-intl";
 import EDPostCard from "@/components/ElectronicDevices/EDPostCard";
 import RSPostCard from "@/components/RealEstate/RSPostCard";
 import JobPostCard from "@/components/Job/JobPostCard";
+import LoadingPosts from "@/components/LoadingPosts";
+import { svgBigUser } from "@/components/svgsPath";
 
 type Props = {
   params: { profile: string };
@@ -143,7 +145,7 @@ const ProfilePage = ({ params }: Props) => {
   }, [profile]);
 
   if (!profile) {
-    return <div>Loading...</div>;
+    return <LoadingPosts />;
   }
 
   return (
@@ -153,7 +155,7 @@ const ProfilePage = ({ params }: Props) => {
       }`}
     >
       <div
-        className={`flex flex-col w-fit h-fit justify-center items-center shadow-lg p-5 rounded-lg bg-secondary/20`}
+        className={`flex flex-col w-fit h-fit justify-center items-center mb-20`}
       >
         {profile.profileImageSrc ? (
           <Image
@@ -164,13 +166,7 @@ const ProfilePage = ({ params }: Props) => {
             className="object-scale-down h-24 w-24 rounded-full shadow-lg"
           />
         ) : (
-          <Image
-            src="/images/profile.png"
-            alt="Poster profile image"
-            height={400}
-            width={400}
-            className="object-scale-down h-24 w-24"
-          />
+          <span>{svgBigUser}</span>
         )}
 
         <p>
@@ -198,7 +194,7 @@ const ProfilePage = ({ params }: Props) => {
         {[...carsPosts, ...devicesPosts, ...realEstatePosts, ...jobPosts]
           ?.sort((a, b) => b.createdAt?.seconds - a.createdAt?.seconds)
           .map((post, index) => (
-            <div key={index}>
+            <div key={index} className={`w-full`}>
               {post.category === "cars" ? (
                 <PostCard
                   posterName={post.poster?.name}

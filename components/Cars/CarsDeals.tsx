@@ -53,6 +53,7 @@ const CarsDeals = () => {
       >
         {carsPosts
           ?.sort((a, b) => b.createdAt?.seconds - a.createdAt?.seconds)
+          .slice(0, 4)
           .map((post, index) => (
             <PostCard
               key={index}
@@ -62,6 +63,12 @@ const CarsDeals = () => {
             />
           ))}
       </div>
+
+      <p
+        className={`btn2 bg-secondary text-lg flex justify-center items-center mx-auto`}
+      >
+        {t("showMore")}
+      </p>
     </div>
   );
 };

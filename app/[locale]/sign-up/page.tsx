@@ -4,9 +4,12 @@ import React, { FormEvent, useEffect, useState } from "react";
 import firebase from "@/firebase";
 import { useRouter } from "next/navigation";
 import { handleSignUp, handleSignUpWithGoogle } from "@/utils/auth";
-import { Profile } from "@/types/profile";
 import { useLocale, useTranslations } from "next-intl";
 import { svgGoogle } from "@/components/svgsPath";
+import { createSharedPathnamesNavigation } from "next-intl/navigation";
+
+const locales = ["ar", "en"];
+const { Link } = createSharedPathnamesNavigation({ locales });
 
 const SignUp = () => {
   const t = useTranslations("signUp");
@@ -160,10 +163,9 @@ const SignUp = () => {
             isArabic && "rtl"
           }`}
         />
-        <button type="submit" className={`btn`}>
+        <button type="submit" className={`btn2 bg-secondary`}>
           {t("signUp")}
         </button>
-        <div className={`border-t border-t-primary/60 w-full`}></div>
         <div
           onClick={handleSubmitWithGoogle}
           className={`btn2 bg-primary cursor-pointer flex flex-row gap-1 items-center`}
@@ -173,6 +175,19 @@ const SignUp = () => {
           </span>
           {t("signUpWithGoogle")}
         </div>
+
+        <div className={`border-t border-t-primary/60 w-full`}></div>
+
+        <p className="font-medium text-secondary">
+          {t("alreadyMember")}
+          <Link
+            locale={locale}
+            href="/sign-in"
+            className="text-primary font-bold hover:underline"
+          >
+            {t("signin")}
+          </Link>
+        </p>
       </form>
     </div>
   );

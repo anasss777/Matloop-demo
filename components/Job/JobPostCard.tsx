@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import { JobPost } from "@/types/post";
-import { svgAddress, svgClock } from "../svgsPath";
+import { svgAddress, svgClock, svgUser } from "../svgsPath";
 import TimeAgo from "../TimeAgo";
 import JobPostMenu from "./JobPostMenu";
 import JobPostDetails from "./JobPostDetails";
@@ -29,9 +29,7 @@ const JobPostCard = (props: Props) => {
       className={`flex flex-col w-full h-fit py-5 ${isArabic ? "rtl" : "ltr"}`}
     >
       {/* The post section */}
-      <Link
-        href={props.post?.postId}
-        locale={locale}
+      <div
         className={`w-full h-fit md:h-[250px] py-2 px-3 rounded-md bg-secondary/30 border border-secondary flex flex-col justify-between
         shadow-Card2 gap-1`}
       >
@@ -46,13 +44,7 @@ const JobPostCard = (props: Props) => {
                 className="object-scale-down h-10 w-10 rounded-full shadow-lg"
               />
             ) : (
-              <Image
-                src="/images/profile.png"
-                alt="Poster profile image"
-                height={400}
-                width={400}
-                className="object-scale-down h-10 w-10"
-              />
+              <span>{svgUser}</span>
             )}
 
             {/* Poster name and posting time */}
@@ -118,7 +110,7 @@ const JobPostCard = (props: Props) => {
 
         {/* Comments section */}
         {/* <JobCommentCard post={props.post} /> */}
-      </Link>
+      </div>
     </div>
   );
 };

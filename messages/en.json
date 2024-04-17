@@ -43,7 +43,10 @@
     },
     "accountHeader": {
         "signIn": "Sign In",
-        "signUp": "Sign Up"
+        "signUp": "Sign Up",
+        "profile": "Profile",
+        "changePassword": "Change Password",
+        "signout": "Sign Out"
     },
     "signUp": {
         "firstName": "First Name",
@@ -58,7 +61,11 @@
         "signIn": "Sign In",
         "notRegistered": "Not registered yet?",
         "signUpWithGoogle": "Sign Up with Google",
-        "signInWithGoogle": "Sign In with Google"
+        "signInWithGoogle": "Sign In with Google",
+        "alreadyMember": "Already a Member? ",
+        "signin": "Sign In",
+        "notMember": "Not a Member? ",
+        "signup": "Sign Up"
     },
     "newPost": {
         "postTitle": "Enter a title for your request",
@@ -307,7 +314,10 @@
     "profile": {
         "name": "Name: ",
         "email": "Email: ",
-        "username": "Username: "
+        "username": "Username: ",
+        "noUser": "No User!",
+        "SignUp": "Sign Up",
+        "SignIn": "Sign In"
     },
     "carsPage": {
         "wantedCars": "Cars Posts: ",
@@ -330,7 +340,12 @@
         "result": "Search results for: "
     },
     "latestDeals": {
-        "latestDeals": "Latest Deals"
+        "latestDeals": "Latest Deals",
+        "carsDeals": "Cars",
+        "jobsDeals": "Jobs",
+        "devicesDeals": "Electronics",
+        "realEstateDeals": "Real Estate",
+        "showMore": "Show more"
     },
     "newMatloop": {
         "newMatloop": "Add a Post",
@@ -341,5 +356,21 @@
         "title3": "Publish Post",
         "description3": "After verifying that all details are correct and complete, publish your needed item so that users can view and interact with it.",
         "addnewMatloop": "Add a Post"
+    },
+    "singlePost": {
+        "home": "Home",
+        "cars": "Cars",
+        "devices": "Electronics",
+        "jobs": "Jobs",
+        "realEstate": "Real Estate"
+    },
+    "changePasswordPage": {
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "changePassword": "Change Password",
+        "email":"Email: ",
+        "errorMessage": "Make sure the current password is correct",
+        "success": "Password changed successfully!",
+        "ok": "Ok"
     }
 }
