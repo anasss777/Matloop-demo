@@ -292,10 +292,12 @@ export const addComment = async (
             let imageUrls = [];
             if (uploadedImages) {
               for (let i = 0; i < uploadedImages.length; i++) {
+                let timestamp = new Date().getTime();
+                let fileName = `${timestamp}_${uploadedImages[i].name}`;
                 let imageRef = firebase
                   .storage()
                   .ref()
-                  .child(`images/${uploadedImages[i].name}`);
+                  .child(`images/${fileName}`);
                 await imageRef.put(uploadedImages[i]);
                 let url = await imageRef.getDownloadURL();
                 imageUrls.push(url);
@@ -306,10 +308,12 @@ export const addComment = async (
             let fileUrls = [];
             if (uploadedFiles) {
               for (let i = 0; i < uploadedFiles.length; i++) {
+                let timestamp = new Date().getTime();
+                let fileName = `${timestamp}_${uploadedFiles[i].name}`;
                 let fileRef = firebase
                   .storage()
                   .ref()
-                  .child(`files/${uploadedFiles[i].name}`);
+                  .child(`files/${fileName}`);
                 await fileRef.put(uploadedFiles[i]);
                 let url = await fileRef.getDownloadURL();
                 fileUrls.push(url);

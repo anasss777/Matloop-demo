@@ -42,22 +42,12 @@ const EditCommentImages = ({ comment }: Props) => {
 
         if (files) {
           for (let i = 0; i < files.length; i++) {
-            let imageName = files[i].name;
+            let timestamp = new Date().getTime();
+            let imageName = `${timestamp}_${files[i].name}`;
             let imageRef = firebase
               .storage()
               .ref()
               .child(`images/${imageName}`);
-
-            // Check if the file already exists
-            try {
-              await imageRef.getMetadata();
-              // If the file exists, create a new name
-              let timestamp = new Date().getTime();
-              imageName = `${timestamp}_${imageName}`;
-              imageRef = firebase.storage().ref().child(`images/${imageName}`);
-            } catch (error) {
-              // File does not exist, continue with the original name
-            }
 
             await imageRef.put(files[i]);
             let url = await imageRef.getDownloadURL();
