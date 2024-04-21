@@ -80,12 +80,13 @@ const Profile: React.FC = () => {
     if (userData) {
       const fetchPosts = async () => {
         // Use Promise.all to fetch all posts concurrently
-        const postsPromises = userData?.electronicDevicesPosts?.map(
-          (id: string) =>
-            firebase.firestore().collection("electronicDevices").doc(id).get()
-        );
+        const postsPromises = userData?.electronicDevicesPosts
+          ? userData?.electronicDevicesPosts?.map((id: string) =>
+              firebase.firestore().collection("electronicDevices").doc(id).get()
+            )
+          : [];
 
-        const postsSnapshots = await Promise?.all(postsPromises);
+        const postsSnapshots = await Promise.all(postsPromises);
 
         const PostsData: DevicePost[] = postsSnapshots?.map(
           (doc) =>
@@ -104,11 +105,13 @@ const Profile: React.FC = () => {
     if (userData) {
       const fetchPosts = async () => {
         // Use Promise.all to fetch all posts concurrently
-        const postsPromises = userData?.realEstatePosts?.map((id: string) =>
-          firebase.firestore().collection("realEstatePosts").doc(id).get()
-        );
+        const postsPromises = userData?.realEstatePosts
+          ? userData?.realEstatePosts?.map((id: string) =>
+              firebase.firestore().collection("realEstatePosts").doc(id).get()
+            )
+          : [];
 
-        const postsSnapshots = await Promise?.all(postsPromises);
+        const postsSnapshots = await Promise.all(postsPromises);
 
         const PostsData: RealEstatePost[] = postsSnapshots?.map(
           (doc) =>
@@ -127,11 +130,13 @@ const Profile: React.FC = () => {
     if (userData) {
       const fetchPosts = async () => {
         // Use Promise.all to fetch all posts concurrently
-        const postsPromises = userData?.jobsPosts?.map((id: string) =>
-          firebase.firestore().collection("jobsPosts").doc(id).get()
-        );
+        const postsPromises = userData?.jobsPosts
+          ? userData?.jobsPosts?.map((id: string) =>
+              firebase.firestore().collection("jobsPosts").doc(id).get()
+            )
+          : [];
 
-        const postsSnapshots = await Promise?.all(postsPromises);
+        const postsSnapshots = await Promise.all(postsPromises);
 
         const PostsData: JobPost[] = postsSnapshots?.map(
           (doc) =>

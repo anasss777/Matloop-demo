@@ -21,7 +21,7 @@ const CountriesSelector = (props: Props) => {
           name="categories"
           id="categories"
           onChange={props.handleCountrySelected}
-          className={`bg-primary rounded-md px-2 mt-20 text-white w-full`}
+          className={`bg-primary rounded-md px-2 mt-10 text-white w-full`}
         >
           <option value="" selected disabled hidden>
             {props.selectedCountry ? props.selectedCountry : t("chooseCountry")}
@@ -66,7 +66,7 @@ const CountriesSelector = (props: Props) => {
           type="text"
           value={props.city}
           onChange={(e) => props.setCity(e.target.value)}
-          className={`border border-secondary/70 px-2 py-1 rounded-md ${
+          className={`border border-secondary/70 px-2 py-1 rounded-md outline-1 outline-secondary ${
             isArabic && "rtl"
           }`}
         />

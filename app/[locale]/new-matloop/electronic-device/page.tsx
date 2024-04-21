@@ -32,8 +32,8 @@ const ElectronicDevice = () => {
   const [deviceBrand, setDeviceBrand] = useState("");
   const [theBrand, setTheBrand] = useState("");
 
-  const [minPrice, setMinPrice] = useState("10000");
-  const [maxPrice, setMaxPrice] = useState("10000");
+  const [minPrice, setMinPrice] = useState("0");
+  const [maxPrice, setMaxPrice] = useState("50000");
 
   const [deviceCondition, setDeviceCondition] = useState<string[]>([]);
 

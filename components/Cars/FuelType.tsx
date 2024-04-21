@@ -18,8 +18,8 @@ const FuelType = ({ handlefuelTypeChecked, fuelType }: Props) => {
   ];
 
   return (
-    <div className={`flex justify-center items-center w-full`}>
-      <div className="flex flex-col">
+    <div>
+      <div className="flex flex-col mt-5">
         {fuelTypes.map((typeOfFuel) => (
           <div key={typeOfFuel} className="flex flex-row gap-1 items-center">
             <input

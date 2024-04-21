@@ -78,10 +78,7 @@ export const addRealEstatePost = ({
                 address: `${selectedCountry}, ${city}`,
                 priceRange: [Number(minPrice), Number(maxPrice)],
                 numberOfRooms,
-                ageRange: [
-                  Number(minAge) || undefined,
-                  Number(maxAge) || undefined,
-                ],
+                ageRange: [Number(minAge) || 0, Number(maxAge) || 0],
                 description,
                 isPromoted: false,
                 category: "realEstates",

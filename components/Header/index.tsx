@@ -59,7 +59,7 @@ const Header = () => {
 
       <div className={`flex flex-row items-center gap-5`}>
         <Account />
-        <LocaleSwitcher />
+        {/* <LocaleSwitcher /> */}
       </div>
     </div>
   );

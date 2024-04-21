@@ -16,7 +16,7 @@ const RentType = ({ handleRentType, rentType }: Props) => {
       <select
         id="embedBrand"
         onChange={handleRentType}
-        className={`bg-secondary rounded-md px-2 text-white shadow-md mt-5`}
+        className={`bg-primary rounded-md px-2 text-white shadow-md mt-5`}
       >
         <option
           className={`text-black bg-white`}

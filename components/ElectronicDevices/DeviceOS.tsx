@@ -16,7 +16,7 @@ const DeviceOS = ({ handleDeviceOS, deviceOS }: Props) => {
       <select
         id="embedBrand"
         onChange={handleDeviceOS}
-        className={`bg-secondary rounded-md px-2 text-white shadow-md`}
+        className={`bg-primary rounded-md px-2 text-white shadow-md w-full`}
       >
         <option
           className={`text-black bg-white`}

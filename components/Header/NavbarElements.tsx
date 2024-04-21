@@ -68,9 +68,9 @@ const NavbarElements = () => {
             <Menu text={a("signUp")} href="/sign-up" />
           </div>
 
-          <div className="lg:hidden w-[90%] border-t border-t-primary mx-auto flex flex-row justify-center items-center">
+          {/* <div className="lg:hidden w-[90%] border-t border-t-primary mx-auto flex flex-row justify-center items-center">
             <MobileLocale />
-          </div>
+          </div> */}
         </ul>
       </nav>
     </div>

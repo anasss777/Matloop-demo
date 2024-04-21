@@ -3,6 +3,8 @@ import { Comment } from "@/types/comment";
 import { CarPost } from "@/types/post";
 import { Profile } from "@/types/profile";
 
+const currentYear = new Date().getFullYear();
+
 type Props = {
   poster: Profile;
   postTitle: string;
@@ -79,8 +81,8 @@ export const addCarPost = ({
                 carType,
                 priceRange: [Number(minPrice), Number(maxPrice)],
                 yearRange: [
-                  Number(minYear) || undefined,
-                  Number(maxYear) || undefined,
+                  Number(minYear) || 1886,
+                  Number(maxYear) || currentYear,
                 ],
                 distanceRange: [Number(minDistance), Number(maxDistance)],
                 gearType,
@@ -152,7 +154,7 @@ export const EditCarPost = async ({
       carBrand,
       carType,
       priceRange: [Number(minPrice), Number(maxPrice)],
-      yearRange: [Number(minYear) || undefined, Number(maxYear) || undefined],
+      yearRange: [Number(minYear) || 1886, Number(maxYear) || currentYear],
       distanceRange: [Number(minDistance), Number(maxDistance)],
       gearType,
       region: `${selectedCountry}, ${city}`,

@@ -16,7 +16,7 @@ const PropertyType = ({ handlePropertyType, propertyType }: Props) => {
       <select
         id="embedBrand"
         onChange={handlePropertyType}
-        className={`bg-secondary rounded-md px-2 text-white shadow-md`}
+        className={`bg-primary w-full rounded-md px-2 text-white shadow-md`}
       >
         <option
           className={`text-black bg-white`}

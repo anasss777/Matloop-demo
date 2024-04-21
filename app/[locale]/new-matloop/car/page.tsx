@@ -65,8 +65,8 @@ const CarPost = () => {
 
   const [carType, setCarType] = useState<string[]>([]);
 
-  const [minPrice, setMinPrice] = useState("100000");
-  const [maxPrice, setMaxPrice] = useState("100000");
+  const [minPrice, setMinPrice] = useState("0");
+  const [maxPrice, setMaxPrice] = useState("5000000");
 
   const currentYear = new Date().getFullYear();
   const [minYear, setMinYear] = useState("1886");
@@ -283,6 +283,7 @@ const CarPost = () => {
         gearType={gearType}
       />
 
+      {/* Fuel type */}
       <h2 className={`text-primary text-lg font-bold mt-20`}>
         {t("fuelType")}
       </h2>

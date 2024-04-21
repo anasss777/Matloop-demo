@@ -10,11 +10,11 @@ const BrandSelector = ({ handleBrandSelected, carBrand }: Props) => {
   const t = useTranslations("newPost");
 
   return (
-    <div>
+    <div className={`w-full`}>
       <select
         id="embedBrand"
         onChange={handleBrandSelected}
-        className={`bg-primary rounded-md px-2 mt-20 text-white`}
+        className={`bg-primary rounded-md px-2 mt-20 text-white lg:w-52 xl:w-60 flex justify-center items-center mx-auto`}
       >
         <option
           className={`text-black bg-white`}

@@ -373,5 +373,17 @@
         "errorMessage": "Make sure the current password is correct",
         "success": "Password changed successfully!",
         "ok": "Ok"
+    },
+    "rangeSlider": {
+        "currency": "Saudi Riyal"
+    },
+    "filterCars": {
+        "filter": "Filters",
+        "price": "Price",
+        "priceRange": "Price Range",
+        "resultShown": "Results",
+        "showAll": "Show All",
+        "done": "Filter",
+        "cancel": "Cancel"
     }
 }

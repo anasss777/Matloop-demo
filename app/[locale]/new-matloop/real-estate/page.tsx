@@ -34,13 +34,13 @@ const RealEstate = () => {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [city, setCity] = useState("");
 
-  const [minPrice, setMinPrice] = useState("100000");
-  const [maxPrice, setMaxPrice] = useState("100000");
+  const [minPrice, setMinPrice] = useState("0");
+  const [maxPrice, setMaxPrice] = useState("5000000");
 
   const [numberOfRooms, setNumberOfRooms] = useState("");
   const [theRooms, setTheRooms] = useState("");
 
-  const [minAge, setMinAge] = useState("100");
+  const [minAge, setMinAge] = useState("0");
   const [maxAge, setMaxAge] = useState("100");
 
   const [description, setDescription] = useState("");

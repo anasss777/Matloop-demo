@@ -10,7 +10,7 @@
         "email": "البريد الإلكتروني",
         "phoneNumber": "رقم الهاتف",
         "address": "الموقع",
-        "theAddress": "123 الشارع, المدينة, الدولة",
+        "theAddress": "الشارع, المدينة, الدولة",
         "developedBy": "تصميم و تطوير"
     },
     "searchBar": {
@@ -373,5 +373,17 @@
         "errorMessage": "تأكد من صحة كلمة المرور الحالية",
         "success": "تم تغيير كلمة المرور بنجاح",
         "ok": "حسناً"
+    },
+    "rangeSlider": {
+        "currency": "ريال سعودي"
+    },
+    "filters": {
+        "filter": "التصفية",
+        "price": "السعر",
+        "priceRange": "حدد السعر",
+        "resultShown": "النتائج",
+        "showAll": "إظهار الكل",
+        "done": "فلترة",
+        "cancel": "إلغاء"
     }
 }
