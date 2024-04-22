@@ -19,19 +19,9 @@ const CarPost = () => {
   const locale = useLocale();
   const isArabic = locale === "ar";
   const [poster, setPoster] = useState<any>();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
-
-  useEffect(() => {
-    // Simulate a 2-second loading delay
-    const loadingTimer = setTimeout(() => {
-      setIsLoading(false);
-    }, 100);
-
-    // Clear the timer if the component unmounts
-    return () => clearTimeout(loadingTimer);
-  }, []);
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
@@ -53,13 +43,13 @@ const CarPost = () => {
             console.log("Error getting document:", error);
           });
       } else {
-        router.push("/sign-up");
+        router.push(`/${locale}/sign-up`);
       }
     });
 
     // Cleanup subscription on unmount
     return () => unsubscribe();
-  }, [router]);
+  }, [locale, router]);
 
   const [carBrand, setCarBrand] = useState("");
 
@@ -336,7 +326,11 @@ const CarPost = () => {
             description,
             language: locale,
           });
-          !isLoading && router.push(`/${locale}/cars`);
+          setIsLoading(true);
+          setTimeout(() => {
+            setIsLoading(false);
+            router.push(`/${locale}/cars`);
+          }, 2000);
         }}
       >
         {isLoading ? (

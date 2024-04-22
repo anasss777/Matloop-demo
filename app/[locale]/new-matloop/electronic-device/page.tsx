@@ -19,7 +19,7 @@ const ElectronicDevice = () => {
   const t = useTranslations("newElectonicDevicePost");
   const locale = useLocale();
   const isArabic = locale === "ar";
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const [poster, setPoster] = useState<any>();
@@ -126,16 +126,6 @@ const ElectronicDevice = () => {
   }, [deviceStorage]);
 
   useEffect(() => {
-    // Simulate a 2-second loading delay
-    const loadingTimer = setTimeout(() => {
-      setIsLoading(false);
-    }, 100);
-
-    // Clear the timer if the component unmounts
-    return () => clearTimeout(loadingTimer);
-  }, []);
-
-  useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         const docRef = firebase
@@ -155,13 +145,13 @@ const ElectronicDevice = () => {
             console.log("Error getting document:", error);
           });
       } else {
-        router.push("/sign-up");
+        router.push(`/${locale}/sign-up`);
       }
     });
 
     // Cleanup subscription on unmount
     return () => unsubscribe();
-  }, [router]);
+  }, [locale, router]);
 
   return (
     <div
@@ -311,7 +301,11 @@ const ElectronicDevice = () => {
             description,
             language: locale,
           });
-          !isLoading && router.push(`/${locale}/electronic-devices`);
+          setIsLoading(true);
+          setTimeout(() => {
+            setIsLoading(false);
+            router.push(`/${locale}/electronic-devices`);
+          }, 2000);
         }}
       >
         {isLoading ? (

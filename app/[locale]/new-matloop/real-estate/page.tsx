@@ -18,7 +18,7 @@ const RealEstate = () => {
   const t = useTranslations("newRealEstatePost");
   const locale = useLocale();
   const isArabic = locale === "ar";
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const [poster, setPoster] = useState<any>();
@@ -128,16 +128,6 @@ const RealEstate = () => {
   }, [numberOfRooms]);
 
   useEffect(() => {
-    // Simulate a 2-second loading delay
-    const loadingTimer = setTimeout(() => {
-      setIsLoading(false);
-    }, 100);
-
-    // Clear the timer if the component unmounts
-    return () => clearTimeout(loadingTimer);
-  }, []);
-
-  useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         const docRef = firebase
@@ -157,13 +147,13 @@ const RealEstate = () => {
             console.log("Error getting document:", error);
           });
       } else {
-        router.push("/sign-up");
+        router.push(`/${locale}/sign-up`);
       }
     });
 
     // Cleanup subscription on unmount
     return () => unsubscribe();
-  }, [router]);
+  }, [locale, router]);
 
   return (
     <div
@@ -304,7 +294,11 @@ const RealEstate = () => {
             description,
             language: locale,
           });
-          !isLoading && router.push(`/${locale}/real-estate`);
+          setIsLoading(true);
+          setTimeout(() => {
+            setIsLoading(false);
+            router.push(`/${locale}/real-estate`);
+          }, 2000);
         }}
       >
         {isLoading ? (

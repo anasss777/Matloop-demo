@@ -224,18 +224,20 @@ export const deletePost = (post: CarPost) => {
         }
 
         // Delete each comment
-        commentsRefs.forEach(
-          (commentRef: firebase.firestore.DocumentReference) => {
-            commentRef
-              .delete()
-              .then(() => {
-                console.log("Comment deleted successfully.");
-              })
-              .catch((error: any) => {
-                console.error("Error deleting comment: ", error);
-              });
-          }
-        );
+        if (commentsRefs) {
+          commentsRefs.forEach(
+            (commentRef: firebase.firestore.DocumentReference) => {
+              commentRef
+                .delete()
+                .then(() => {
+                  console.log("Comment deleted successfully.");
+                })
+                .catch((error: any) => {
+                  console.error("Error deleting comment: ", error);
+                });
+            }
+          );
+        }
 
         // Remove the post id from the user's document
         const userRef = firebase
