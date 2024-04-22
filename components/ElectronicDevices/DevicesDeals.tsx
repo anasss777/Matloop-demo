@@ -70,7 +70,7 @@ const DevicesDeals = () => {
 
       {devicesPosts.length > 4 && (
         <Link
-          href="/cars"
+          href="/electronic-devices"
           locale={locale}
           className={`btn2 bg-secondary text-lg flex justify-center items-center mx-auto`}
         >

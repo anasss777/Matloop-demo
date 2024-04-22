@@ -16,8 +16,8 @@ export default function Home() {
       <Categories />
       <AddNewMatloop />
       {/* <LatestDeals /> */}
-      <CarsDeals />
       <JobsDeals />
+      <CarsDeals />
       <RealEstateDeals />
       <DevicesDeals />
     </main>

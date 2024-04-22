@@ -336,7 +336,7 @@ const CarPost = () => {
             description,
             language: locale,
           });
-          !isLoading && router.push("/cars");
+          !isLoading && router.push(`/${locale}/cars`);
         }}
       >
         {isLoading ? (

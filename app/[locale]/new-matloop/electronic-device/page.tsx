@@ -311,7 +311,7 @@ const ElectronicDevice = () => {
             description,
             language: locale,
           });
-          !isLoading && router.push("/electronic-devices");
+          !isLoading && router.push(`/${locale}/electronic-devices`);
         }}
       >
         {isLoading ? (

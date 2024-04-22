@@ -70,7 +70,7 @@ const RealEstateDeals = () => {
 
       {realEstatePosts.length > 4 && (
         <Link
-          href="/cars"
+          href="/real-estate"
           locale={locale}
           className={`btn2 bg-secondary text-lg flex justify-center items-center mx-auto`}
         >

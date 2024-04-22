@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
-import { svgError, svgFile, svgImage, svgSend } from "../svgsPath";
+import { svgError, svgFile, svgImage, svgSend, svgSendEn } from "../svgsPath";
 import firebase from "@/firebase";
 import { Comment } from "@/types/comment";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
@@ -214,7 +214,7 @@ const RSPostComments = ({ post }: Props) => {
                   className={`flex justify-center items-center bg-secondary/20 h-fit w-fit p-1 rounded-full border border-secondary/50
                   shadow-md`}
                 >
-                  {svgSend}
+                  {isArabic ? svgSend : svgSendEn}
                 </span>
               </button>
             </div>

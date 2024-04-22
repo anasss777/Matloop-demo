@@ -236,7 +236,7 @@ const Job = () => {
             description,
             language: locale,
           });
-          !isLoading && router.push("/jobs");
+          !isLoading && router.push(`/${locale}/jobs`);
         }}
       >
         {isLoading ? (

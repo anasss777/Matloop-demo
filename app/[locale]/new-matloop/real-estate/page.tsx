@@ -304,7 +304,7 @@ const RealEstate = () => {
             description,
             language: locale,
           });
-          !isLoading && router.push("/real-estate");
+          !isLoading && router.push(`/${locale}/real-estate`);
         }}
       >
         {isLoading ? (
