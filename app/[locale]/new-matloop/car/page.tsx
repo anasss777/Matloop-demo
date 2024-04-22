@@ -108,7 +108,7 @@ const CarPost = () => {
       minp = 0;
     }
 
-    if (maxp > 500000) {
+    if (maxp > 5000000) {
       alert("Maximum price cannot be greater than 5000000");
       setMaxPrice("5000000");
       maxp = 5000000;
@@ -334,6 +334,7 @@ const CarPost = () => {
             city,
             fuelType,
             description,
+            language: locale,
           });
           !isLoading && router.push("/cars");
         }}

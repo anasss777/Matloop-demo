@@ -22,7 +22,8 @@
         "jobs": "Jobs",
         "cars": "Cars",
         "realEstates": "Real Estates",
-        "electronics": "Electronics"
+        "electronics": "Electronics",
+        "signout": "Sign Out"
     },
     "hero": {
         "find": "Find what you're looking for",
@@ -377,7 +378,7 @@
     "rangeSlider": {
         "currency": "Saudi Riyal"
     },
-    "filterCars": {
+    "filters": {
         "filter": "Filters",
         "price": "Price",
         "priceRange": "Price Range",

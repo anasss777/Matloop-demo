@@ -22,7 +22,8 @@
         "jobs": "وظائف",
         "cars": "سيارات",
         "realEstates": "عقارات",
-        "electronics": "أجهزة إلكترونية"
+        "electronics": "أجهزة إلكترونية",
+        "signout": "تسجيل الخروج"
     },
     "hero": {
         "find": "جد مطلوبك",
@@ -378,7 +379,7 @@
         "currency": "ريال سعودي"
     },
     "filters": {
-        "filter": "التصفية",
+        "filter": "الفلترة",
         "price": "السعر",
         "priceRange": "حدد السعر",
         "resultShown": "النتائج",

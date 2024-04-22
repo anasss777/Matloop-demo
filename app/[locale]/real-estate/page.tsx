@@ -93,13 +93,15 @@ const RealEstate = () => {
             ...doc.data(),
           } as RealEstatePost);
         });
-        setPosts(newPosts); // Update posts state with the new data
-        setSearchedRealEstatesPosts(newPosts);
+        setPosts(newPosts.filter((post) => post.language === locale)); // Update posts state with the new data
+        setSearchedRealEstatesPosts(
+          newPosts.filter((post) => post.language === locale)
+        );
       });
 
     // Unsubscribe from Firestore listener when component unmounts
     return () => unsubscribe();
-  }, []);
+  }, [locale]);
 
   const handleSearchTermChange = (term: string) => {
     setSearchTerm(term);

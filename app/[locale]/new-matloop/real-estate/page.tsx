@@ -302,6 +302,7 @@ const RealEstate = () => {
             minAge,
             maxAge,
             description,
+            language: locale,
           });
           !isLoading && router.push("/real-estate");
         }}

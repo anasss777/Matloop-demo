@@ -20,6 +20,7 @@ export type CarPost = {
   reports: string[];
   isPromoted: boolean;
   category: string;
+  language: string;
 };
 
 export type DevicePost = {
@@ -39,6 +40,7 @@ export type DevicePost = {
   reports: string[];
   isPromoted: boolean;
   category: string;
+  language: string;
 };
 
 export type RealEstatePost = {
@@ -58,6 +60,7 @@ export type RealEstatePost = {
   reports: string[];
   isPromoted: boolean;
   category: string;
+  language: string;
 };
 
 export type JobPost = {
@@ -75,4 +78,5 @@ export type JobPost = {
   reports: string[];
   isPromoted: boolean;
   category: string;
+  language: string;
 };

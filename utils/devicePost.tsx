@@ -16,6 +16,7 @@ type Props = {
   selectedCountry: string;
   city: string;
   description: string;
+  language: string;
 };
 
 type PropsEdit = {
@@ -46,6 +47,7 @@ export const addDevicePost = ({
   selectedCountry,
   city,
   description,
+  language,
 }: Props) => {
   const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -79,6 +81,7 @@ export const addDevicePost = ({
                 description,
                 isPromoted: false,
                 category: "electronicDevices",
+                language,
               })
               .then(async () => {
                 console.log("Document written with ID: ", newPostRef.id);

@@ -309,6 +309,7 @@ const ElectronicDevice = () => {
             selectedCountry,
             city,
             description,
+            language: locale,
           });
           !isLoading && router.push("/electronic-devices");
         }}

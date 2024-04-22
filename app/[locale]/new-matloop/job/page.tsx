@@ -234,6 +234,7 @@ const Job = () => {
             selectedCountry,
             city,
             description,
+            language: locale,
           });
           !isLoading && router.push("/jobs");
         }}

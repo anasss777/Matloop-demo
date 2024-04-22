@@ -74,12 +74,18 @@ const EDPostCard = (props: Props) => {
         <Link
           href={`/electronic-devices/${props.post?.postId}`}
           locale={locale}
-          className={`flex flex-col justify-center gap-1 h-full`}
+          className={`flex flex-col justify-start gap-1 h-full items-start`}
         >
-          <p className="text-xl font-bold mr-3">{props.post?.postTitle}</p>
+          <p
+            className={`text-xl font-bold ${
+              isArabic ? "rtl mr-1" : "ltr ml-1"
+            }`}
+          >
+            {props.post?.postTitle}
+          </p>
 
           {props.post?.description?.length > 50 ? (
-            <p className="rtl mr-3">
+            <p className={`${isArabic ? "rtl mr-3" : "ltr ml-3"}`}>
               {props.post?.description.substring(0, 50)}
               <span>
                 <span>...</span>
@@ -89,7 +95,9 @@ const EDPostCard = (props: Props) => {
               </span>
             </p>
           ) : (
-            <p className="mr-3 mb-5">{props.post?.description}</p>
+            <p className={`${isArabic ? "rtl mr-3" : "ltr ml-3"}`}>
+              {props.post?.description}
+            </p>
           )}
         </Link>
 

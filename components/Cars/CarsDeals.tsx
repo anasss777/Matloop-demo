@@ -26,12 +26,12 @@ const CarsDeals = () => {
             ...doc.data(),
           } as CarPost);
         });
-        setCarsPosts(newPosts); // Update posts state with the new data
+        setCarsPosts(newPosts.filter((post) => post.language === locale)); // Update posts state with the new data
       });
 
     // Unsubscribe from Firestore listener when component unmounts
     return () => unsubscribe();
-  }, []);
+  }, [locale]);
 
   if (carsPosts.length === 0) {
     return (
@@ -53,7 +53,7 @@ const CarsDeals = () => {
         {t("carsDeals")}
       </h1>
       <div
-        className={`flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center items-start gap-10`}
+        className={`flex flex-col md:grid md:grid-cols-2 xl:grid-cols-4 justify-center items-start gap-10`}
       >
         {carsPosts
           ?.sort((a, b) => b.createdAt?.seconds - a.createdAt?.seconds)

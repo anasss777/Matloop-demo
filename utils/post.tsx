@@ -21,6 +21,7 @@ type Props = {
   city: string;
   fuelType: string[];
   description: string;
+  language: string;
 };
 
 type PropsEdit = {
@@ -57,6 +58,7 @@ export const addCarPost = ({
   city,
   fuelType,
   description,
+  language,
 }: Props) => {
   const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -91,6 +93,7 @@ export const addCarPost = ({
                 description,
                 isPromoted: false,
                 category: "cars",
+                language,
               })
               .then(async () => {
                 console.log("Document written with ID: ", newPostRef.id);

@@ -17,6 +17,7 @@ type Props = {
   minAge: string;
   maxAge: string;
   description: string;
+  language: string;
 };
 
 type PropsEdit = {
@@ -49,6 +50,7 @@ export const addRealEstatePost = ({
   minAge,
   maxAge,
   description,
+  language,
 }: Props) => {
   const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -82,6 +84,7 @@ export const addRealEstatePost = ({
                 description,
                 isPromoted: false,
                 category: "realEstates",
+                language,
               })
               .then(async () => {
                 console.log("Document written with ID: ", newPostRef.id);
