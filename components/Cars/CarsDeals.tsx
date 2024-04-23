@@ -59,12 +59,7 @@ const CarsDeals = () => {
           ?.sort((a, b) => b.createdAt?.seconds - a.createdAt?.seconds)
           .slice(0, 4)
           .map((post, index) => (
-            <PostCard
-              key={index}
-              posterName={post.poster?.name}
-              posterImage={post.poster?.profileImageSrc}
-              post={post}
-            />
+            <PostCard key={index} posterName={post.poster?.name} post={post} />
           ))}
       </div>
 
