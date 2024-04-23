@@ -169,6 +169,7 @@
         "freelance": "مستقل"
     },
     "educationLevel": {
+        "anyLevel": "أي مستوى",
         "highSchool": "ثانوي",
         "AssociateDegree": "دبلوم",
         "BachelorDegree": "بكالريوس",
@@ -318,7 +319,10 @@
         "username": "إسم المستخدم: ",
         "noUser": "لا يوجد مستخدم",
         "SignUp": "إنشاء حساب",
-        "SignIn": "تسجيل الدخول"
+        "SignIn": "تسجيل الدخول",
+        "save": "حفظ",
+        "imageUpdated": "تم تحديث الصورة بنجاح",
+        "ok": "حسناً"
     },
     "carsPage": {
         "wantedCars": "السيارات المطلوبة: ",

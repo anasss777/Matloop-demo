@@ -84,7 +84,6 @@ export const handleSignUpWithGoogle = async () => {
           userId: user?.uid,
           name: user.displayName,
           email: user.email,
-          profileImageSrc: user.photoURL,
         },
         { merge: true }
       );
@@ -154,7 +153,6 @@ export const handleSignInWithGoogle = async () => {
           {
             name: user.displayName,
             email: user.email,
-            profileImageSrc: user.photoURL,
           },
           { merge: true }
         );

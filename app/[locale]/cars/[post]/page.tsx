@@ -11,6 +11,7 @@ import Image from "next/image";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import PostDetails from "@/components/PostDetails";
 import CarPostComments from "@/components/Cars/CarPostComments";
+import { Profile } from "@/types/profile";
 
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
@@ -28,6 +29,35 @@ const Post = ({ params }: Props) => {
   const t = useTranslations("singlePost");
   const locale = useLocale();
   const isArabic = locale === "ar";
+
+  const [profile, setProfile] = useState<Profile | null>(null);
+
+  useEffect(() => {
+    const db = firebase.firestore();
+
+    if (post) {
+      const docRef = db.collection("profiles").doc(post.poster.userId);
+
+      const unsubscribe = docRef.onSnapshot(
+        (doc) => {
+          if (doc.exists) {
+            setProfile({
+              userId: doc.id,
+              ...doc.data(),
+            } as Profile);
+          } else {
+            console.log("No such profile!");
+          }
+        },
+        (error) => {
+          console.log("Error getting profile:", error);
+        }
+      );
+
+      // Cleanup function to unsubscribe from the snapshot listener
+      return () => unsubscribe();
+    }
+  }, [post]);
 
   useEffect(() => {
     const unsubscribe = firebase
@@ -94,14 +124,14 @@ const Post = ({ params }: Props) => {
       <div
         className={`flex flex-row gap-2 w-full h-fit justify-center items-center py-2 mt-10 shadow-Card rounded-md border border-secondary`}
       >
-        {post.poster.profileImageSrc ? (
+        {profile?.profileImageSrc ? (
           <Link href={`/${post.poster.userId}`} locale={locale}>
             <Image
-              src={post.poster.profileImageSrc}
+              src={profile?.profileImageSrc}
               alt="Poster profile image"
               height={400}
               width={400}
-              className="object-scale-down h-20 w-20 rounded-full shadow-lg"
+              className="object-cover h-20 w-20 rounded-full shadow-lg"
             />
           </Link>
         ) : (

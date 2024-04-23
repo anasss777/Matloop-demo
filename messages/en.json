@@ -169,6 +169,7 @@
         "freelance": "Freelance"
     },
     "educationLevel": {
+        "anyLevel": "Any Level",
         "highSchool": "High School",
         "AssociateDegree": "Associate Degree",
         "BachelorDegree": "Bachelor's Degree",
@@ -318,7 +319,10 @@
         "username": "Username: ",
         "noUser": "No User!",
         "SignUp": "Sign Up",
-        "SignIn": "Sign In"
+        "SignIn": "Sign In",
+        "save": "Save",
+        "imageUpdated": "Image updated successfully!",
+        "ok": "OK"
     },
     "carsPage": {
         "wantedCars": "Cars Posts: ",

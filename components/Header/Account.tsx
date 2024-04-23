@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { handleSignOut } from "@/utils/auth";
 import Image from "next/image";
 import { svgUser } from "../svgsPath";
+import { Profile } from "@/types/profile";
 
 export const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
@@ -40,18 +41,25 @@ const Account = () => {
   useEffect(() => {
     if (user) {
       const docRef = firebase.firestore().collection("profiles").doc(user.uid);
-      docRef
-        .get()
-        .then((doc) => {
+
+      const unsubscribe = docRef.onSnapshot(
+        (doc) => {
           if (doc.exists) {
-            setUserData(doc.data());
+            setUserData({
+              userId: doc.id,
+              ...doc.data(),
+            } as Profile);
           } else {
-            console.log("No such document!");
+            console.log("No such profile!");
           }
-        })
-        .catch((error) => {
-          console.log("Error getting document:", error);
-        });
+        },
+        (error) => {
+          console.log("Error getting profile:", error);
+        }
+      );
+
+      // Cleanup function to unsubscribe from the snapshot listener
+      return () => unsubscribe();
     }
   }, [user]);
 
@@ -112,7 +120,7 @@ const Account = () => {
             alt="Poster profile image"
             height={400}
             width={400}
-            className="object-scale-down h-10 w-10 rounded-full shadow-lg"
+            className="object-cover h-10 w-10 rounded-full shadow-lg"
           />
         ) : (
           <span>{svgUser}</span>

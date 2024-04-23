@@ -12,6 +12,7 @@ import {
   svgFile2,
   svgMail,
   svgPhone,
+  svgUserDark,
 } from "../svgsPath";
 import ImagesSlider from "../ImagesSlider";
 import firebase from "@/firebase";
@@ -21,6 +22,7 @@ import EditComment from "../EditComment";
 import { DevicePost } from "@/types/post";
 import Swal from "sweetalert2";
 import { deleteDeviceComment } from "@/utils/devicePost";
+import { Profile } from "@/types/profile";
 
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
@@ -46,6 +48,32 @@ const EDCommentSection = ({
   const [canDelete, setCanDelete] = useState(false);
   const [openEditComment, setOpenEditComment] = useState(false);
   const [showMore, setShowMore] = useState(false);
+
+  const [profile, setProfile] = useState<Profile | null>(null);
+
+  useEffect(() => {
+    const db = firebase.firestore();
+    const docRef = db.collection("profiles").doc(comment.commentor.userId);
+
+    const unsubscribe = docRef.onSnapshot(
+      (doc) => {
+        if (doc.exists) {
+          setProfile({
+            userId: doc.id,
+            ...doc.data(),
+          } as Profile);
+        } else {
+          console.log("No such profile!");
+        }
+      },
+      (error) => {
+        console.log("Error getting profile:", error);
+      }
+    );
+
+    // Cleanup function to unsubscribe from the snapshot listener
+    return () => unsubscribe();
+  }, [comment.commentor.userId]);
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
@@ -90,22 +118,16 @@ const EDCommentSection = ({
       <div className="flex flex-col bg-gray-50 h-fit w-full py-2 px-3 rounded-xl">
         {/* Profile phoho and image */}
         <div className=" flex flex-row gap-3 items-center justify-start mb-2">
-          {comment.commentor?.profileImageSrc ? (
+          {profile?.profileImageSrc ? (
             <Image
-              src={comment.commentor.profileImageSrc}
+              src={profile.profileImageSrc}
               alt="Commenter profile Picture"
               height={400}
               width={400}
-              className="object-scale-down h-10 w-10 rounded-full shadow-md border"
+              className="object-cover h-10 w-10 rounded-full shadow-md border"
             />
           ) : (
-            <Image
-              src="/images/profile.png"
-              alt="No profile Picture"
-              height={400}
-              width={400}
-              className="object-scale-down h-10 w-10"
-            />
+            <span>{svgUserDark}</span>
           )}
           {/* Commentor name */}
           <Link

@@ -17,6 +17,24 @@ const EducationLevel = ({
   return (
     <div>
       <form className={`flex flex-col mt-5 ${isArabic && "rtl"}`}>
+        {/* None */}
+        <div className={`flex flex-row gap-1 text-right`}>
+          <input
+            type="checkbox"
+            id="educationLevel0"
+            name="educationLevel0"
+            value={isArabic ? "أي مستوى" : "Any Level"}
+            onChange={handleEducationLevelChecked}
+            checked={
+              educationLevel?.includes("أي مستوى") ||
+              educationLevel?.includes("Any Level")
+            }
+          />
+          <label className={`text-secondary font-semibold`}>
+            {t("anyLevel")}
+          </label>
+        </div>
+
         {/* High School */}
         <div className={`flex flex-row gap-1 text-right`}>
           <input

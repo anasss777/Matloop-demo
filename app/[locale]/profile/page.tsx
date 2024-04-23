@@ -11,20 +11,59 @@ import EDPostCard from "@/components/ElectronicDevices/EDPostCard";
 import RSPostCard from "@/components/RealEstate/RSPostCard";
 import JobPostCard from "@/components/Job/JobPostCard";
 import LoadingPosts from "@/components/LoadingPosts";
-import { svgBigUser } from "@/components/svgsPath";
+import {
+  svgBigUser,
+  svgCloseDark,
+  svgEditBlue,
+  svgImage,
+} from "@/components/svgsPath";
+import { Profile } from "@/types/profile";
+import Popup from "reactjs-popup";
+import { updateProfileImage } from "@/utils/userInfo";
+import Swal from "sweetalert2";
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
 
-const Profile: React.FC = () => {
+const UserProfile: React.FC = () => {
   const [user, setUser] = useState<firebase.User | null>(null);
-  const [userData, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<Profile | null>(null);
   const [carsPosts, setCarsPosts] = useState<CarPost[]>([]);
   const [devicesPosts, setDevicesPosts] = useState<DevicePost[]>([]);
   const [realEstatePosts, setRealEstatePosts] = useState<RealEstatePost[]>([]);
   const [jobPosts, setJobPosts] = useState<JobPost[]>([]);
+  const [selectedImage, setSelectedImage] = useState<File>();
+  const [imageUrl, setImageUrl] = useState<string>();
+  const [openEditImage, setOpenEditImage] = useState(false);
+
   const locale = useLocale();
   const t = useTranslations("profile");
   const isArabic = locale === "ar";
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedImage(file);
+      setImageUrl(URL.createObjectURL(file));
+    }
+  };
+
+  const handleImageUpload = (image: File, profileID: string) => {
+    updateProfileImage({
+      image,
+      profileID,
+    });
+
+    Swal.fire({
+      text: t("imageUpdated"),
+      icon: "success",
+      confirmButtonColor: "#4682b4",
+      confirmButtonText: t("ok"),
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setOpenEditImage(!openEditImage);
+      }
+    });
+  };
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
@@ -36,21 +75,27 @@ const Profile: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (user) {
-      const docRef = firebase.firestore().collection("profiles").doc(user.uid);
-      docRef
-        .get()
-        .then((doc) => {
-          if (doc.exists) {
-            setUserData(doc.data());
-          } else {
-            console.log("No such document!");
-          }
-        })
-        .catch((error) => {
-          console.log("Error getting document:", error);
-        });
-    }
+    const db = firebase.firestore();
+    const docRef = db.collection("profiles").doc(user?.uid);
+
+    const unsubscribe = docRef.onSnapshot(
+      (doc) => {
+        if (doc.exists) {
+          setUserData({
+            userId: doc.id,
+            ...doc.data(),
+          } as Profile);
+        } else {
+          console.log("No such profile!");
+        }
+      },
+      (error) => {
+        console.log("Error getting profile:", error);
+      }
+    );
+
+    // Cleanup function to unsubscribe from the snapshot listener
+    return () => unsubscribe();
   }, [user]);
 
   useEffect(() => {
@@ -61,16 +106,18 @@ const Profile: React.FC = () => {
           firebase.firestore().collection("posts").doc(id).get()
         );
 
-        const postsSnapshots = await Promise?.all(postsPromises);
+        if (postsPromises) {
+          const postsSnapshots = await Promise?.all(postsPromises);
 
-        const PostsData: CarPost[] = postsSnapshots?.map(
-          (doc) =>
-            ({
-              ...doc.data(),
-            } as CarPost)
-        );
+          const PostsData: CarPost[] = postsSnapshots?.map(
+            (doc) =>
+              ({
+                ...doc.data(),
+              } as CarPost)
+          );
 
-        setCarsPosts(PostsData);
+          setCarsPosts(PostsData);
+        }
       };
       fetchPosts();
     }
@@ -86,16 +133,18 @@ const Profile: React.FC = () => {
             )
           : [];
 
-        const postsSnapshots = await Promise.all(postsPromises);
+        if (postsPromises) {
+          const postsSnapshots = await Promise.all(postsPromises);
 
-        const PostsData: DevicePost[] = postsSnapshots?.map(
-          (doc) =>
-            ({
-              ...doc.data(),
-            } as DevicePost)
-        );
+          const PostsData: DevicePost[] = postsSnapshots?.map(
+            (doc) =>
+              ({
+                ...doc.data(),
+              } as DevicePost)
+          );
 
-        setDevicesPosts(PostsData);
+          setDevicesPosts(PostsData);
+        }
       };
       fetchPosts();
     }
@@ -111,16 +160,18 @@ const Profile: React.FC = () => {
             )
           : [];
 
-        const postsSnapshots = await Promise.all(postsPromises);
+        if (postsPromises) {
+          const postsSnapshots = await Promise.all(postsPromises);
 
-        const PostsData: RealEstatePost[] = postsSnapshots?.map(
-          (doc) =>
-            ({
-              ...doc.data(),
-            } as RealEstatePost)
-        );
+          const PostsData: RealEstatePost[] = postsSnapshots?.map(
+            (doc) =>
+              ({
+                ...doc.data(),
+              } as RealEstatePost)
+          );
 
-        setRealEstatePosts(PostsData);
+          setRealEstatePosts(PostsData);
+        }
       };
       fetchPosts();
     }
@@ -136,22 +187,24 @@ const Profile: React.FC = () => {
             )
           : [];
 
-        const postsSnapshots = await Promise.all(postsPromises);
+        if (postsPromises) {
+          const postsSnapshots = await Promise.all(postsPromises);
 
-        const PostsData: JobPost[] = postsSnapshots?.map(
-          (doc) =>
-            ({
-              ...doc.data(),
-            } as JobPost)
-        );
+          const PostsData: JobPost[] = postsSnapshots?.map(
+            (doc) =>
+              ({
+                ...doc.data(),
+              } as JobPost)
+          );
 
-        setJobPosts(PostsData);
+          setJobPosts(PostsData);
+        }
       };
       fetchPosts();
     }
   }, [userData]);
 
-  if (!user) {
+  if (!userData) {
     return (
       <div
         className={`flex flex-col gap-5 justify-center items-center w-full h-[50vh]`}
@@ -175,7 +228,7 @@ const Profile: React.FC = () => {
     );
   }
 
-  if (!userData) {
+  if (!user) {
     return <LoadingPosts />;
   }
 
@@ -189,15 +242,214 @@ const Profile: React.FC = () => {
         className={`flex flex-col w-fit h-fit justify-center items-center mb-20`}
       >
         {userData.profileImageSrc ? (
-          <Image
-            src={userData.profileImageSrc}
-            alt="Poster profile image"
-            height={400}
-            width={400}
-            className="object-scale-down h-20 w-20 rounded-full shadow-lg"
-          />
+          // There's profile picture
+          <div>
+            <Image
+              src={userData.profileImageSrc}
+              alt="Poster profile image"
+              height={400}
+              width={400}
+              className="object-cover h-20 w-20 rounded-full shadow-lg"
+            />
+            <Popup
+              trigger={
+                <span
+                  className={`relative -top-8 z-10 flex flex-row items-center bg-[#cbdae6] h-fit w-fit p-1 rounded-full border
+              border-secondary shadow-Card2 cursor-pointer`}
+                >
+                  {svgEditBlue}
+                </span>
+              }
+              open={openEditImage}
+              onOpen={() => setOpenEditImage(!openEditImage)}
+              modal
+              nested
+              lockScroll
+              overlayStyle={{
+                background: "#000000cc",
+              }}
+              contentStyle={{
+                width: "90%",
+              }}
+            >
+              <div
+                className={`flex flex-col justify-between items-start gap-1 bg-gray-200 m-5 rounded-lg overflow-y-auto max-w-[400px]
+                h-[90vh] w-full mx-auto p-2 ${isArabic && "rtl"}`}
+              >
+                <button
+                  onClick={() => setOpenEditImage(!openEditImage)}
+                  className={`ring-0 outline-none`}
+                >
+                  {svgCloseDark}
+                </button>
+
+                <div
+                  className={`flex flex-col justify-center items-center gap-5 h-full w-full`}
+                >
+                  {imageUrl ? (
+                    <Image
+                      src={imageUrl}
+                      alt="Temporary new Profile image"
+                      height={1000}
+                      width={1000}
+                      className={`h-fit w-full object-scale-down`}
+                    />
+                  ) : (
+                    <Image
+                      src={userData.profileImageSrc}
+                      alt="Temporary new Profile image"
+                      height={1000}
+                      width={1000}
+                      className={`h-fit w-full object-cover`}
+                    />
+                  )}
+                  <label htmlFor={`imageInput${userData.userId}`}>
+                    <span
+                      className={`flex bg-secondary/30 h-fit w-fit p-1 rounded-full border border-secondary shadow-md cursor-pointer`}
+                    >
+                      {svgImage}
+                    </span>
+                  </label>
+                  <input
+                    type="file"
+                    id={`imageInput${userData.userId}`}
+                    accept="image/*"
+                    className="absolute left-[-9999px]"
+                    onChange={(e) => handleImageChange(e)}
+                  />
+                </div>
+
+                <div
+                  className={`flex flex-col justify-center items-center w-full`}
+                >
+                  {imageUrl && selectedImage ? (
+                    <button
+                      className={`btn2 bg-secondary`}
+                      onClick={() =>
+                        handleImageUpload(selectedImage, userData.userId)
+                      }
+                    >
+                      {t("save")}
+                    </button>
+                  ) : (
+                    <button
+                      disabled
+                      className={`h-fit w-fit px-2 py-1 text-white rounded-md bg-secondary/50`}
+                    >
+                      {t("save")}
+                    </button>
+                  )}
+                </div>
+              </div>
+            </Popup>
+          </div>
         ) : (
-          <span>{svgBigUser}</span>
+          // There's no profile picture
+          <div>
+            <span>{svgBigUser}</span>
+            <Popup
+              trigger={
+                <span
+                  className={`relative -top-8 z-10 flex flex-row items-center bg-[#cbdae6] h-fit w-fit p-1 rounded-full border
+              border-secondary shadow-Card2 cursor-pointer`}
+                >
+                  {svgEditBlue}
+                </span>
+              }
+              open={openEditImage}
+              onOpen={() => setOpenEditImage(!openEditImage)}
+              modal
+              nested
+              lockScroll
+              overlayStyle={{
+                background: "#000000cc",
+              }}
+              contentStyle={{
+                width: "90%",
+              }}
+            >
+              <div
+                className={`flex flex-col justify-between items-start gap-1 bg-gray-200 m-5 rounded-lg overflow-y-auto max-w-[400px]
+                h-[90vh] w-full mx-auto p-2 ${isArabic && "rtl"}`}
+              >
+                <button
+                  onClick={() => setOpenEditImage(!openEditImage)}
+                  className={`ring-0 outline-none`}
+                >
+                  {svgCloseDark}
+                </button>
+                {imageUrl ? (
+                  <div
+                    className={`flex flex-col justify-center items-center gap-5 h-full w-full`}
+                  >
+                    <Image
+                      src={imageUrl}
+                      alt="Temporary new Profile image"
+                      height={1000}
+                      width={1000}
+                      className={`h-fit w-full object-scale-down`}
+                    />
+                    <label htmlFor={`imageInput${userData.userId}`}>
+                      <span
+                        className={`flex bg-secondary/30 h-fit w-fit p-1 rounded-full border border-secondary shadow-md cursor-pointer`}
+                      >
+                        {svgImage}
+                      </span>
+                    </label>
+                    <input
+                      type="file"
+                      id={`imageInput${userData.userId}`}
+                      accept="image/*"
+                      className="absolute left-[-9999px]"
+                      onChange={(e) => handleImageChange(e)}
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className={`flex flex-col justify-center items-center gap-5 h-full w-full`}
+                  >
+                    <span>{svgBigUser}</span>
+                    <label htmlFor={`imageInput${userData.userId}`}>
+                      <span
+                        className={`flex bg-secondary/30 h-fit w-fit p-1 rounded-full border border-secondary shadow-md cursor-pointer`}
+                      >
+                        {svgImage}
+                      </span>
+                    </label>
+                    <input
+                      type="file"
+                      id={`imageInput${userData.userId}`}
+                      accept="image/*"
+                      className="absolute left-[-9999px]"
+                      onChange={(e) => handleImageChange(e)}
+                    />
+                  </div>
+                )}
+
+                <div
+                  className={`flex flex-col justify-center items-center w-full`}
+                >
+                  {imageUrl && selectedImage ? (
+                    <button
+                      className={`btn2 bg-secondary`}
+                      onClick={() =>
+                        handleImageUpload(selectedImage, userData.userId)
+                      }
+                    >
+                      {t("save")}
+                    </button>
+                  ) : (
+                    <button
+                      disabled
+                      className={`h-fit w-fit px-2 py-1 text-white rounded-md bg-secondary/50`}
+                    >
+                      {t("save")}
+                    </button>
+                  )}
+                </div>
+              </div>
+            </Popup>
+          </div>
         )}
 
         <p>
@@ -229,25 +481,21 @@ const Profile: React.FC = () => {
               {post.category === "cars" ? (
                 <PostCard
                   posterName={post.poster?.name}
-                  posterImage={post.poster?.profileImageSrc}
                   post={post as CarPost}
                 />
               ) : post.category === "electronicDevices" ? (
                 <EDPostCard
                   posterName={post.poster?.name}
-                  posterImage={post.poster?.profileImageSrc}
                   post={post as DevicePost}
                 />
               ) : post.category === "realEstates" ? (
                 <RSPostCard
                   posterName={post.poster?.name}
-                  posterImage={post.poster?.profileImageSrc}
                   post={post as RealEstatePost}
                 />
               ) : post.category === "jobs" ? (
                 <JobPostCard
                   posterName={post.poster?.name}
-                  posterImage={post.poster?.profileImageSrc}
                   post={post as JobPost}
                 />
               ) : (
@@ -260,4 +508,4 @@ const Profile: React.FC = () => {
   );
 };
 
-export default Profile;
+export default UserProfile;

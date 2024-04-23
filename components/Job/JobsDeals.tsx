@@ -62,7 +62,6 @@ const JobsDeals = () => {
             <JobPostCard
               key={index}
               posterName={post.poster?.name}
-              posterImage={post.poster?.profileImageSrc}
               post={post}
             />
           ))}

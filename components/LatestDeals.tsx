@@ -121,7 +121,6 @@ const LatestDeals = () => {
               {post.category === "cars" ? (
                 <PostCard
                   posterName={post.poster?.name}
-                  posterImage={post.poster?.profileImageSrc}
                   post={post as CarPost}
                 />
               ) : post.category === "electronicDevices" ? (

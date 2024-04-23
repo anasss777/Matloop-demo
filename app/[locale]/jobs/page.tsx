@@ -248,7 +248,6 @@ const Jobs = () => {
                     <JobPostCard
                       key={post.postId} // Use post id as the key
                       posterName={post.poster.name}
-                      posterImage={post.poster.profileImageSrc}
                       post={post}
                     />
                   ))}

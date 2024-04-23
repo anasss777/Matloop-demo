@@ -9,6 +9,9 @@ import TimeAgo from "../TimeAgo";
 import EDPostMenu from "./EDPostMenu";
 import EDPostDetails from "./EDPostDetails";
 import EDCommentCard from "./EDCommentCard";
+import firebase from "@/firebase";
+import { useEffect, useState } from "react";
+import { Profile } from "@/types/profile";
 
 export const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
@@ -16,13 +19,38 @@ const { Link } = createSharedPathnamesNavigation({ locales });
 type Props = {
   allowImg?: boolean;
   posterName: string;
-  posterImage: string;
   post: DevicePost;
 };
 
 const EDPostCard = (props: Props) => {
   const locale = useLocale();
   const isArabic = locale === "ar";
+
+  const [profile, setProfile] = useState<Profile | null>(null);
+
+  useEffect(() => {
+    const db = firebase.firestore();
+    const docRef = db.collection("profiles").doc(props.post.poster.userId);
+
+    const unsubscribe = docRef.onSnapshot(
+      (doc) => {
+        if (doc.exists) {
+          setProfile({
+            userId: doc.id,
+            ...doc.data(),
+          } as Profile);
+        } else {
+          console.log("No such profile!");
+        }
+      },
+      (error) => {
+        console.log("Error getting profile:", error);
+      }
+    );
+
+    // Cleanup function to unsubscribe from the snapshot listener
+    return () => unsubscribe();
+  }, [props.post.poster.userId]);
 
   return (
     <div
@@ -35,13 +63,13 @@ const EDPostCard = (props: Props) => {
       >
         <div className={`flex flex-row justify-between w-full`}>
           <div className="flex flex-row gap-2 items-center justify-start mb-3">
-            {props.posterImage ? (
+            {profile?.profileImageSrc ? (
               <Image
-                src={props.posterImage}
+                src={profile?.profileImageSrc}
                 alt="Poster profile image"
                 height={400}
                 width={400}
-                className="object-scale-down h-10 w-10 rounded-full shadow-lg"
+                className="object-cover h-10 w-10 rounded-full shadow-lg"
               />
             ) : (
               <span>{svgUser}</span>

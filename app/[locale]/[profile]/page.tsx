@@ -60,16 +60,18 @@ const ProfilePage = ({ params }: Props) => {
           firebase.firestore().collection("posts").doc(id).get()
         );
 
-        const postsSnapshots = await Promise?.all(postsPromises);
+        if (postsPromises) {
+          const postsSnapshots = await Promise?.all(postsPromises);
 
-        const PostsData: CarPost[] = postsSnapshots?.map(
-          (doc) =>
-            ({
-              ...doc.data(),
-            } as CarPost)
-        );
+          const PostsData: CarPost[] = postsSnapshots?.map(
+            (doc) =>
+              ({
+                ...doc.data(),
+              } as CarPost)
+          );
 
-        setCarsPosts(PostsData);
+          setCarsPosts(PostsData);
+        }
       };
       fetchPosts();
     }
@@ -83,16 +85,18 @@ const ProfilePage = ({ params }: Props) => {
           firebase.firestore().collection("electronicDevices").doc(id).get()
         );
 
-        const postsSnapshots = await Promise?.all(postsPromises);
+        if (postsPromises) {
+          const postsSnapshots = await Promise?.all(postsPromises);
 
-        const PostsData: DevicePost[] = postsSnapshots?.map(
-          (doc) =>
-            ({
-              ...doc.data(),
-            } as DevicePost)
-        );
+          const PostsData: DevicePost[] = postsSnapshots?.map(
+            (doc) =>
+              ({
+                ...doc.data(),
+              } as DevicePost)
+          );
 
-        setDevicesPosts(PostsData);
+          setDevicesPosts(PostsData);
+        }
       };
       fetchPosts();
     }
@@ -106,16 +110,18 @@ const ProfilePage = ({ params }: Props) => {
           firebase.firestore().collection("realEstatePosts").doc(id).get()
         );
 
-        const postsSnapshots = await Promise?.all(postsPromises);
+        if (postsPromises) {
+          const postsSnapshots = await Promise?.all(postsPromises);
 
-        const PostsData: RealEstatePost[] = postsSnapshots?.map(
-          (doc) =>
-            ({
-              ...doc.data(),
-            } as RealEstatePost)
-        );
+          const PostsData: RealEstatePost[] = postsSnapshots?.map(
+            (doc) =>
+              ({
+                ...doc.data(),
+              } as RealEstatePost)
+          );
 
-        setRealEstatePosts(PostsData);
+          setRealEstatePosts(PostsData);
+        }
       };
       fetchPosts();
     }
@@ -129,16 +135,18 @@ const ProfilePage = ({ params }: Props) => {
           firebase.firestore().collection("jobsPosts").doc(id).get()
         );
 
-        const postsSnapshots = await Promise?.all(postsPromises);
+        if (postsPromises) {
+          const postsSnapshots = await Promise?.all(postsPromises);
 
-        const PostsData: JobPost[] = postsSnapshots?.map(
-          (doc) =>
-            ({
-              ...doc.data(),
-            } as JobPost)
-        );
+          const PostsData: JobPost[] = postsSnapshots?.map(
+            (doc) =>
+              ({
+                ...doc.data(),
+              } as JobPost)
+          );
 
-        setJobPosts(PostsData);
+          setJobPosts(PostsData);
+        }
       };
       fetchPosts();
     }
@@ -163,7 +171,7 @@ const ProfilePage = ({ params }: Props) => {
             alt="Poster profile image"
             height={400}
             width={400}
-            className="object-scale-down h-20 w-20 rounded-full shadow-lg"
+            className="object-cover h-20 w-20 rounded-full shadow-lg"
           />
         ) : (
           <span>{svgBigUser}</span>
@@ -198,25 +206,21 @@ const ProfilePage = ({ params }: Props) => {
               {post.category === "cars" ? (
                 <PostCard
                   posterName={post.poster?.name}
-                  posterImage={post.poster?.profileImageSrc}
                   post={post as CarPost}
                 />
               ) : post.category === "electronicDevices" ? (
                 <EDPostCard
                   posterName={post.poster?.name}
-                  posterImage={post.poster?.profileImageSrc}
                   post={post as DevicePost}
                 />
               ) : post.category === "realEstates" ? (
                 <RSPostCard
                   posterName={post.poster?.name}
-                  posterImage={post.poster?.profileImageSrc}
                   post={post as RealEstatePost}
                 />
               ) : post.category === "jobs" ? (
                 <JobPostCard
                   posterName={post.poster?.name}
-                  posterImage={post.poster?.profileImageSrc}
                   post={post as JobPost}
                 />
               ) : (

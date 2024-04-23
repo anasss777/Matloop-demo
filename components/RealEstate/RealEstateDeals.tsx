@@ -62,7 +62,6 @@ const RealEstateDeals = () => {
             <RSPostCard
               key={index}
               posterName={post.poster?.name}
-              posterImage={post.poster?.profileImageSrc}
               post={post}
             />
           ))}
