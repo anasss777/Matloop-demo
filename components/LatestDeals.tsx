@@ -126,19 +126,16 @@ const LatestDeals = () => {
               ) : post.category === "electronicDevices" ? (
                 <EDPostCard
                   posterName={post.poster?.name}
-                  posterImage={post.poster?.profileImageSrc}
                   post={post as DevicePost}
                 />
               ) : post.category === "realEstates" ? (
                 <RSPostCard
                   posterName={post.poster?.name}
-                  posterImage={post.poster?.profileImageSrc}
                   post={post as RealEstatePost}
                 />
               ) : post.category === "jobs" ? (
                 <JobPostCard
                   posterName={post.poster?.name}
-                  posterImage={post.poster?.profileImageSrc}
                   post={post as JobPost}
                 />
               ) : (
