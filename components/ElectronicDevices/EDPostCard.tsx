@@ -131,7 +131,7 @@ const EDPostCard = (props: Props) => {
 
         {/* Address */}
         <p
-          className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
+          className={`btn2 bg-white/50 dark:bg-gray-700 text-secondary flex flex-row items-center gap-1`}
         >
           <span
             className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}

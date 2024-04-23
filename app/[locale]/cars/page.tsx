@@ -245,7 +245,7 @@ const Cars = () => {
         <div className={`flex flex-col justify-start items-center w-full`}>
           {showFilters ? (
             <div
-              className={`flex flex-col justify-between z-10 h-screen w-screen bg-white pb-5 pt-20 absolute top-0 left-0`}
+              className={`flex flex-col justify-between z-10 h-screen w-screen bg-white dark:bg-gray-800 pb-5 pt-20 absolute top-0 left-0`}
             >
               <FilterCars
                 onCarBrandChange={onCarBrandChange}

@@ -139,7 +139,7 @@ const FilterDevices = ({
 
   return (
     <div
-      className={`bg-white h-fit w-full py-5 lg:rounded-xl lg:shadow-Card sticky top-14 mt-5 lg:border ${
+      className={`bg-white dark:bg-gray-800 h-fit w-full py-5 lg:rounded-xl lg:shadow-Card sticky top-14 mt-5 lg:border ${
         isArabic && "rtl text-right"
       }`}
     >

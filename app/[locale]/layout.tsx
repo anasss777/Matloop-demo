@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { NextIntlClientProvider, useLocale, useMessages } from "next-intl";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
+import { Providers } from "./Providers";
 
 const cairo = Cairo({
   subsets: ["arabic"],
@@ -30,13 +31,15 @@ export default function RootLayout({ children, params }: RootLayoutProps) {
       <Head />
 
       <body
-        className={`${cairo.className} bg-gray-50 flex flex-col min-h-screen`}
+        className={`${cairo.className} dark:bg-black bg-gray-50 flex flex-col min-h-screen`}
       >
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <Header />
-          <main className="flex-grow">{children}</main>
-          <Footer />
-        </NextIntlClientProvider>
+        <Providers>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <Header />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </NextIntlClientProvider>
+        </Providers>
       </body>
     </html>
   );

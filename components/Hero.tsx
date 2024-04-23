@@ -19,11 +19,11 @@ const Hero = () => {
     <div>
       <div
         className={`flex flex-col justify-center items-center w-full px-12 pb-5 pt-10 bg-teal-500 rounded-ee-[100px] rounded-es-[100px]
-        shadow-md border border-t-0 border-teal-200 ${
+        shadow-md border border-t-0 border-teal-200 dark:bg-teal-700 ${
           isArabic ? "rtl" : "ltr"
         }`}
       >
-        <h1 className="text-5xl font-bold text-teal-200 mb-12 w-full sm:w-[70%] md:w-1/2 lg:w-[30%]">
+        <h1 className="text-5xl font-bold dark:text-teal-950 text-teal-200 mb-12 w-full sm:w-[70%] md:w-1/2 lg:w-[30%]">
           <motion.span
             variants={fedeInAnimationVariants1}
             initial="initial"
@@ -58,7 +58,7 @@ const Hero = () => {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
-          className="text-lg mt-12 mb-10 text-teal-700 pl-5"
+          className="text-lg mt-12 mb-10 dark:text-teal-950 text-teal-700 pl-5"
         >
           {t("connect")}{" "}
           <span className="text-teal-100 font-semibold">{t("employees")}</span>{" "}

@@ -6,6 +6,7 @@ import NavbarElements from "./NavbarElements";
 import LocaleSwitcher from "./LocaleSwitcher";
 import Account from "./Account";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
+import ThemeSwitcher from "../ThemeSwitcher";
 
 export const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
@@ -58,6 +59,9 @@ const Header = () => {
       <NavbarElements />
 
       <div className={`flex flex-row items-center gap-5`}>
+        <div className={`hidden lg:block`}>
+          <ThemeSwitcher />
+        </div>
         <Account />
         <LocaleSwitcher />
       </div>

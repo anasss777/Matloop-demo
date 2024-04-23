@@ -7,6 +7,7 @@ import firebase from "@/firebase";
 import Menu from "./Menu";
 import { useRouter } from "next/navigation";
 import { handleSignOut } from "@/utils/auth";
+import ThemeSwitcher from "../ThemeSwitcher";
 
 const NavbarElements = () => {
   const t = useTranslations("nav");
@@ -97,6 +98,12 @@ const NavbarElements = () => {
             locale === "ar" && "text-right"
           }`}
         >
+          <div
+            className={`lg:hidden p-[6px] w-full h-fit rounded-t-lg mx-auto flex justify-center bg-gradient-to-l from-transparent
+            via-primary/50 to-transparent`}
+          >
+            <ThemeSwitcher />
+          </div>
           <Menu text={t("about")} href="/about-us" />
           <Menu text={t("jobs")} href="/jobs" />
           <Menu text={t("cars")} href="/cars" />
