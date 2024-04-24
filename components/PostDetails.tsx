@@ -22,11 +22,11 @@ const PostDetails = (props: Props) => {
 
   return (
     <div
-      className={`flex flex-col gap-2 p-3 overflow-x-auto bg-[#f9fafb] rounded-3xl`}
+      className={`flex flex-col gap-2 p-3 overflow-x-auto bg-[#f9fafb] dark:bg-gray-800 rounded-3xl`}
     >
       {/* Car brand and type */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center justify-between gap-1 w-fit`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center justify-between gap-1 w-fit`}
       >
         <span
           className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
@@ -45,7 +45,7 @@ const PostDetails = (props: Props) => {
 
       {/* Car price range */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center gap-1`}
       >
         <span
           className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
@@ -57,7 +57,7 @@ const PostDetails = (props: Props) => {
 
       {/* Car year range */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center gap-1`}
       >
         <span
           className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
@@ -69,7 +69,7 @@ const PostDetails = (props: Props) => {
 
       {/* Mileage */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center gap-1`}
       >
         <span
           className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
@@ -82,7 +82,7 @@ const PostDetails = (props: Props) => {
 
       {/* Gear type */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center gap-1`}
       >
         <span
           className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
@@ -95,7 +95,7 @@ const PostDetails = (props: Props) => {
 
       {/* Engine type */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center gap-1`}
       >
         <span
           className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
@@ -110,7 +110,7 @@ const PostDetails = (props: Props) => {
 
       {/* Address */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center gap-1`}
       >
         <span
           className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}

@@ -115,7 +115,7 @@ const CommentsSection = ({
 
   return (
     <div className="mb-5 mx-2">
-      <div className="flex flex-col bg-gray-50 h-fit w-full py-2 px-3 rounded-xl">
+      <div className="flex flex-col bg-gray-50 dark:bg-gray-700 h-fit w-full py-2 px-3 rounded-xl">
         {/* Profile phoho and image */}
         <div className=" flex flex-row gap-3 items-center justify-start mb-2">
           {profile?.profileImageSrc ? (
@@ -192,7 +192,8 @@ const CommentsSection = ({
             {comment.uploadedFiles.map((file, index) => (
               <Link key={index} href={file} target="_blank">
                 <div
-                  className={`flex flex-row my-2 bg-gray-200 h-fit w-fit py-1 px-2 rounded-lg shadow-md border border-gray-300`}
+                  className={`flex flex-row my-2 bg-gray-200 dark:bg-gray-500 h-fit w-fit py-1 px-2 rounded-lg shadow-md border
+                  border-gray-300 dark:border-gray-400`}
                 >
                   {svgFile2}
                 </div>
@@ -209,7 +210,7 @@ const CommentsSection = ({
         {/* Edit button and time ago */}
         <div className="flex flex-row justify-between items-start w-full">
           <div
-            className={`btn2 bg-gray-200 text-gray-500 flex flex-row items-center gap-1 ${
+            className={`btn2 bg-gray-200 text-gray-500 dark:bg-gray-600 dark:text-gray-300 flex flex-row items-center gap-1 ${
               !isArabic && "ltr"
             }`}
           >
@@ -220,7 +221,7 @@ const CommentsSection = ({
           <div className={`flex flex-row gap-2 justify-center items-center`}>
             {canDelete && (
               <button
-                className={`bg-gray-400 p-1 h-fit w-fit rounded-md mt-1`}
+                className={`bg-gray-400 dark:bg-gray-600 p-1 h-fit w-fit rounded-md mt-1`}
                 onClick={handleDeleteComment}
               >
                 {" "}
@@ -231,7 +232,7 @@ const CommentsSection = ({
             {canEdit && (
               <Popup
                 trigger={
-                  <button className="bg-gray-400 p-1 h-fit w-fit rounded-md mt-1">
+                  <button className="bg-gray-400 dark:bg-gray-600 p-1 h-fit w-fit rounded-md mt-1">
                     {svgEdit}
                   </button>
                 }

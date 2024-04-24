@@ -1,7 +1,13 @@
 "use client";
 
 import React from "react";
-import { svgAddress, svgPrice, svgProperty } from "../svgsPath";
+import {
+  svgAddress,
+  svgBuilding,
+  svgPrice,
+  svgProperty,
+  svgRooms,
+} from "../svgsPath";
 import { useLocale, useTranslations } from "next-intl";
 import { RealEstatePost } from "@/types/post";
 
@@ -16,11 +22,11 @@ const RSPostDetails = ({ post }: Props) => {
 
   return (
     <div
-      className={`flex flex-col gap-2 p-3 overflow-x-auto bg-[#f9fafb] rounded-3xl`}
+      className={`flex flex-col gap-2 p-3 overflow-x-auto bg-[#f9fafb] dark:bg-gray-800 rounded-3xl`}
     >
       {/* Property and ownership Type */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center gap-1`}
       >
         {" "}
         <span
@@ -37,7 +43,7 @@ const RSPostDetails = ({ post }: Props) => {
 
       {/* Price */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center gap-1`}
       >
         <span
           className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
@@ -49,31 +55,31 @@ const RSPostDetails = ({ post }: Props) => {
 
       {/* Number of Rooms */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center justify-between gap-1 w-fit`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center justify-between gap-1 w-fit`}
       >
         <span
           className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2 text-primary font-medium`}
         >
-          {t("rooms")}
+          {svgRooms}
         </span>
         {post?.numberOfRooms}
       </p>
 
       {/* Property age */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center gap-1`}
       >
         <span
           className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2 text-primary font-medium`}
         >
-          {t("propertyAge")}
+          {svgBuilding}
         </span>{" "}
         {`${post.ageRange[0]} - ${post.ageRange[1]} ${t("years")}`}
       </p>
 
       {/* Address */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center gap-1`}
       >
         <span
           className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}

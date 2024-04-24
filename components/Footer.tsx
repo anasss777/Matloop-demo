@@ -11,7 +11,7 @@ const Footer = () => {
   const isArabic = locale === "ar";
 
   return (
-    <div className="flex flex-col gap-6 bg-teal-400 pt-4 px-3 mt-10 relative bottom-0">
+    <div className="flex flex-col gap-6 bg-teal-400 dark:bg-teal-700 pt-4 px-3 mt-10 relative bottom-0">
       <Link href="/" className={`flex justify-center w-full`}>
         <p
           className={`flex justify-center items-center text-2xl text-white w-fit`}
@@ -21,19 +21,19 @@ const Footer = () => {
       </Link>
 
       <div>
-        <p className="flex justify-center font-bold text-teal-700">
+        <p className="flex justify-center font-bold text-teal-600">
           {t("email")}
         </p>
         <p className="flex justify-center text-teal-100 text-sm">
           support@matloob.com
         </p>
-        <p className="flex justify-center font-bold text-teal-700">
+        <p className="flex justify-center font-bold text-teal-600">
           {t("phoneNumber")}
         </p>
         <p className="flex justify-center text-teal-100 text-sm">
           +901234567890
         </p>
-        <p className="flex justify-center font-bold text-teal-700">
+        <p className="flex justify-center font-bold text-teal-600">
           {t("address")}
         </p>
         <p className="flex justify-center text-teal-100 text-sm text-center">
@@ -51,7 +51,7 @@ const Footer = () => {
           href="https://portfolio-anasss777.vercel.app/"
           target="_blank"
           locale={locale}
-          className={`text-teal-700 font-normal`}
+          className={`text-teal-700 dark:text-teal-800 font-normal`}
         >
           &nbsp;Anas Chammam&nbsp;
         </Link>

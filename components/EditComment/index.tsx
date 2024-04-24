@@ -25,8 +25,8 @@ const EditComment = ({
 
   return (
     <div
-      className={`flex flex-col justify-between items-center gap-1 bg-gray-200 m-5 rounded-lg overflow-y-auto h-[90vh] max-w-[400px] mx-auto
-      p-2 ${isArabic && "rtl"}`}
+      className={`flex flex-col justify-between items-center gap-1 bg-gray-200 dark:bg-gray-800 m-5 rounded-lg overflow-y-auto h-[90vh]
+      max-w-[400px] mx-auto p-2 ${isArabic && "rtl"}`}
     >
       <div className={`flex flex-col justify-center items-center w-full`}>
         <div className={`flex flex-col justify-center w-full`}>
@@ -37,11 +37,15 @@ const EditComment = ({
 
         <EditCommentText comment={comment} />
 
-        <div className={`border-t border-gray-300 mt-5 w-[90%] h-1`}></div>
+        <div
+          className={`border-t border-gray-300 dark:border-gray-500 mt-5 w-[90%] h-1`}
+        ></div>
 
         <EditCommentFiles comment={comment} />
 
-        <div className={`border-t border-gray-300 my-5 w-[90%] h-1`}></div>
+        <div
+          className={`border-t border-gray-300 dark:border-gray-500 my-5 w-[90%] h-1`}
+        ></div>
 
         <EditCommentImages comment={comment} />
       </div>

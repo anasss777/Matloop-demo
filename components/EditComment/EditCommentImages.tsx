@@ -155,7 +155,7 @@ const EditCommentImages = ({ comment }: Props) => {
                 width={500}
                 height={500}
                 alt={`Image ${index + 1}`}
-                className={`object-cover h-16 w-16 rounded-md shadow-md border border-gray-400`}
+                className={`object-cover h-16 w-16 rounded-md shadow-md border border-gray-300 dark:border-gray-400`}
               />
             </div>
           ))}
@@ -183,7 +183,7 @@ const EditCommentImages = ({ comment }: Props) => {
       <button className="">
         <label htmlFor={`imageInput${comment.commentId}`}>
           <span
-            className={`flex bg-secondary/30 h-fit w-fit p-1 rounded-full border border-secondary shadow-md`}
+            className={`flex bg-secondary/30 dark:bg-secondary/50 h-fit w-fit p-1 rounded-full border border-secondary shadow-md`}
           >
             {svgImage}
           </span>

@@ -64,7 +64,7 @@ const NavbarElements = () => {
         id="navbarToggler"
         onClick={toggleMenu}
         className={`absolute block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden ${
-          locale === "ar" ? "left-0" : "right-0"
+          locale === "ar" ? "left-2" : "right-2"
         }`}
       >
         <span
@@ -94,7 +94,7 @@ const NavbarElements = () => {
       >
         <ul
           onClick={() => setMenuOpen(false)}
-          className={`block lg:flex flex-row gap-5 border rounded-lg border-teal-700 lg:border-none ${
+          className={`block lg:flex flex-row gap-5 border rounded-lg border-teal-700 dark:bg-gray-600 lg:dark:bg-transparent lg:border-none ${
             locale === "ar" && "text-right"
           }`}
         >

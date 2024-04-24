@@ -19,11 +19,11 @@ const Hero = () => {
     <div>
       <div
         className={`flex flex-col justify-center items-center w-full px-12 pb-5 pt-10 bg-teal-500 rounded-ee-[100px] rounded-es-[100px]
-        shadow-md border border-t-0 border-teal-200 dark:bg-teal-700 ${
+        shadow-md border border-t-0 border-teal-200 dark:border dark:border-t-0 dark:border-teal-500 dark:bg-teal-700 ${
           isArabic ? "rtl" : "ltr"
         }`}
       >
-        <h1 className="text-5xl font-bold dark:text-teal-950 text-teal-200 mb-12 w-full sm:w-[70%] md:w-1/2 lg:w-[30%]">
+        <h1 className="text-5xl font-bold dark:text-teal-900 text-teal-200 mb-12 w-full sm:w-[70%] md:w-1/2 lg:w-[30%]">
           <motion.span
             variants={fedeInAnimationVariants1}
             initial="initial"

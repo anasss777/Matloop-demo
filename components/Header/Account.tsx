@@ -82,7 +82,9 @@ const Account = () => {
         <div
           className={`border border-primary relative top-full hidden w-[125px] rounded-md bg-white py-2 transition-[top] duration-300
           group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible
-          lg:group-hover:top-full ${locale === "ar" ? "left-0" : "right-0"}`}
+          lg:group-hover:top-full dark:bg-gray-700 ${
+            locale === "ar" ? "left-0" : "right-0"
+          }`}
         >
           <Link
             locale={locale}
@@ -129,7 +131,9 @@ const Account = () => {
         <div
           className={`border border-primary relative top-full hidden w-[125px] rounded-md bg-white py-2 transition-[top] duration-300
           group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible 
-          lg:group-hover:top-full ${locale === "ar" ? "left-0" : "right-0"}`}
+          lg:group-hover:top-full dark:bg-gray-600 ${
+            locale === "ar" ? "left-0" : "right-0"
+          }`}
         >
           <Link
             locale={locale}

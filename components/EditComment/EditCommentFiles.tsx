@@ -150,7 +150,8 @@ const EditCommentFiles = ({ comment }: Props) => {
               </span>
               <Link href={file} target="_blank">
                 <div
-                  className={`flex flex-row my-2 bg-gray-200 h-fit w-fit py-1 px-2 rounded-lg shadow-md border border-gray-300`}
+                  className={`flex flex-row my-2 bg-gray-200 dark:bg-gray-600 h-fit w-fit py-1 px-2 rounded-lg shadow-md border
+                  border-gray-300 dark:border-gray-400`}
                 >
                   {svgFileBig}
                 </div>
@@ -181,7 +182,7 @@ const EditCommentFiles = ({ comment }: Props) => {
       <button className="">
         <label htmlFor={`fileInput${comment.commentId}`}>
           <span
-            className={`flex bg-secondary/30 h-fit w-fit p-1 rounded-full border border-secondary shadow-md`}
+            className={`flex bg-secondary/30 dark:bg-secondary/50 h-fit w-fit p-1 rounded-full border border-secondary shadow-md`}
           >
             {svgFile}
           </span>

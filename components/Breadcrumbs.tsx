@@ -32,7 +32,7 @@ const Breadcrumbs = ({
         className={`flex flex-row gap-1 items-center justify-center hover:text-primary transition-colors duration-300 ease-linear`}
       >
         <span
-          className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
+          className={`bg-primary/20 dark:bg-primary/40 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
         >
           {svgHome}
         </span>
@@ -46,7 +46,7 @@ const Breadcrumbs = ({
         className={`flex flex-row gap-1 items-center justify-center hover:text-primary transition-colors duration-300 ease-linear`}
       >
         <span
-          className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
+          className={`bg-primary/20 dark:bg-primary/40 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
         >
           {categorySvg}
         </span>
