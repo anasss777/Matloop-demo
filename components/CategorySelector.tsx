@@ -16,7 +16,7 @@ const CategorySelector = () => {
       <Link
         locale={locale}
         href="/new-matloop/job"
-        className={`btn2 shadow-sm text-primary sm:text-xl text-lg font-bold bg-primary/20 ${
+        className={`btn2 shadow-sm text-primary sm:text-xl text-lg font-bold bg-primary/30 ${
           currentPage.includes(`/${locale}/new-matloop/job`) &&
           `chosen-btn text-white`
         }`}
@@ -26,7 +26,7 @@ const CategorySelector = () => {
       <Link
         locale={locale}
         href="/new-matloop/car"
-        className={`btn2 shadow-sm text-primary sm:text-xl text-lg font-bold bg-primary/20 ${
+        className={`btn2 shadow-sm text-primary sm:text-xl text-lg font-bold bg-primary/30 ${
           currentPage.includes(`/${locale}/new-matloop/car`) &&
           `chosen-btn text-white`
         }`}
@@ -36,7 +36,7 @@ const CategorySelector = () => {
       <Link
         locale={locale}
         href="/new-matloop/real-estate"
-        className={`btn2 shadow-sm text-primary sm:text-xl text-lg font-bold bg-primary/20 ${
+        className={`btn2 shadow-sm text-primary sm:text-xl text-lg font-bold bg-primary/30 ${
           currentPage.includes(`/${locale}/new-matloop/real-estate`) &&
           `chosen-btn text-white`
         }`}
@@ -46,7 +46,7 @@ const CategorySelector = () => {
       <Link
         locale={locale}
         href="/new-matloop/electronic-device"
-        className={`btn2 shadow-sm text-primary sm:text-xl text-lg font-bold bg-primary/20 ${
+        className={`btn2 shadow-sm text-primary sm:text-xl text-lg font-bold bg-primary/30 ${
           currentPage.includes(`/${locale}/new-matloop/electronic-device`) &&
           `chosen-btn text-white`
         }`}

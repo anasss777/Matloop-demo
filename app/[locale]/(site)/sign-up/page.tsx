@@ -66,14 +66,14 @@ const SignUp = () => {
 
   return (
     <div
-      className={`flex flex-col justify-center items-center w-full py-20 ${
+      className={`flex flex-col justify-center items-center w-full h-[100vh] ${
         isArabic ? "rtl" : "ltr"
       }`}
     >
       <form
         name="signUp"
         onSubmit={handleSubmit}
-        className={`flex flex-col gap-5 justify-center items-center bg-white p-5 rounded-md shadow-Card2`}
+        className={`flex flex-col gap-5 justify-center items-center bg-white dark:bg-gray-800 p-5 rounded-md shadow-Card2`}
       >
         <input
           name="firstName"

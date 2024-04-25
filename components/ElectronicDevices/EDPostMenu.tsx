@@ -84,9 +84,8 @@ const EDPostMenu = ({ post }: Props) => {
           <button onClick={() => setOpenMenu(!openMenu)}>{svgMenu}</button>
         )}
         <div
-          className={`border border-secondary w-fit rounded-md bg-[#cfdfeb] p-1 transition-[top] duration-300 absolute block shadow-lg ${
-            isArabic ? "left-0" : "right-0"
-          } ${
+          className={`border border-secondary w-fit rounded-md bg-[#cfdfeb] dark:bg-gray-700 p-1 transition-[top] duration-300 absolute
+          block shadow-lg ${isArabic ? "left-0" : "right-0"} ${
             openMenu
               ? "opacity-100 visible top-[60%]"
               : "opacity-0 invisible top-[20%]"
@@ -95,7 +94,7 @@ const EDPostMenu = ({ post }: Props) => {
           {/* Delete a post */}
           {canEdit && (
             <div
-              className={`flex justify-start mb-1 w-full hover:bg-white/50 p-1 rounded-md`}
+              className={`flex justify-start mb-1 w-full hover:dark:bg-gray-600 hover:bg-white/50 p-1 rounded-md`}
             >
               <button
                 className="h-fit w-fit text-secondary flex flex-row items-center gap-1"
@@ -112,7 +111,7 @@ const EDPostMenu = ({ post }: Props) => {
             trigger={
               canEdit ? (
                 <div
-                  className={`flex justify-start mt-1 w-full hover:bg-white/50 p-1 rounded-md`}
+                  className={`flex justify-start mt-1 w-full hover:dark:bg-gray-600 hover:bg-white/50 p-1 rounded-md`}
                 >
                   <button
                     onClick={() => setOpenMenu(false)}

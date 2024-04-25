@@ -18,12 +18,12 @@ const JobPostDetails = ({ post }: Props) => {
 
   return (
     <div
-      className={`flex flex-col gap-2 p-3 overflow-x-auto bg-[#f9fafb] rounded-3xl`}
+      className={`flex flex-col gap-2 p-3 overflow-x-auto bg-[#f9fafb] dark:bg-gray-800 rounded-3xl`}
     >
       {" "}
       {/* Job type */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center gap-1`}
       >
         <span
           className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
@@ -37,7 +37,7 @@ const JobPostDetails = ({ post }: Props) => {
       </p>
       {/* Job location */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center gap-1`}
       >
         <span
           className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
@@ -50,7 +50,7 @@ const JobPostDetails = ({ post }: Props) => {
       </p>
       {/* Education Level */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center gap-1`}
       >
         <span
           className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
@@ -65,7 +65,7 @@ const JobPostDetails = ({ post }: Props) => {
       </p>
       {/* Salary */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center gap-1`}
       >
         <span
           className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
@@ -76,7 +76,7 @@ const JobPostDetails = ({ post }: Props) => {
       </p>
       {/* Address */}
       <p
-        className={`btn2 bg-white/50 text-secondary flex flex-row items-center gap-1`}
+        className={`btn2 bg-white/50 dark:bg-gray-700 dark:font-bold text-secondary flex flex-row items-center gap-1`}
       >
         <span
           className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}

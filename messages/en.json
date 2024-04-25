@@ -390,5 +390,28 @@
         "showAll": "Show All",
         "done": "Filter",
         "cancel": "Cancel"
+    },
+    "overview": {
+        "categories": "Categories",
+        "jobs": "Jobs",
+        "totalJobs": "Total Jobs",
+        "totalJobsToday": "Total Jobs Today",
+        "activeJobs": "Active Jobs",
+        "resolvedJobs": "Resolved Jobs",
+        "cars": "Cars",
+        "totalCars": "Total Cars",
+        "totalCarsToday": "Total Cars Today",
+        "activeCars": "Active Cars",
+        "resolvedCars": "Resolved Cars",
+        "realEstate": "Real Estate",
+        "totalRealEstates": "Total Real Estates",
+        "totalRealEstatesToday": "Total Real Estates Today",
+        "activeRealEstates": "Active Real Estates",
+        "resolvedRealEstates": "Resolved Real Estates",
+        "devices": "Electronic Devices",
+        "totalDevices": "Total Electronic Devices",
+        "totalDevicesToday": "Total Electronic Devices Today",
+        "activeDevices": "Active Electronic Devices",
+        "resolvedDevices": "Resolved Electronic Devices"
     }
 }

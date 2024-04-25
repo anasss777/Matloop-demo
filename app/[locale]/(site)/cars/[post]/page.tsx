@@ -156,7 +156,7 @@ const Post = ({ params }: Props) => {
           </p>
 
           <div className={`flex flex-col w-full`}>
-            <p className={`text-secondary font-bold text-2xl mb-6`}>
+            <p className={`text-secondary font-bold text-2xl mb-3`}>
               {t("comments")}
             </p>
             <CarPostComments post={post} />

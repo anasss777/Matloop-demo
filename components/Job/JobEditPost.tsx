@@ -107,8 +107,8 @@ const JobEditPost = ({ openEditPost, setOpenEditPost, post }: Props) => {
 
   return (
     <div
-      className={`flex flex-col justify-start items-center gap-1 bg-gray-200 m-5 rounded-lg overflow-y-auto max-w-[400px] h-[90vh] w-full
-    mx-auto p-2 ${isArabic && "rtl"}`}
+      className={`flex flex-col justify-start items-center gap-1 bg-gray-200 dark:bg-gray-800 m-5 rounded-lg overflow-y-auto max-w-[400px]
+      h-[90vh] w-full mx-auto p-2 ${isArabic && "rtl"}`}
     >
       <div className={`flex flex-col justify-center w-full`}>
         <button onClick={() => setOpenEditPost(!openEditPost)}>

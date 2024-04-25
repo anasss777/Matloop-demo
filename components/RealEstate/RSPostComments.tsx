@@ -123,38 +123,12 @@ const RSPostComments = ({ post }: Props) => {
 
   return (
     <div
-      className={`w-full rounded-md p-2 flex flex-col items-center justify-between gap-2 mx-auto h-fit ${
+      className={`w-full rounded-md p-2 flex flex-col items-center justify-between gap-10 mx-auto h-fit ${
         isArabic && "rtl"
       }`}
     >
-      {/* show one or all comments */}
-      {comments && (
-        <div className={`w-full shadow-Card2 p-3 rounded-xl dark:bg-gray-700`}>
-          {comments.map(
-            (comment, index) =>
-              comment.commentId && (
-                <div key={index}>
-                  <RSCommentSection
-                    commentUpdated={commentUpdated}
-                    handleCommentUpdated={handleCommentUpdated}
-                    comment={comment}
-                    post={post}
-                  />
-                  {comments.length - 1 !== index && (
-                    <div
-                      className={`border-t border-t-secondary/60 my-5 w-full`}
-                    ></div>
-                  )}
-                </div>
-              )
-          )}
-        </div>
-      )}
-
       {/* Add Comment */}
-      <div
-        className={`flex flex-col justify-center items-center w-full h-fit mt-10`}
-      >
+      <div className={`flex flex-col justify-center items-center w-full h-fit`}>
         {/* Form for a comment */}
         {commentor ? (
           <div className="flex flex-col justify-between w-full border dark:border-gray-600 shadow-Card rounded-md">
@@ -296,6 +270,30 @@ const RSPostComments = ({ post }: Props) => {
           </div>
         )}
       </div>
+
+      {/* show one or all comments */}
+      {comments && comments.length > 0 && (
+        <div className={`w-full shadow-Card2 p-3 rounded-xl dark:bg-gray-700`}>
+          {comments.map(
+            (comment, index) =>
+              comment.commentId && (
+                <div key={index}>
+                  <RSCommentSection
+                    commentUpdated={commentUpdated}
+                    handleCommentUpdated={handleCommentUpdated}
+                    comment={comment}
+                    post={post}
+                  />
+                  {comments.length - 1 !== index && (
+                    <div
+                      className={`border-t border-t-secondary/60 my-5 w-full`}
+                    ></div>
+                  )}
+                </div>
+              )
+          )}
+        </div>
+      )}
     </div>
   );
 };

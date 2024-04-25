@@ -390,5 +390,44 @@
         "showAll": "إظهار الكل",
         "done": "فلترة",
         "cancel": "إلغاء"
+    },
+    "adminPanel": {
+        "dashboard": "لوحة التحكم",
+        "posts": "المطلوبات"
+    },
+    "overview": {
+        "categories": "الأقسام",
+        "jobs": "وظائف",
+        "totalJobs": "كل الوظائف",
+        "totalJobsToday": "كل الوظائف اليوم",
+        "activeJobs": "وظائف متاحة",
+        "resolvedJobs": "وظائف وجدت",
+        "cars": "سيارات",
+        "totalCars": "كل السيارات",
+        "totalCarsToday": "كل السيارات اليوم",
+        "activeCars": "سيارات متاحة",
+        "resolvedCars": "سيارات وجدت",
+        "realEstate": "عقارات",
+        "totalRealEstates": "كل العقارات",
+        "totalRealEstatesToday": "كل العقارات اليوم",
+        "activeRealEstates": "عقارات متاحة",
+        "resolvedRealEstates": "عقارات وجدت",
+        "devices": "أجهزة إلكترونية",
+        "totalDevices": "كل الأجهزة الإلكترونية",
+        "totalDevicesToday": "كل الأجهزة الإلكترونية اليوم",
+        "activeDevices": "أجهزة إلكترونية متاحة",
+        "resolvedDevices": "أجهزة إلكترونية وجدت"
+    },
+    "postsList": {
+        "id": "الرقم التعريفي",
+        "title": "العنوان",
+        "category": "الأقسام",
+        "status": "الحالة",
+        "date": "تاريخ النشر",
+        "all": "الكل",
+        "jobs": "وظائف",
+        "cars": "سيارات",
+        "realEstates": "عقارات",
+        "devices": "أجهزة إلكترونية"
     }
 }

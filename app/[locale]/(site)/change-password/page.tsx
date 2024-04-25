@@ -67,7 +67,7 @@ const ChangePassword = () => {
     >
       <form
         onSubmit={handleChangePassword}
-        className={`flex flex-col gap-5 justify-center items-center bg-white p-5 rounded-md shadow-Card2`}
+        className={`flex flex-col gap-5 justify-center items-center bg-white dark:bg-gray-800 p-5 rounded-md shadow-Card2`}
       >
         <p className={`text-gray-400 font-bold`}>
           <span className={`text-secondary`}>{t("email")}</span>

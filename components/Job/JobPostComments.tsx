@@ -123,58 +123,32 @@ const JobPostComments = ({ post }: Props) => {
 
   return (
     <div
-      className={`w-full rounded-md p-2 flex flex-col items-center justify-between gap-2 mx-auto h-fit ${
+      className={`w-full rounded-md p-2 flex flex-col items-center justify-between gap-10 mx-auto h-fit ${
         isArabic && "rtl"
       }`}
     >
-      {/* show one or all comments */}
-      {comments && (
-        <div className={`w-full shadow-Card2 p-3 rounded-xl`}>
-          {comments.map(
-            (comment, index) =>
-              comment.commentId && (
-                <div key={index}>
-                  <JobCommentSection
-                    commentUpdated={commentUpdated}
-                    handleCommentUpdated={handleCommentUpdated}
-                    comment={comment}
-                    post={post}
-                  />
-                  {comments.length - 1 !== index && (
-                    <div
-                      className={`border-t border-t-secondary/60 my-5 w-full`}
-                    ></div>
-                  )}
-                </div>
-              )
-          )}
-        </div>
-      )}
-
       {/* Add Comment */}
-      <div
-        className={`flex flex-col justify-center items-center w-full h-fit mt-10`}
-      >
+      <div className={`flex flex-col justify-center items-center w-full h-fit`}>
         {/* Form for a comment */}
         {commentor ? (
-          <div className="flex flex-col justify-between w-full border shadow-Card rounded-md">
+          <div className="flex flex-col justify-between w-full border dark:border-gray-600 shadow-Card rounded-md">
             <textarea
               rows={4}
               cols={50}
               placeholder={t("commentContent")}
               value={commentContent}
               onChange={(e) => setCommentContent(e.target.value)}
-              className="w-full rounded-t-md outline-1 outline-gray-400 py-2 px-3 text-gray-400 h-10 resize-none"
+              className="w-full rounded-t-md outline-none py-2 px-3 text-gray-400 dark:text-gray-200 h-10 resize-none"
             ></textarea>
 
             <div
-              className={`flex gap-2 items-center justify-end w-full bg-white p-2 rounded-b-md`}
+              className={`flex gap-2 items-center justify-end w-full bg-white dark:bg-black p-2 rounded-b-md`}
             >
               {/* Add up to 10 images to a comment */}
               <button className="">
                 <label htmlFor={`imageInput${post.poster.userId}`}>
                   <span
-                    className={`flex bg-gray-200 h-fit w-fit p-1 rounded-full border border-gray-300 shadow-md`}
+                    className={`flex bg-gray-200 dark:bg-gray-500 h-fit w-fit p-1 rounded-full border border-gray-300 shadow-md`}
                   >
                     {svgImage}
                   </span>
@@ -193,7 +167,7 @@ const JobPostComments = ({ post }: Props) => {
               <button className="">
                 <label htmlFor={`fileInput${post.poster.userId}`}>
                   <span
-                    className={`flex bg-gray-200 h-fit w-fit p-1 rounded-full border border-gray-300 shadow-md`}
+                    className={`flex bg-gray-200 dark:bg-gray-500 h-fit w-fit p-1 rounded-full border border-gray-300 shadow-md`}
                   >
                     {svgFile}
                   </span>
@@ -211,8 +185,8 @@ const JobPostComments = ({ post }: Props) => {
               {/* Add comment button */}
               <button onClick={validateInputs} className="">
                 <span
-                  className={`flex justify-center items-center bg-secondary/20 h-fit w-fit p-1 rounded-full border border-secondary/50
-                  shadow-md`}
+                  className={`flex justify-center items-center bg-secondary/20 dark:bg-secondary/50 h-fit w-fit p-1 rounded-full border
+                  border-secondary/50 dark:border-secondary shadow-md`}
                 >
                   {isArabic ? svgSend : svgSendEn}
                 </span>
@@ -233,53 +207,93 @@ const JobPostComments = ({ post }: Props) => {
         {commentor && (
           <div className={`flex flex-col gap-2`}>
             {/* Number of images and its error */}
-            <div
-              className={`flex flex-col gap-1 ${
-                isArabic ? "text-right" : "text-left"
-              }`}
-            >
-              <p className={`text-gray-500 ${!isArabic && "ltr"}`}>
-                {t("uploadedImages")}
-                <span className={`font-bold text-gray-600`}>
-                  {commentsImages?.length || 0}
-                </span>
-              </p>
-              {commentsImages && commentsImages.length > 10 && (
+            {commentsImages?.length && commentsImages?.length > 0 && (
+              <div
+                className={`flex flex-col gap-1 ${
+                  isArabic ? "text-right" : "text-left"
+                }`}
+              >
                 <p
-                  className={`flex flex-row items-center gap-1 text-[#f00] bg-gray-300 w-fit rounded-md px-1 text-sm shadow-md ${
+                  className={`text-gray-500 dark:text-gray-300 ${
                     !isArabic && "ltr"
                   }`}
                 >
-                  <span>{svgError}</span> {t("imagesError")}
+                  {t("uploadedImages")}
+                  <span
+                    className={`font-bold text-gray-600 dark:text-gray-400`}
+                  >
+                    {commentsImages?.length}
+                  </span>
                 </p>
-              )}
-            </div>
+                {commentsImages && commentsImages.length > 10 && (
+                  <p
+                    className={`flex flex-row items-center gap-1 text-[#f00] bg-gray-300 w-fit rounded-md px-1 text-sm shadow-md ${
+                      !isArabic && "ltr"
+                    }`}
+                  >
+                    <span>{svgError}</span> {t("imagesError")}
+                  </p>
+                )}
+              </div>
+            )}
 
             {/* Number of files and its error */}
-            <div
-              className={`flex flex-col gap-1 ${
-                isArabic ? "text-right" : "text-left"
-              }`}
-            >
-              <p className={`text-gray-500 ${!isArabic && "ltr"}`}>
-                {t("uploadedFiles")}
-                <span className={`font-bold text-gray-600`}>
-                  {commentsFiles?.length || 0}
-                </span>
-              </p>
-              {commentsFiles && commentsFiles.length > 3 && (
+            {commentsFiles?.length && commentsFiles?.length > 0 && (
+              <div
+                className={`flex flex-col gap-1 ${
+                  isArabic ? "text-right" : "text-left"
+                }`}
+              >
                 <p
-                  className={`flex flex-row items-center gap-1 text-[#f00] bg-gray-300 w-fit rounded-md px-1 text-sm shadow-md ${
+                  className={`text-gray-500 dark:text-gray-300 ${
                     !isArabic && "ltr"
                   }`}
                 >
-                  <span>{svgError}</span> {t("filesError")}
+                  {t("uploadedFiles")}
+                  <span
+                    className={`font-bold text-gray-600 dark:text-gray-400`}
+                  >
+                    {commentsFiles?.length}
+                  </span>
                 </p>
-              )}
-            </div>
+                {commentsFiles && commentsFiles.length > 3 && (
+                  <p
+                    className={`flex flex-row items-center gap-1 text-[#f00] bg-gray-300 w-fit rounded-md px-1 text-sm shadow-md ${
+                      !isArabic && "ltr"
+                    }`}
+                  >
+                    <span>{svgError}</span> {t("filesError")}
+                  </p>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>
+
+      {/* show one or all comments */}
+      {comments && comments.length > 0 && (
+        <div className={`w-full shadow-Card2 p-3 rounded-xl dark:bg-gray-700`}>
+          {comments.map(
+            (comment, index) =>
+              comment.commentId && (
+                <div key={index}>
+                  <JobCommentSection
+                    commentUpdated={commentUpdated}
+                    handleCommentUpdated={handleCommentUpdated}
+                    comment={comment}
+                    post={post}
+                  />
+                  {comments.length - 1 !== index && (
+                    <div
+                      className={`border-t border-t-secondary/60 my-5 w-full`}
+                    ></div>
+                  )}
+                </div>
+              )
+          )}
+        </div>
+      )}
     </div>
   );
 };

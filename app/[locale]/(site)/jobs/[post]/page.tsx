@@ -7,10 +7,10 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import LoadingPosts from "@/components/LoadingPosts";
 import Image from "next/image";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
-import { DevicePost } from "@/types/post";
-import { svgBigUser, svgDevices } from "@/components/svgsPath";
-import EDPostDetails from "@/components/ElectronicDevices/EDPostDetails";
-import DevicePostComments from "@/components/ElectronicDevices/DevicePostComments";
+import { JobPost } from "@/types/post";
+import { svgBigUser, svgJob } from "@/components/svgsPath";
+import JobPostDetails from "@/components/Job/JobPostDetails";
+import JobPostComments from "@/components/Job/JobPostComments";
 import { Profile } from "@/types/profile";
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
@@ -22,7 +22,7 @@ type Props = {
 const Post = ({ params }: Props) => {
   const id = params.post;
 
-  const [post, setPost] = useState<DevicePost | null>(null);
+  const [post, setPost] = useState<JobPost | null>(null);
   const [loading, setLoading] = useState(true);
 
   const t = useTranslations("singlePost");
@@ -61,14 +61,14 @@ const Post = ({ params }: Props) => {
   useEffect(() => {
     const unsubscribe = firebase
       .firestore()
-      .collection("electronicDevices")
+      .collection("jobsPosts")
       .onSnapshot((snapshot) => {
-        const newPosts: DevicePost[] = []; // Create a new array to hold updated posts
+        const newPosts: JobPost[] = []; // Create a new array to hold updated posts
         snapshot.forEach((doc) => {
           newPosts.push({
             postId: doc.id,
             ...doc.data(),
-          } as DevicePost);
+          } as JobPost);
         });
 
         // Set a post based on postId
@@ -92,9 +92,9 @@ const Post = ({ params }: Props) => {
         }`}
       >
         <Breadcrumbs
-          categorySvg={svgDevices}
-          categoryName={t("devices")}
-          categoryLink="/electronic-devices"
+          categorySvg={svgJob}
+          categoryName={t("jobs")}
+          categoryLink="/jobs"
           postTitle={""}
         />
         <LoadingPosts />
@@ -113,9 +113,9 @@ const Post = ({ params }: Props) => {
       }`}
     >
       <Breadcrumbs
-        categorySvg={svgDevices}
-        categoryName={t("devices")}
-        categoryLink="/electronic-devices"
+        categorySvg={svgJob}
+        categoryName={t("jobs")}
+        categoryLink="/jobs"
         postTitle={post.postTitle}
       />
 
@@ -155,10 +155,10 @@ const Post = ({ params }: Props) => {
           </p>
 
           <div className={`flex flex-col w-full`}>
-            <p className={`text-secondary font-bold text-2xl mb-6`}>
+            <p className={`text-secondary font-bold text-2xl mb-3`}>
               {t("comments")}
             </p>
-            <DevicePostComments post={post} />
+            <JobPostComments post={post} />
           </div>
         </div>
 
@@ -168,7 +168,7 @@ const Post = ({ params }: Props) => {
             className={`shadow-Card2 p-0.5 md:sticky md:top-14 overflow-hidden rounded-3xl bg-gradient-to-tl from-primary via-transparent
           to-secondary`}
           >
-            <EDPostDetails post={post} />
+            <JobPostDetails post={post} />
           </div>
         </div>
       </div>
