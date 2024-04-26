@@ -7,11 +7,12 @@ import firebase from "@/firebase";
 import EDPostCard from "./ElectronicDevices/EDPostCard";
 import RSPostCard from "./RealEstate/RSPostCard";
 import JobPostCard from "./Job/JobPostCard";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import LoadingPosts from "./LoadingPosts";
 
 const LatestDeals = () => {
   const t = useTranslations("latestDeals");
+  const locale = useLocale();
   const [carsPosts, setCarsPosts] = useState<CarPost[]>([]);
   const [devicesPosts, setDevicesPosts] = useState<DevicePost[]>([]);
   const [realEstatePosts, setRealEstatePosts] = useState<RealEstatePost[]>([]);
@@ -24,16 +25,20 @@ const LatestDeals = () => {
       .onSnapshot((snapshot) => {
         const newPosts: CarPost[] = []; // Create a new array to hold updated posts
         snapshot.forEach((doc) => {
-          newPosts.push({
+          const postData = {
             ...doc.data(),
-          } as CarPost);
+          } as CarPost;
+          // Check visibility before adding post to array
+          if (postData.visibility === true) {
+            newPosts.push(postData);
+          }
         });
-        setCarsPosts(newPosts); // Update posts state with the new data
+        setCarsPosts(newPosts.filter((post) => post.language === locale)); // Update posts state with the new data
       });
 
     // Unsubscribe from Firestore listener when component unmounts
     return () => unsubscribe();
-  }, []);
+  }, [locale]);
 
   useEffect(() => {
     const unsubscribe = firebase
@@ -42,16 +47,20 @@ const LatestDeals = () => {
       .onSnapshot((snapshot) => {
         const newPosts: DevicePost[] = []; // Create a new array to hold updated posts
         snapshot.forEach((doc) => {
-          newPosts.push({
+          const postData = {
             ...doc.data(),
-          } as DevicePost);
+          } as DevicePost;
+          // Check visibility before adding post to array
+          if (postData.visibility === true) {
+            newPosts.push(postData);
+          }
         });
-        setDevicesPosts(newPosts); // Update posts state with the new data
+        setDevicesPosts(newPosts.filter((post) => post.language === locale)); // Update posts state with the new data
       });
 
     // Unsubscribe from Firestore listener when component unmounts
     return () => unsubscribe();
-  }, []);
+  }, [locale]);
 
   useEffect(() => {
     const unsubscribe = firebase
@@ -60,16 +69,20 @@ const LatestDeals = () => {
       .onSnapshot((snapshot) => {
         const newPosts: RealEstatePost[] = []; // Create a new array to hold updated posts
         snapshot.forEach((doc) => {
-          newPosts.push({
+          const postData = {
             ...doc.data(),
-          } as RealEstatePost);
+          } as RealEstatePost;
+          // Check visibility before adding post to array
+          if (postData.visibility === true) {
+            newPosts.push(postData);
+          }
         });
-        setRealEstatePosts(newPosts); // Update posts state with the new data
+        setRealEstatePosts(newPosts.filter((post) => post.language === locale)); // Update posts state with the new data
       });
 
     // Unsubscribe from Firestore listener when component unmounts
     return () => unsubscribe();
-  }, []);
+  }, [locale]);
 
   useEffect(() => {
     const unsubscribe = firebase
@@ -78,16 +91,20 @@ const LatestDeals = () => {
       .onSnapshot((snapshot) => {
         const newPosts: JobPost[] = []; // Create a new array to hold updated posts
         snapshot.forEach((doc) => {
-          newPosts.push({
+          const postData = {
             ...doc.data(),
-          } as JobPost);
+          } as JobPost;
+          // Check visibility before adding post to array
+          if (postData.visibility === true) {
+            newPosts.push(postData);
+          }
         });
-        setJobPosts(newPosts); // Update posts state with the new data
+        setJobPosts(newPosts.filter((post) => post.language === locale)); // Update posts state with the new data
       });
 
     // Unsubscribe from Firestore listener when component unmounts
     return () => unsubscribe();
-  }, []);
+  }, [locale]);
 
   if (
     [...carsPosts, ...devicesPosts, ...realEstatePosts, ...jobPosts].length ===

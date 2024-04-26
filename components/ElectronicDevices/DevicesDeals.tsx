@@ -22,9 +22,13 @@ const DevicesDeals = () => {
       .onSnapshot((snapshot) => {
         const newPosts: DevicePost[] = []; // Create a new array to hold updated posts
         snapshot.forEach((doc) => {
-          newPosts.push({
+          const postData = {
             ...doc.data(),
-          } as DevicePost);
+          } as DevicePost;
+          // Check visibility before adding post to array
+          if (postData.visibility === true) {
+            newPosts.push(postData);
+          }
         });
         setDevicesPosts(newPosts.filter((post) => post.language === locale)); // Update posts state with the new data
       });

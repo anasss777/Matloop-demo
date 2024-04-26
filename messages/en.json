@@ -443,11 +443,11 @@
         "link": "Link"
     },
     "bannedFromPosting": {
-        "bannedMessage": "You cannot post a request",
+        "bannedMessage": "You cannot add posts",
         "whyBanned": "Please contact customer service to find out why"
     },
     "bannedFromCommenting": {
-        "bannedMessage": "You cannot add a comment",
+        "bannedMessage": "You cannot add comments",
         "whyBanned": "Please contact customer service to find out why"
     }
 }

@@ -22,9 +22,13 @@ const RealEstateDeals = () => {
       .onSnapshot((snapshot) => {
         const newPosts: RealEstatePost[] = []; // Create a new array to hold updated posts
         snapshot.forEach((doc) => {
-          newPosts.push({
+          const postData = {
             ...doc.data(),
-          } as RealEstatePost);
+          } as RealEstatePost;
+          // Check visibility before adding post to array
+          if (postData.visibility === true) {
+            newPosts.push(postData);
+          }
         });
         setRealEstatePosts(newPosts.filter((post) => post.language === locale)); // Update posts state with the new data
       });

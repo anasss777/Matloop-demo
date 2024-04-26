@@ -1,8 +1,10 @@
+import firebase from "@/firebase";
 import { Timestamp } from "firebase/firestore";
 import React from "react";
 import { svgLink } from "../svgsPath";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import Swal from "sweetalert2";
 
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
@@ -13,6 +15,8 @@ type Props = {
   svgDevices: JSX.Element;
   status: string;
   createdAt: Timestamp;
+  category: string;
+  visibility: boolean;
   postLink: string;
 };
 
@@ -22,9 +26,106 @@ const PostRow = ({
   svgDevices,
   status,
   createdAt,
+  category,
+  visibility,
   postLink,
 }: Props) => {
+  const t = useTranslations("usersList");
   const locale = useLocale();
+
+  const changeVisibility = async () => {
+    if (category === "cars") {
+      const userRef = firebase.firestore().collection("posts").doc(postId);
+
+      // Fetch the current data of the post
+      const doc = await userRef.get();
+      if (!doc.exists) {
+        console.log("Post does not exist!");
+        return;
+      }
+
+      // update data
+      userRef
+        .update({
+          visibility: !visibility,
+        })
+        .then(() => {
+          console.log("Post updated successfully.");
+        })
+        .catch((error) => {
+          console.error("Error updating Post: ", error);
+        });
+    } else if (category === "jobs") {
+      const userRef = firebase.firestore().collection("jobsPosts").doc(postId);
+
+      // Fetch the current data of the post
+      const doc = await userRef.get();
+      if (!doc.exists) {
+        console.log("Post does not exist!");
+        return;
+      }
+
+      // update data
+      userRef
+        .update({
+          visibility: !visibility,
+        })
+        .then(() => {
+          console.log("Post updated successfully.");
+        })
+        .catch((error) => {
+          console.error("Error updating Post: ", error);
+        });
+    } else if (category === "realEstates") {
+      const userRef = firebase
+        .firestore()
+        .collection("realEstatePosts")
+        .doc(postId);
+
+      // Fetch the current data of the post
+      const doc = await userRef.get();
+      if (!doc.exists) {
+        console.log("Post does not exist!");
+        return;
+      }
+
+      // update data
+      userRef
+        .update({
+          visibility: !visibility,
+        })
+        .then(() => {
+          console.log("Post updated successfully.");
+        })
+        .catch((error) => {
+          console.error("Error updating Post: ", error);
+        });
+    } else if (category === "electronicDevices") {
+      const userRef = firebase
+        .firestore()
+        .collection("electronicDevices")
+        .doc(postId);
+
+      // Fetch the current data of the post
+      const doc = await userRef.get();
+      if (!doc.exists) {
+        console.log("Post does not exist!");
+        return;
+      }
+
+      // update data
+      userRef
+        .update({
+          visibility: !visibility,
+        })
+        .then(() => {
+          console.log("Post updated successfully.");
+        })
+        .catch((error) => {
+          console.error("Error updating Post: ", error);
+        });
+    }
+  };
 
   return (
     <tr className="my-4">
@@ -44,6 +145,39 @@ const PostRow = ({
         >
           {status}
         </span>{" "}
+      </td>
+      <td className={`text-gray-400 text-center py-3`}>
+        {visibility ? (
+          <span
+            className={`btn2 text-white cursor-pointer bg-primary`}
+            onClick={() => {
+              changeVisibility();
+              Swal.fire({
+                text: `${t("postNotVisible")}: ${postTitle}`,
+                icon: "success",
+                confirmButtonColor: "#4682b4",
+                confirmButtonText: t("ok"),
+              });
+            }}
+          >
+            {t("visible")}
+          </span>
+        ) : (
+          <span
+            className={`btn2 text-white cursor-pointer bg-[#d33]`}
+            onClick={() => {
+              changeVisibility();
+              Swal.fire({
+                text: `${t("postVisible")}: ${postTitle}`,
+                icon: "success",
+                confirmButtonColor: "#4682b4",
+                confirmButtonText: t("ok"),
+              });
+            }}
+          >
+            {t("notVisible")}
+          </span>
+        )}
       </td>
       <td className={`text-gray-400 text-center py-3`}>
         {createdAt.toDate().toLocaleDateString()}

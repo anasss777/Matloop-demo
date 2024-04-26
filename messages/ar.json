@@ -424,6 +424,7 @@
         "title": "العنوان",
         "category": "الأقسام",
         "status": "الحالة",
+        "visibility": "الإظهار",
         "date": "تاريخ النشر",
         "link": "الرابط",
         "all": "الكل",
@@ -443,6 +444,10 @@
         "link": "الرابط",
         "banned": "محضور",
         "unbanned": "غير محضور",
+        "visible": "مرئي",
+        "notVisible": "غير مرئي",
+        "postVisible": "تم إظهار المطلوب",
+        "postNotVisible": "تم إخفاء المطلوب",
         "userBanned": "تم حضر المستخدم",
         "userUnbanned": "تم رفع الحضر عن",
         "ok": "حسناً"

@@ -188,6 +188,7 @@ const PostsList = () => {
             <th className={`p-2`}>{t("title")}</th>
             <th className={`p-2`}>{t("category")}</th>
             <th className={`p-2`}>{t("status")}</th>
+            <th className={`p-2`}>{t("visibility")}</th>
             <th className={`p-2`}>{t("date")}</th>
             <th
               className={`p-2 ${
@@ -202,59 +203,115 @@ const PostsList = () => {
           {searchedCategory === "jobs"
             ? searchedJobsPosts
                 .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
-                .map(({ postId, postTitle, status, createdAt }, index) => (
-                  <PostRow
-                    key={index}
-                    postId={postId}
-                    postTitle={postTitle}
-                    svgDevices={svgJob}
-                    status={status}
-                    createdAt={createdAt}
-                    postLink={`/jobs/${postId}`}
-                  />
-                ))
+                .map(
+                  (
+                    {
+                      postId,
+                      postTitle,
+                      status,
+                      createdAt,
+                      category,
+                      visibility,
+                    },
+                    index
+                  ) => (
+                    <PostRow
+                      key={index}
+                      postId={postId}
+                      postTitle={postTitle}
+                      svgDevices={svgJob}
+                      status={status}
+                      createdAt={createdAt}
+                      category={category}
+                      visibility={visibility}
+                      postLink={`/jobs/${postId}`}
+                    />
+                  )
+                )
             : searchedCategory === "cars"
             ? searchedCarsPosts
                 .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
-                .map(({ postId, postTitle, status, createdAt }, index) => (
-                  <PostRow
-                    key={index}
-                    postId={postId}
-                    postTitle={postTitle}
-                    svgDevices={svgCar}
-                    status={status}
-                    createdAt={createdAt}
-                    postLink={`/cars/${postId}`}
-                  />
-                ))
+                .map(
+                  (
+                    {
+                      postId,
+                      postTitle,
+                      status,
+                      createdAt,
+                      category,
+                      visibility,
+                    },
+                    index
+                  ) => (
+                    <PostRow
+                      key={index}
+                      postId={postId}
+                      postTitle={postTitle}
+                      svgDevices={svgCar}
+                      status={status}
+                      createdAt={createdAt}
+                      category={category}
+                      visibility={visibility}
+                      postLink={`/cars/${postId}`}
+                    />
+                  )
+                )
             : searchedCategory === "realEstates"
             ? searchedRealEstatesPosts
                 .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
-                .map(({ postId, postTitle, status, createdAt }, index) => (
-                  <PostRow
-                    key={index}
-                    postId={postId}
-                    postTitle={postTitle}
-                    svgDevices={svgProperty}
-                    status={status}
-                    createdAt={createdAt}
-                    postLink={`/real-estate/${postId}`}
-                  />
-                ))
+                .map(
+                  (
+                    {
+                      postId,
+                      postTitle,
+                      status,
+                      createdAt,
+                      category,
+                      visibility,
+                    },
+                    index
+                  ) => (
+                    <PostRow
+                      key={index}
+                      postId={postId}
+                      postTitle={postTitle}
+                      svgDevices={svgProperty}
+                      status={status}
+                      createdAt={createdAt}
+                      category={category}
+                      visibility={visibility}
+                      postLink={`/real-estate/${postId}`}
+                    />
+                  )
+                )
             : searchedCategory === "devices"
             ? searchedDevicesPosts
                 .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
-                .map(({ postId, postTitle, status, createdAt }, index) => (
-                  <PostRow
-                    key={index}
-                    postId={postId}
-                    postTitle={postTitle}
-                    svgDevices={svgDevices}
-                    status={status}
-                    createdAt={createdAt}
-                    postLink={`/electronic-devices/${postId}`}
-                  />
-                ))
+                .map(
+                  (
+                    {
+                      postId,
+                      postTitle,
+                      status,
+                      createdAt,
+                      category,
+                      visibility,
+                    },
+                    index
+                  ) => (
+                    <PostRow
+                      key={index}
+                      postId={postId}
+                      postTitle={postTitle}
+                      svgDevices={svgDevices}
+                      status={status}
+                      createdAt={createdAt}
+                      category={category}
+                      visibility={visibility}
+                      postLink={`/electronic-devices/${postId}`}
+                    />
+                  )
+                )
             : [
                 ...searchedJobsPosts,
                 ...searchedCarsPosts,
@@ -263,7 +320,17 @@ const PostsList = () => {
               ]
                 .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
                 .map(
-                  ({ postId, postTitle, category, status, createdAt }, index) =>
+                  (
+                    {
+                      postId,
+                      postTitle,
+                      category,
+                      visibility,
+                      status,
+                      createdAt,
+                    },
+                    index
+                  ) =>
                     category === "jobs" ? (
                       <PostRow
                         key={index}
@@ -272,6 +339,8 @@ const PostsList = () => {
                         svgDevices={svgJob}
                         status={status}
                         createdAt={createdAt}
+                        category={category}
+                        visibility={visibility}
                         postLink={`/jobs/${postId}`}
                       />
                     ) : category === "cars" ? (
@@ -282,6 +351,8 @@ const PostsList = () => {
                         svgDevices={svgCar}
                         status={status}
                         createdAt={createdAt}
+                        category={category}
+                        visibility={visibility}
                         postLink={`/cars/${postId}`}
                       />
                     ) : category === "realEstates" ? (
@@ -289,9 +360,11 @@ const PostsList = () => {
                         key={index}
                         postId={postId}
                         postTitle={postTitle}
-                        svgDevices={svgDevices}
+                        svgDevices={svgProperty}
                         status={status}
                         createdAt={createdAt}
+                        category={category}
+                        visibility={visibility}
                         postLink={`/real-estate/${postId}`}
                       />
                     ) : category === "electronicDevices" ? (
@@ -299,9 +372,11 @@ const PostsList = () => {
                         key={index}
                         postId={postId}
                         postTitle={postTitle}
-                        svgDevices={svgProperty}
+                        svgDevices={svgDevices}
                         status={status}
                         createdAt={createdAt}
+                        category={category}
+                        visibility={visibility}
                         postLink={`/electronic-devices/${postId}`}
                       />
                     ) : (

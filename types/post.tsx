@@ -22,6 +22,7 @@ export type CarPost = {
   category: string;
   language: string;
   status: string;
+  visibility: boolean;
 };
 
 export type DevicePost = {
@@ -43,6 +44,7 @@ export type DevicePost = {
   category: string;
   language: string;
   status: string;
+  visibility: boolean;
 };
 
 export type RealEstatePost = {
@@ -64,6 +66,7 @@ export type RealEstatePost = {
   category: string;
   language: string;
   status: string;
+  visibility: boolean;
 };
 
 export type JobPost = {
@@ -83,4 +86,5 @@ export type JobPost = {
   category: string;
   language: string;
   status: string;
+  visibility: boolean;
 };

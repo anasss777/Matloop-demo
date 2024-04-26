@@ -25,7 +25,9 @@ const BannedFromPosting = () => {
           className={`object-scale-down h-52 w-52 rounded-full border-4 border-primary`}
         />
       </div>
-      <div className={`flex flex-row gap-1`}>
+      <div
+        className={`flex flex-wrap justify-center items-center text-center gap-1 px-10`}
+      >
         <p className={`text-xl font-medium text-primary`}>
           {t("bannedMessage")}
         </p>

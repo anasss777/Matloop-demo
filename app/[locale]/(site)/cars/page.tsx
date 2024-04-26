@@ -110,9 +110,15 @@ const Cars = () => {
             ...doc.data(),
           } as CarPost);
         });
-        setPosts(newPosts.filter((post) => post.language === locale)); // Update posts state with the new data
+
+        // Filter posts based on visibility
+        const visiblePosts = newPosts?.filter(
+          (post) => post.visibility === true
+        );
+
+        setPosts(visiblePosts.filter((post) => post.language === locale)); // Update posts state with the new data
         setSearchedCarsPosts(
-          newPosts.filter((post) => post.language === locale)
+          visiblePosts.filter((post) => post.language === locale)
         );
       });
 

@@ -14,7 +14,7 @@ const BannedFromCommenting = () => {
 
   return (
     <div
-      className={`flex flex-row gap-1 border dark:border-gray-600 p-2 rounded-xl ${
+      className={`flex flex-wrap justify-center items-center text-center gap-1 border dark:border-gray-600 p-2 rounded-xl ${
         isArabic ? "rtl" : "ltr"
       }`}
     >

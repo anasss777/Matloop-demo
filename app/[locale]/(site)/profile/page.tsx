@@ -100,107 +100,157 @@ const UserProfile: React.FC = () => {
 
   useEffect(() => {
     if (userData) {
-      const fetchPosts = async () => {
-        // Use Promise.all to fetch all posts concurrently
-        const postsPromises = userData?.posts?.map((id: string) =>
-          firebase.firestore().collection("posts").doc(id).get()
+      const fetchPosts = () => {
+        // Initialize an empty posts map
+        let postsMap: { [id: string]: CarPost } = {};
+
+        // Use map to create an array of unsubscribe functions for each post
+        const unsubscribeFunctions = userData.posts.map((id) =>
+          firebase
+            .firestore()
+            .collection("posts")
+            .doc(id)
+            .onSnapshot((doc) => {
+              if (doc.exists) {
+                const postData = doc.data() as CarPost;
+                // Check visibility before setting state
+                if (postData.visibility === true) {
+                  // Update the post in the map
+                  postsMap = { ...postsMap, [id]: postData };
+                  // Convert the posts map to an array and set state
+                  setCarsPosts(Object.values(postsMap));
+                }
+              }
+            })
         );
 
-        if (postsPromises) {
-          const postsSnapshots = await Promise?.all(postsPromises);
-
-          const PostsData: CarPost[] = postsSnapshots?.map(
-            (doc) =>
-              ({
-                ...doc.data(),
-              } as CarPost)
-          );
-
-          setCarsPosts(PostsData);
-        }
+        // Return a cleanup function to unsubscribe from all posts when the component unmounts
+        return () =>
+          unsubscribeFunctions.forEach((unsubscribe) => unsubscribe());
       };
-      fetchPosts();
+
+      // Call fetchPosts and store the cleanup function
+      const unsubscribe = fetchPosts();
+
+      // Call the cleanup function when the component unmounts
+      return () => unsubscribe();
     }
   }, [userData]);
 
   useEffect(() => {
     if (userData) {
-      const fetchPosts = async () => {
-        // Use Promise.all to fetch all posts concurrently
-        const postsPromises = userData?.electronicDevicesPosts
-          ? userData?.electronicDevicesPosts?.map((id: string) =>
-              firebase.firestore().collection("electronicDevices").doc(id).get()
-            )
-          : [];
+      const fetchPosts = () => {
+        // Initialize an empty posts map
+        let postsMap: { [id: string]: DevicePost } = {};
 
-        if (postsPromises) {
-          const postsSnapshots = await Promise.all(postsPromises);
+        // Use map to create an array of unsubscribe functions for each post
+        const unsubscribeFunctions = userData.electronicDevicesPosts.map((id) =>
+          firebase
+            .firestore()
+            .collection("electronicDevices")
+            .doc(id)
+            .onSnapshot((doc) => {
+              if (doc.exists) {
+                const postData = doc.data() as DevicePost;
+                // Check visibility before setting state
+                if (postData.visibility === true) {
+                  // Update the post in the map
+                  postsMap = { ...postsMap, [id]: postData };
+                  // Convert the posts map to an array and set state
+                  setDevicesPosts(Object.values(postsMap));
+                }
+              }
+            })
+        );
 
-          const PostsData: DevicePost[] = postsSnapshots?.map(
-            (doc) =>
-              ({
-                ...doc.data(),
-              } as DevicePost)
-          );
-
-          setDevicesPosts(PostsData);
-        }
+        // Return a cleanup function to unsubscribe from all posts when the component unmounts
+        return () =>
+          unsubscribeFunctions.forEach((unsubscribe) => unsubscribe());
       };
-      fetchPosts();
+
+      // Call fetchPosts and store the cleanup function
+      const unsubscribe = fetchPosts();
+
+      // Call the cleanup function when the component unmounts
+      return () => unsubscribe();
     }
   }, [userData]);
 
   useEffect(() => {
     if (userData) {
-      const fetchPosts = async () => {
-        // Use Promise.all to fetch all posts concurrently
-        const postsPromises = userData?.realEstatePosts
-          ? userData?.realEstatePosts?.map((id: string) =>
-              firebase.firestore().collection("realEstatePosts").doc(id).get()
-            )
-          : [];
+      const fetchPosts = () => {
+        // Initialize an empty posts map
+        let postsMap: { [id: string]: RealEstatePost } = {};
 
-        if (postsPromises) {
-          const postsSnapshots = await Promise.all(postsPromises);
+        // Use map to create an array of unsubscribe functions for each post
+        const unsubscribeFunctions = userData.realEstatePosts.map((id) =>
+          firebase
+            .firestore()
+            .collection("realEstatePosts")
+            .doc(id)
+            .onSnapshot((doc) => {
+              if (doc.exists) {
+                const postData = doc.data() as RealEstatePost;
+                // Check visibility before setting state
+                if (postData.visibility === true) {
+                  // Update the post in the map
+                  postsMap = { ...postsMap, [id]: postData };
+                  // Convert the posts map to an array and set state
+                  setRealEstatePosts(Object.values(postsMap));
+                }
+              }
+            })
+        );
 
-          const PostsData: RealEstatePost[] = postsSnapshots?.map(
-            (doc) =>
-              ({
-                ...doc.data(),
-              } as RealEstatePost)
-          );
-
-          setRealEstatePosts(PostsData);
-        }
+        // Return a cleanup function to unsubscribe from all posts when the component unmounts
+        return () =>
+          unsubscribeFunctions.forEach((unsubscribe) => unsubscribe());
       };
-      fetchPosts();
+
+      // Call fetchPosts and store the cleanup function
+      const unsubscribe = fetchPosts();
+
+      // Call the cleanup function when the component unmounts
+      return () => unsubscribe();
     }
   }, [userData]);
 
   useEffect(() => {
     if (userData) {
-      const fetchPosts = async () => {
-        // Use Promise.all to fetch all posts concurrently
-        const postsPromises = userData?.jobsPosts
-          ? userData?.jobsPosts?.map((id: string) =>
-              firebase.firestore().collection("jobsPosts").doc(id).get()
-            )
-          : [];
+      const fetchPosts = () => {
+        // Initialize an empty posts map
+        let postsMap: { [id: string]: JobPost } = {};
 
-        if (postsPromises) {
-          const postsSnapshots = await Promise.all(postsPromises);
+        // Use map to create an array of unsubscribe functions for each post
+        const unsubscribeFunctions = userData.jobsPosts.map((id) =>
+          firebase
+            .firestore()
+            .collection("jobsPosts")
+            .doc(id)
+            .onSnapshot((doc) => {
+              if (doc.exists) {
+                const postData = doc.data() as JobPost;
+                // Check visibility before setting state
+                if (postData.visibility === true) {
+                  // Update the post in the map
+                  postsMap = { ...postsMap, [id]: postData };
+                  // Convert the posts map to an array and set state
+                  setJobPosts(Object.values(postsMap));
+                }
+              }
+            })
+        );
 
-          const PostsData: JobPost[] = postsSnapshots?.map(
-            (doc) =>
-              ({
-                ...doc.data(),
-              } as JobPost)
-          );
-
-          setJobPosts(PostsData);
-        }
+        // Return a cleanup function to unsubscribe from all posts when the component unmounts
+        return () =>
+          unsubscribeFunctions.forEach((unsubscribe) => unsubscribe());
       };
-      fetchPosts();
+
+      // Call fetchPosts and store the cleanup function
+      const unsubscribe = fetchPosts();
+
+      // Call the cleanup function when the component unmounts
+      return () => unsubscribe();
     }
   }, [userData]);
 
