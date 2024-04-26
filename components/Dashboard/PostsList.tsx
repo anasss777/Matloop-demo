@@ -188,12 +188,13 @@ const PostsList = () => {
             <th className={`p-2`}>{t("title")}</th>
             <th className={`p-2`}>{t("category")}</th>
             <th className={`p-2`}>{t("status")}</th>
+            <th className={`p-2`}>{t("date")}</th>
             <th
               className={`p-2 ${
                 isArabic ? "rounded-l-full" : "rounded-r-full"
               }`}
             >
-              {t("date")}
+              {t("link")}
             </th>
           </tr>
 
@@ -209,6 +210,7 @@ const PostsList = () => {
                     svgDevices={svgJob}
                     status={status}
                     createdAt={createdAt}
+                    postLink={`/jobs/${postId}`}
                   />
                 ))
             : searchedCategory === "cars"
@@ -222,6 +224,7 @@ const PostsList = () => {
                     svgDevices={svgCar}
                     status={status}
                     createdAt={createdAt}
+                    postLink={`/cars/${postId}`}
                   />
                 ))
             : searchedCategory === "realEstates"
@@ -235,6 +238,7 @@ const PostsList = () => {
                     svgDevices={svgProperty}
                     status={status}
                     createdAt={createdAt}
+                    postLink={`/real-estate/${postId}`}
                   />
                 ))
             : searchedCategory === "devices"
@@ -248,6 +252,7 @@ const PostsList = () => {
                     svgDevices={svgDevices}
                     status={status}
                     createdAt={createdAt}
+                    postLink={`/electronic-devices/${postId}`}
                   />
                 ))
             : [
@@ -267,6 +272,7 @@ const PostsList = () => {
                         svgDevices={svgJob}
                         status={status}
                         createdAt={createdAt}
+                        postLink={`/jobs/${postId}`}
                       />
                     ) : category === "cars" ? (
                       <PostRow
@@ -276,6 +282,7 @@ const PostsList = () => {
                         svgDevices={svgCar}
                         status={status}
                         createdAt={createdAt}
+                        postLink={`/cars/${postId}`}
                       />
                     ) : category === "realEstates" ? (
                       <PostRow
@@ -285,6 +292,7 @@ const PostsList = () => {
                         svgDevices={svgDevices}
                         status={status}
                         createdAt={createdAt}
+                        postLink={`/real-estate/${postId}`}
                       />
                     ) : category === "electronicDevices" ? (
                       <PostRow
@@ -294,6 +302,7 @@ const PostsList = () => {
                         svgDevices={svgProperty}
                         status={status}
                         createdAt={createdAt}
+                        postLink={`/electronic-devices/${postId}`}
                       />
                     ) : (
                       <div></div>

@@ -5,7 +5,7 @@ import firebase from "@/firebase";
 import { useRouter } from "next/navigation";
 import { handleSignUp, handleSignUpWithGoogle } from "@/utils/auth";
 import { useLocale, useTranslations } from "next-intl";
-import { svgGoogle } from "@/components/svgsPath";
+import { svgGoogle, svgLogo } from "@/components/svgsPath";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
 
 const locales = ["ar", "en"];
@@ -75,6 +75,17 @@ const SignUp = () => {
         onSubmit={handleSubmit}
         className={`flex flex-col gap-5 justify-center items-center bg-white dark:bg-gray-800 p-5 rounded-md shadow-Card2`}
       >
+        {/* Logo */}
+        <Link
+          href="/"
+          locale={locale}
+          className={`flex flex-row justify-center items-center gap-1`}
+        >
+          <span>{svgLogo}</span>
+
+          <p>مطلوب</p>
+        </Link>
+
         <input
           name="firstName"
           type="text"

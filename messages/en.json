@@ -391,6 +391,11 @@
         "done": "Filter",
         "cancel": "Cancel"
     },
+    "adminPanel": {
+        "dashboard": "Dashboard",
+        "posts": "Posts",
+        "users": "Users"
+    },
     "overview": {
         "categories": "Categories",
         "jobs": "Jobs",
@@ -413,5 +418,36 @@
         "totalDevicesToday": "Total Electronic Devices Today",
         "activeDevices": "Active Electronic Devices",
         "resolvedDevices": "Resolved Electronic Devices"
+    },
+    "postsList": {
+        "id": "ID",
+        "title": "Title",
+        "category": "Category",
+        "status": "Status",
+        "date": "Date",
+        "link": "Link",
+        "all": "All",
+        "jobs": "Jobs",
+        "cars": "Cars",
+        "realEstates": "Real Estates",
+        "devices": "Electronic Devices"
+    },
+    "usersList": {
+        "id": "ID",
+        "name": "Name",
+        "username": "Username",
+        "email": "Email",
+        "country": "Country",
+        "phoneNumber":"Phone Number",
+        "status": "Status",
+        "link": "Link"
+    },
+    "bannedFromPosting": {
+        "bannedMessage": "You cannot post a request",
+        "whyBanned": "Please contact customer service to find out why"
+    },
+    "bannedFromCommenting": {
+        "bannedMessage": "You cannot add a comment",
+        "whyBanned": "Please contact customer service to find out why"
     }
 }

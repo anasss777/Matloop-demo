@@ -9,6 +9,7 @@ import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import { RealEstatePost } from "@/types/post";
 import { addRealEstateComment } from "@/utils/realEstatePost";
 import RSCommentSection from "./RSCommentSection";
+import BannedFromCommenting from "../BannedFromCommenting";
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
 
@@ -131,68 +132,72 @@ const RSPostComments = ({ post }: Props) => {
       <div className={`flex flex-col justify-center items-center w-full h-fit`}>
         {/* Form for a comment */}
         {commentor ? (
-          <div className="flex flex-col justify-between w-full border dark:border-gray-600 shadow-Card rounded-md">
-            <textarea
-              rows={4}
-              cols={50}
-              placeholder={t("commentContent")}
-              value={commentContent}
-              onChange={(e) => setCommentContent(e.target.value)}
-              className="w-full rounded-t-md outline-none py-2 px-3 text-gray-400 dark:text-gray-200 h-10 resize-none"
-            ></textarea>
+          commentor.ban ? (
+            <BannedFromCommenting />
+          ) : (
+            <div className="flex flex-col justify-between w-full border dark:border-gray-600 shadow-Card rounded-md">
+              <textarea
+                rows={4}
+                cols={50}
+                placeholder={t("commentContent")}
+                value={commentContent}
+                onChange={(e) => setCommentContent(e.target.value)}
+                className="w-full rounded-t-md outline-none py-2 px-3 text-gray-400 dark:text-gray-200 h-10 resize-none"
+              ></textarea>
 
-            <div
-              className={`flex gap-2 items-center justify-end w-full bg-white dark:bg-black p-2 rounded-b-md`}
-            >
-              {/* Add up to 10 images to a comment */}
-              <button className="">
-                <label htmlFor={`imageInput${post.poster.userId}`}>
+              <div
+                className={`flex gap-2 items-center justify-end w-full bg-white dark:bg-black p-2 rounded-b-md`}
+              >
+                {/* Add up to 10 images to a comment */}
+                <button className="">
+                  <label htmlFor={`imageInput${post.poster.userId}`}>
+                    <span
+                      className={`flex bg-gray-200 dark:bg-gray-500 h-fit w-fit p-1 rounded-full border border-gray-300 shadow-md`}
+                    >
+                      {svgImage}
+                    </span>
+                  </label>
+                  <input
+                    type="file"
+                    id={`imageInput${post.poster.userId}`}
+                    multiple
+                    accept="image/*"
+                    className="absolute left-[-9999px]"
+                    onChange={(e) => setCommentsImages(e.target.files)}
+                  />
+                </button>
+
+                {/* Add up to 3 files to a comment */}
+                <button className="">
+                  <label htmlFor={`fileInput${post.poster.userId}`}>
+                    <span
+                      className={`flex bg-gray-200 dark:bg-gray-500 h-fit w-fit p-1 rounded-full border border-gray-300 shadow-md`}
+                    >
+                      {svgFile}
+                    </span>
+                  </label>
+                  <input
+                    type="file"
+                    id={`fileInput${post.poster.userId}`}
+                    multiple
+                    accept="application/pdf"
+                    className="absolute left-[-9999px]"
+                    onChange={(e) => setCommentsFiles(e.target.files)}
+                  />
+                </button>
+
+                {/* Add comment button */}
+                <button onClick={validateInputs} className="">
                   <span
-                    className={`flex bg-gray-200 dark:bg-gray-500 h-fit w-fit p-1 rounded-full border border-gray-300 shadow-md`}
-                  >
-                    {svgImage}
-                  </span>
-                </label>
-                <input
-                  type="file"
-                  id={`imageInput${post.poster.userId}`}
-                  multiple
-                  accept="image/*"
-                  className="absolute left-[-9999px]"
-                  onChange={(e) => setCommentsImages(e.target.files)}
-                />
-              </button>
-
-              {/* Add up to 3 files to a comment */}
-              <button className="">
-                <label htmlFor={`fileInput${post.poster.userId}`}>
-                  <span
-                    className={`flex bg-gray-200 dark:bg-gray-500 h-fit w-fit p-1 rounded-full border border-gray-300 shadow-md`}
-                  >
-                    {svgFile}
-                  </span>
-                </label>
-                <input
-                  type="file"
-                  id={`fileInput${post.poster.userId}`}
-                  multiple
-                  accept="application/pdf"
-                  className="absolute left-[-9999px]"
-                  onChange={(e) => setCommentsFiles(e.target.files)}
-                />
-              </button>
-
-              {/* Add comment button */}
-              <button onClick={validateInputs} className="">
-                <span
-                  className={`flex justify-center items-center bg-secondary/20 dark:bg-secondary/50 h-fit w-fit p-1 rounded-full border
+                    className={`flex justify-center items-center bg-secondary/20 dark:bg-secondary/50 h-fit w-fit p-1 rounded-full border
                   border-secondary/50 dark:border-secondary shadow-md`}
-                >
-                  {isArabic ? svgSend : svgSendEn}
-                </span>
-              </button>
+                  >
+                    {isArabic ? svgSend : svgSendEn}
+                  </span>
+                </button>
+              </div>
             </div>
-          </div>
+          )
         ) : (
           <Link
             href="/sign-up"

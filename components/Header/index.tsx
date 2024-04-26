@@ -7,6 +7,7 @@ import LocaleSwitcher from "./LocaleSwitcher";
 import Account from "./Account";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import ThemeSwitcher from "../ThemeSwitcher";
+import { svgLogo } from "../svgsPath";
 
 export const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
@@ -41,10 +42,13 @@ const Header = () => {
       }`}
     >
       <div className={`flex flex-row gap-5 justify-center items-center`}>
-        <Link href="/" locale={locale}>
-          <p className={`flex justify-center items-center text-3xl text-white`}>
-            مطلوب
-          </p>
+        <Link
+          href="/"
+          locale={locale}
+          className={`flex flex-row justify-center items-center gap-1`}
+        >
+          <span>{svgLogo}</span>
+          <p>مطلوب</p>
         </Link>
 
         <Link

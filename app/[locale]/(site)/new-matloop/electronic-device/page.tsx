@@ -14,6 +14,11 @@ import DeviceStorage from "@/components/ElectronicDevices/DeviceStorage";
 import CountriesSelector from "@/components/CountriesSelector";
 import { addDevicePost } from "@/utils/devicePost";
 import { svgLoading } from "@/components/svgsPath";
+import { createSharedPathnamesNavigation } from "next-intl/navigation";
+import Image from "next/image";
+import BannedFromPosting from "@/components/BannedFromPosting";
+const locales = ["ar", "en"];
+const { Link } = createSharedPathnamesNavigation({ locales });
 
 const ElectronicDevice = () => {
   const t = useTranslations("newElectonicDevicePost");
@@ -152,6 +157,10 @@ const ElectronicDevice = () => {
     // Cleanup subscription on unmount
     return () => unsubscribe();
   }, [locale, router]);
+
+  if (poster?.ban) {
+    return <BannedFromPosting />;
+  }
 
   return (
     <div

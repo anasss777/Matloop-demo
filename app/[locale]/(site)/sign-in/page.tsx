@@ -1,8 +1,8 @@
 "use client";
 
-import { svgGoogle } from "@/components/svgsPath";
+import { svgGoogle, svgLogo } from "@/components/svgsPath";
 import firebase from "@/firebase";
-import { handleSignIn, handleSignUpWithGoogle } from "@/utils/auth";
+import { handleSignIn, handleSignInWithGoogle } from "@/utils/auth";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useEffect, useState } from "react";
@@ -53,7 +53,7 @@ const SignIn = () => {
   };
 
   const handleSubmitWithGoogle = async () => {
-    const fetchUser = handleSignUpWithGoogle();
+    const fetchUser = handleSignInWithGoogle();
     if ((await fetchUser) === null) {
       alert(t("notRegistered"));
     }
@@ -75,6 +75,17 @@ const SignIn = () => {
         onSubmit={handleSubmit}
         className={`flex flex-col gap-5 justify-center items-center bg-white dark:bg-gray-800 p-5 rounded-md shadow-Card2`}
       >
+        {/* Logo */}
+        <Link
+          href="/"
+          locale={locale}
+          className={`flex flex-row justify-center items-center gap-1`}
+        >
+          <span>{svgLogo}</span>
+
+          <p>مطلوب</p>
+        </Link>
+
         <input
           name="email"
           type="email"

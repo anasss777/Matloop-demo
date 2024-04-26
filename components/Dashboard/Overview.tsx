@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import firebase from "@/firebase";
 import { useLocale, useTranslations } from "next-intl";
 import OverviewCard from "./OverviewCard";
+import { svgCar, svgDevices, svgJob, svgProperty } from "../svgsPath";
 
 const Overview = () => {
   const t = useTranslations("overview");
@@ -144,6 +145,7 @@ const Overview = () => {
   const overviewData = [
     {
       heading: t("jobs"),
+      headingSvg: svgJob,
       title1: t("totalJobs"),
       count1: totalJobsPosts,
       title2: t("totalJobsToday"),
@@ -155,6 +157,7 @@ const Overview = () => {
     },
     {
       heading: t("cars"),
+      headingSvg: svgCar,
       title1: t("totalCars"),
       count1: totalCarsPosts,
       title2: t("totalCarsToday"),
@@ -166,6 +169,7 @@ const Overview = () => {
     },
     {
       heading: t("realEstate"),
+      headingSvg: svgProperty,
       title1: t("totalRealEstates"),
       count1: totalRealEstatesPosts,
       title2: t("totalRealEstatesToday"),
@@ -177,6 +181,7 @@ const Overview = () => {
     },
     {
       heading: t("devices"),
+      headingSvg: svgDevices,
       title1: t("totalDevices"),
       count1: totalDevicesPosts,
       title2: t("totalDevicesToday"),
@@ -199,6 +204,7 @@ const Overview = () => {
         <OverviewCard
           key={index}
           heading={data.heading}
+          headingSvg={data.headingSvg}
           title1={data.title1}
           count1={data.count1}
           title2={data.title2}

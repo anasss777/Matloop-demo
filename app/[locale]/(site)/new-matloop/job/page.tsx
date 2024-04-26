@@ -12,6 +12,11 @@ import firebase from "@/firebase";
 import { useRouter } from "next/navigation";
 import { addJobPost } from "@/utils/jobPost";
 import { svgLoading } from "@/components/svgsPath";
+import { createSharedPathnamesNavigation } from "next-intl/navigation";
+import Image from "next/image";
+import BannedFromPosting from "@/components/BannedFromPosting";
+const locales = ["ar", "en"];
+const { Link } = createSharedPathnamesNavigation({ locales });
 
 const Job = () => {
   const locale = useLocale();
@@ -129,6 +134,10 @@ const Job = () => {
     // Cleanup subscription on unmount
     return () => unsubscribe();
   }, [locale, router]);
+
+  if (poster?.ban) {
+    return <BannedFromPosting />;
+  }
 
   return (
     <div

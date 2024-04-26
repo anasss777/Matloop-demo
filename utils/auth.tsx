@@ -57,6 +57,7 @@ export const handleSignUp = async ({
         email,
         phoneNumber,
         country,
+        ban: false,
       });
 
     console.log("Account created successfully.");
@@ -84,6 +85,7 @@ export const handleSignUpWithGoogle = async () => {
           userId: user?.uid,
           name: user.displayName,
           email: user.email,
+          ban: false,
         },
         { merge: true }
       );
@@ -153,6 +155,7 @@ export const handleSignInWithGoogle = async () => {
           {
             name: user.displayName,
             email: user.email,
+            ban: false,
           },
           { merge: true }
         );

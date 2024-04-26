@@ -1,5 +1,11 @@
 import { Timestamp } from "firebase/firestore";
 import React from "react";
+import { svgLink } from "../svgsPath";
+import { createSharedPathnamesNavigation } from "next-intl/navigation";
+import { useLocale } from "next-intl";
+
+const locales = ["ar", "en"];
+const { Link } = createSharedPathnamesNavigation({ locales });
 
 type Props = {
   postId: string;
@@ -7,6 +13,7 @@ type Props = {
   svgDevices: JSX.Element;
   status: string;
   createdAt: Timestamp;
+  postLink: string;
 };
 
 const PostRow = ({
@@ -15,7 +22,10 @@ const PostRow = ({
   svgDevices,
   status,
   createdAt,
+  postLink,
 }: Props) => {
+  const locale = useLocale();
+
   return (
     <tr className="my-4">
       <td className={`text-gray-400 text-center py-3`}>{postId}</td>
@@ -37,6 +47,16 @@ const PostRow = ({
       </td>
       <td className={`text-gray-400 text-center py-3`}>
         {createdAt.toDate().toLocaleDateString()}
+      </td>
+      <td className={`text-gray-400 flex justify-center py-3`}>
+        <Link
+          href={postLink}
+          locale={locale}
+          target="_blank"
+          className={`bg-primary/20 border border-primary p-1 rounded-md`}
+        >
+          {svgLink}
+        </Link>
       </td>
     </tr>
   );

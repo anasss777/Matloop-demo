@@ -10,7 +10,7 @@ const Posts = () => {
 
   return (
     <div
-      className={`flex flex-col gap-10 w-full h-screen px-10 pt-5 overflow-y-auto`}
+      className={`flex flex-col gap-10 w-full h-screen px-10 py-5 overflow-y-auto`}
     >
       <PostsList />
     </div>

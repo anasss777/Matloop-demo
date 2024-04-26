@@ -13,6 +13,11 @@ import firebase from "@/firebase";
 import { svgLoading } from "@/components/svgsPath";
 import { addRealEstatePost } from "@/utils/realEstatePost";
 import RentType from "@/components/RealEstate/RentType";
+import { createSharedPathnamesNavigation } from "next-intl/navigation";
+import Image from "next/image";
+import BannedFromPosting from "@/components/BannedFromPosting";
+const locales = ["ar", "en"];
+const { Link } = createSharedPathnamesNavigation({ locales });
 
 const RealEstate = () => {
   const t = useTranslations("newRealEstatePost");
@@ -154,6 +159,10 @@ const RealEstate = () => {
     // Cleanup subscription on unmount
     return () => unsubscribe();
   }, [locale, router]);
+
+  if (poster?.ban) {
+    return <BannedFromPosting />;
+  }
 
   return (
     <div

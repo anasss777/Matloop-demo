@@ -3,6 +3,7 @@ import { createSharedPathnamesNavigation } from "next-intl/navigation";
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
 import React from "react";
+import { svgLogo } from "./svgsPath";
 
 const Footer = () => {
   const todayYear = new Date().getFullYear();
@@ -11,13 +12,18 @@ const Footer = () => {
   const isArabic = locale === "ar";
 
   return (
-    <div className="flex flex-col gap-6 bg-teal-400 dark:bg-teal-700 pt-4 px-3 mt-10 relative bottom-0">
-      <Link href="/" className={`flex justify-center w-full`}>
-        <p
-          className={`flex justify-center items-center text-2xl text-white w-fit`}
-        >
-          مطلوب
-        </p>
+    <div
+      className={`flex flex-col gap-6 bg-teal-400 dark:bg-teal-700 pt-4 px-3 mt-10 relative bottom-0 ${
+        isArabic ? "rtl" : "ltr"
+      }`}
+    >
+      <Link
+        href="/"
+        locale={locale}
+        className={`flex flex-row justify-center items-center gap-1`}
+      >
+        <span>{svgLogo}</span>
+        <p>مطلوب</p>
       </Link>
 
       <div>

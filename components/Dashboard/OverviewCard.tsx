@@ -2,6 +2,7 @@ import React from "react";
 
 type Props = {
   heading: string;
+  headingSvg?: JSX.Element;
   title1: string;
   count1: number;
   title2: string;
@@ -14,6 +15,7 @@ type Props = {
 
 const OverviewCard = ({
   heading,
+  headingSvg,
   title1,
   count1,
   title2,
@@ -25,7 +27,13 @@ const OverviewCard = ({
 }: Props) => {
   return (
     <div className={`flex flex-col`}>
-      <h1 className="text-xl font-bold mb-4 mt-10 text-primary">{heading}</h1>
+      <h1 className="flex flex-row items-center gap-1 text-xl font-bold mb-4 mt-10 text-primary">
+        {" "}
+        <span className={`bg-primary/20 border border-primary p-1 rounded-md`}>
+          {headingSvg}
+        </span>{" "}
+        {heading}
+      </h1>
       <div className="grid grid-cols-2 gap-4">
         <div className="p-4 border rounded-md dark:bg-gray-800">
           <h2 className="text-lg font-semibold">{title1}</h2>

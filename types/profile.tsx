@@ -14,4 +14,5 @@ export type Profile = {
   realEstatePosts: string[];
   jobsPosts: string[];
   comments: string[];
+  ban: boolean;
 };

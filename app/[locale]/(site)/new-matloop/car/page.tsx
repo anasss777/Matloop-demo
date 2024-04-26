@@ -13,6 +13,11 @@ import CategorySelector from "@/components/CategorySelector";
 import firebase from "@/firebase";
 import { useRouter } from "next/navigation";
 import { svgLoading } from "@/components/svgsPath";
+import { createSharedPathnamesNavigation } from "next-intl/navigation";
+import Image from "next/image";
+import BannedFromPosting from "@/components/BannedFromPosting";
+const locales = ["ar", "en"];
+const { Link } = createSharedPathnamesNavigation({ locales });
 
 const CarPost = () => {
   const t = useTranslations("newPost");
@@ -194,6 +199,10 @@ const CarPost = () => {
   const handleCountrySelected = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCountry(e.target.value);
   };
+
+  if (poster?.ban) {
+    return <BannedFromPosting />;
+  }
 
   return (
     <div

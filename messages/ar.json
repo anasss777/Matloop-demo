@@ -393,7 +393,8 @@
     },
     "adminPanel": {
         "dashboard": "لوحة التحكم",
-        "posts": "المطلوبات"
+        "posts": "المطلوبات",
+        "users": "المستخدمين"
     },
     "overview": {
         "categories": "الأقسام",
@@ -424,10 +425,34 @@
         "category": "الأقسام",
         "status": "الحالة",
         "date": "تاريخ النشر",
+        "link": "الرابط",
         "all": "الكل",
         "jobs": "وظائف",
         "cars": "سيارات",
         "realEstates": "عقارات",
         "devices": "أجهزة إلكترونية"
+    },
+    "usersList": {
+        "id": "الرقم التعريفي",
+        "name": "الإسم",
+        "username": "إسم المستخدم",
+        "email": "البريد الإلكتروني",
+        "country": "الدولة",
+        "phoneNumber":"رقم الهاتف",
+        "status": "الحالة",
+        "link": "الرابط",
+        "banned": "محضور",
+        "unbanned": "غير محضور",
+        "userBanned": "تم حضر المستخدم",
+        "userUnbanned": "تم رفع الحضر عن",
+        "ok": "حسناً"
+    },
+    "bannedFromPosting": {
+        "bannedMessage":"لا يمكنك أن تنشر مطلوباً",
+        "whyBanned": "الرجاء التواصل مع خدمة العملاء لمعرفة السبب"
+    },
+    "bannedFromCommenting": {
+        "bannedMessage": "لا يمكنك أن تضيف تعليقاً",
+        "whyBanned": "الرجاء التواصل مع خدمة العملاء لمعرفة السبب"
     }
 }
