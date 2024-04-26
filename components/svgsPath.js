@@ -1675,3 +1675,43 @@ export const svgCancel = (
     </g>
   </svg>
 );
+
+export const svgTick = (
+  <svg
+    fill="#4682b4"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    height={17}
+    width={17}
+  >
+    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+    <g
+      id="SVGRepo_tracerCarrier"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    ></g>
+    <g id="SVGRepo_iconCarrier">
+      <path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm5.676,8.237-6,5.5a1,1,0,0,1-1.383-.03l-3-3a1,1,0,1,1,1.414-1.414l2.323,2.323,5.294-4.853a1,1,0,1,1,1.352,1.474Z"></path>
+    </g>
+  </svg>
+);
+
+export const svgTickGreen = (
+  <svg
+    fill="#14b8a6"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    height={20}
+    width={20}
+  >
+    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+    <g
+      id="SVGRepo_tracerCarrier"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    ></g>
+    <g id="SVGRepo_iconCarrier">
+      <path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm5.676,8.237-6,5.5a1,1,0,0,1-1.383-.03l-3-3a1,1,0,1,1,1.414-1.414l2.323,2.323,5.294-4.853a1,1,0,1,1,1.352,1.474Z"></path>
+    </g>
+  </svg>
+);

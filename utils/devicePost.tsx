@@ -267,6 +267,32 @@ export const deleteDevicePost = (post: DevicePost) => {
     });
 };
 
+export const devicePostFulfilled = async (post: DevicePost) => {
+  const postRef = firebase
+    .firestore()
+    .collection("electronicDevices")
+    .doc(post.postId);
+
+  // Fetch the current data of the post
+  const doc = await postRef.get();
+  if (!doc.exists) {
+    console.log("Post does not exist!");
+    return;
+  }
+
+  // update data
+  postRef
+    .update({
+      done: true,
+    })
+    .then(() => {
+      console.log("Post updated successfully.");
+    })
+    .catch((error) => {
+      console.error("Error updating post: ", error);
+    });
+};
+
 export const addDeviceComment = async (
   post: DevicePost,
   content: string,

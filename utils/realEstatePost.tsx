@@ -272,6 +272,32 @@ export const deleteRealEstatePost = (post: RealEstatePost) => {
     });
 };
 
+export const realEstatePostFulfilled = async (post: RealEstatePost) => {
+  const postRef = firebase
+    .firestore()
+    .collection("realEstatePosts")
+    .doc(post.postId);
+
+  // Fetch the current data of the post
+  const doc = await postRef.get();
+  if (!doc.exists) {
+    console.log("Post does not exist!");
+    return;
+  }
+
+  // update data
+  postRef
+    .update({
+      done: true,
+    })
+    .then(() => {
+      console.log("Post updated successfully.");
+    })
+    .catch((error) => {
+      console.error("Error updating post: ", error);
+    });
+};
+
 export const addRealEstateComment = async (
   post: RealEstatePost,
   content: string,

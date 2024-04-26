@@ -2,12 +2,12 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import React, { useEffect, useRef, useState } from "react";
-import { svgDeleteBlue, svgEditBlue, svgMenu } from "../svgsPath";
+import { svgDeleteBlue, svgEditBlue, svgMenu, svgTick } from "../svgsPath";
 import Popup from "reactjs-popup";
 import firebase from "@/firebase";
 import Swal from "sweetalert2";
 import { DevicePost } from "@/types/post";
-import { deleteDevicePost } from "@/utils/devicePost";
+import { deleteDevicePost, devicePostFulfilled } from "@/utils/devicePost";
 import EDEditPost from "./EDEditPost";
 
 type Props = {
@@ -69,6 +69,17 @@ const EDPostMenu = ({ post }: Props) => {
           confirmButtonText: t("ok"),
         });
       }
+    });
+  };
+
+  const handleRequestFulfilled = () => {
+    setOpenMenu(false);
+    devicePostFulfilled(post);
+    Swal.fire({
+      text: t("done"),
+      icon: "success",
+      confirmButtonColor: "#4682b4",
+      confirmButtonText: t("ok"),
     });
   };
 
@@ -143,6 +154,21 @@ const EDPostMenu = ({ post }: Props) => {
               post={post}
             />
           </Popup>
+
+          {/* Post fulfilled */}
+          {canEdit && (
+            <div
+              className={`flex justify-start mb-1 w-full hover:dark:bg-gray-600 hover:bg-white/50 p-1 rounded-md`}
+            >
+              <button
+                className="h-fit w-fit text-secondary flex flex-row items-center gap-1"
+                onClick={handleRequestFulfilled}
+              >
+                {svgTick}
+                {t("fulfilled")}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

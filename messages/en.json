@@ -293,7 +293,10 @@
         "fileDeleted": "File deleted successfully",
         "textEdited": "Comment edited",
         "deleteCommentWarning": "The comment will be permanently deleted",
-        "deletePostWarning": "The post will be permanently deleted"
+        "deletePostWarning": "The post will be permanently deleted",
+        "fulfilled": "Done",
+        "done": "🥳 The request has been found. Congratulations! 🥳",
+        "done2": "Fulfilled"
     },
     "commentSection": {
         "showMore": "Show more",
@@ -302,16 +305,22 @@
         "closeImage": "Close"
     },
     "devicePostCard": {
-        "sar": "SAR"
+        "sar": "SAR",
+        "fulfilled": "Done",
+        "done": "🥳 The request has been found. Congratulations! 🥳"
     },
     "jobPostCard": {
-        "sar": "SAR"
+        "sar": "SAR",
+        "fulfilled": "Done",
+        "done": "🥳 The request has been found. Congratulations! 🥳"
     },
     "realEstatePostCard": {
         "sar": "SAR",
         "propertyAge": "Property Age",
         "rooms": "Number of Rooms",
-        "years": "years"
+        "years": "years",
+        "fulfilled": "Done",
+        "done": "🥳 The request has been found. Congratulations! 🥳"
     },
     "profile": {
         "name": "Name: ",
@@ -424,6 +433,7 @@
         "title": "Title",
         "category": "Category",
         "status": "Status",
+        "visibility": "Visibility",
         "date": "Date",
         "link": "Link",
         "all": "All",
@@ -438,9 +448,20 @@
         "username": "Username",
         "email": "Email",
         "country": "Country",
-        "phoneNumber":"Phone Number",
+        "phoneNumber": "Phone Number",
         "status": "Status",
-        "link": "Link"
+        "done": "Done",
+        "matloop": "Wanted",
+        "link": "Link",
+        "banned": "Banned",
+        "unbanned": "Unbanned",
+        "visible": "Visible",
+        "notVisible": "Not Visible",
+        "postVisible": "Request Visible",
+        "postNotVisible": "Request Not Visible",
+        "userBanned": "User Banned",
+        "userUnbanned": "User Unbanned",
+        "ok": "OK"
     },
     "bannedFromPosting": {
         "bannedMessage": "You cannot add posts",

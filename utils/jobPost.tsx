@@ -245,6 +245,29 @@ export const deleteJobPost = (post: JobPost) => {
     });
 };
 
+export const jobPostFulfilled = async (post: JobPost) => {
+  const postRef = firebase.firestore().collection("jobsPosts").doc(post.postId);
+
+  // Fetch the current data of the post
+  const doc = await postRef.get();
+  if (!doc.exists) {
+    console.log("Post does not exist!");
+    return;
+  }
+
+  // update data
+  postRef
+    .update({
+      done: true,
+    })
+    .then(() => {
+      console.log("Post updated successfully.");
+    })
+    .catch((error) => {
+      console.error("Error updating post: ", error);
+    });
+};
+
 export const addJobComment = async (
   post: JobPost,
   content: string,

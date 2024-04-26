@@ -4,7 +4,7 @@ import Image from "next/image";
 import { CarPost } from "@/types/post";
 import { useLocale, useTranslations } from "next-intl";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
-import { svgAddress, svgClock, svgUser } from "./svgsPath";
+import { svgAddress, svgClock, svgTickGreen, svgUser } from "./svgsPath";
 import TimeAgo from "./TimeAgo";
 import PostDetails from "./PostDetails";
 import PostMenu from "./PostMenu";
@@ -23,6 +23,7 @@ type Props = {
 };
 
 const PostCard = (props: Props) => {
+  const t = useTranslations("postCard");
   const locale = useLocale();
   const isArabic = locale === "ar";
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -129,16 +130,25 @@ const PostCard = (props: Props) => {
         </Link>
 
         {/* Address */}
-        <p
-          className={`btn2 bg-white/50 dark:bg-gray-700 text-secondary flex flex-row items-center gap-1`}
-        >
-          <span
-            className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
+        {props.post.done ? (
+          <p
+            className={`btn2 bg-white/50 dark:bg-gray-700 text-primary flex flex-row items-center gap-1`}
           >
-            {svgAddress}
-          </span>{" "}
-          {props.post?.region}
-        </p>
+            <span>{svgTickGreen}</span>
+            {t("done2")}
+          </p>
+        ) : (
+          <p
+            className={`btn2 bg-white/50 dark:bg-gray-700 text-secondary flex flex-row items-center gap-1`}
+          >
+            <span
+              className={`bg-primary/20 h-fit w-fit p-1 rounded-lg border border-primary shadow-Card2`}
+            >
+              {svgAddress}
+            </span>{" "}
+            {props.post?.region}
+          </p>
+        )}
 
         {/* Post Details */}
         {/* <PostDetails post={props.post} /> */}

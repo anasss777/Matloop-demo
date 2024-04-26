@@ -21,7 +21,7 @@ export type CarPost = {
   isPromoted: boolean;
   category: string;
   language: string;
-  status: string;
+  done: boolean;
   visibility: boolean;
 };
 
@@ -43,7 +43,7 @@ export type DevicePost = {
   isPromoted: boolean;
   category: string;
   language: string;
-  status: string;
+  done: boolean;
   visibility: boolean;
 };
 
@@ -65,7 +65,7 @@ export type RealEstatePost = {
   isPromoted: boolean;
   category: string;
   language: string;
-  status: string;
+  done: boolean;
   visibility: boolean;
 };
 
@@ -85,6 +85,6 @@ export type JobPost = {
   isPromoted: boolean;
   category: string;
   language: string;
-  status: string;
+  done: boolean;
   visibility: boolean;
 };

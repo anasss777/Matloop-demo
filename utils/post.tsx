@@ -276,6 +276,29 @@ export const deletePost = (post: CarPost) => {
     });
 };
 
+export const carPostFulfilled = async (post: CarPost) => {
+  const postRef = firebase.firestore().collection("posts").doc(post.postId);
+
+  // Fetch the current data of the post
+  const doc = await postRef.get();
+  if (!doc.exists) {
+    console.log("Post does not exist!");
+    return;
+  }
+
+  // update data
+  postRef
+    .update({
+      done: true,
+    })
+    .then(() => {
+      console.log("Post updated successfully.");
+    })
+    .catch((error) => {
+      console.error("Error updating post: ", error);
+    });
+};
+
 export const addComment = async (
   post: CarPost,
   content: string,

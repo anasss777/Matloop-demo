@@ -13,7 +13,7 @@ type Props = {
   postId: string;
   postTitle: string;
   svgDevices: JSX.Element;
-  status: string;
+  done: boolean;
   createdAt: Timestamp;
   category: string;
   visibility: boolean;
@@ -24,7 +24,7 @@ const PostRow = ({
   postId,
   postTitle,
   svgDevices,
-  status,
+  done,
   createdAt,
   category,
   visibility,
@@ -140,10 +140,10 @@ const PostRow = ({
         {" "}
         <span
           className={`rounded-md px-1 text-white ${
-            status === "active" ? "bg-secondary" : "bg-primary"
+            done ? "bg-secondary" : "bg-primary"
           }`}
         >
-          {status}
+          {done ? t("done") : t("matloop")}
         </span>{" "}
       </td>
       <td className={`text-gray-400 text-center py-3`}>

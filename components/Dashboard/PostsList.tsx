@@ -208,7 +208,7 @@ const PostsList = () => {
                     {
                       postId,
                       postTitle,
-                      status,
+                      done,
                       createdAt,
                       category,
                       visibility,
@@ -220,7 +220,7 @@ const PostsList = () => {
                       postId={postId}
                       postTitle={postTitle}
                       svgDevices={svgJob}
-                      status={status}
+                      done={done}
                       createdAt={createdAt}
                       category={category}
                       visibility={visibility}
@@ -236,7 +236,7 @@ const PostsList = () => {
                     {
                       postId,
                       postTitle,
-                      status,
+                      done,
                       createdAt,
                       category,
                       visibility,
@@ -248,7 +248,7 @@ const PostsList = () => {
                       postId={postId}
                       postTitle={postTitle}
                       svgDevices={svgCar}
-                      status={status}
+                      done={done}
                       createdAt={createdAt}
                       category={category}
                       visibility={visibility}
@@ -264,7 +264,7 @@ const PostsList = () => {
                     {
                       postId,
                       postTitle,
-                      status,
+                      done,
                       createdAt,
                       category,
                       visibility,
@@ -276,7 +276,7 @@ const PostsList = () => {
                       postId={postId}
                       postTitle={postTitle}
                       svgDevices={svgProperty}
-                      status={status}
+                      done={done}
                       createdAt={createdAt}
                       category={category}
                       visibility={visibility}
@@ -292,7 +292,7 @@ const PostsList = () => {
                     {
                       postId,
                       postTitle,
-                      status,
+                      done,
                       createdAt,
                       category,
                       visibility,
@@ -304,7 +304,7 @@ const PostsList = () => {
                       postId={postId}
                       postTitle={postTitle}
                       svgDevices={svgDevices}
-                      status={status}
+                      done={done}
                       createdAt={createdAt}
                       category={category}
                       visibility={visibility}
@@ -326,7 +326,7 @@ const PostsList = () => {
                       postTitle,
                       category,
                       visibility,
-                      status,
+                      done,
                       createdAt,
                     },
                     index
@@ -337,7 +337,7 @@ const PostsList = () => {
                         postId={postId}
                         postTitle={postTitle}
                         svgDevices={svgJob}
-                        status={status}
+                        done={done}
                         createdAt={createdAt}
                         category={category}
                         visibility={visibility}
@@ -349,7 +349,7 @@ const PostsList = () => {
                         postId={postId}
                         postTitle={postTitle}
                         svgDevices={svgCar}
-                        status={status}
+                        done={done}
                         createdAt={createdAt}
                         category={category}
                         visibility={visibility}
@@ -361,7 +361,7 @@ const PostsList = () => {
                         postId={postId}
                         postTitle={postTitle}
                         svgDevices={svgProperty}
-                        status={status}
+                        done={done}
                         createdAt={createdAt}
                         category={category}
                         visibility={visibility}
@@ -373,7 +373,7 @@ const PostsList = () => {
                         postId={postId}
                         postTitle={postTitle}
                         svgDevices={svgDevices}
-                        status={status}
+                        done={done}
                         createdAt={createdAt}
                         category={category}
                         visibility={visibility}

@@ -140,22 +140,20 @@ const JobCommentSection = ({
 
           {/* Contact info */}
           <div className={`flex flex-row gap-1`}>
-            <a href={`tel:${comment.commentor?.phoneNumber}`}>
-              <span
-                className={`flex justify-center items-center bg-secondary/20 h-fit w-fit p-1 rounded-full border border-secondary/50
+            <span
+              onClick={() => Swal.fire(`${comment.commentor?.phoneNumber}`)}
+              className={`flex justify-center items-center bg-secondary/20 h-fit w-fit p-1 rounded-full border border-secondary/50
                 shadow-md`}
-              >
-                {svgPhone}
-              </span>
-            </a>
-            <a href={`mailto:${comment.commentor?.email}`}>
-              <span
-                className={`flex justify-center items-center bg-secondary/20 h-fit w-fit p-1 rounded-full border border-secondary/50
+            >
+              {svgPhone}
+            </span>
+            <span
+              onClick={() => Swal.fire(`${comment.commentor?.email}`)}
+              className={`flex justify-center items-center bg-secondary/20 h-fit w-fit p-1 rounded-full border border-secondary/50
                 shadow-md`}
-              >
-                {svgMail}
-              </span>
-            </a>
+            >
+              {svgMail}
+            </span>
           </div>
         </div>
         {/* The comment */}
