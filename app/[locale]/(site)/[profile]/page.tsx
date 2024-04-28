@@ -68,7 +68,7 @@ const ProfilePage = ({ params }: Props) => {
               if (doc.exists) {
                 const postData = doc.data() as CarPost;
                 // Check visibility before setting state
-                if (postData.visibility === true) {
+                if (postData.visibility === true && postData.done === false) {
                   // Update the post in the map
                   postsMap = { ...postsMap, [id]: postData };
                   // Convert the posts map to an array and set state
@@ -107,7 +107,7 @@ const ProfilePage = ({ params }: Props) => {
               if (doc.exists) {
                 const postData = doc.data() as DevicePost;
                 // Check visibility before setting state
-                if (postData.visibility === true) {
+                if (postData.visibility === true && postData.done === false) {
                   // Update the post in the map
                   postsMap = { ...postsMap, [id]: postData };
                   // Convert the posts map to an array and set state
@@ -146,7 +146,7 @@ const ProfilePage = ({ params }: Props) => {
               if (doc.exists) {
                 const postData = doc.data() as RealEstatePost;
                 // Check visibility before setting state
-                if (postData.visibility === true) {
+                if (postData.visibility === true && postData.done === false) {
                   // Update the post in the map
                   postsMap = { ...postsMap, [id]: postData };
                   // Convert the posts map to an array and set state
@@ -185,7 +185,7 @@ const ProfilePage = ({ params }: Props) => {
               if (doc.exists) {
                 const postData = doc.data() as JobPost;
                 // Check visibility before setting state
-                if (postData.visibility === true) {
+                if (postData.visibility === true && postData.done === false) {
                   // Update the post in the map
                   postsMap = { ...postsMap, [id]: postData };
                   // Convert the posts map to an array and set state

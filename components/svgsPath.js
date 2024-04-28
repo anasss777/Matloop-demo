@@ -1715,3 +1715,72 @@ export const svgTickGreen = (
     </g>
   </svg>
 );
+
+export const svgRepost = (
+  <svg
+    fill="#4682b4"
+    viewBox="0 0 24 24"
+    id="retweet-round"
+    data-name="Flat Line"
+    xmlns="http://www.w3.org/2000/svg"
+    class="icon flat-line"
+    height={17}
+    width={17}
+  >
+    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+    <g
+      id="SVGRepo_tracerCarrier"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    ></g>
+    <g id="SVGRepo_iconCarrier">
+      <path
+        id="primary"
+        d="M18.46,7.11A6,6,0,0,1,15,18H10"
+        style={{
+          fill: "none",
+          stroke: "#4682b4",
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+          strokeWidth: 2,
+        }}
+      ></path>
+      <path
+        id="primary-2"
+        data-name="primary"
+        d="M5.54,16.89A6,6,0,0,1,9,6h5"
+        style={{
+          fill: "none",
+          stroke: "#4682b4",
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+          strokeWidth: 2,
+        }}
+      ></path>
+      <polyline
+        id="primary-3"
+        data-name="primary"
+        points="12 20 10 18 12 16"
+        style={{
+          fill: "none",
+          stroke: "#4682b4",
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+          strokeWidth: 2,
+        }}
+      ></polyline>
+      <polyline
+        id="primary-4"
+        data-name="primary"
+        points="12 4 14 6 12 8"
+        style={{
+          fill: "none",
+          stroke: "#4682b4",
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+          strokeWidth: 2,
+        }}
+      ></polyline>
+    </g>
+  </svg>
+);

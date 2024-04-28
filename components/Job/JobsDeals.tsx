@@ -26,7 +26,7 @@ const JobsDeals = () => {
             ...doc.data(),
           } as JobPost;
           // Check visibility before adding post to array
-          if (postData.visibility === true) {
+          if (postData.visibility === true && postData.done === false) {
             newPosts.push(postData);
           }
         });

@@ -143,14 +143,14 @@ const EDCommentSection = ({
             <span
               onClick={() => Swal.fire(`${comment.commentor?.phoneNumber}`)}
               className={`flex justify-center items-center bg-secondary/20 h-fit w-fit p-1 rounded-full border border-secondary/50
-                shadow-md`}
+                shadow-md cursor-pointer`}
             >
               {svgPhone}
             </span>
             <span
               onClick={() => Swal.fire(`${comment.commentor?.email}`)}
               className={`flex justify-center items-center bg-secondary/20 h-fit w-fit p-1 rounded-full border border-secondary/50
-                shadow-md`}
+                shadow-md cursor-pointer`}
             >
               {svgMail}
             </span>

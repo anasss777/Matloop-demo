@@ -23,7 +23,7 @@ const Footer = () => {
         className={`flex flex-row justify-center items-center gap-1`}
       >
         <span>{svgLogo}</span>
-        <p>مطلوب</p>
+        <p className={`text-white font-bold`}>مطلوب</p>
       </Link>
 
       <div>
@@ -54,7 +54,7 @@ const Footer = () => {
       >
         {t("developedBy")}
         <Link
-          href="https://portfolio-anasss777.vercel.app/"
+          href="https://anas-chammam.vercel.app"
           target="_blank"
           locale={locale}
           className={`text-teal-700 dark:text-teal-800 font-normal`}

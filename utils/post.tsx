@@ -289,7 +289,7 @@ export const carPostFulfilled = async (post: CarPost) => {
   // update data
   postRef
     .update({
-      done: true,
+      done: !post.done,
     })
     .then(() => {
       console.log("Post updated successfully.");

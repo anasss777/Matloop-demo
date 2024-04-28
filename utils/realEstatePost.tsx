@@ -288,7 +288,7 @@ export const realEstatePostFulfilled = async (post: RealEstatePost) => {
   // update data
   postRef
     .update({
-      done: true,
+      done: !post.done,
     })
     .then(() => {
       console.log("Post updated successfully.");

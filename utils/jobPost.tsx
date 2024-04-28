@@ -258,7 +258,7 @@ export const jobPostFulfilled = async (post: JobPost) => {
   // update data
   postRef
     .update({
-      done: true,
+      done: !post.done,
     })
     .then(() => {
       console.log("Post updated successfully.");

@@ -2,7 +2,13 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import React, { useEffect, useRef, useState } from "react";
-import { svgDeleteBlue, svgEditBlue, svgMenu, svgTick } from "../svgsPath";
+import {
+  svgDeleteBlue,
+  svgEditBlue,
+  svgMenu,
+  svgRepost,
+  svgTick,
+} from "../svgsPath";
 import Popup from "reactjs-popup";
 import firebase from "@/firebase";
 import Swal from "sweetalert2";
@@ -75,12 +81,20 @@ const EDPostMenu = ({ post }: Props) => {
   const handleRequestFulfilled = () => {
     setOpenMenu(false);
     devicePostFulfilled(post);
-    Swal.fire({
-      text: t("done"),
-      icon: "success",
-      confirmButtonColor: "#4682b4",
-      confirmButtonText: t("ok"),
-    });
+
+    post.done === true
+      ? Swal.fire({
+          text: t("repostMessage"),
+          icon: "success",
+          confirmButtonColor: "#4682b4",
+          confirmButtonText: t("ok"),
+        })
+      : Swal.fire({
+          text: t("done"),
+          icon: "success",
+          confirmButtonColor: "#4682b4",
+          confirmButtonText: t("ok"),
+        });
   };
 
   return (
@@ -156,19 +170,32 @@ const EDPostMenu = ({ post }: Props) => {
           </Popup>
 
           {/* Post fulfilled */}
-          {canEdit && (
-            <div
-              className={`flex justify-start mb-1 w-full hover:dark:bg-gray-600 hover:bg-white/50 p-1 rounded-md`}
-            >
-              <button
-                className="h-fit w-fit text-secondary flex flex-row items-center gap-1"
-                onClick={handleRequestFulfilled}
+          {canEdit &&
+            (post.done ? (
+              <div
+                className={`flex justify-start mb-1 w-full hover:dark:bg-gray-600 hover:bg-white/50 p-1 rounded-md`}
               >
-                {svgTick}
-                {t("fulfilled")}
-              </button>
-            </div>
-          )}
+                <button
+                  className="h-fit w-fit text-secondary flex flex-row items-center gap-1"
+                  onClick={handleRequestFulfilled}
+                >
+                  {svgRepost}
+                  {t("repost")}
+                </button>
+              </div>
+            ) : (
+              <div
+                className={`flex justify-start mb-1 w-full hover:dark:bg-gray-600 hover:bg-white/50 p-1 rounded-md`}
+              >
+                <button
+                  className="h-fit w-fit text-secondary flex flex-row items-center gap-1"
+                  onClick={handleRequestFulfilled}
+                >
+                  {svgTick}
+                  {t("fulfilled")}
+                </button>
+              </div>
+            ))}
         </div>
       </div>
     </div>

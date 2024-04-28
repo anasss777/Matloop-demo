@@ -31,7 +31,7 @@ export default function RootLayout({ children, params }: RootLayoutProps) {
       <Head />
 
       <body
-        className={`${cairo.className} dark:bg-black bg-gray-50 flex flex-col min-h-screen`}
+        className={`${cairo.className} dark:bg-gray-900 bg-gray-200 flex flex-col min-h-screen`}
       >
         <Providers>
           <NextIntlClientProvider locale={locale} messages={messages}>

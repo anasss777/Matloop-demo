@@ -113,7 +113,7 @@ const Cars = () => {
 
         // Filter posts based on visibility
         const visiblePosts = newPosts?.filter(
-          (post) => post.visibility === true
+          (post) => post.visibility === true && post.done === false
         );
 
         setPosts(visiblePosts.filter((post) => post.language === locale)); // Update posts state with the new data

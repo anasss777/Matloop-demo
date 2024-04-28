@@ -283,7 +283,7 @@ export const devicePostFulfilled = async (post: DevicePost) => {
   // update data
   postRef
     .update({
-      done: true,
+      done: !post.done,
     })
     .then(() => {
       console.log("Post updated successfully.");

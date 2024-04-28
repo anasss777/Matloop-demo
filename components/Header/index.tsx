@@ -48,7 +48,7 @@ const Header = () => {
           className={`flex flex-row justify-center items-center gap-1`}
         >
           <span>{svgLogo}</span>
-          <p>مطلوب</p>
+          <p className={`text-white font-bold`}>مطلوب</p>
         </Link>
 
         <Link
