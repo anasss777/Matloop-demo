@@ -21,7 +21,7 @@ const CarsDeals = () => {
       .collection("posts")
       .onSnapshot((snapshot) => {
         const newPosts: CarPost[] = []; // Create a new array to hold updated posts
-        snapshot.forEach((doc) => {
+        snapshot?.forEach((doc) => {
           const postData = {
             ...doc.data(),
           } as CarPost;

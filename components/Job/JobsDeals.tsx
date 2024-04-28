@@ -21,7 +21,7 @@ const JobsDeals = () => {
       .collection("jobsPosts")
       .onSnapshot((snapshot) => {
         const newPosts: JobPost[] = []; // Create a new array to hold updated posts
-        snapshot.forEach((doc) => {
+        snapshot?.forEach((doc) => {
           const postData = {
             ...doc.data(),
           } as JobPost;

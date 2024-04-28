@@ -75,7 +75,7 @@ const Jobs = () => {
       .collection("jobsPosts")
       .onSnapshot((snapshot) => {
         const newPosts: JobPost[] = []; // Create a new array to hold updated posts
-        snapshot.forEach((doc) => {
+        snapshot?.forEach((doc) => {
           newPosts.push({
             postId: doc.id,
             ...doc.data(),
@@ -230,7 +230,7 @@ const Jobs = () => {
               </div>
             </div>
           ) : (
-            <div className={`flex flex-col justify-center`}>
+            <div className={`flex flex-col justify-center w-full`}>
               {(searchedJobsPosts.length > 0 || filterOn) && (
                 <button
                   onClick={() => setShowFilters(!showFilters)}
@@ -246,7 +246,8 @@ const Jobs = () => {
               )}
 
               <div
-                className={`flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 justify-center items-center mx-auto gap-5`}
+                className={`flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 justify-center items-center mx-auto gap-5
+                w-full`}
               >
                 {searchedJobsPosts
                   .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)

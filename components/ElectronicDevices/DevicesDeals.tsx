@@ -21,7 +21,7 @@ const DevicesDeals = () => {
       .collection("electronicDevices")
       .onSnapshot((snapshot) => {
         const newPosts: DevicePost[] = []; // Create a new array to hold updated posts
-        snapshot.forEach((doc) => {
+        snapshot?.forEach((doc) => {
           const postData = {
             ...doc.data(),
           } as DevicePost;

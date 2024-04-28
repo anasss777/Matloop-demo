@@ -71,6 +71,8 @@ export const addJobPost = ({
                 isPromoted: false,
                 category: "jobs",
                 language,
+                visibility: true,
+                done: false,
               })
               .then(async () => {
                 console.log("Document written with ID: ", newPostRef.id);

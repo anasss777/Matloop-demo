@@ -85,6 +85,8 @@ export const addRealEstatePost = ({
                 isPromoted: false,
                 category: "realEstates",
                 language,
+                visibility: true,
+                done: false,
               })
               .then(async () => {
                 console.log("Document written with ID: ", newPostRef.id);

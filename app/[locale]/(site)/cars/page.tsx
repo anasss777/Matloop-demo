@@ -104,7 +104,7 @@ const Cars = () => {
       .collection("posts")
       .onSnapshot((snapshot) => {
         const newPosts: CarPost[] = []; // Create a new array to hold updated posts
-        snapshot.forEach((doc) => {
+        snapshot?.forEach((doc) => {
           newPosts.push({
             postId: doc.id,
             ...doc.data(),
@@ -284,7 +284,7 @@ const Cars = () => {
               </div>
             </div>
           ) : (
-            <div className={`flex flex-col justify-center`}>
+            <div className={`flex flex-col justify-center w-full`}>
               {(searchedCarsPosts.length > 0 || filterOn) && (
                 <button
                   onClick={() => setShowFilters(!showFilters)}
@@ -300,7 +300,8 @@ const Cars = () => {
               )}
 
               <div
-                className={`flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 justify-center items-center mx-auto gap-5`}
+                className={`flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 justify-center items-center mx-auto gap-5
+                w-full`}
               >
                 {searchedCarsPosts
                   .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)

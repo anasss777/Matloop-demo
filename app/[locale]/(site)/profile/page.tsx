@@ -34,10 +34,17 @@ const UserProfile: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<File>();
   const [imageUrl, setImageUrl] = useState<string>();
   const [openEditImage, setOpenEditImage] = useState(false);
+  const [userLoaded, setUserLoaded] = useState(false);
 
   const locale = useLocale();
   const t = useTranslations("profile");
   const isArabic = locale === "ar";
+
+  const wait3Second = () => {
+    setTimeout(() => {
+      setUserLoaded(true);
+    }, 3000);
+  };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -105,7 +112,7 @@ const UserProfile: React.FC = () => {
         let postsMap: { [id: string]: CarPost } = {};
 
         // Use map to create an array of unsubscribe functions for each post
-        const unsubscribeFunctions = userData.posts.map((id) =>
+        const unsubscribeFunctions = userData.posts?.map((id) =>
           firebase
             .firestore()
             .collection("posts")
@@ -126,7 +133,7 @@ const UserProfile: React.FC = () => {
 
         // Return a cleanup function to unsubscribe from all posts when the component unmounts
         return () =>
-          unsubscribeFunctions.forEach((unsubscribe) => unsubscribe());
+          unsubscribeFunctions?.forEach((unsubscribe) => unsubscribe());
       };
 
       // Call fetchPosts and store the cleanup function
@@ -144,28 +151,29 @@ const UserProfile: React.FC = () => {
         let postsMap: { [id: string]: DevicePost } = {};
 
         // Use map to create an array of unsubscribe functions for each post
-        const unsubscribeFunctions = userData.electronicDevicesPosts.map((id) =>
-          firebase
-            .firestore()
-            .collection("electronicDevices")
-            .doc(id)
-            .onSnapshot((doc) => {
-              if (doc.exists) {
-                const postData = doc.data() as DevicePost;
-                // Check visibility before setting state
-                if (postData.visibility === true) {
-                  // Update the post in the map
-                  postsMap = { ...postsMap, [id]: postData };
-                  // Convert the posts map to an array and set state
-                  setDevicesPosts(Object.values(postsMap));
+        const unsubscribeFunctions = userData.electronicDevicesPosts?.map(
+          (id) =>
+            firebase
+              .firestore()
+              .collection("electronicDevices")
+              .doc(id)
+              .onSnapshot((doc) => {
+                if (doc.exists) {
+                  const postData = doc.data() as DevicePost;
+                  // Check visibility before setting state
+                  if (postData.visibility === true) {
+                    // Update the post in the map
+                    postsMap = { ...postsMap, [id]: postData };
+                    // Convert the posts map to an array and set state
+                    setDevicesPosts(Object.values(postsMap));
+                  }
                 }
-              }
-            })
+              })
         );
 
         // Return a cleanup function to unsubscribe from all posts when the component unmounts
         return () =>
-          unsubscribeFunctions.forEach((unsubscribe) => unsubscribe());
+          unsubscribeFunctions?.forEach((unsubscribe) => unsubscribe());
       };
 
       // Call fetchPosts and store the cleanup function
@@ -183,7 +191,7 @@ const UserProfile: React.FC = () => {
         let postsMap: { [id: string]: RealEstatePost } = {};
 
         // Use map to create an array of unsubscribe functions for each post
-        const unsubscribeFunctions = userData.realEstatePosts.map((id) =>
+        const unsubscribeFunctions = userData.realEstatePosts?.map((id) =>
           firebase
             .firestore()
             .collection("realEstatePosts")
@@ -204,7 +212,7 @@ const UserProfile: React.FC = () => {
 
         // Return a cleanup function to unsubscribe from all posts when the component unmounts
         return () =>
-          unsubscribeFunctions.forEach((unsubscribe) => unsubscribe());
+          unsubscribeFunctions?.forEach((unsubscribe) => unsubscribe());
       };
 
       // Call fetchPosts and store the cleanup function
@@ -222,7 +230,7 @@ const UserProfile: React.FC = () => {
         let postsMap: { [id: string]: JobPost } = {};
 
         // Use map to create an array of unsubscribe functions for each post
-        const unsubscribeFunctions = userData.jobsPosts.map((id) =>
+        const unsubscribeFunctions = userData.jobsPosts?.map((id) =>
           firebase
             .firestore()
             .collection("jobsPosts")
@@ -243,7 +251,7 @@ const UserProfile: React.FC = () => {
 
         // Return a cleanup function to unsubscribe from all posts when the component unmounts
         return () =>
-          unsubscribeFunctions.forEach((unsubscribe) => unsubscribe());
+          unsubscribeFunctions?.forEach((unsubscribe) => unsubscribe());
       };
 
       // Call fetchPosts and store the cleanup function
@@ -255,25 +263,30 @@ const UserProfile: React.FC = () => {
   }, [userData]);
 
   if (!userData) {
+    wait3Second();
     return (
-      <div
-        className={`flex flex-col gap-5 justify-center items-center w-full h-[50vh]`}
-      >
-        <p className={`text-secondary font-bold text-xl`}>{t("noUser")}</p>
-        <Link
-          href="/sign-up"
-          locale={locale}
-          className={`btn2 bg-primary hover:bg-primary/50`}
-        >
-          {t("SignUp")}
-        </Link>
-        <Link
-          href="/sign-in"
-          locale={locale}
-          className={`btn2 bg-primary hover:bg-primary/50`}
-        >
-          {t("SignIn")}
-        </Link>
+      <div>
+        {userLoaded && (
+          <div
+            className={`flex flex-col gap-5 justify-center items-center w-full h-[50vh]`}
+          >
+            <p className={`text-secondary font-bold text-xl`}>{t("noUser")}</p>
+            <Link
+              href="/sign-up"
+              locale={locale}
+              className={`btn2 bg-primary hover:bg-primary/50`}
+            >
+              {t("SignUp")}
+            </Link>
+            <Link
+              href="/sign-in"
+              locale={locale}
+              className={`btn2 bg-primary hover:bg-primary/50`}
+            >
+              {t("SignIn")}
+            </Link>
+          </div>
+        )}
       </div>
     );
   }
@@ -522,7 +535,7 @@ const UserProfile: React.FC = () => {
       </div>
 
       <div
-        className={`flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center items-start gap-10`}
+        className={`flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center items-start gap-10 w-full`}
       >
         {[...carsPosts, ...devicesPosts, ...realEstatePosts, ...jobPosts]
           ?.sort((a, b) => b.createdAt?.seconds - a.createdAt?.seconds)

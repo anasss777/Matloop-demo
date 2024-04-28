@@ -94,6 +94,8 @@ export const addCarPost = ({
                 isPromoted: false,
                 category: "cars",
                 language,
+                visibility: true,
+                done: false,
               })
               .then(async () => {
                 console.log("Document written with ID: ", newPostRef.id);

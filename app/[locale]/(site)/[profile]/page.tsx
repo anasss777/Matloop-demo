@@ -59,7 +59,7 @@ const ProfilePage = ({ params }: Props) => {
         let postsMap: { [id: string]: CarPost } = {};
 
         // Use map to create an array of unsubscribe functions for each post
-        const unsubscribeFunctions = profile.posts.map((id) =>
+        const unsubscribeFunctions = profile.posts?.map((id) =>
           firebase
             .firestore()
             .collection("posts")
@@ -80,7 +80,7 @@ const ProfilePage = ({ params }: Props) => {
 
         // Return a cleanup function to unsubscribe from all posts when the component unmounts
         return () =>
-          unsubscribeFunctions.forEach((unsubscribe) => unsubscribe());
+          unsubscribeFunctions?.forEach((unsubscribe) => unsubscribe());
       };
 
       // Call fetchPosts and store the cleanup function
@@ -98,7 +98,7 @@ const ProfilePage = ({ params }: Props) => {
         let postsMap: { [id: string]: DevicePost } = {};
 
         // Use map to create an array of unsubscribe functions for each post
-        const unsubscribeFunctions = profile.electronicDevicesPosts.map((id) =>
+        const unsubscribeFunctions = profile.electronicDevicesPosts?.map((id) =>
           firebase
             .firestore()
             .collection("electronicDevices")
@@ -119,7 +119,7 @@ const ProfilePage = ({ params }: Props) => {
 
         // Return a cleanup function to unsubscribe from all posts when the component unmounts
         return () =>
-          unsubscribeFunctions.forEach((unsubscribe) => unsubscribe());
+          unsubscribeFunctions?.forEach((unsubscribe) => unsubscribe());
       };
 
       // Call fetchPosts and store the cleanup function
@@ -137,7 +137,7 @@ const ProfilePage = ({ params }: Props) => {
         let postsMap: { [id: string]: RealEstatePost } = {};
 
         // Use map to create an array of unsubscribe functions for each post
-        const unsubscribeFunctions = profile.realEstatePosts.map((id) =>
+        const unsubscribeFunctions = profile.realEstatePosts?.map((id) =>
           firebase
             .firestore()
             .collection("realEstatePosts")
@@ -158,7 +158,7 @@ const ProfilePage = ({ params }: Props) => {
 
         // Return a cleanup function to unsubscribe from all posts when the component unmounts
         return () =>
-          unsubscribeFunctions.forEach((unsubscribe) => unsubscribe());
+          unsubscribeFunctions?.forEach((unsubscribe) => unsubscribe());
       };
 
       // Call fetchPosts and store the cleanup function
@@ -176,7 +176,7 @@ const ProfilePage = ({ params }: Props) => {
         let postsMap: { [id: string]: JobPost } = {};
 
         // Use map to create an array of unsubscribe functions for each post
-        const unsubscribeFunctions = profile.jobsPosts.map((id) =>
+        const unsubscribeFunctions = profile.jobsPosts?.map((id) =>
           firebase
             .firestore()
             .collection("jobsPosts")
@@ -197,7 +197,7 @@ const ProfilePage = ({ params }: Props) => {
 
         // Return a cleanup function to unsubscribe from all posts when the component unmounts
         return () =>
-          unsubscribeFunctions.forEach((unsubscribe) => unsubscribe());
+          unsubscribeFunctions?.forEach((unsubscribe) => unsubscribe());
       };
 
       // Call fetchPosts and store the cleanup function
