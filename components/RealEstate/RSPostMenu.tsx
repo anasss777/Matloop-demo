@@ -119,21 +119,6 @@ const RSPostMenu = ({ post }: Props) => {
               : "opacity-0 invisible top-[20%]"
           }`}
         >
-          {/* Delete a post */}
-          {canEdit && (
-            <div
-              className={`flex justify-start mb-1 w-full hover:dark:bg-gray-600 hover:bg-white/50 p-1 rounded-md`}
-            >
-              <button
-                className="h-fit w-fit text-secondary flex flex-row items-center gap-1"
-                onClick={handleDeletePost}
-              >
-                {svgDeleteBlue}
-                {t("delete")}
-              </button>
-            </div>
-          )}
-
           {/* Edit a post Pop up window */}
           <Popup
             trigger={
@@ -199,6 +184,21 @@ const RSPostMenu = ({ post }: Props) => {
                 </button>
               </div>
             ))}
+
+          {/* Delete a post */}
+          {canEdit && (
+            <div
+              className={`flex justify-start mb-1 w-full hover:dark:bg-gray-600 hover:bg-white/50 p-1 rounded-md`}
+            >
+              <button
+                className="h-fit w-fit text-secondary flex flex-row items-center gap-1"
+                onClick={handleDeletePost}
+              >
+                {svgDeleteBlue}
+                {t("delete")}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

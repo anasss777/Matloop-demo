@@ -7,6 +7,8 @@ import { handleSignUp, handleSignUpWithGoogle } from "@/utils/auth";
 import { useLocale, useTranslations } from "next-intl";
 import { svgGoogle, svgLogo } from "@/components/svgsPath";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
+import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
+import { countries } from "@/components/countries";
 
 const locales = ["ar", "en"];
 const { Link } = createSharedPathnamesNavigation({ locales });
@@ -86,94 +88,107 @@ const SignUp = () => {
           <p>مطلوب</p>
         </Link>
 
-        <input
-          name="firstName"
-          type="text"
-          placeholder={t("firstName")}
-          value={userInfo.firstName}
-          onChange={handleInputChange}
-          required
-          className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
-            isArabic && "rtl"
-          }`}
-        />
-        <input
-          name="lastName"
-          type="text"
-          placeholder={t("lastName")}
-          value={userInfo.lastName}
-          onChange={handleInputChange}
-          required
-          className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
-            isArabic && "rtl"
-          }`}
-        />
-        <input
-          name="username"
-          type="text"
-          placeholder={t("username")}
-          value={userInfo.username}
-          onChange={handleInputChange}
-          required
-          className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
-            isArabic && "rtl"
-          }`}
-        />
-        <input
-          name="email"
-          type="email"
-          placeholder={t("email")}
-          value={userInfo.email}
-          onChange={handleInputChange}
-          required
-          className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
-            isArabic && "rtl"
-          }`}
-        />
-        <input
-          name="phoneNumber"
-          type="tel"
-          placeholder={t("phoneNumber")}
-          value={userInfo.phoneNumber}
-          onChange={handleInputChange}
-          required
-          className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
-            isArabic && "rtl"
-          }`}
-        />
-        <input
-          name="country"
-          type="text"
-          placeholder={t("country")}
-          value={userInfo.country}
-          onChange={handleInputChange}
-          required
-          className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
-            isArabic && "rtl"
-          }`}
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder={t("password")}
-          value={userInfo.password}
-          onChange={handleInputChange}
-          required
-          className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
-            isArabic && "rtl"
-          }`}
-        />
-        <input
-          name="confirmPassword"
-          type="password"
-          placeholder={t("confirmPassword")}
-          value={userInfo.confirmPassword}
-          onChange={handleInputChange}
-          required
-          className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
-            isArabic && "rtl"
-          }`}
-        />
+        <div className={`flex sm:flex-row flex-col gap-4 w-full`}>
+          <input
+            name="firstName"
+            type="text"
+            placeholder={t("firstName")}
+            value={userInfo.firstName}
+            onChange={handleInputChange}
+            required
+            className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
+              isArabic && "rtl"
+            }`}
+          />
+          <input
+            name="lastName"
+            type="text"
+            placeholder={t("lastName")}
+            value={userInfo.lastName}
+            onChange={handleInputChange}
+            required
+            className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
+              isArabic && "rtl"
+            }`}
+          />
+        </div>
+
+        <div className={`flex sm:flex-row flex-col gap-4 w-full`}>
+          <input
+            name="username"
+            type="text"
+            placeholder={t("username")}
+            value={userInfo.username}
+            onChange={handleInputChange}
+            required
+            className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
+              isArabic && "rtl"
+            }`}
+          />
+          <input
+            name="email"
+            type="email"
+            placeholder={t("email")}
+            value={userInfo.email}
+            onChange={handleInputChange}
+            required
+            className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
+              isArabic && "rtl"
+            }`}
+          />
+        </div>
+
+        <div className={`flex sm:flex-row flex-col gap-4 w-full`}>
+          <input
+            name="phoneNumber"
+            type="tel"
+            placeholder={t("phoneNumber")}
+            value={userInfo.phoneNumber}
+            onChange={handleInputChange}
+            required
+            className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
+              isArabic && "rtl"
+            }`}
+          />
+          <Autocomplete
+            name="country"
+            label={t("country")}
+            className="w-full sm:w-44 h-10 sm:h-0"
+            onSelect={handleInputChange}
+          >
+            {countries.map((country) => (
+              <AutocompleteItem key={country.code} value={country.code}>
+                {isArabic ? country.countryAr : country.countryEn}
+              </AutocompleteItem>
+            ))}
+          </Autocomplete>
+        </div>
+
+        <div className={`flex sm:flex-row flex-col gap-4 w-full`}>
+          <input
+            name="password"
+            type="password"
+            placeholder={t("password")}
+            value={userInfo.password}
+            onChange={handleInputChange}
+            required
+            className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
+              isArabic && "rtl"
+            }`}
+          />
+          <input
+            name="confirmPassword"
+            type="password"
+            placeholder={t("confirmPassword")}
+            value={userInfo.confirmPassword}
+            onChange={handleInputChange}
+            required
+            className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
+              isArabic && "rtl"
+            }`}
+          />
+        </div>
+
         <button type="submit" className={`btn2 bg-secondary`}>
           {t("signUp")}
         </button>

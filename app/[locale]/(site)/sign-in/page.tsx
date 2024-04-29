@@ -86,28 +86,30 @@ const SignIn = () => {
           <p>مطلوب</p>
         </Link>
 
-        <input
-          name="email"
-          type="email"
-          placeholder={t("email")}
-          value={userInfo.email}
-          onChange={handleInputChange}
-          required
-          className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
-            isArabic && "rtl"
-          }`}
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder={t("password")}
-          value={userInfo.password}
-          onChange={handleInputChange}
-          required
-          className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
-            isArabic && "rtl"
-          }`}
-        />
+        <div className={`flex flex-col gap-5 w-full`}>
+          <input
+            name="email"
+            type="email"
+            placeholder={t("email")}
+            value={userInfo.email}
+            onChange={handleInputChange}
+            required
+            className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
+              isArabic && "rtl"
+            }`}
+          />
+          <input
+            name="password"
+            type="password"
+            placeholder={t("password")}
+            value={userInfo.password}
+            onChange={handleInputChange}
+            required
+            className={`rounded-md outline-none border focus:border-primary/50 p-2 ${
+              isArabic && "rtl"
+            }`}
+          />
+        </div>
         <button type="submit" className={`btn2 bg-secondary`}>
           {t("signIn")}
         </button>

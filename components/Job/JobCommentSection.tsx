@@ -131,7 +131,7 @@ const JobCommentSection = ({
           )}
           {/* Commentor name */}
           <Link
-            href={comment.commentor?.userId || "/"}
+            href={`/${comment.commentor?.userId}` || "/"}
             locale={locale}
             className={`ltr font-bold text-secondary ${isArabic && "rtl"}`}
           >

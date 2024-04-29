@@ -278,7 +278,9 @@ const CarPostComments = ({ post }: Props) => {
 
       {/* show one or all comments */}
       {comments && comments.length > 0 && (
-        <div className={`w-full shadow-Card2 p-3 rounded-xl dark:bg-gray-700`}>
+        <div
+          className={`w-full shadow-Card2 p-3 rounded-xl dark:bg-gray-700 bg-gray-50`}
+        >
           {comments.map(
             (comment, index) =>
               comment.commentId && (

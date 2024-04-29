@@ -204,6 +204,9 @@ const Job = () => {
         selectedCountry={selectedCountry}
       />
 
+      <p>{selectedCountry}</p>
+      <p>{city}</p>
+
       {/* Other Specs */}
       <h2 className={`text-primary text-lg font-bold mb-4 mt-20`}>
         {t("jobDetails")}
